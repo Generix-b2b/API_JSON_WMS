@@ -1,0 +1,252 @@
+{
+  "customerMasterData": [
+    {
+      "TRTEXC": "1",
+      "CODACT": "LOG",
+      "CODCLI": "CLI-ES-MAD-001",
+      "TYPCLI": "1",
+      "CATCLI": "RED",
+      "CLILIV": "CLI-ES-MAD-001",
+      "EDICLI": "EDI-CLI-0001",
+      "NOMCLI": "Supermercados La Huerta S.A.",
+      "AD1CLI": "Avenida de la Constitución 22",
+      "AD2CLI": "Polígono Industrial Norte",
+      "CPOCLI": "28100",
+      "VILCLI": "Alcobendas",
+      "PAYCLI": "ES",
+      "TELCLI": "+34 91 661 0000",
+      "FAXCLI": "+34 91 661 0001",
+      "CODLGE": "ESP",
+      "CODDEV": "EUR",
+      "IGLSIT": "001",
+      "PTYCLI": "A01",
+      "ETACLI": "40",
+      "INDADR": "P",
+      "CODCLV": "ENT",
+      "GEEX2001": [
+        {
+          "RSPCLI": "Ana Martínez Ruiz",
+          "CODMOP": "MOP",
+          "CODRGT": "ZMA",
+          "CODTRA": "TRANS-NORTE",
+          "TOULIV": [
+            "T001",
+            "T002",
+            "T003"
+          ],
+          "ORDLIV": [
+            "0010",
+            "0020",
+            "0030"
+          ],
+          "KAILIV": [
+            "K01",
+            "K02",
+            "K03"
+          ],
+          "GSTALC": "0",
+          "PTYDES": "30",
+          "NUMACS": "00000000000000000001",
+          "CPICLI": "28100-ALB",
+          "TVACCE": "ESB12345678",
+          "CTRPRP": true,
+          "CLIDAE": "N",
+          "TYPDES": "D",
+          "BUREXP": "EXP-MAD1",
+          "PTYPRP": "20",
+          "GENAVI": "1",
+          "HEUCHV": false,
+          "TYPDES2": "D1",
+          "CODFCQ": "QC1"
+        }
+      ],
+      "GEEX2002": [
+        {
+          "CM1CLI": "Cliente prioritario - Acuerdo marco 2025",
+          "CM2CLI": "Descarga en muelle posterior, acceso calle B",
+          "CM3CLI": "Requiere albarán firmado en cada entrega",
+          "EMLADR": "logistica@lahuerta.es"
+        }
+      ],
+      "GEEX2003": [
+        {
+          "CODRST": "RST",
+          "LIBCPL": "Supermercados La Huerta - C. Logística",
+          "LIBCP2": "Grupo Huerta Distribución",
+          "EXLGRP": false,
+          "TYPDSV": "A",
+          "PTYSND": "1",
+          "IDEEXT": "EXT-HUERTA-001-MAD",
+          "ARDPEN": "N"
+        }
+      ],
+      "GEEX2050": [
+        {
+          "TYPRUB": "2",
+          "CODRUB": "ZONA",
+          "VALRUB": "NORTE"
+        },
+        {
+          "TYPRUB": "2",
+          "CODRUB": "RUTA",
+          "VALRUB": "R-ALCOBENDAS-001"
+        },
+        {
+          "TYPRUB": "1",
+          "CODRUB": "GLN1",
+          "VALRUB": "8412345000016"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "2",
+      "CODACT": "ALM",
+      "CODCLI": "CLI-ES-BCN-002",
+      "TYPCLI": "3",
+      "CATCLI": "PLT",
+      "CLILIV": "CLI-ES-BCN-002",
+      "NOMCLI": "Plataforma Logística Mediterránea S.L.",
+      "AD1CLI": "Carrer de la Indústria 88",
+      "AD2CLI": "Nave 5, Sector B",
+      "CPOCLI": "08040",
+      "VILCLI": "Barcelona",
+      "PAYCLI": "ES",
+      "TELCLI": "+34 93 444 2200",
+      "CODLGE": "CAT",
+      "CODDEV": "EUR",
+      "IGLSIT": "002",
+      "ETACLI": "30",
+      "CODCLV": "STD",
+      "GEEX2001": [
+        {
+          "RSPCLI": "Pere Puigdomènech",
+          "CODMOP": "PLA",
+          "CODRGT": "ZCA",
+          "CODTRA": "TRANS-MED",
+          "TOULIV": [
+            "T010",
+            "T011"
+          ],
+          "ORDLIV": [
+            "0100",
+            "0110"
+          ],
+          "KAILIV": [
+            "K10",
+            "K11"
+          ],
+          "GSTALC": "1",
+          "PTYDES": "50",
+          "NUMACS": "ALC-BCN-00002",
+          "CPICLI": "08040-BCN",
+          "IDEALC": "ALC-ID-BCN-002",
+          "CTRPRP": false,
+          "TYPDES": "P",
+          "PTYPRP": "40",
+          "GENAVI": "0",
+          "HEUCHV": true,
+          "TYPDES2": "P3",
+          "CODFCQ": "QC2"
+        }
+      ],
+      "GEEX2002": [
+        {
+          "CM1CLI": "Plataforma cross-docking - Sin almacenaje",
+          "CM2CLI": "Ventana de recepción: 06:00-10:00",
+          "EMLADR": "recepcio@plataforma-med.cat"
+        }
+      ],
+      "GEEX2003": [
+        {
+          "CODRST": "TRN",
+          "LIBCPL": "PLM - Operaciones Nocturnas",
+          "EXLGRP": true,
+          "TYPDSV": "B",
+          "PTYSND": "2",
+          "IDEEXT": "EXT-PLM-BCN-002",
+          "ARDPEN": "S"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "LOG",
+      "CODCLI": "CLI-FR-PAR-010",
+      "TYPCLI": "2",
+      "CATCLI": "GRP",
+      "NOMCLI": "Groupe Distribution France",
+      "AD1CLI": "22 Boulevard Haussmann",
+      "AD3CLI": "Rez-de-chaussée",
+      "CPOCLI": "75009",
+      "VILCLI": "Paris",
+      "PAYCLI": "FR",
+      "TELCLI": "+33 1 53 00 99 00",
+      "TLXCLI": "GDF75009",
+      "CODLGE": "FRA",
+      "CODDEV": "EUR",
+      "ETACLI": "40",
+      "CODCLV": "AGR",
+      "GEEX2001": [
+        {
+          "RSPCLI": "Sophie Bernard",
+          "CODMOP": "GRP",
+          "CODRGT": "ZFR",
+          "TOULIV": [
+            "TF01",
+            "TF02",
+            "TF03",
+            "TF04"
+          ],
+          "ORDLIV": [
+            "0010",
+            "0020",
+            "0030",
+            "0040"
+          ],
+          "KAILIV": [
+            "KF1",
+            "KF2"
+          ],
+          "GSTALC": "3",
+          "PTYDES": "10",
+          "TVACCE": "FR12345678901",
+          "CTRPRP": true,
+          "TYPDES": "G",
+          "BUREXP": "EXP-FR01",
+          "PTYPRP": "10",
+          "GENAVI": "1",
+          "HEUCHV": false,
+          "TYPDES2": "G2"
+        }
+      ],
+      "GEEX2002": [
+        {
+          "CM1CLI": "Cliente agrupación - Pedidos consolidados",
+          "CM2CLI": "Facturación centralizada en Paris",
+          "CM3CLI": "Documentación en francés obligatoria",
+          "EMLADR": "logistics@groupe-distribution.fr"
+        }
+      ],
+      "GEEX2050": [
+        {
+          "TYPRUB": "1",
+          "CODRUB": "GLN1",
+          "VALRUB": "3012345000012"
+        },
+        {
+          "TYPRUB": "2",
+          "CODRUB": "PAIS",
+          "VALRUB": "FR"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "9",
+      "CODACT": "LOG",
+      "CODCLI": "CLI-ES-SEV-099",
+      "NOMCLI": "Cliente Anulado Sevilla SL",
+      "AD1CLI": "Calle Betis 10",
+      "VILCLI": "Sevilla"
+    }
+  ]
+}

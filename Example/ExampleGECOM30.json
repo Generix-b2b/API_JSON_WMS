@@ -1,0 +1,425 @@
+{
+  "productMasterData": [
+    {
+      "TRTEXC": "1",
+      "CODACT": "LOG",
+      "CODPRO": "PROD-ES-001234",
+      "VALPRO": "A1",
+      "DS1PRO": "Aceite de Oliva Virgen Extra",
+      "DS2PRO": "Botella 750ml - Premium",
+      "FOUPRO": "PROV-ES-001",
+      "VAPPRO": "S1",
+      "FAMPRO": "ACEIT-OLIV",
+      "ANAPRO": "ALIM-LIQ-001",
+      "EDIPRO": "8412345000016",
+      "SPCPRO": 6,
+      "PCBPRO": 12,
+      "UNIPRO": "UNI",
+      "MESPRO": "1",
+      "PDBUVC": 0.9,
+      "PDNUVC": 0.75,
+      "HAUUVC": 28,
+      "LNGUVC": 8,
+      "LRGUVC": 8,
+      "PDBCOL": 11.2,
+      "HAUCOL": 32,
+      "LNGCOL": 35,
+      "LRGCOL": 25,
+      "COLCOU": 6,
+      "COUPAL": 8,
+      "GERPAL": "2",
+      "GERHAU": "3",
+      "HAUCOU": 35,
+      "CODEMB": "BOX",
+      "ABCPRO": "A",
+      "CODMDR": "STD",
+      "MODREC": "1",
+      "NBJDLV": "180",
+      "CODMDS": "EAN",
+      "ZONPRF": "A",
+      "ALLPRF": "A01",
+      "ABCSTS": "A",
+      "CODADM": "FIF",
+      "HOMGRB": "1",
+      "PERGRB": "007",
+      "CODMDP": "MAN",
+      "TOPPRN": "0",
+      "ORIMAJ": "E",
+      "TOPPRO": "N",
+      "GEEX3001": [
+        {
+          "INDPRO": [
+            "S",
+            "N",
+            "S",
+            "N",
+            "S"
+          ],
+          "CODMRQ": "AOVE-PRM",
+          "DESFOU": "ACEITE OLIVA V.E. 750ML BOT",
+          "CIRDET": "CIA",
+          "CIRPAL": "CIP",
+          "METRPL": "0",
+          "CODALC": "ALCO",
+          "DEGALC": "0.0",
+          "VOLALC": "0.75",
+          "CODMDG": "MD2",
+          "TAUPST": [
+            "12.50",
+            "11.80",
+            "10.90",
+            "09.75"
+          ],
+          "COELOG": "01.250",
+          "PRXPRO": [
+            "002.500",
+            "002.200",
+            "001.980",
+            "001.750"
+          ],
+          "CODMDI": "CI1",
+          "NXTIVT": "20260101",
+          "SECSTK": "48",
+          "CODEAP": "BOT",
+          "TOPCNA": false
+        }
+      ],
+      "GEEX3002": [
+        {
+          "CODSPE": false,
+          "UNIFAC": "UNI",
+          "COEFAC": "001000.000",
+          "SECDLV": "5",
+          "CODRGP": "GRP-ACEIT-001",
+          "UNIARR": "3",
+          "UNICAL": "1",
+          "TEMMIN": "-5",
+          "TEMMAX": "30",
+          "TOLPOI": "2",
+          "COECOL": "1050",
+          "COESPC": "1025",
+          "COEUVC": "1000",
+          "INDTOL": false,
+          "HAUSPC": 30,
+          "LNGSPC": 18,
+          "LRGSPC": 13,
+          "PDBSPC": 5.8,
+          "CODMDT": "LOT",
+          "ETIMTR": "EAN",
+          "NBJFVI": "730",
+          "CODGAM": "GAM-ALIM",
+          "CODQLP": "QLP",
+          "CTRPRP": true,
+          "CODRDS": "ALM",
+          "HAUCOL2": 32.5,
+          "HAUCOU2": 35.0,
+          "HAUSPC2": 30.25,
+          "HAUUVC2": 28.1,
+          "LNGCOL2": 35.0,
+          "LNGSPC2": 18.5,
+          "LNGUVC2": 8.2,
+          "LRGCOL2": 25.0,
+          "LRGSPC2": 13.5,
+          "LRGUVC2": 8.2,
+          "CODMNN": "MN1",
+          "ORIMAJ": "E"
+        }
+      ],
+      "GEEX3020": [
+        {
+          "EDIPRO": "8412345000016",
+          "EANDS1": "ACEITE OLIVA VE 750ML",
+          "EDIPRM": true,
+          "EDIQLF": "0",
+          "EANVTE": true
+        },
+        {
+          "EDIPRO": "8412345000023",
+          "EANDS1": "CAJA 12 UD ACEITE OVE 750ML",
+          "EDIPRM": false,
+          "EDIQLF": "3",
+          "EANVTE": false
+        }
+      ],
+      "GEEX3030": [
+        {
+          "CODLGE": "ESP",
+          "DS1PRO": "Aceite de Oliva Virgen Extra",
+          "DS2PRO": "Botella 750ml Premium"
+        },
+        {
+          "CODLGE": "ENG",
+          "DS1PRO": "Extra Virgin Olive Oil",
+          "DS2PRO": "750ml Premium Bottle"
+        },
+        {
+          "CODLGE": "FRA",
+          "DS1PRO": "Huile d'Olive Vierge Extra",
+          "DS2PRO": "Bouteille 750ml Premium"
+        }
+      ],
+      "GEEX3050": [
+        {
+          "TYPRUB": "2",
+          "CODRUB": "ORIG",
+          "VALRUB": "ESPAÑA - D.O. SIERRA MÁGINA"
+        },
+        {
+          "TYPRUB": "2",
+          "CODRUB": "CERT",
+          "VALRUB": "BIO-ES-ECO-001"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "2",
+      "CODACT": "LOG",
+      "CODPRO": "PROD-FR-009876",
+      "VALPRO": "B2",
+      "DS1PRO": "Vin Rouge Côtes du Rhône",
+      "DS2PRO": "Bouteille 75cl AOP",
+      "FOUPRO": "PROV-FR-042",
+      "FAMPRO": "VINOS-TINT",
+      "ANAPRO": "ALC-VIN-002",
+      "EDIPRO": "3012345000078",
+      "SPCPRO": 6,
+      "PCBPRO": 6,
+      "UNIPRO": "UNI",
+      "MESPRO": "1",
+      "PDBUVC": 1.35,
+      "PDNUVC": 0.75,
+      "HAUUVC": 30,
+      "LNGUVC": 9,
+      "LRGUVC": 9,
+      "PDBCOL": 9.2,
+      "HAUCOL": 34,
+      "LNGCOL": 29,
+      "LRGCOL": 20,
+      "COLCOU": 5,
+      "COUPAL": 6,
+      "GERPAL": "1",
+      "HAUCOU": 36,
+      "ABCPRO": "B",
+      "CODMDR": "ALC",
+      "MODREC": "2",
+      "NBJDLV": "999",
+      "CODMDS": "ALC",
+      "ZONPRF": "B",
+      "ABCSTS": "B",
+      "CODADM": "FIF",
+      "HOMGRB": "2",
+      "PERGRB": "014",
+      "CODMDP": "ALC",
+      "TOPPRN": "0",
+      "ORIMAJ": "E",
+      "TOPPRO": "A",
+      "GEEX3001": [
+        {
+          "INDPRO": [
+            "1",
+            "2",
+            "3"
+          ],
+          "DESFOU": "VIN ROUGE COTES DU RHONE 75CL",
+          "CIRDET": "CIA",
+          "CIRPAL": "CIP",
+          "METRPL": "0",
+          "CODALC": "VINE",
+          "DEGALC": "13.5",
+          "VOLALC": "0.75",
+          "CODMDG": "MD2",
+          "TAUPST": [
+            "18.90",
+            "17.50"
+          ],
+          "COELOG": "01.100",
+          "PRXPRO": [
+            "005.990",
+            "005.490"
+          ],
+          "CODMDI": "CI1",
+          "NXTIVT": "20260601",
+          "CODZVI": "CDRH",
+          "TOPCNA": false
+        }
+      ],
+      "GEEX3002": [
+        {
+          "CODSPE": true,
+          "UNIFAC": "UNI",
+          "COEFAC": "001000.000",
+          "SECDLV": "10",
+          "CODRGP": "GRP-VINOS-001",
+          "CODRSC": "ALC",
+          "UNIARR": "3",
+          "UNICAL": "1",
+          "TEMMIN": "8",
+          "TEMMAX": "18",
+          "TOLPOI": "3",
+          "COECOL": "1010",
+          "COEUVC": "1000",
+          "INDTOL": false,
+          "CODMDT": "LOT",
+          "NBJFVI": "1825",
+          "CODGAM": "GAM-VINOS",
+          "CTRPRP": true,
+          "CODRDS": "BOD",
+          "LNGCOL2": 29.0,
+          "LRGCOL2": 20.0,
+          "CODMNN": "MN1",
+          "ORIMAJ": "E"
+        }
+      ],
+      "GEEX3003": [
+        {
+          "CODCVI": "TINTO",
+          "NBJIMM": "30",
+          "NBHIMM": "0",
+          "IMMLOT": "CAL",
+          "EMBUVC": "BOT",
+          "CODMTI": "VIN",
+          "CODOWN": "PROV-FR-042",
+          "DS3PRO": "Millésime - Grenache Syrah Mourvèdr",
+          "INDTEM": "N/A",
+          "SENTEM": "N"
+        }
+      ],
+      "GEEX3020": [
+        {
+          "EDIPRO": "3012345000078",
+          "EANDS1": "VIN ROUGE CDR 75CL",
+          "EDIPRM": true,
+          "EDIQLF": "0",
+          "EANVTE": true
+        },
+        {
+          "EDIPRO": "3012345000085",
+          "EANDS1": "CAISSE 6 UD VIN ROUGE CDR",
+          "EDIPRM": false,
+          "EDIQLF": "3",
+          "EANVTE": false
+        },
+        {
+          "EDIPRO": "3012345000092",
+          "EANDS1": "PALETTE VIN ROUGE CDR",
+          "EDIPRM": false,
+          "EDIQLF": "5",
+          "EANVTE": false
+        }
+      ],
+      "GEEX3030": [
+        {
+          "CODLGE": "FRA",
+          "DS1PRO": "Vin Rouge Côtes du Rhône",
+          "DS2PRO": "Bouteille 75cl AOP",
+          "DESPRO": [
+            "Appellation Côtes du Rhône Contrôlé",
+            "Mis en bouteille au domaine"
+          ]
+        },
+        {
+          "CODLGE": "ESP",
+          "DS1PRO": "Vino Tinto Côtes du Rhône",
+          "DS2PRO": "Botella 75cl DOP"
+        }
+      ],
+      "GEEX3040": [
+        {
+          "CODRIC": "1430",
+          "QTERIC": "10000",
+          "TYPRIC": "1"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "FAB",
+      "CODPRO": "PROD-ES-KIT001",
+      "DS1PRO": "Pack Desayuno Mediterráneo",
+      "DS2PRO": "Surtido 5 productos Ed. Espec.",
+      "FOUPRO": "PROV-ES-001",
+      "FAMPRO": "PACKS-SURT",
+      "ANAPRO": "PACK-DES-001",
+      "EDIPRO": "8412345000054",
+      "SPCPRO": 1,
+      "PCBPRO": 4,
+      "UNIPRO": "UNI",
+      "MESPRO": "1",
+      "PDBUVC": 2.8,
+      "HAUUVC": 20,
+      "LNGUVC": 30,
+      "LRGUVC": 25,
+      "COLCOU": 4,
+      "COUPAL": 10,
+      "ABCPRO": "A",
+      "MODREC": "2",
+      "NBJDLV": "60",
+      "CODMDP": "KIT",
+      "TOPPRN": "1",
+      "ORIMAJ": "E",
+      "GEEX3010": [
+        {
+          "CODPRN": "PROD-ES-KIT001",
+          "CODPRO": "PROD-ES-001234",
+          "NBRCPS": "1",
+          "ACTCPS": "LOG",
+          "ORDCPS": "0010",
+          "TYPCPS": "1",
+          "DVSCPS": "1",
+          "UNIPRN": "UNI"
+        },
+        {
+          "CODPRN": "PROD-ES-KIT001",
+          "CODPRO": "PROD-ES-002345",
+          "NBRCPS": "2",
+          "ACTCPS": "LOG",
+          "ORDCPS": "0020",
+          "TYPCPS": "1",
+          "DVSCPS": "1",
+          "UNIPRN": "UNI"
+        },
+        {
+          "CODPRN": "PROD-ES-KIT001",
+          "CODPRO": "PROD-ES-003456",
+          "NBRCPS": "1",
+          "ACTCPS": "LOG",
+          "ORDCPS": "0030",
+          "TYPCPS": "2",
+          "DVSCPS": "1",
+          "UNIPRN": "UNI",
+          "GEEX3015": [
+            {
+              "ACTENF": "LOG",
+              "PROENF": "PROD-ES-003456-B",
+              "VALENF": "A1",
+              "RCTSAP": "PROV-ES-001",
+              "PCTSTO": "10"
+            }
+          ]
+        }
+      ],
+      "GEEX3020": [
+        {
+          "EDIPRO": "8412345000054",
+          "EANDS1": "PACK DESAYUNO MED 5U",
+          "EDIPRM": true,
+          "EDIQLF": "0",
+          "EANVTE": true
+        }
+      ],
+      "GEEX3080": [
+        {
+          "RPLPRO": "PROD-ES-KIT000",
+          "RPLVAL": "A1",
+          "FACCON": "0001000.00"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "9",
+      "CODACT": "LOG",
+      "CODPRO": "PROD-OBS-9999",
+      "DS1PRO": "Producto Anulado Ref. Antigua"
+    }
+  ]
+}

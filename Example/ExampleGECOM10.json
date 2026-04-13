@@ -1,0 +1,164 @@
+{
+  "supplierMasterData": [
+    {
+      "TRTEXC": "1",
+      "CODACT": "LOG",
+      "CODFOU": "PROV-ES-001",
+      "TYPFOU": "1",
+      "NOMFOU": "Distribuciones Ibericas S.L.",
+      "AD1FOU": "Calle Gran Via 45",
+      "AD2FOU": "Planta 3, Oficina B",
+      "CPOFOU": "28013",
+      "VILFOU": "Madrid",
+      "PAYFOU": "ES",
+      "TELFOU": "+34 91 555 1234",
+      "FAXFOU": "+34 91 555 1235",
+      "EDIFOU": "EDI-ES-001",
+      "CODTRA": "TRANS-MAD",
+      "IGLSIT": "001",
+      "CODTRE": "STD",
+      "GSTAVI": "1",
+      "GSTRCP": "1",
+      "TYPPRT": "1",
+      "CPIFOU": "28013-MAD",
+      "EMBTIE": false,
+      "FOUGMA": "1",
+      "SYSMES": false,
+      "CODCLV": "ENT",
+      "GEEX1001": [
+        {
+          "RSPFOU": "Juan García López",
+          "EMLADR": "jgarcia@dist-ibericas.es",
+          "CODCOG": "GEO-MAD-01",
+          "NUMACS": "ALC-0012345",
+          "AFFFAB": false,
+          "CODENL": "1",
+          "CODFDC01": "QC1",
+          "CODFDC02": "QC2",
+          "CODGRP": "1",
+          "CODICM": "EXW",
+          "CODTCT": "TC1",
+          "CUMPRT": "5",
+          "FOUGRP": "GRP-IBERICA",
+          "METREC": "A",
+          "NULRLQ": false,
+          "PAYFAB": "España",
+          "PEREMB": "1",
+          "UNIFSR": false,
+          "CODRGT": "ZCN"
+        }
+      ],
+      "GEEX1002": [
+        {
+          "CM1FOU": "Proveedor homologado categoría A",
+          "CM2FOU": "Entrega de lunes a viernes 08:00-17:00",
+          "CM3FOU": "Requiere cita previa para descarga",
+          "LIBCPL": "Distribuciones Ibericas - Sede Central",
+          "LIBCP2": "Grupo Logístico Ibérico"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "2",
+      "CODACT": "LOG",
+      "CODFOU": "PROV-FR-042",
+      "TYPFOU": "2",
+      "NOMFOU": "Logistique Europe SARL",
+      "AD1FOU": "15 Rue de la Paix",
+      "AD3FOU": "ZI Nord, Bâtiment C",
+      "CPOFOU": "75001",
+      "VILFOU": "Paris",
+      "PAYFOU": "FR",
+      "TELFOU": "+33 1 42 00 11 22",
+      "EDIFOU": "EDI-FR-042",
+      "CODTRA": "TRANS-PAR",
+      "IGLSIT": "042",
+      "GSTAVI": "2",
+      "GSTRCP": "2",
+      "TYPPRT": "3",
+      "EMBTIE": true,
+      "FOUGMA": "2",
+      "SYSMES": true,
+      "CODCLV": "URG",
+      "GEEX1001": [
+        {
+          "RSPFOU": "Marie Dupont",
+          "EMLADR": "m.dupont@logistique-europe.fr",
+          "CODCOG": "GEO-FR-001",
+          "AFFFAB": true,
+          "CODENL": "0",
+          "CODFDC01": "QF1",
+          "CODGRP": "0",
+          "CODICM": "DAP",
+          "CODTCT": "TC2",
+          "CUMPRT": "12",
+          "FOUGRP": "GRP-EUROPE",
+          "METREC": "B",
+          "NULRLQ": true,
+          "PAYFAB": "Francia",
+          "PEREMB": "2",
+          "UNIFSR": true,
+          "CODRGT": "ZCA"
+        }
+      ],
+      "GEEX1002": [
+        {
+          "CM1FOU": "Agrupación de pedidos semanal",
+          "LIBCPL": "Logistique Europe - División Ibérica"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "7",
+      "CODACT": "ALM",
+      "CODFOU": "PROV-DE-099",
+      "TYPFOU": "3",
+      "NOMFOU": "Deutsche Lager GmbH",
+      "AD1FOU": "Industriestraße 8",
+      "AD2FOU": "Lager Komplex Nord",
+      "CPOFOU": "10115",
+      "VILFOU": "Berlin",
+      "PAYFOU": "DE",
+      "TELFOU": "+49 30 1234 5678",
+      "TLXFOU": "DLAGER030",
+      "EDIFOU": "EDI-DE-099",
+      "IGLSIT": "099",
+      "GSTAVI": "0",
+      "GSTRCP": "3",
+      "TYPPRT": "1",
+      "EMBTIE": false,
+      "FOUGMA": "0",
+      "SYSMES": false,
+      "CODCLV": "STD",
+      "GEEX1001": [
+        {
+          "RSPFOU": "Klaus Müller",
+          "EMLADR": "k.muller@deutsche-lager.de",
+          "NUMACS": "ALC-DE-00099",
+          "AFFFAB": false,
+          "CODENL": "1",
+          "CODFDC01": "QD1",
+          "CODFDC02": "QD2",
+          "CODGRP": "1",
+          "CODICM": "CIF",
+          "CUMPRT": "3",
+          "METREC": "C",
+          "NULRLQ": false,
+          "PAYFAB": "Alemania",
+          "PEREMB": "0",
+          "UNIFSR": false,
+          "CODRGT": "ZEU"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "9",
+      "CODACT": "LOG",
+      "CODFOU": "PROV-ES-017",
+      "NOMFOU": "Anulado Proveedor Test SA",
+      "AD1FOU": "Calle Ficticia 1",
+      "VILFOU": "Barcelona",
+      "PAYFOU": "ES"
+    }
+  ]
+}

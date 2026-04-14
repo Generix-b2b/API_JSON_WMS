@@ -1,0 +1,16 @@
+{
+  "InitialTableLoad": [
+    {
+      "TRTEXC": "1",
+      "CODACT": "FTR",
+      "CLEPAR": "8",
+      "LIBPAR": "LIMPIEZA"
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "FPR",
+      "CLEPAR": "4",
+      "LIBPAR": "LACTEOS"
+    }
+  ]
+}

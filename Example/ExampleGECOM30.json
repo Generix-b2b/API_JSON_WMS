@@ -386,16 +386,7 @@
           "ORDCPS": "0030",
           "TYPCPS": "2",
           "DVSCPS": "1",
-          "UNIPRN": "UNI",
-          "GEEX3015": [
-            {
-              "ACTENF": "LOG",
-              "PROENF": "PROD-ES-003456-B",
-              "VALENF": "A1",
-              "RCTSAP": "PROV-ES-001",
-              "PCTSTO": "10"
-            }
-          ]
+          "UNIPRN": "UNI"
         }
       ],
       "GEEX3020": [

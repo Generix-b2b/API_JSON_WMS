@@ -26,7 +26,7 @@
       "SYSMES": false,
       "CODCLV": "ENT",
       "GEEX1001": {
-        "RSPFOU": "Juan GarcÃ­a LÃ³pez",
+        "RSPFOU": "Juan García López",
         "EMLADR": "jgarcia@dist-ibericas.es",
         "CODCOG": "GEO-MAD-01",
         "NUMACS": "ALC-0012345",
@@ -41,17 +41,17 @@
         "FOUGRP": "GRP-IBERICA",
         "METREC": "A",
         "NULRLQ": false,
-        "PAYFAB": "EspaÃ±a",
+        "PAYFAB": "España",
         "PEREMB": "1",
         "UNIFSR": false,
         "CODRGT": "ZCN"
       },
       "GEEX1002": {
-        "CM1FOU": "Proveedor homologado categorÃ­a A",
+        "CM1FOU": "Proveedor homologado categoría A",
         "CM2FOU": "Entrega de lunes a viernes 08:00-17:00",
         "CM3FOU": "Requiere cita previa para descarga",
         "LIBCPL": "Distribuciones Ibericas - Sede Central",
-        "LIBCP2": "Grupo LogÃ­stico IbÃ©rico"
+        "LIBCP2": "Grupo Logístico Ibérico"
       }
     },
     {
@@ -61,7 +61,7 @@
       "TYPFOU": "2",
       "NOMFOU": "Logistique Europe SARL",
       "AD1FOU": "15 Rue de la Paix",
-      "AD3FOU": "ZI Nord, BÃ¢timent C",
+      "AD3FOU": "ZI Nord, Bâtiment C",
       "CPOFOU": "75001",
       "VILFOU": "Paris",
       "PAYFOU": "FR",
@@ -96,8 +96,8 @@
         "CODRGT": "ZCA"
       },
       "GEEX1002": {
-        "CM1FOU": "AgrupaciÃ³n de pedidos semanal",
-        "LIBCPL": "Logistique Europe - DivisiÃ³n IbÃ©rica"
+        "CM1FOU": "Agrupación de pedidos semanal",
+        "LIBCPL": "Logistique Europe - División Ibérica"
       }
     },
     {
@@ -106,7 +106,7 @@
       "CODFOU": "PROV-DE-099",
       "TYPFOU": "3",
       "NOMFOU": "Deutsche Lager GmbH",
-      "AD1FOU": "IndustriestraÃŸe 8",
+      "AD1FOU": "Industriestraße 8",
       "AD2FOU": "Lager Komplex Nord",
       "CPOFOU": "10115",
       "VILFOU": "Berlin",
@@ -123,7 +123,7 @@
       "SYSMES": false,
       "CODCLV": "STD",
       "GEEX1001": {
-        "RSPFOU": "Klaus MÃ¼ller",
+        "RSPFOU": "Klaus Müller",
         "EMLADR": "k.muller@deutsche-lager.de",
         "NUMACS": "ALC-DE-00099",
         "AFFFAB": false,

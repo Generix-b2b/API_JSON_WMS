@@ -401,150 +401,140 @@
             "maxLength": 3
           },
           "GEEX1001": {
-            "type": "array",
+            "type": "object",
             "description": "Supplier Additional 01 declaration",
-            "maxItems": 1,
-            "items": 
-              {
-                "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "RSPFOU": {
-                    "type": "string",
-                    "description": "Nombre del responsable en el proveedor",
-                    "maxLength": 30
-                  },
-                  "EMLADR": {
-                    "type": "string",
-                    "description": "Dirección de correo electrónico",
-                    "minLength": 1,
-                    "maxLength": 50,
-                    "format": "email"
-                  },
-                  "CODCOG": {
-                    "type": "string",
-                    "description": "Código Geográfico",
-                    "maxLength": 15
-                  },
-                  "NUMACS": {
-                    "type": "string",
-                    "description": "Número de impuestos especiales (Alcohol)",
-                    "maxLength": 13
-                  },
-                  "AFFFAB": {
-                    "type": "boolean",
-                    "description": "Visualización de MADE IN como lote",
-                    "default":false
-                  },
-                  "CODENL": {
-                    "type": "string",
-                    "description": "Código de colección",
-                    "enum": ["0", "1"]
-                  },
-                  "CODFDC01": {
-                    "type": "string",
-                    "description": "Código de la hoja de control de calidad 1",
-                    "maxLength": 3
-                  },
-                  "CODFDC02": {
-                    "type": "string",
-                    "description": "Código de la hoja de control de calidad 2",
-                    "maxLength": 3
-                  },
-                  "CODGRP": {
-                    "type": "string",
-                    "description": "Código de agrupación",
-                    "enum": ["0", "1"]
-                  },
-                  "CODICM": {
-                    "type": "string",
-                    "description": "código incoterm",
-                    "maxLength": 3
-                  },
-                  "CODTCT": {
-                    "type": "string",
-                    "description": "Código de la tabla de control",
-                    "maxLength": 3
-                  },
-                  "CUMPRT": {
-                    "type": "string",
-                    "description": "Número total de tomas (Detalle y/o palet)",
-                    "pattern": "^\\d{1,9}$"
-                  },
-                  "FOUGRP": {
-                    "type": "string",
-                    "description": "Proveedor de grupo genérico",
-                    "maxLength": 14
-                  },
-                  "METREC": {
-                    "type": "string",
-                    "description": "Método de validación de recibo",
-                    "maxLength": 1
-                  },
-                  "NULRLQ": {
-                    "type": "boolean",
-                    "description": "Neutralización del resto en recepción",
-                    "default":false
-                  },
-                  "PAYFAB": {
-                    "type": "string",
-                    "description": "País de fabricación (HECHO EN)",
-                    "maxLength": 20
-                  },
-                  "PEREMB": {
-                    "type": "string",
-                    "description": "Periodicidad de las ventas de envases",
-                    "enum": ["0", "1", "2"]
-                  },
-                  "UNIFSR": {
-                    "type": "boolean",
-                    "description": "Unicidad de los números de serie para el producto",
-                    "default":false
-                  },
-                  "CODRGT": {
-                    "type": "string",
-                    "description": "Código de área para el transporte",
-                    "maxLength": 3
-                  }
-                }
+            "additionalProperties": false,
+            "properties": {
+              "RSPFOU": {
+                "type": "string",
+                "description": "Nombre del responsable en el proveedor",
+                "maxLength": 30
+              },
+              "EMLADR": {
+                "type": "string",
+                "description": "Dirección de correo electrónico",
+                "minLength": 1,
+                "maxLength": 50,
+                "format": "email"
+              },
+              "CODCOG": {
+                "type": "string",
+                "description": "Código Geográfico",
+                "maxLength": 15
+              },
+              "NUMACS": {
+                "type": "string",
+                "description": "Número de impuestos especiales (Alcohol)",
+                "maxLength": 13
+              },
+              "AFFFAB": {
+                "type": "boolean",
+                "description": "Visualización de MADE IN como lote",
+                "default":false
+              },
+              "CODENL": {
+                "type": "string",
+                "description": "Código de colección",
+                "enum": ["0", "1"]
+              },
+              "CODFDC01": {
+                "type": "string",
+                "description": "Código de la hoja de control de calidad 1",
+                "maxLength": 3
+              },
+              "CODFDC02": {
+                "type": "string",
+                "description": "Código de la hoja de control de calidad 2",
+                "maxLength": 3
+              },
+              "CODGRP": {
+                "type": "string",
+                "description": "Código de agrupación",
+                "enum": ["0", "1"]
+              },
+              "CODICM": {
+                "type": "string",
+                "description": "código incoterm",
+                "maxLength": 3
+              },
+              "CODTCT": {
+                "type": "string",
+                "description": "Código de la tabla de control",
+                "maxLength": 3
+              },
+              "CUMPRT": {
+                "type": "string",
+                "description": "Número total de tomas (Detalle y/o palet)",
+                "pattern": "^\\d{1,9}$"
+              },
+              "FOUGRP": {
+                "type": "string",
+                "description": "Proveedor de grupo genérico",
+                "maxLength": 14
+              },
+              "METREC": {
+                "type": "string",
+                "description": "Método de validación de recibo",
+                "maxLength": 1
+              },
+              "NULRLQ": {
+                "type": "boolean",
+                "description": "Neutralización del resto en recepción",
+                "default":false
+              },
+              "PAYFAB": {
+                "type": "string",
+                "description": "País de fabricación (HECHO EN)",
+                "maxLength": 20
+              },
+              "PEREMB": {
+                "type": "string",
+                "description": "Periodicidad de las ventas de envases",
+                "enum": ["0", "1", "2"]
+              },
+              "UNIFSR": {
+                "type": "boolean",
+                "description": "Unicidad de los números de serie para el producto",
+                "default":false
+              },
+              "CODRGT": {
+                "type": "string",
+                "description": "Código de área para el transporte",
+                "maxLength": 3
               }
+            }
           },
           "GEEX1002": {
-            "type": "array",
+            "type": "object",
             "description": "Supplier Additional 02 declaration",
-            "maxItems": 1,
-            "items": 
-              {
-                "type": "object",
-                "additionalProperties": false, 
-                "properties": {        
-                  "CM1FOU": {
-                    "type": "string",
-                    "description": "Comentario del proveedor (línea 1)",
-                    "maxLength": 45
-                  },
-                  "CM2FOU": {
-                    "type": "string",
-                    "description": "Comentario del proveedor (línea 2)",
-                    "maxLength": 45
-                  },
-                  "CM3FOU": {
-                    "type": "string",
-                    "description": "Comentario del proveedor (línea 3)",
-                    "maxLength": 45
-                  },
-                  "LIBCPL": {
-                    "type": "string",
-                    "description": "Nombre adicional",
-                    "maxLength": 38
-                  },
-                  "LIBCP2": {
-                    "type": "string",
-                    "description": "Nombre adicional 2",
-                    "maxLength": 38
-                  }
-                }
+            "additionalProperties": false, 
+            "properties": {        
+              "CM1FOU": {
+                "type": "string",
+                "description": "Comentario del proveedor (línea 1)",
+                "maxLength": 45
+              },
+              "CM2FOU": {
+                "type": "string",
+                "description": "Comentario del proveedor (línea 2)",
+                "maxLength": 45
+              },
+              "CM3FOU": {
+                "type": "string",
+                "description": "Comentario del proveedor (línea 3)",
+                "maxLength": 45
+              },
+              "LIBCPL": {
+                "type": "string",
+                "description": "Nombre adicional",
+                "maxLength": 38
+              },
+              "LIBCP2": {
+                "type": "string",
+                "description": "Nombre adicional 2",
+                "maxLength": 38
               }
+            }
           }
         },
         "required": ["TRTEXC", "CODFOU", "NOMFOU", "AD1FOU", "VILFOU", "PAYFOU"]

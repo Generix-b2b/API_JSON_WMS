@@ -2,13 +2,13 @@
   "InitialTableLoad": [
     {
       "TRTEXC": "1",
-      "CODACT": "FTR",
+      "FAMPAR": "FTR",
       "CLEPAR": "8",
       "LIBPAR": "LIMPIEZA"
     },
     {
       "TRTEXC": "1",
-      "CODACT": "FPR",
+      "FAMPAR": "FPR",
       "CLEPAR": "4",
       "LIBPAR": "LACTEOS"
     }

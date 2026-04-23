@@ -25,38 +25,34 @@
       "FOUGMA": "1",
       "SYSMES": false,
       "CODCLV": "ENT",
-      "GEEX1001": [
-        {
-          "RSPFOU": "Juan García López",
-          "EMLADR": "jgarcia@dist-ibericas.es",
-          "CODCOG": "GEO-MAD-01",
-          "NUMACS": "ALC-0012345",
-          "AFFFAB": false,
-          "CODENL": "1",
-          "CODFDC01": "QC1",
-          "CODFDC02": "QC2",
-          "CODGRP": "1",
-          "CODICM": "EXW",
-          "CODTCT": "TC1",
-          "CUMPRT": "5",
-          "FOUGRP": "GRP-IBERICA",
-          "METREC": "A",
-          "NULRLQ": false,
-          "PAYFAB": "España",
-          "PEREMB": "1",
-          "UNIFSR": false,
-          "CODRGT": "ZCN"
-        }
-      ],
-      "GEEX1002": [
-        {
-          "CM1FOU": "Proveedor homologado categoría A",
-          "CM2FOU": "Entrega de lunes a viernes 08:00-17:00",
-          "CM3FOU": "Requiere cita previa para descarga",
-          "LIBCPL": "Distribuciones Ibericas - Sede Central",
-          "LIBCP2": "Grupo Logístico Ibérico"
-        }
-      ]
+      "GEEX1001": {
+        "RSPFOU": "Juan GarcÃ­a LÃ³pez",
+        "EMLADR": "jgarcia@dist-ibericas.es",
+        "CODCOG": "GEO-MAD-01",
+        "NUMACS": "ALC-0012345",
+        "AFFFAB": false,
+        "CODENL": "1",
+        "CODFDC01": "QC1",
+        "CODFDC02": "QC2",
+        "CODGRP": "1",
+        "CODICM": "EXW",
+        "CODTCT": "TC1",
+        "CUMPRT": "5",
+        "FOUGRP": "GRP-IBERICA",
+        "METREC": "A",
+        "NULRLQ": false,
+        "PAYFAB": "EspaÃ±a",
+        "PEREMB": "1",
+        "UNIFSR": false,
+        "CODRGT": "ZCN"
+      },
+      "GEEX1002": {
+        "CM1FOU": "Proveedor homologado categorÃ­a A",
+        "CM2FOU": "Entrega de lunes a viernes 08:00-17:00",
+        "CM3FOU": "Requiere cita previa para descarga",
+        "LIBCPL": "Distribuciones Ibericas - Sede Central",
+        "LIBCP2": "Grupo LogÃ­stico IbÃ©rico"
+      }
     },
     {
       "TRTEXC": "2",
@@ -65,7 +61,7 @@
       "TYPFOU": "2",
       "NOMFOU": "Logistique Europe SARL",
       "AD1FOU": "15 Rue de la Paix",
-      "AD3FOU": "ZI Nord, Bâtiment C",
+      "AD3FOU": "ZI Nord, BÃ¢timent C",
       "CPOFOU": "75001",
       "VILFOU": "Paris",
       "PAYFOU": "FR",
@@ -80,41 +76,37 @@
       "FOUGMA": "2",
       "SYSMES": true,
       "CODCLV": "URG",
-      "GEEX1001": [
-        {
-          "RSPFOU": "Marie Dupont",
-          "EMLADR": "m.dupont@logistique-europe.fr",
-          "CODCOG": "GEO-FR-001",
-          "AFFFAB": true,
-          "CODENL": "0",
-          "CODFDC01": "QF1",
-          "CODGRP": "0",
-          "CODICM": "DAP",
-          "CODTCT": "TC2",
-          "CUMPRT": "12",
-          "FOUGRP": "GRP-EUROPE",
-          "METREC": "B",
-          "NULRLQ": true,
-          "PAYFAB": "Francia",
-          "PEREMB": "2",
-          "UNIFSR": true,
-          "CODRGT": "ZCA"
-        }
-      ],
-      "GEEX1002": [
-        {
-          "CM1FOU": "Agrupación de pedidos semanal",
-          "LIBCPL": "Logistique Europe - División Ibérica"
-        }
-      ]
+      "GEEX1001": {
+        "RSPFOU": "Marie Dupont",
+        "EMLADR": "m.dupont@logistique-europe.fr",
+        "CODCOG": "GEO-FR-001",
+        "AFFFAB": true,
+        "CODENL": "0",
+        "CODFDC01": "QF1",
+        "CODGRP": "0",
+        "CODICM": "DAP",
+        "CODTCT": "TC2",
+        "CUMPRT": "12",
+        "FOUGRP": "GRP-EUROPE",
+        "METREC": "B",
+        "NULRLQ": true,
+        "PAYFAB": "Francia",
+        "PEREMB": "2",
+        "UNIFSR": true,
+        "CODRGT": "ZCA"
+      },
+      "GEEX1002": {
+        "CM1FOU": "AgrupaciÃ³n de pedidos semanal",
+        "LIBCPL": "Logistique Europe - DivisiÃ³n IbÃ©rica"
+      }
     },
     {
-      "TRTEXC": "2",
+      "TRTEXC": "7",
       "CODACT": "ALM",
       "CODFOU": "PROV-DE-099",
       "TYPFOU": "3",
       "NOMFOU": "Deutsche Lager GmbH",
-      "AD1FOU": "Industriestraße 8",
+      "AD1FOU": "IndustriestraÃŸe 8",
       "AD2FOU": "Lager Komplex Nord",
       "CPOFOU": "10115",
       "VILFOU": "Berlin",
@@ -130,26 +122,24 @@
       "FOUGMA": "0",
       "SYSMES": false,
       "CODCLV": "STD",
-      "GEEX1001": [
-        {
-          "RSPFOU": "Klaus Müller",
-          "EMLADR": "k.muller@deutsche-lager.de",
-          "NUMACS": "ALC-DE-00099",
-          "AFFFAB": false,
-          "CODENL": "1",
-          "CODFDC01": "QD1",
-          "CODFDC02": "QD2",
-          "CODGRP": "1",
-          "CODICM": "CIF",
-          "CUMPRT": "3",
-          "METREC": "C",
-          "NULRLQ": false,
-          "PAYFAB": "Alemania",
-          "PEREMB": "0",
-          "UNIFSR": false,
-          "CODRGT": "ZEU"
-        }
-      ]
+      "GEEX1001": {
+        "RSPFOU": "Klaus MÃ¼ller",
+        "EMLADR": "k.muller@deutsche-lager.de",
+        "NUMACS": "ALC-DE-00099",
+        "AFFFAB": false,
+        "CODENL": "1",
+        "CODFDC01": "QD1",
+        "CODFDC02": "QD2",
+        "CODGRP": "1",
+        "CODICM": "CIF",
+        "CUMPRT": "3",
+        "METREC": "C",
+        "NULRLQ": false,
+        "PAYFAB": "Alemania",
+        "PEREMB": "0",
+        "UNIFSR": false,
+        "CODRGT": "ZEU"
+      }
     },
     {
       "TRTEXC": "9",

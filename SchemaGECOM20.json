@@ -391,225 +391,213 @@
             "maxLength": 3
           },
           "GEEX2001": {
-            "type": "array",
+            "type": "object",
             "description": "Customer Additional 01 declaration",
-            "maxItems": 1,
-            "items": {
-              "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "RSPCLI": {
-                    "type": "string",
-                    "description": "Nombre del responsable en el cliente",
-                    "maxLength": 30
-                  },
-                  "CODMOP": {
-                    "type": "string",
-                    "description": "Código de modo de preparación para un cliente",
-                    "maxLength": 3
-                  },
-                  "CODRGT": {
-                    "type": "string",
-                    "description": "Código de área para el transporte",
-                    "maxLength": 3
-                  },
-                  "CODTRA": {
-                    "type": "string",
-                    "description": "Código de operador",
-                    "maxLength": 14
-                  },
-                  "TOULIV": {
-                    "type": "array",
-                    "description": "Ronda de entrega de mercancías",
-                    "maxItems": 7,
-                    "items": {
-                      "type": "string",
-                      "description": "Ronda de entrega de mercancías",
-                      "minLength": 1,
-                      "maxLength": 4
-                    }
-                  },
-                  "ORDLIV": {
-                    "type": "array",
-                    "description": "Orden de entrega en el tour",
-                    "maxItems": 7,
-                    "items": {
-                      "type": "string",
-                      "description": "Orden de entrega en el tour",
-                      "minLength": 1,
-                      "maxLength": 4
-                    }
-                  },
-                  "KAILIV": {
-                    "type": "array",
-                    "description": "Muelles de transporte de carga",
-                    "maxItems": 7,
-                    "items": {
-                      "type": "string",
-                      "description": "Muelles de transporte de carga",
-                      "minLength": 1,
-                      "maxLength": 3
-                    }
-                  },
-                  "GSTALC": {
-                    "type": "string",
-                    "description": "Modo de gestión de licor / 0 =  Sin gestión de alcoholes, 1 = Entrega con despacho suspendido, 2 = Entrega bajo justificante, 3 = Fuera de aduana, sin impuestos",
-                    "enum": ["0", "1", "2", "3"]
-                  },
-                  "PTYDES": {
-                    "type": "string",
-                    "description": "Prioridad de recuperación de palets",
-                    "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "95"]
-                  },
-                  "NUMACS": {
-                    "type": "string",
-                    "description": "Número de impuestos especiales (Alcohol)",
-                    "maxLength": 20
-                  },
-                  "CPICLI": {
-                    "type": "string",
-                    "description": "Código postal del cliente (formato internacional)",
-                    "maxLength": 10
-                  },
-                  "TVACCE": {
-                    "type": "string",
-                    "description": "IVA intracomunitario",
-                    "maxLength": 20
-                  },
-                  "IDEALC": {
-                    "type": "string",
-                    "description": "Identificador de alcohol",
-                    "maxLength": 20
-                  },
-                  "CTRPRP": {
-                    "type": "boolean",
-                    "description": "Control de cantidad en preparación",
-                    "default":false
-                  },
-                  "CLIDAE": {
-                    "type": "string",
-                    "description": "Modo de gestión del DEA",
-                    "maxLength": 1
-                  },
-                  "TYPDES": {
-                    "type": "string",
-                    "description": "Tipo de destino Gamm@",
-                    "maxLength": 1
-                  },
-                  "BUREXP": {
-                    "type": "string",
-                    "description": "Árbitro. Oficina de Exportación GAMM@",
-                    "maxLength":8
-                  },
-                  "PTYPRP": {
-                    "type": "string",
-                    "description": "Prioridad de apoyos heterogéneos en prep. ML",
-                    "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90"]
-                  },
-                  "GENAVI": {
-                    "type": "string",
-                    "description": "Generación del aviso de embarque",
-                    "maxLength": 1
-                  },
-                  "HEUCHV": {
-                    "type": "boolean",
-                    "description": "Hora",
-                    "default":false
-                  },
-                  "TYPDES2": {
-                    "type": "string",
-                    "description": "Tipo de destino Gamm@",
-                    "maxLength": 2
-                  },
-                  "CODFCQ": {
-                    "type": "string",
-                    "description": "Código de la ficha de control de calidad",
-                    "maxLength": 3
-                  }
+            "additionalProperties": false,
+            "properties": {
+              "RSPCLI": {
+                "type": "string",
+                "description": "Nombre del responsable en el cliente",
+                "maxLength": 30
+              },
+              "CODMOP": {
+                "type": "string",
+                "description": "Código de modo de preparación para un cliente",
+                "maxLength": 3
+              },
+              "CODRGT": {
+                "type": "string",
+                "description": "Código de área para el transporte",
+                "maxLength": 3
+              },
+              "CODTRA": {
+                "type": "string",
+                "description": "Código de operador",
+                "maxLength": 14
+              },
+              "TOULIV": {
+                "type": "array",
+                "description": "Ronda de entrega de mercancías",
+                "maxItems": 7,
+                "items": {
+                  "type": "string",
+                  "description": "Ronda de entrega de mercancías",
+                  "minLength": 1,
+                  "maxLength": 4
                 }
+              },
+              "ORDLIV": {
+                "type": "array",
+                "description": "Orden de entrega en el tour",
+                "maxItems": 7,
+                "items": {
+                  "type": "string",
+                  "description": "Orden de entrega en el tour",
+                  "minLength": 1,
+                  "maxLength": 4
+                }
+              },
+              "KAILIV": {
+                "type": "array",
+                "description": "Muelles de transporte de carga",
+                "maxItems": 7,
+                "items": {
+                  "type": "string",
+                  "description": "Muelles de transporte de carga",
+                  "minLength": 1,
+                  "maxLength": 3
+                }
+              },
+              "GSTALC": {
+                "type": "string",
+                "description": "Modo de gestión de licor / 0 =  Sin gestión de alcoholes, 1 = Entrega con despacho suspendido, 2 = Entrega bajo justificante, 3 = Fuera de aduana, sin impuestos",
+                "enum": ["0", "1", "2", "3"]
+              },
+              "PTYDES": {
+                "type": "string",
+                "description": "Prioridad de recuperación de palets",
+                "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "95"]
+              },
+              "NUMACS": {
+                "type": "string",
+                "description": "Número de impuestos especiales (Alcohol)",
+                "maxLength": 20
+              },
+              "CPICLI": {
+                "type": "string",
+                "description": "Código postal del cliente (formato internacional)",
+                "maxLength": 10
+              },
+              "TVACCE": {
+                "type": "string",
+                "description": "IVA intracomunitario",
+                "maxLength": 20
+              },
+              "IDEALC": {
+                "type": "string",
+                "description": "Identificador de alcohol",
+                "maxLength": 20
+              },
+              "CTRPRP": {
+                "type": "boolean",
+                "description": "Control de cantidad en preparación",
+                "default":false
+              },
+              "CLIDAE": {
+                "type": "string",
+                "description": "Modo de gestión del DEA",
+                "maxLength": 1
+              },
+              "TYPDES": {
+                "type": "string",
+                "description": "Tipo de destino Gamm@",
+                "maxLength": 1
+              },
+              "BUREXP": {
+                "type": "string",
+                "description": "Árbitro. Oficina de Exportación GAMM@",
+                "maxLength":8
+              },
+              "PTYPRP": {
+                "type": "string",
+                "description": "Prioridad de apoyos heterogéneos en prep. ML",
+                "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90"]
+              },
+              "GENAVI": {
+                "type": "string",
+                "description": "Generación del aviso de embarque",
+                "maxLength": 1
+              },
+              "HEUCHV": {
+                "type": "boolean",
+                "description": "Hora",
+                "default":false
+              },
+              "TYPDES2": {
+                "type": "string",
+                "description": "Tipo de destino Gamm@",
+                "maxLength": 2
+              },
+              "CODFCQ": {
+                "type": "string",
+                "description": "Código de la ficha de control de calidad",
+                "maxLength": 3
+              }
             }
           },
           "GEEX2002": {
-            "type": "array",
+            "type": "object",
             "description": "Customer Additional 02 declaration",
-            "maxItems": 1,
-            "items": {
-              "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "CM1CLI": {
-                    "type": "string",
-                    "description": "Comentario del cliente (línea 1)",
-                    "maxLength":45
-                  },
-                  "CM2CLI": {
-                    "type": "string",
-                    "description": "Comentario del cliente (línea 2)",
-                    "maxLength":45
-                  },
-                  "CM3CLI": {
-                    "type": "string",
-                    "description": "Comentario del cliente (línea 3)",
-                    "maxLength":45
-                  },
-                  "EMLADR": {
-                    "type": "string",
-                    "description": "Dirección de correo electrónico",
-                    "maxLength":50,
-                    "format": "email"
-                  }
-                }
+            "additionalProperties": false,
+            "properties": {
+              "CM1CLI": {
+                "type": "string",
+                "description": "Comentario del cliente (línea 1)",
+                "maxLength":45
+              },
+              "CM2CLI": {
+                "type": "string",
+                "description": "Comentario del cliente (línea 2)",
+                "maxLength":45
+              },
+              "CM3CLI": {
+                "type": "string",
+                "description": "Comentario del cliente (línea 3)",
+                "maxLength":45
+              },
+              "EMLADR": {
+                "type": "string",
+                "description": "Dirección de correo electrónico",
+                "maxLength":50,
+                "format": "email"
+              }
             }
           },
           "GEEX2003": {
-            "type": "array",
+            "type": "object",
             "description": "Customer Additional 03 declaration",
-            "maxItems": 1,
-            "items": {
-              "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "CODRST": {
-                    "type": "string",
-                    "description": "Código de regla de inventario en tránsito",
-                    "maxLength": 3
-                  },
-                  "LIBCPL": {
-                    "type": "string",
-                    "description": "Nombre adicional",
-                    "maxLength": 38
-                  },
-                  "LIBCP2": {
-                    "type": "string",
-                    "description": "Nombre adicional 2",
-                    "maxLength": 38
-                  },
-                  "EXLGRP": {
-                    "type": "boolean",
-                    "description": "fuera del grupo",
-                    "default":false
-                  },
-                  "TYPDSV": {
-                    "type": "string",
-                    "description": "Tipo de DESADV",
-                    "maxLength": 1
-                  },
-                  "PTYSND": {
-                    "type": "string",
-                    "description": "Prioridad de envío",
-                    "maxLength": 1
-                  },
-                  "IDEEXT": {
-                    "type": "string",
-                    "description": "Identificador externo",
-                    "maxLength": 35
-                  },
-                  "ARDPEN": {
-                    "type": "string",
-                    "description": "Indicador de redondeo de escasez",
-                    "maxLength": 1
-                  }
-                }
+            "additionalProperties": false,
+            "properties": {
+              "CODRST": {
+                "type": "string",
+                "description": "Código de regla de inventario en tránsito",
+                "maxLength": 3
+              },
+              "LIBCPL": {
+                "type": "string",
+                "description": "Nombre adicional",
+                "maxLength": 38
+              },
+              "LIBCP2": {
+                "type": "string",
+                "description": "Nombre adicional 2",
+                "maxLength": 38
+              },
+              "EXLGRP": {
+                "type": "boolean",
+                "description": "fuera del grupo",
+                "default":false
+              },
+              "TYPDSV": {
+                "type": "string",
+                "description": "Tipo de DESADV",
+                "maxLength": 1
+              },
+              "PTYSND": {
+                "type": "string",
+                "description": "Prioridad de envío",
+                "maxLength": 1
+              },
+              "IDEEXT": {
+                "type": "string",
+                "description": "Identificador externo",
+                "maxLength": 35
+              },
+              "ARDPEN": {
+                "type": "string",
+                "description": "Indicador de redondeo de escasez",
+                "maxLength": 1
+              }
             }
           },       
           "GEEX2050": {

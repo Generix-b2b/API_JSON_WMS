@@ -46,85 +46,81 @@
       "TOPPRN": "0",
       "ORIMAJ": "E",
       "TOPPRO": "N",
-      "GEEX3001": [
-        {
-          "INDPRO": [
-            "S",
-            "N",
-            "S",
-            "N",
-            "S"
-          ],
-          "CODMRQ": "AOVE-PRM",
-          "DESFOU": "ACEITE OLIVA V.E. 750ML BOT",
-          "CIRDET": "CIA",
-          "CIRPAL": "CIP",
-          "METRPL": "0",
-          "CODALC": "ALCO",
-          "DEGALC": "0.0",
-          "VOLALC": "0.75",
-          "CODMDG": "MD2",
-          "TAUPST": [
-            "12.50",
-            "11.80",
-            "10.90",
-            "09.75"
-          ],
-          "COELOG": "01.250",
-          "PRXPRO": [
-            "002.500",
-            "002.200",
-            "001.980",
-            "001.750"
-          ],
-          "CODMDI": "CI1",
-          "NXTIVT": "20260101",
-          "SECSTK": "48",
-          "CODEAP": "BOT",
-          "TOPCNA": false
-        }
-      ],
-      "GEEX3002": [
-        {
-          "CODSPE": false,
-          "UNIFAC": "UNI",
-          "COEFAC": "001000.000",
-          "SECDLV": "5",
-          "CODRGP": "GRP-ACEIT-001",
-          "UNIARR": "3",
-          "UNICAL": "1",
-          "TEMMIN": "-5",
-          "TEMMAX": "30",
-          "TOLPOI": "2",
-          "COECOL": "1050",
-          "COESPC": "1025",
-          "COEUVC": "1000",
-          "INDTOL": false,
-          "HAUSPC": 30,
-          "LNGSPC": 18,
-          "LRGSPC": 13,
-          "PDBSPC": 5.8,
-          "CODMDT": "LOT",
-          "ETIMTR": "EAN",
-          "NBJFVI": "730",
-          "CODGAM": "GAM-ALIM",
-          "CODQLP": "QLP",
-          "CTRPRP": true,
-          "CODRDS": "ALM",
-          "HAUCOL2": 32.5,
-          "HAUCOU2": 35.0,
-          "HAUSPC2": 30.25,
-          "HAUUVC2": 28.1,
-          "LNGCOL2": 35.0,
-          "LNGSPC2": 18.5,
-          "LNGUVC2": 8.2,
-          "LRGCOL2": 25.0,
-          "LRGSPC2": 13.5,
-          "LRGUVC2": 8.2,
-          "CODMNN": "MN1",
-          "ORIMAJ": "E"
-        }
-      ],
+      "GEEX3001": {
+        "INDPRO": [
+          "S",
+          "N",
+          "S",
+          "N",
+          "S"
+        ],
+        "CODMRQ": "AOVE-PRM",
+        "DESFOU": "ACEITE OLIVA V.E. 750ML BOT",
+        "CIRDET": "CIA",
+        "CIRPAL": "CIP",
+        "METRPL": "0",
+        "CODALC": "ALCO",
+        "DEGALC": "0.0",
+        "VOLALC": "0.75",
+        "CODMDG": "MD2",
+        "TAUPST": [
+          "12.50",
+          "11.80",
+          "10.90",
+          "09.75"
+        ],
+        "COELOG": "01.250",
+        "PRXPRO": [
+          "002.500",
+          "002.200",
+          "001.980",
+          "001.750"
+        ],
+        "CODMDI": "CI1",
+        "NXTIVT": "20260101",
+        "SECSTK": "48",
+        "CODEAP": "BOT",
+        "TOPCNA": false
+      },
+      "GEEX3002": {
+        "CODSPE": false,
+        "UNIFAC": "UNI",
+        "COEFAC": "001000.000",
+        "SECDLV": "5",
+        "CODRGP": "GRP-ACEIT-001",
+        "UNIARR": "3",
+        "UNICAL": "1",
+        "TEMMIN": "-5",
+        "TEMMAX": "30",
+        "TOLPOI": "2",
+        "COECOL": "1050",
+        "COESPC": "1025",
+        "COEUVC": "1000",
+        "INDTOL": false,
+        "HAUSPC": 30,
+        "LNGSPC": 18,
+        "LRGSPC": 13,
+        "PDBSPC": 5.8,
+        "CODMDT": "LOT",
+        "ETIMTR": "EAN",
+        "NBJFVI": "730",
+        "CODGAM": "GAM-ALIM",
+        "CODQLP": "QLP",
+        "CTRPRP": true,
+        "CODRDS": "ALM",
+        "HAUCOL2": 32.5,
+        "HAUCOU2": 35.0,
+        "HAUSPC2": 30.25,
+        "HAUUVC2": 28.1,
+        "LNGCOL2": 35.0,
+        "LNGSPC2": 18.5,
+        "LNGUVC2": 8.2,
+        "LRGCOL2": 25.0,
+        "LRGSPC2": 13.5,
+        "LRGUVC2": 8.2,
+        "CODMNN": "MN1",
+        "ORIMAJ": "E"
+      },
       "GEEX3020": [
         {
           "EDIPRO": "8412345000016",
@@ -162,7 +158,7 @@
         {
           "TYPRUB": "2",
           "CODRUB": "ORIG",
-          "VALRUB": "ESPAÑA - D.O. SIERRA MÁGINA"
+          "VALRUB": "ESPAÑA - D.O. SIERRA MÝGINA"
         },
         {
           "TYPRUB": "2",
@@ -213,77 +209,71 @@
       "TOPPRN": "0",
       "ORIMAJ": "E",
       "TOPPRO": "A",
-      "GEEX3001": [
-        {
-          "INDPRO": [
-            "1",
-            "2",
-            "3"
-          ],
-          "DESFOU": "VIN ROUGE COTES DU RHONE 75CL",
-          "CIRDET": "CIA",
-          "CIRPAL": "CIP",
-          "METRPL": "0",
-          "CODALC": "VINE",
-          "DEGALC": "13.5",
-          "VOLALC": "0.75",
-          "CODMDG": "MD2",
-          "TAUPST": [
-            "18.90",
-            "17.50"
-          ],
-          "COELOG": "01.100",
-          "PRXPRO": [
-            "005.990",
-            "005.490"
-          ],
-          "CODMDI": "CI1",
-          "NXTIVT": "20260601",
-          "CODZVI": "CDRH",
-          "TOPCNA": false
-        }
-      ],
-      "GEEX3002": [
-        {
-          "CODSPE": true,
-          "UNIFAC": "UNI",
-          "COEFAC": "001000.000",
-          "SECDLV": "10",
-          "CODRGP": "GRP-VINOS-001",
-          "CODRSC": "ALC",
-          "UNIARR": "3",
-          "UNICAL": "1",
-          "TEMMIN": "8",
-          "TEMMAX": "18",
-          "TOLPOI": "3",
-          "COECOL": "1010",
-          "COEUVC": "1000",
-          "INDTOL": false,
-          "CODMDT": "LOT",
-          "NBJFVI": "1825",
-          "CODGAM": "GAM-VINOS",
-          "CTRPRP": true,
-          "CODRDS": "BOD",
-          "LNGCOL2": 29.0,
-          "LRGCOL2": 20.0,
-          "CODMNN": "MN1",
-          "ORIMAJ": "E"
-        }
-      ],
-      "GEEX3003": [
-        {
-          "CODCVI": "TINTO",
-          "NBJIMM": "30",
-          "NBHIMM": "0",
-          "IMMLOT": "CAL",
-          "EMBUVC": "BOT",
-          "CODMTI": "VIN",
-          "CODOWN": "PROV-FR-042",
-          "DS3PRO": "Millésime - Grenache Syrah Mourvèdr",
-          "INDTEM": "N/A",
-          "SENTEM": "N"
-        }
-      ],
+      "GEEX3001": {
+        "INDPRO": [
+          "1",
+          "2",
+          "3"
+        ],
+        "DESFOU": "VIN ROUGE COTES DU RHONE 75CL",
+        "CIRDET": "CIA",
+        "CIRPAL": "CIP",
+        "METRPL": "0",
+        "CODALC": "VINE",
+        "DEGALC": "13.5",
+        "VOLALC": "0.75",
+        "CODMDG": "MD2",
+        "TAUPST": [
+          "18.90",
+          "17.50"
+        ],
+        "COELOG": "01.100",
+        "PRXPRO": [
+          "005.990",
+          "005.490"
+        ],
+        "CODMDI": "CI1",
+        "NXTIVT": "20260601",
+        "CODZVI": "CDRH",
+        "TOPCNA": false
+      },
+      "GEEX3002": {
+        "CODSPE": true,
+        "UNIFAC": "UNI",
+        "COEFAC": "001000.000",
+        "SECDLV": "10",
+        "CODRGP": "GRP-VINOS-001",
+        "CODRSC": "ALC",
+        "UNIARR": "3",
+        "UNICAL": "1",
+        "TEMMIN": "8",
+        "TEMMAX": "18",
+        "TOLPOI": "3",
+        "COECOL": "1010",
+        "COEUVC": "1000",
+        "INDTOL": false,
+        "CODMDT": "LOT",
+        "NBJFVI": "1825",
+        "CODGAM": "GAM-VINOS",
+        "CTRPRP": true,
+        "CODRDS": "BOD",
+        "LNGCOL2": 29.0,
+        "LRGCOL2": 20.0,
+        "CODMNN": "MN1",
+        "ORIMAJ": "E"
+      },
+      "GEEX3003": {
+        "CODCVI": "TINTO",
+        "NBJIMM": "30",
+        "NBHIMM": "0",
+        "IMMLOT": "CAL",
+        "EMBUVC": "BOT",
+        "CODMTI": "VIN",
+        "CODOWN": "PROV-FR-042",
+        "DS3PRO": "Millésime - Grenache Syrah Mourvèdr",
+        "INDTEM": "N/A",
+        "SENTEM": "N"
+      },
       "GEEX3020": [
         {
           "EDIPRO": "3012345000078",

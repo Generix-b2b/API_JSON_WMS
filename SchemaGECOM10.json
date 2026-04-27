@@ -353,7 +353,7 @@
           "IGLSIT": {
             "type": "string",
             "description": "Identificador de sitio para Infolog GL",
-            "pattern": "^\\d{1,3}$"
+            "pattern": "^[0-9]{1,3}$"
           },
           "CODTRE": {
             "type": "string",
@@ -465,7 +465,7 @@
               "CUMPRT": {
                 "type": "string",
                 "description": "Número total de tomas (Detalle y/o palet)",
-                "pattern": "^\\d{1,9}$"
+                "pattern": "^[0-9]{1,9}$"
               },
               "FOUGRP": {
                 "type": "string",

@@ -4,11 +4,11 @@
       "TRTEXC": "1",
       "CODACT": "LOG",
       "CODPRO": "PROD-ES-001234",
-      "VALPRO": "A1",
+      "VALPRO": "34",
       "DS1PRO": "Aceite de Oliva Virgen Extra",
       "DS2PRO": "Botella 750ml - Premium",
       "FOUPRO": "PROV-ES-001",
-      "VAPPRO": "S1",
+      "VAPPRO": "11",
       "FAMPRO": "ACEIT-OLIV",
       "ANAPRO": "ALIM-LIQ-001",
       "EDIPRO": "8412345000016",
@@ -37,7 +37,7 @@
       "NBJDLV": "180",
       "CODMDS": "EAN",
       "ZONPRF": "A",
-      "ALLPRF": "A01",
+      "ALLPRF": "01",
       "ABCSTS": "A",
       "CODADM": "FIF",
       "HOMGRB": "1",
@@ -93,9 +93,9 @@
         "TEMMIN": "-5",
         "TEMMAX": "30",
         "TOLPOI": "2",
-        "COECOL": "1050",
-        "COESPC": "1025",
-        "COEUVC": "1000",
+        "COECOL": "1.050",
+        "COESPC": "1.025",
+        "COEUVC": "1.000",
         "INDTOL": false,
         "HAUSPC": 30,
         "LNGSPC": 18,
@@ -171,7 +171,7 @@
       "TRTEXC": "2",
       "CODACT": "LOG",
       "CODPRO": "PROD-FR-009876",
-      "VALPRO": "B2",
+      "VALPRO": "22",
       "DS1PRO": "Vin Rouge Côtes du Rhône",
       "DS2PRO": "Bouteille 75cl AOP",
       "FOUPRO": "PROV-FR-042",
@@ -249,8 +249,8 @@
         "TEMMIN": "8",
         "TEMMAX": "18",
         "TOLPOI": "3",
-        "COECOL": "1010",
-        "COEUVC": "1000",
+        "COECOL": "1.010",
+        "COEUVC": "1.000",
         "INDTOL": false,
         "CODMDT": "LOT",
         "NBJFVI": "1825",
@@ -271,7 +271,7 @@
         "CODMTI": "VIN",
         "CODOWN": "PROV-FR-042",
         "DS3PRO": "Millésime - Grenache Syrah Mourvèdr",
-        "INDTEM": "N/A",
+        "INDTEM": "968",
         "SENTEM": "N"
       },
       "GEEX3020": [
@@ -316,7 +316,7 @@
       "GEEX3040": [
         {
           "CODRIC": "1430",
-          "QTERIC": "10000",
+          "QTERIC": "10.000",
           "TYPRIC": "1"
         }
       ]
@@ -391,7 +391,7 @@
       "GEEX3080": [
         {
           "RPLPRO": "PROD-ES-KIT000",
-          "RPLVAL": "A1",
+          "RPLVAL": "1",
           "FACCON": "0001000.00"
         }
       ]

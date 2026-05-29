@@ -16,36 +16,36 @@
         "properties": {
           "TRTEXC": {
             "type": "string",
-            "description": "Código de procesamiento de movimiento / 1 = Alta, 2 = Modificación o Alta, 7 = Modificación Cabecera, 9 = Anulación",
+            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 7 = Header modification, 9 = Cancellation",
             "enum": ["1", "2", "7", "9"],
             "default": "2"
           },
           "FAMPAR": {
             "type": "string",
-            "description": "Familia de parámetros",
+            "description": "Parameter family",
             "minLength": 3,
             "maxLength": 3
           },
           "CLEPAR": {
             "type": "string",
-            "description": "Clave de parámetro",
+            "description": "Parameter key",
             "minLength": 1,
             "maxLength": 10
           },
           "LIBPAR": {
             "type": "string",
-            "description": "Etiqueta de parámetro",
+            "description": "Parameter label",
             "minLength": 1,
             "maxLength": 48
           },
           "LIBPAR2": {
             "type": "string",
-            "description": "Etiqueta de parámetro 2",
+            "description": "Parameter label 2",
             "maxLength": 48
           },
           "CLEPAR2": {
             "type": "string",
-            "description": "Clave de parámetro 2",
+            "description": "Parameter key 2",
             "maxLength": 10
           }
         },

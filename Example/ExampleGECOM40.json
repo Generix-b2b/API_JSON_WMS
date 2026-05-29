@@ -1,0 +1,349 @@
+{
+  "receptionOrders": [
+
+    {
+      "TRTEXC": "1",
+      "NUMREC": "10000001",
+      "SNUREC": "001",
+      "REFREC": "REF-ALTA-SIMPLE-001",
+      "CODTRE": "STD",
+      "CODACT": "REC",
+      "CODFOU": "PROV001",
+      "DTIREC": "20250610",
+      "HEIREC": "080000",
+      "CUMLIG": "1",
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD-00001",
+          "UVCREA": 100
+        }
+      ]
+    },
+
+    {
+      "TRTEXC": "2",
+      "NUMREC": "10000002",
+      "SNUREC": "001",
+      "REFREC": "REF-COMPLETO-002",
+      "CODAPP": "APROV01",
+      "CODLDR": "A01",
+      "CODTRE": "STD",
+      "CODACT": "REC",
+      "CODFOU": "PROV002",
+      "CODTRA": "TRANS001",
+      "DTIREC": "20250615",
+      "HEIREC": "093000",
+      "KAIREC": "003",
+      "DTFREC": "20250615",
+      "METTRP": "1",
+      "CODRTN": "R01",
+      "CODRGT": "ZON",
+      "IGLSIT": "001",
+      "CUMLIG": "2",
+      "MSGREC": [
+        "Frágil - Manipular con cuidado",
+        "Temperatura controlada"
+      ],
+      "GEEX4001": {
+        "NOMFOU": "Proveedor Completo SA",
+        "AD1FOU": "Calle Gran Vía 45",
+        "AD2FOU": "Planta 3",
+        "AD3FOU": "Polígono Industrial Norte",
+        "CPOFOU": "28013",
+        "VILFOU": "Madrid",
+        "PAYFOU": "ES",
+        "TELFOU": "+34 91 555 0100",
+        "TYPFOU": "1",
+        "DIPRECH": "SISTEMA_ERP_v3",
+        "TOPREC": ["A", "B", "1"]
+      },
+      "GEEX4002": {
+        "CPIFOU": "28013-ESP",
+        "CODDDO": "ORIG-ES-001",
+        "CODCLV": "CLV",
+        "CODOWN": "OWNER-001"
+      },
+      "GEEX4005": [
+        { "CODRUB": "RUB1", "VALRUB": "Temperatura 2-8 grados" },
+        { "CODRUB": "RUB2", "VALRUB": "Certificado ISO 9001" }
+      ],
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD-00010",
+          "CODCLI": "CLI-001",
+          "VALPRO": "01",
+          "UVCREA": 500,
+          "UNICDE": "PCZ",
+          "TYPOPE": "0",
+          "AIGPRI": false,
+          "MSGLIG": "Línea estándar sin incidencias",
+          "SPCPRO": 6,
+          "PCBPRO": 12,
+          "PDBCOL": 2.500,
+          "VOLCOL": "0015.250",
+          "COLCOU": 4,
+          "COUPAL": 5,
+          "CODEMB": "C01",
+          "GERPAL": "02",
+          "GERHAU": "03",
+          "CODMDR": "M01",
+          "INDUNI": false
+        },
+        {
+          "NLIREC": "2",
+          "CODPRO": "PROD-00011",
+          "UVCREA": 200,
+          "UNICDE": "KGM",
+          "TYPOPE": "0",
+          "AIGPRI": false,
+          "PDBCOL": 10.750,
+          "INDUNI": false
+        }
+      ],
+      "GEEX4080": [
+        { "SEQTXR": "1", "LIBTXR": "Pedido generado por sistema ERP automático" },
+        { "SEQTXR": "2", "LIBTXR": "Revisar temperatura en cámara de entrada" }
+      ]
+    },
+
+    {
+      "TRTEXC": "2",
+      "NUMREC": "10000003",
+      "REFREC": "REF-PROMO-003",
+      "CODTRE": "PRO",
+      "CODACT": "REC",
+      "CODFOU": "PROV003",
+      "DTIREC": "20250620",
+      "HEIREC": "100000",
+      "CUMLIG": "2",
+      "GEEX4001": {
+        "NOMFOU": "Distribuciones Promo SL",
+        "AD1FOU": "Avda. del Comercio 12",
+        "VILFOU": "Barcelona",
+        "PAYFOU": "ES"
+      },
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD-PROMO-01",
+          "UVCREA": 1000,
+          "UNICDE": "PCZ",
+          "TYPOPE": "1",
+          "NUMOPE": "100023",
+          "AIGPRI": true,
+          "PRIREC": "001299.990",
+          "MSGLIG": "Producto en promoción verano",
+          "INDUNI": false,
+          "GEEX4021": {
+            "PRXPRO": "001199.000",
+            "EDIPRO": "EAN-PROMO-001",
+            "CODMDS": "FRG",
+            "ZONPRF": "A",
+            "ALLPRF": "012",
+            "REFLIV": "ENTREGA-PROMO-2025",
+            "QTEREA": "1000"
+          },
+          "GEEX4025": [
+            { "TYPRUB": "1", "CODRUB": "GS1", "VALRUB": "PROMO-VERANO-2025" },
+            { "TYPRUB": "2", "CODRUB": "INT1", "VALRUB": "CAMPAÑA-VERANO" }
+          ]
+        },
+        {
+          "NLIREC": "2",
+          "CODPRO": "PROD-PROMO-02",
+          "UVCREA": 500,
+          "TYPOPE": "1",
+          "NUMOPE": "100023",
+          "AIGPRI": true,
+          "PRIREC": "000599.990",
+          "INDUNI": false
+        }
+      ]
+    },
+
+    {
+      "TRTEXC": "2",
+      "NUMREC": "10000004",
+      "REFREC": "REF-RESERVA-004",
+      "CODTRE": "RSV",
+      "CODACT": "REC",
+      "CODFOU": "PROV004",
+      "CODRTN": "INM",
+      "DTIREC": "20250701",
+      "HEIREC": "140000",
+      "CUMLIG": "1",
+      "GEEX4001": {
+        "NOMFOU": "Farmacéutica Ibérica SA",
+        "AD1FOU": "Polígono Farmacéutico s/n",
+        "VILFOU": "Valencia",
+        "PAYFOU": "ESP",
+        "TYPFOU": "2"
+      },
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD-FARMA-01",
+          "UVCREA": 2400,
+          "UNICDE": "UNI",
+          "TYPOPE": "2",
+          "NUMOPE": "200001",
+          "AIGPRI": false,
+          "CODLOT": "LOTE-2025-A01",
+          "DATFAB": "20250101",
+          "MOTIMM": "CUA",
+          "MSGLIG": "Producto en cuarentena hasta análisis",
+          "INDUNI": true,
+          "GEEX4021": {
+            "DIPRECL": "SISTEMA_QA",
+            "QTEREA": "2400",
+            "CODACR": "QUA"
+          },
+          "GEEX4025": [
+            { "TYPRUB": "1", "CODRUB": "LOT", "VALRUB": "LOTE-2025-A01" },
+            { "TYPRUB": "1", "CODRUB": "EXP", "VALRUB": "20271231" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "TRTEXC": "7",
+      "NUMREC": "10000002",
+      "SNUREC": "001",
+      "REFREC": "REF-COMPLETO-002",
+      "CODTRE": "STD",
+      "CODACT": "REC",
+      "CODFOU": "PROV002",
+      "DTIREC": "20250618",
+      "HEIREC": "110000",
+      "KAIREC": "005",
+      "CUMLIG": "2"
+    },
+
+    {
+      "TRTEXC": "9",
+      "NUMREC": "10000003",
+      "SNUREC": "001",
+      "REFREC": "REF-PROMO-003",
+      "CODTRE": "PRO",
+      "CODACT": "REC",
+      "CODFOU": "PROV003",
+      "DTIREC": "20250620",
+      "HEIREC": "100000",
+      "CUMLIG": "2",
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD-PROMO-01",
+          "UVCREA": 0
+        },
+        {
+          "NLIREC": "2",
+          "CODPRO": "PROD-PROMO-02",
+          "UVCREA": 0
+        }
+      ]
+    },
+
+    {
+      "TRTEXC": "2",
+      "NUMREC": "10000008",
+      "REFREC": "REF-INTER-008",
+      "CODTRE": "IMP",
+      "CODACT": "IMP",
+      "CODFOU": "PROV-DE-001",
+      "CODTRA": "MARITIME01",
+      "METTRP": "3",
+      "DTIREC": "20250801",
+      "HEIREC": "070000",
+      "KAIREC": "010",
+      "CUMLIG": "3",
+      "EDIFOU": "EDI-DE-PROV-001",
+      "EDITRA": "EDI-CARRIER-M01",
+      "CODRGT": "PRT",
+      "IGLSIT": "002",
+      "GEEX4001": {
+        "NOMFOU": "Deutsche Industrie GmbH",
+        "AD1FOU": "Industriestraße 50",
+        "AD2FOU": "Halle B",
+        "CPOFOU": "80331",
+        "VILFOU": "München",
+        "PAYFOU": "DEU",
+        "TELFOU": "+49 89 123456",
+        "TYPFOU": "1"
+      },
+      "GEEX4002": {
+        "CPIFOU": "80331-DEU",
+        "CODDDO": "ORIG-DE-001",
+        "CODCLV": "IMP",
+        "CODOWN": "OWNER-002"
+      },
+      "GEEX4005": [
+        { "CODRUB": "BL",   "VALRUB": "BL-2025-MAR-00123" },
+        { "CODRUB": "CONT", "VALRUB": "MSCU1234567" },
+        { "CODRUB": "PAIS", "VALRUB": "DE" }
+      ],
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "MACH-COMP-001",
+          "CODCLI": "CLI-IMP-001",
+          "UVCREA": 10,
+          "UNICDE": "PCZ",
+          "TYPOPE": "0",
+          "AIGPRI": false,
+          "CODLOT": "LOT-DE-2025-001",
+          "DATFAB": "20250115",
+          "PDBCOL": 125.500,
+          "VOLCOL": "0500.000",
+          "COLCOU": 1,
+          "COUPAL": 2,
+          "GERPAL": "02",
+          "GERHAU": "02",
+          "INDUNI": false,
+          "GEEX4021": {
+            "PRXPRO": "004500.000",
+            "EDIPRO": "EAN-MACH-001",
+            "CODMDS": "PAL",
+            "ZONPRF": "B",
+            "ALLPRF": "025",
+            "REFLIV": "BL-2025-MAR-00123",
+            "QTEREA": "10"
+          },
+          "GEEX4025": [
+            { "TYPRUB": "1", "CODRUB": "HS",   "VALRUB": "8479.89" },
+            { "TYPRUB": "2", "CODRUB": "ORIG", "VALRUB": "MADE IN GERMANY" }
+          ]
+        },
+        {
+          "NLIREC": "2",
+          "CODPRO": "MACH-COMP-002",
+          "UVCREA": 20,
+          "UNICDE": "PCZ",
+          "TYPOPE": "0",
+          "AIGPRI": false,
+          "PDBCOL": 45.000,
+          "VOLCOL": "0120.000",
+          "INDUNI": false
+        },
+        {
+          "NLIREC": "3",
+          "CODPRO": "SPARE-PART-009",
+          "CODPRN": "MACH-COMP-001",
+          "UVCREA": 50,
+          "UNICDE": "PCZ",
+          "TYPOPE": "0",
+          "AIGPRI": false,
+          "INDUNI": false
+        }
+      ],
+      "GEEX4080": [
+        { "SEQTXR": "1", "LIBTXR": "Importación marítima - Revisar documentación aduanera" },
+        { "SEQTXR": "2", "LIBTXR": "Contenedor MSCU1234567 - Puerto Barcelona" }
+      ]
+    }
+
+  ]
+}

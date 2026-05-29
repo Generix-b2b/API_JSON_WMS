@@ -1,0 +1,19 @@
+{
+  "statusReceptionOrders": [
+    {
+      "TRTEXC": "2",
+      "EMTEXC": "FGE50CO0UE",
+      "RCTEXC": "203",
+      "DATEXC": "20260525",
+      "HEUEXC": "080207",
+      "CODACT": "001",
+      "NUMREC": "26000104",
+      "SNUREC": "000",
+      "REFREC": "testpocSTD1",
+      "BLOREC": false,
+      "ETAREC": "40",
+      "CODFOU": "10021",
+      "CODTRE": "STD"
+    }
+  ]
+}

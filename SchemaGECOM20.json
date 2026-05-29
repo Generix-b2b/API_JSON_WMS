@@ -16,78 +16,78 @@
         "properties": {
           "TRTEXC": {
             "type": "string",
-            "description": "Código de procesamiento de movimiento / 1 = Alta, 2 = Modificación o Alta, 7 = Modificación Cabecera, 9 = Anulación",
+            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 7 = Header modification, 9 = Cancellation",
             "enum": ["1", "2", "7", "9"],
             "default": "2"
           },
           "CODACT": {
             "type": "string",
-            "description": "Código de actividad logística",
+            "description": "Logistics activity code",
             "minLength": 3,
             "maxLength": 3
           },
           "CODCLI": {
             "type": "string",
-            "description": "Código de cliente del propietario de acciones",
+            "description": "Stock owner customer code",
             "minLength": 1,
             "maxLength": 14
           },
           "TYPCLI": {
             "type": "string",
-            "description": "Tipo de cliente / 1 = Punto Entrega Final, 2 = Cliente Agrupación, 3 = Plataforma, 4 = Taller",
+            "description": "Customer type / 1 = Final Delivery Point, 2 = Grouping Customer, 3 = Platform, 4 = Workshop",
             "enum": ["1", "2", "3", "4"]
           },
           "CATCLI": {
             "type": "string",
-            "description": "Categoría de cliente (Ej: red)",
+            "description": "Customer category (e.g.: network)",
             "maxLength": 3
           },
           "CLILIV": {
             "type": "string",
-            "description": "Código de cliente a entregar",
+            "description": "Customer code to be delivered to",
             "maxLength": 14
           },
           "EDICLI": {
             "type": "string",
-            "description": "Código de cliente para EDI",
+            "description": "Customer code for EDI",
             "maxLength": 14
           },
           "NOMCLI": {
             "type": "string",
-            "description": "Nombre del cliente",
+            "description": "Customer name",
             "minLength": 1,
             "maxLength": 38
           },
           "AD1CLI": {
             "type": "string",
-            "description": "Línea 1 de la dirección del cliente",
+            "description": "Customer address line 1",
             "minLength": 1,
             "maxLength": 38
           },
           "AD2CLI": {
             "type": "string",
-            "description": "Línea 2 de la dirección del cliente",
+            "description": "Customer address line 2",
             "maxLength": 38
           },
           "AD3CLI": {
             "type": "string",
-            "description": "Línea 3 de la dirección del cliente",
+            "description": "Customer address line 3",
             "maxLength": 38
           },
           "CPOCLI": {
             "type": "string",
-            "description": "Código postal del cliente en formato númerico",
+            "description": "Customer postal code in numeric format",
             "pattern": "^[0-9]{1,5}$"
           },
           "VILCLI": {
             "type": "string",
-            "description": "Ciudad del cliente",
+            "description": "Customer city",
             "minLength": 1,
             "maxLength": 38
           },
           "PAYCLI": {
             "type": "string",
-            "description": "Código de país del cliente (ISO 3166-1 alpha-2 o alpha-3)",
+            "description": "Customer country code (ISO 3166-1 alpha-2 or alpha-3)",
             "enum": [
               "AF", "AFG",
               "AX", "ALA",
@@ -342,52 +342,52 @@
           },
           "TELCLI": {
             "type": "string",
-            "description": "Número de teléfono del cliente",
+            "description": "Customer phone number",
             "maxLength": 20
           },
           "FAXCLI": {
             "type": "string",
-            "description": "Número de fax del cliente",
+            "description": "Customer fax number",
             "maxLength": 20
           },
           "TLXCLI": {
             "type": "string",
-            "description": "Número de télex del cliente",
+            "description": "Customer telex number",
             "maxLength": 15
           },
           "CODLGE": {
             "type": "string",
-            "description": "Código de lenguaje",
+            "description": "Language code",
             "maxLength": 3
           },
           "CODDEV": {
             "type": "string",
-            "description": "Código de moneda",
+            "description": "Currency code",
             "maxLength": 3
           },
           "IGLSIT": {
             "type": "string",
-            "description": "Identificador de sitio para Infolog GL",
+            "description": "Site identifier for Infolog GL",
             "pattern": "^[0-9]{1,3}$"
           },
           "PTYCLI": {
             "type": "string",
-            "description": "Prioridad de servicio de la tienda",
+            "description": "Store service priority",
             "maxLength": 3
           },
           "ETACLI": {
             "type": "string",
-            "description": "código de estado del cliente / 20 = No considerado, 30 = Ficha Cliente, 40 = Interfaz M50",
+            "description": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
             "enum": ["20", "30", "40"]
           },
           "INDADR": {
             "type": "string",
-            "description": "Indicador de dirección",
+            "description": "Address indicator",
             "maxLength": 1
           },
           "CODCLV": {
             "type": "string",
-            "description": "Requisito de entrega",
+            "description": "Delivery requirement",
             "maxLength": 3
           },
           "GEEX2001": {
@@ -397,127 +397,127 @@
             "properties": {
               "RSPCLI": {
                 "type": "string",
-                "description": "Nombre del responsable en el cliente",
+                "description": "Name of the person in charge at the customer",
                 "maxLength": 30
               },
               "CODMOP": {
                 "type": "string",
-                "description": "Código de modo de preparación para un cliente",
+                "description": "Preparation mode code for a customer",
                 "maxLength": 3
               },
               "CODRGT": {
                 "type": "string",
-                "description": "Código de área para el transporte",
+                "description": "Area code for transport",
                 "maxLength": 3
               },
               "CODTRA": {
                 "type": "string",
-                "description": "Código de operador",
+                "description": "Carrier code",
                 "maxLength": 14
               },
               "TOULIV": {
                 "type": "array",
-                "description": "Ronda de entrega de mercancías",
+                "description": "Goods delivery round",
                 "maxItems": 7,
                 "items": {
                   "type": "string",
-                  "description": "Ronda de entrega de mercancías",
+                  "description": "Goods delivery round",
                   "pattern": "^[0-9]{1,4}$"
                 }
               },
               "ORDLIV": {
                 "type": "array",
-                "description": "Orden de entrega en el tour",
+                "description": "Delivery order in the round",
                 "maxItems": 7,
                 "items": {
                   "type": "string",
-                  "description": "Orden de entrega en el tour",
+                  "description": "Delivery order in the round",
                   "pattern": "^[0-9]{1,4}$"
                 }
               },
               "KAILIV": {
                 "type": "array",
-                "description": "Muelles de transporte de carga",
+                "description": "Freight transport docks",
                 "maxItems": 7,
                 "items": {
                   "type": "string",
-                  "description": "Muelles de transporte de carga",
+                  "description": "Freight transport docks",
                   "pattern": "^[0-9]{1,3}$"
                 }
               },
               "GSTALC": {
                 "type": "string",
-                "description": "Modo de gestión de licor / 0 =  Sin gestión de alcoholes, 1 = Entrega con despacho suspendido, 2 = Entrega bajo justificante, 3 = Fuera de aduana, sin impuestos",
+                "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
                 "enum": ["0", "1", "2", "3"]
               },
               "PTYDES": {
                 "type": "string",
-                "description": "Prioridad de recuperación de palets",
+                "description": "Pallet retrieval priority",
                 "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "95"]
               },
               "NUMACS": {
                 "type": "string",
-                "description": "Número de impuestos especiales (Alcohol)",
+                "description": "Excise duty number (Alcohol)",
                 "maxLength": 20
               },
               "CPICLI": {
                 "type": "string",
-                "description": "Código postal del cliente (formato internacional)",
+                "description": "Customer postal code (international format)",
                 "maxLength": 10
               },
               "TVACCE": {
                 "type": "string",
-                "description": "IVA intracomunitario",
+                "description": "Intra-community VAT",
                 "maxLength": 20
               },
               "IDEALC": {
                 "type": "string",
-                "description": "Identificador de alcohol",
+                "description": "Alcohol identifier",
                 "maxLength": 20
               },
               "CTRPRP": {
                 "type": "boolean",
-                "description": "Control de cantidad en preparación",
-                "default":false
+                "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
+                "default": false
               },
               "CLIDAE": {
                 "type": "string",
-                "description": "Modo de gestión del DEA",
+                "description": "DEA management mode",
                 "maxLength": 1
               },
               "TYPDES": {
                 "type": "string",
-                "description": "Tipo de destino Gamm@",
+                "description": "GAMM@ destination type",
                 "maxLength": 1
               },
               "BUREXP": {
                 "type": "string",
-                "description": "Árbitro. Oficina de Exportación GAMM@",
+                "description": "Ref. GAMM@ Export Office",
                 "maxLength":8
               },
               "PTYPRP": {
                 "type": "string",
-                "description": "Prioridad de apoyos heterogéneos en prep. ML",
+                "description": "Priority of heterogeneous supports in ML preparation",
                 "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90"]
               },
               "GENAVI": {
                 "type": "string",
-                "description": "Generación del aviso de embarque",
+                "description": "Shipping notice generation",
                 "maxLength": 1
               },
               "HEUCHV": {
                 "type": "boolean",
-                "description": "Hora",
-                "default":false
+                "description": "Riding Time /  false = No, true = Yes",
+                "default": false
               },
               "TYPDES2": {
                 "type": "string",
-                "description": "Tipo de destino Gamm@",
+                "description": "GAMM@ destination type",
                 "maxLength": 2
               },
               "CODFCQ": {
                 "type": "string",
-                "description": "Código de la ficha de control de calidad",
+                "description": "Quality control sheet code",
                 "maxLength": 3
               }
             }
@@ -529,22 +529,23 @@
             "properties": {
               "CM1CLI": {
                 "type": "string",
-                "description": "Comentario del cliente (línea 1)",
+                "description": "Customer comment (line 1)",
                 "maxLength":45
               },
               "CM2CLI": {
                 "type": "string",
-                "description": "Comentario del cliente (línea 2)",
+                "description": "Customer comment (line 2)",
                 "maxLength":45
               },
               "CM3CLI": {
                 "type": "string",
-                "description": "Comentario del cliente (línea 3)",
+                "description": "Customer comment (line 3)",
                 "maxLength":45
               },
               "EMLADR": {
                 "type": "string",
-                "description": "Dirección de correo electrónico",
+                "description": "Email address",
+                "minLength": 1,
                 "maxLength":50,
                 "format": "email"
               }
@@ -557,69 +558,69 @@
             "properties": {
               "CODRST": {
                 "type": "string",
-                "description": "Código de regla de inventario en tránsito",
+                "description": "In-transit inventory rule code",
                 "maxLength": 3
               },
               "LIBCPL": {
                 "type": "string",
-                "description": "Nombre adicional",
+                "description": "Additional name",
                 "maxLength": 38
               },
               "LIBCP2": {
                 "type": "string",
-                "description": "Nombre adicional 2",
+                "description": "Additional name 2",
                 "maxLength": 38
               },
               "EXLGRP": {
                 "type": "boolean",
-                "description": "fuera del grupo",
-                "default":false
+                "description": "Out of group / false = no, true = Yes",
+                "default": false
               },
               "TYPDSV": {
                 "type": "string",
-                "description": "Tipo de DESADV",
+                "description": "DESADV type",
                 "maxLength": 1
               },
               "PTYSND": {
                 "type": "string",
-                "description": "Prioridad de envío",
+                "description": "Shipping priority",
                 "maxLength": 1
               },
               "IDEEXT": {
                 "type": "string",
-                "description": "Identificador externo",
+                "description": "External identifier",
                 "maxLength": 35
               },
               "ARDPEN": {
                 "type": "string",
-                "description": "Indicador de redondeo de escasez",
+                "description": "Shortage rounding indicator",
                 "maxLength": 1
               }
             }
-          },       
+          },
           "GEEX2050": {
             "type": "array",
             "description": "Customer rubriques declaration",
             "maxItems": 500,
-            "items": 
+            "items":
               {
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
                   "TYPRUB": {
                     "type": "string",
-                    "description": "tipo de encabezado / 1 = Norma EDIFACT, 2 = Codificación Interna",
+                    "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
                     "enum": ["1", "2"],
                     "default": "2"
                   },
                   "CODRUB": {
                     "type": "string",
-                    "description": "Código de sección",
+                    "description": "Section code",
                     "maxLength":4
                   },
                   "VALRUB": {
                     "type": "string",
-                    "description": "Valor del ítem",
+                    "description": "Item value",
                     "maxLength": 35
                   }
                 },
@@ -627,9 +628,9 @@
               }
           }
         },
-        "required": ["TRTEXC", "CODACT", "CODCLI", "NOMCLI", "AD1CLI", "VILCLI"]
+        "required": ["TRTEXC", "CODACT", "CODCLI", "NOMCLI", "AD1CLI", "VILCLI", "PAYCLI"]
       }
-    }    
+    }
   },
   "required": ["customerMasterData"]
 }

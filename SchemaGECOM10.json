@@ -34,7 +34,7 @@
           },
           "TYPFOU": {
             "type": "string",
-            "description": "Supplier type",
+            "description": "Supplier type / 1 = Manufacturer, 2 = Wholesaler, 3 = Platform (transfers)",
             "enum": ["1", "2", "3"]
           },
           "NOMFOU": {

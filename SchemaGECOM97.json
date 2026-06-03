@@ -23,13 +23,11 @@
           "EMTEXC": {
             "type": "string",
             "description": "Sender site of the information to be processed",
-            "minLength": 1,
             "maxLength": 14
           },
           "RCTEXC": {
             "type": "string",
             "description": "Exchange recipient code",
-            "minLength": 1,
             "maxLength": 14
           },
           "DATEXC": {
@@ -114,13 +112,11 @@
           "EMTEXC": {
             "type": "string",
             "description": "Sender site of the information to be processed",
-            "minLength": 1,
             "maxLength": 14
           },
           "RCTEXC": {
             "type": "string",
             "description": "Exchange recipient code",
-            "minLength": 1,
             "maxLength": 14
           },
           "DATEXC": {

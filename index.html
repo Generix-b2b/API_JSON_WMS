@@ -199,155 +199,187 @@
   /* ── DETAIL VIEW ────────────────────────────────────── */
   #view-detail { display:none; }
 
-  .detail-header {
-    background: var(--generix-dark); color: var(--white);
-    padding: 40px 32px; position: relative; overflow: hidden;
+  /* Page header */
+  .dh {
+    background:linear-gradient(135deg, var(--generix-dark) 0%, var(--generix-dark-soft) 100%);
+    color:#fff; padding:54px 32px; position:relative; overflow:hidden;
   }
-  .detail-header::before {
+  .dh::before {
     content:""; position:absolute; inset:0;
     background:radial-gradient(circle at 80%, rgba(221,199,186,0.25) 0%, transparent 50%);
     pointer-events:none;
   }
-  .detail-header-inner { max-width:1240px; margin:0 auto; position:relative; z-index:1; }
-
-  .back-btn {
-    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
-    color:rgba(255,255,255,0.9); padding:8px 16px; border-radius:6px;
-    font-size:0.85rem; font-weight:600; cursor:pointer; transition:all 0.2s;
-    margin-bottom:24px; display:inline-flex; align-items:center; gap:6px;
-  }
-  .back-btn:hover { background:rgba(255,255,255,0.2); }
-
-  .ep-badges { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+  .dhi { max-width:1240px; margin:0 auto; position:relative; z-index:1; }
+  .d-breadcrumb { margin-bottom:18px; }
+  .d-breadcrumb a { color:var(--generix-orange); text-decoration:none; font-size:.9rem; font-weight:500; }
+  .d-breadcrumb a:hover { text-decoration:underline; }
+  .d-breadcrumb span { color:rgba(255,255,255,.6); font-size:.9rem; margin:0 8px; }
+  .d-breadcrumb span.cur { color:rgba(255,255,255,.9); }
+  .ep-badges { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
   .method-badge {
     padding:4px 12px; border-radius:5px;
-    font-size:0.78rem; font-weight:800; letter-spacing:1px;
-    font-family:"SFMono-Regular", Consolas, monospace;
-  }
-  .method-badge.POST   { background:#dcfce7; color:#15803d; }
-  .method-badge.GET    { background:#dbeafe; color:#1d4ed8; }
-  .method-badge.PUT    { background:#fef3c7; color:#92400e; }
-  .method-badge.PATCH  { background:#ede9fe; color:#6d28d9; }
-  .method-badge.DELETE { background:#fee2e2; color:#dc2626; }
-  .ep-path {
-    font-family:"SFMono-Regular", Consolas, monospace; font-size:0.88rem;
-    color:rgba(255,255,255,0.8); background:rgba(255,255,255,0.1);
-    padding:4px 12px; border-radius:5px;
-  }
-  .version-pill { background:var(--generix-orange); color:var(--generix-dark); padding:3px 10px; border-radius:4px; font-size:0.72rem; font-weight:700; }
-  .cat-pill     { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.75); padding:3px 10px; border-radius:4px; font-size:0.78rem; font-weight:600; }
-
-  .detail-header h2    { font-size:2.1rem; font-weight:700; margin-bottom:10px; letter-spacing:-0.5px; }
-  .detail-header .ddesc{ opacity:0.8; font-size:1rem; max-width:700px; }
-
-  /* ── DETAIL BODY (2-col) ────────────────────────────── */
-  .detail-body {
-    max-width:1240px; margin:0 auto; padding:48px 32px;
-    display:grid; grid-template-columns:1fr 400px; gap:40px; align-items:start;
-  }
-
-  /* Filter bar */
-  .filter-bar { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
-  .filter-input {
-    flex:1; padding:9px 14px; border:1px solid var(--gray-200); border-radius:8px;
-    font-size:0.88rem; color:var(--generix-dark); outline:none; transition:border-color 0.2s;
-    font-family:inherit;
-  }
-  .filter-input:focus { border-color:var(--generix-orange); }
-  .filter-input::placeholder { color:var(--gray-300); }
-
-  .fields-section h3 {
-    font-size:1.05rem; font-weight:700; color:var(--generix-dark);
-    margin-bottom:0; padding-bottom:12px;
-    border-bottom:2px solid var(--generix-orange);
-    display:flex; align-items:center; gap:10px;
-  }
-  .fields-count { background:var(--gray-100); color:var(--gray-700); padding:2px 9px; border-radius:20px; font-size:0.75rem; font-weight:600; }
-
-  /* Legend */
-  .field-legend { display:flex; align-items:center; gap:18px; margin:14px 0 0; font-size:0.78rem; color:var(--gray-500); }
-  .field-legend span { display:flex; align-items:center; gap:5px; }
-  .dot-req { width:8px; height:8px; background:var(--generix-orange); border-radius:50%; }
-  .dot-opt { width:8px; height:8px; border:2px solid var(--gray-300); border-radius:50%; }
-
-  .fields-table { width:100%; border-collapse:collapse; font-size:0.86rem; margin-top:16px; }
-  .fields-table th {
-    background:var(--gray-50); border:1px solid var(--gray-200);
-    padding:9px 13px; text-align:left;
-    font-size:0.73rem; font-weight:700; color:var(--gray-700);
-    text-transform:uppercase; letter-spacing:0.5px; position:sticky; top:88px;
-  }
-  .fields-table td   { border:1px solid var(--gray-200); padding:10px 13px; vertical-align:top; }
-  .fields-table tr:nth-child(even) td { background:var(--gray-50); }
-  .fields-table tr:hover td           { background:#fff5ee; }
-  .fields-table tr.hidden-row         { display:none; }
-
-  /* Depth indentation */
-  .fn { font-family:"SFMono-Regular", Consolas, monospace; font-weight:600; font-size:0.82rem; color:var(--generix-dark); }
-  .fn.d0 { }
-  .fn.d1 { padding-left:14px; color:var(--generix-dark-soft); font-size:0.80rem; }
-  .fn.d2 { padding-left:28px; color:var(--gray-700); font-size:0.78rem; }
-  .req-indicator { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:middle; flex-shrink:0; }
-  .req-indicator.req { background:var(--generix-orange); }
-  .req-indicator.opt { border:2px solid var(--gray-300); }
-
-  /* Type badges */
-  .tb { display:inline-block; padding:2px 7px; border-radius:4px; font-family:"SFMono-Regular",Consolas,monospace; font-size:0.73rem; font-weight:600; white-space:nowrap; }
-  .t-string  { background:#dbeafe; color:#1e40af; }
-  .t-integer,.t-number { background:#dcfce7; color:#166534; }
-  .t-boolean { background:#ede9fe; color:#5b21b6; }
-  .t-array   { background:#fff7ed; color:#9a3412; }
-  .t-object  { background:#f0fdf4; color:#14532d; }
-  .t-any     { background:var(--gray-100); color:var(--gray-700); }
-
-  .field-desc        { color:var(--gray-700); line-height:1.5; }
-  .field-constraints { color:var(--gray-500); font-size:0.74rem; font-family:monospace; margin-top:4px; line-height:1.6; }
-  .enum-pill {
-    display:inline-block; background:var(--gray-100); color:var(--gray-700);
-    padding:1px 5px; border-radius:3px; font-family:monospace; font-size:0.72rem;
-    margin:1px 2px;
-  }
-  .enum-more { color:var(--gray-500); font-size:0.72rem; font-style:italic; }
-  .default-pill {
-    display:inline-block; background:#fef3c7; color:#92400e;
-    padding:1px 6px; border-radius:3px; font-family:monospace; font-size:0.72rem; margin-left:4px;
-  }
-
-  /* ── EXAMPLE PANEL (sticky) ─────────────────────────── */
-  .example-section { position:sticky; top:88px; }
-  .example-header {
-    display:flex; justify-content:space-between; align-items:center;
-    background:var(--generix-dark); padding:12px 18px; border-radius:10px 10px 0 0;
-  }
-  .example-label { color:rgba(255,255,255,0.65); font-size:0.78rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
-  .copy-btn {
-    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
-    color:rgba(255,255,255,0.8); padding:4px 12px; border-radius:5px;
-    font-size:0.76rem; font-weight:600; cursor:pointer; transition:all 0.2s;
-  }
-  .copy-btn:hover { background:rgba(255,255,255,0.2); color:#fff; }
-  .copy-btn.ok { color:#86efac; border-color:#86efac; }
-  .example-code {
-    background:#0d1f2d; border-radius:0 0 10px 10px;
-    padding:20px; overflow:auto; max-height:72vh;
-  }
-  .example-code pre {
+    font-size:.78rem; font-weight:800; letter-spacing:1px;
     font-family:"SFMono-Regular",Consolas,monospace;
-    font-size:0.8rem; line-height:1.75; white-space:pre; color:#e2e8f0; margin:0;
   }
-  /* JSON highlight classes */
-  .jk { color:#93c5fd; }
-  .js { color:#86efac; }
-  .jn { color:#fcd34d; }
-  .jb { color:#f9a8d4; }
-  .jnull { color:#94a3b8; }
+  .method-badge.POST{background:#dcfce7;color:#15803d}
+  .method-badge.GET{background:#dbeafe;color:#1d4ed8}
+  .method-badge.PUT{background:#fef3c7;color:#92400e}
+  .method-badge.PATCH{background:#ede9fe;color:#6d28d9}
+  .method-badge.DELETE{background:#fee2e2;color:#dc2626}
+  .ep-path {
+    font-family:"SFMono-Regular",Consolas,monospace; font-size:.86rem;
+    color:rgba(255,255,255,.8); background:rgba(255,255,255,.1); padding:4px 12px; border-radius:5px;
+  }
+  .version-pill { background:var(--generix-orange); color:var(--generix-dark); padding:3px 10px; border-radius:4px; font-size:.72rem; font-weight:700; }
+  .cat-pill { background:rgba(255,255,255,.1); color:rgba(255,255,255,.75); padding:3px 10px; border-radius:4px; font-size:.78rem; font-weight:600; }
+  .dh h1 { font-size:2.3rem; font-weight:700; margin-bottom:10px; letter-spacing:-.5px; }
+  .dh .ddesc { opacity:.85; font-size:1rem; max-width:700px; }
 
-  /* No example notice */
-  .no-example {
-    background:#0d1f2d; border-radius:0 0 10px 10px;
-    padding:30px 20px; text-align:center;
-    color:rgba(255,255,255,0.35); font-size:0.85rem;
+  /* Tab navigation */
+  .tab-nav-outer {
+    position:sticky; top:87px; z-index:99;
+    background:var(--white);
+    border-bottom:1px solid var(--gray-200);
   }
+  .tab-nav-inner { max-width:1240px; margin:0 auto; padding:0 32px; }
+  .tab-nav { display:flex; overflow-x:auto; scrollbar-width:thin; -webkit-overflow-scrolling:touch; }
+  .tab-nav::-webkit-scrollbar { height:4px; }
+  .tab-nav::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:2px; }
+  .tab-btn {
+    padding:15px 22px; border:none; background:transparent;
+    color:var(--gray-700); font-size:.95rem; font-weight:500;
+    cursor:pointer; white-space:nowrap; transition:all .25s;
+    border-bottom:3px solid transparent; font-family:inherit;
+  }
+  .tab-btn:hover { color:var(--generix-orange); background:var(--generix-orange-soft); }
+  .tab-btn.active { color:var(--generix-orange); border-bottom-color:var(--generix-orange); }
+
+  /* Tab panels */
+  .tab-panel { display:none; animation:fadeIn .3s ease-in; }
+  .tab-panel.active { display:block; }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* Descripción tab */
+  .desc-content { max-width:1240px; margin:0 auto; padding:48px 32px; }
+  .desc-content h2 { font-size:1.7rem; color:var(--generix-dark); margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--generix-orange-soft); }
+  .desc-content h3 { font-size:1.2rem; color:var(--generix-dark); margin:28px 0 12px; }
+  .desc-content p  { color:var(--gray-700); line-height:1.85; margin-bottom:14px; }
+  .desc-content ul { margin:12px 0 16px 24px; color:var(--gray-700); }
+  .desc-content li { margin-bottom:10px; line-height:1.75; }
+  .highlight-box {
+    background:var(--generix-orange-soft); border-left:4px solid var(--generix-orange);
+    padding:18px 20px; border-radius:6px; margin:22px 0; color:var(--gray-700); font-size:.95rem; line-height:1.7;
+  }
+  .highlight-box strong { color:var(--generix-dark); }
+  .spec-card {
+    background:var(--gray-50); border:1px solid var(--gray-200); border-radius:10px;
+    padding:22px 26px; margin:24px 0; display:flex; flex-wrap:wrap; gap:20px 36px;
+  }
+  .spec-item { display:flex; flex-direction:column; gap:4px; }
+  .spec-label { font-size:.72rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.5px; }
+  .spec-value { font-family:"SFMono-Regular",Consolas,monospace; font-size:.88rem; font-weight:600; color:var(--generix-dark); }
+
+  /* Three-column layout (Estructura / Enumeraciones) */
+  .three-col { display:grid; grid-template-columns:0px 1fr 0px; gap:0; align-items:start; }
+  .sidebar-nav {
+    position:sticky; top:155px;
+    width:240px; max-height:calc(100vh - 170px); overflow-y:auto;
+    background:var(--gray-100); border-radius:0 6px 6px 0;
+    border-left:4px solid var(--generix-orange);
+    padding:14px; box-shadow:0 2px 8px rgba(0,35,51,.1);
+    z-index:40; margin-left:-276px;
+  }
+  .sidebar-nav::-webkit-scrollbar { width:4px; }
+  .sidebar-nav::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:2px; }
+  .sidebar-nav::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
+  .snav-title { font-weight:600; font-size:.82rem; color:var(--generix-dark); margin-bottom:10px; text-transform:uppercase; letter-spacing:.5px; }
+  .snav-btns { display:flex; flex-direction:column; gap:5px; }
+  .snav-btn {
+    display:block; padding:8px 10px; background:var(--white); color:var(--generix-dark);
+    border:1px solid var(--gray-300); border-radius:4px; text-decoration:none;
+    font-size:.82rem; font-weight:500; transition:all .2s; cursor:pointer; text-align:left;
+    line-height:1.3; word-break:break-word;
+  }
+  .snav-btn:hover, .snav-btn.active { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
+
+  /* Block layout */
+  .col-middle { padding:0 32px 0 32px; }
+  .block-wrap  { margin-bottom:56px; scroll-margin-top:160px; }
+  .block-grid  { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
+  .code-panel {
+    background:var(--gray-900); border-radius:8px; overflow-y:auto;
+    box-shadow:0 4px 16px rgba(0,35,51,.15); max-height:480px; min-height:200px;
+  }
+  .code-panel::-webkit-scrollbar { width:5px; }
+  .code-panel::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:3px; }
+  .cp-header {
+    position:sticky; top:0; display:flex; align-items:center; gap:10px;
+    padding:10px 16px; background:var(--generix-dark); color:#fff; font-weight:600; font-size:.88rem;
+    z-index:2;
+  }
+  .cp-pre { margin:0; padding:20px; color:#e0e0e0; font-family:'Courier New',monospace; font-size:.82rem; line-height:1.65; overflow-x:auto; }
+  .explanation-box {
+    background:var(--generix-orange-soft); border-left:4px solid var(--generix-orange);
+    padding:18px 20px; border-radius:6px; margin-bottom:16px;
+  }
+  .explanation-box p { color:var(--gray-700); font-size:.93rem; line-height:1.7; margin:0 0 8px; }
+  .explanation-box p:last-child { margin:0; }
+  .tech-details {
+    background:var(--gray-100); border-left:4px solid var(--gray-500);
+    padding:18px 20px; border-radius:6px; margin-bottom:16px;
+  }
+  .tech-details h4 { color:var(--gray-700); margin-bottom:12px; font-size:.92rem; }
+  .tech-details p  { color:var(--gray-700); margin:0 0 8px; font-size:.9rem; }
+  .tech-details p:last-child { margin:0; }
+  .tag-type { background:var(--generix-dark); color:var(--generix-orange); padding:2px 8px; border-radius:4px; font-family:'Courier New',monospace; font-size:.83rem; }
+  .tag-req  { background:var(--generix-orange); color:var(--generix-dark); padding:2px 7px; border-radius:3px; font-family:'Courier New',monospace; font-size:.82rem; font-weight:600; }
+  .tag-opt  { background:var(--gray-100); color:var(--generix-dark); padding:2px 7px; border-radius:3px; font-family:'Courier New',monospace; font-size:.82rem; }
+  .block-divider { border-bottom:1px solid var(--gray-200); margin-top:36px; margin-bottom:-20px; }
+
+  /* Field description table */
+  .field-tbl-wrap { margin-top:18px; overflow-x:auto; }
+  .field-tbl-title { font-weight:700; font-size:.85rem; color:var(--gray-700); margin-bottom:10px; }
+  .field-tbl { width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.85rem; }
+  .field-tbl thead { background:var(--generix-dark); color:#fff; }
+  .field-tbl th { padding:9px 12px; text-align:left; font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.3px; }
+  .field-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); vertical-align:top; color:var(--gray-700); line-height:1.5; }
+  .field-tbl tbody tr:last-child td { border-bottom:none; }
+  .field-tbl tbody tr:hover { background:var(--gray-50); }
+
+  /* Enum block extras */
+  .enum-val-wrap { margin-top:10px; }
+  .ev-pill {
+    display:inline-block; background:var(--generix-orange); color:var(--generix-dark);
+    padding:3px 9px; border-radius:4px; font-family:'Courier New',monospace;
+    font-size:.82rem; font-weight:600; margin:3px 4px 3px 0;
+  }
+  .ev-more { color:var(--gray-500); font-size:.8rem; font-style:italic; display:inline-block; margin-top:4px; }
+  .enum-desc-tbl { width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.85rem; margin-top:10px; }
+  .enum-desc-tbl thead { background:var(--generix-dark); color:#fff; }
+  .enum-desc-tbl th { padding:8px 12px; text-align:left; font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.3px; }
+  .enum-desc-tbl td { padding:8px 12px; border-bottom:1px solid var(--gray-200); vertical-align:top; color:var(--gray-700); }
+  .enum-desc-tbl tbody tr:last-child td { border-bottom:none; }
+  .enum-desc-tbl tbody tr:hover { background:var(--gray-50); }
+
+  /* Ejemplo tab */
+  .ejemplo-wrap { max-width:1240px; margin:0 auto; padding:48px 32px; }
+  .ejemplo-wrap h2 { font-size:1.7rem; color:var(--generix-dark); margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid var(--generix-orange-soft); }
+  .ejemplo-cp { background:var(--gray-900); border-radius:8px; overflow:hidden; box-shadow:0 4px 16px rgba(0,35,51,.12); }
+  .ejemplo-cp-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 18px; background:var(--generix-dark); color:#fff;
+  }
+  .ejemplo-cp-label { font-weight:600; font-size:.88rem; }
+  .copy-btn {
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+    color:rgba(255,255,255,.8); padding:5px 14px; border-radius:5px;
+    font-size:.76rem; font-weight:600; cursor:pointer; transition:all .2s; font-family:inherit;
+  }
+  .copy-btn:hover { background:rgba(255,255,255,.2); color:#fff; }
+  .copy-btn.ok { color:#86efac; border-color:#86efac; }
+  .ejemplo-pre { margin:0; padding:24px; color:#e0e0e0; font-family:'Courier New',monospace; font-size:.82rem; line-height:1.7; overflow:auto; max-height:75vh; }
+  /* JSON highlight */
+  .jk{color:#93c5fd} .js{color:#86efac} .jn{color:#fcd34d} .jb{color:#f9a8d4} .jnull{color:#94a3b8}
 
   /* ── FOOTER ─────────────────────────────────────────── */
   footer { background:var(--generix-dark); color:var(--white); padding:56px 32px 28px; position:relative; }
@@ -463,60 +495,81 @@
 <!-- ═══ DETAIL VIEW ═════════════════════════════════════ -->
 <div id="view-detail">
 
-  <div class="detail-header">
-    <div class="detail-header-inner">
-      <button class="back-btn" onclick="showIndex()">← Volver al índice</button>
+  <!-- Page header -->
+  <section class="dh">
+    <div class="dhi">
+      <div class="d-breadcrumb">
+        <a href="#" onclick="showIndex();return false;">Documentación</a>
+        <span>/</span>
+        <span class="cur" id="d-breadcrumb-name">—</span>
+      </div>
       <div class="ep-badges" id="ep-badges"></div>
-      <h2 id="d-title">Cargando...</h2>
+      <h1 id="d-title">Cargando...</h1>
       <p class="ddesc" id="d-desc"></p>
     </div>
-  </div>
+  </section>
 
-  <div class="detail-body">
-
-    <!-- Left: fields -->
-    <div class="fields-section">
-      <h3>
-        Campos del mensaje
-        <span class="fields-count" id="fields-count">—</span>
-      </h3>
-      <div class="field-legend">
-        <span><span class="dot-req"></span>Obligatorio</span>
-        <span><span class="dot-opt"></span>Opcional</span>
-      </div>
-      <div class="filter-bar" style="margin-top:16px">
-        <input class="filter-input" id="field-filter" type="search"
-               placeholder="Filtrar campos por nombre o descripción…"
-               oninput="filterFields(this.value)">
-      </div>
-      <table class="fields-table">
-        <thead>
-          <tr>
-            <th style="min-width:200px">Campo</th>
-            <th style="width:80px">Tipo</th>
-            <th style="width:60px">Req.</th>
-            <th>Descripción / Valores</th>
-          </tr>
-        </thead>
-        <tbody id="fields-tbody">
-          <tr><td colspan="4" style="color:var(--gray-500);padding:30px;text-align:center">Cargando...</td></tr>
-        </tbody>
-      </table>
-      <div id="no-match" style="display:none;color:var(--gray-500);text-align:center;padding:24px;font-size:0.9rem">
-        No se encontraron campos que coincidan.
+  <!-- Tab navigation -->
+  <div class="tab-nav-outer">
+    <div class="tab-nav-inner">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="descripcion">Descripción General</button>
+        <button class="tab-btn" data-tab="estructura">Estructura</button>
+        <button class="tab-btn" data-tab="enumeraciones">Enumeraciones</button>
+        <button class="tab-btn" data-tab="ejemplo">Ejemplo</button>
       </div>
     </div>
-
-    <!-- Right: example (sticky) -->
-    <div class="example-section">
-      <div class="example-header">
-        <span class="example-label">Ejemplo JSON</span>
-        <button class="copy-btn" id="copy-btn" onclick="copyExample()">Copiar</button>
-      </div>
-      <div id="example-wrap"></div>
-    </div>
-
   </div>
+
+  <!-- Tab: Descripción -->
+  <div id="tab-descripcion" class="tab-panel active">
+    <div class="desc-content">
+      <div id="desc-body"><p style="color:var(--gray-500)">Cargando…</p></div>
+    </div>
+  </div>
+
+  <!-- Tab: Estructura -->
+  <div id="tab-estructura" class="tab-panel">
+    <div class="three-col">
+      <div class="sidebar-nav" id="snav-estructura">
+        <div class="snav-title">Ir a</div>
+        <div class="snav-btns" id="snav-btns-estructura"></div>
+      </div>
+      <div class="col-middle" style="padding-top:40px">
+        <div id="estructura-body"><p style="color:var(--gray-500)">Cargando…</p></div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Tab: Enumeraciones -->
+  <div id="tab-enumeraciones" class="tab-panel">
+    <div class="three-col">
+      <div class="sidebar-nav" id="snav-enumeraciones">
+        <div class="snav-title">Ir a</div>
+        <div class="snav-btns" id="snav-btns-enumeraciones"></div>
+      </div>
+      <div class="col-middle" style="padding-top:40px">
+        <div id="enumeraciones-body"><p style="color:var(--gray-500)">Cargando…</p></div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Tab: Ejemplo -->
+  <div id="tab-ejemplo" class="tab-panel">
+    <div class="ejemplo-wrap">
+      <h2>Ejemplo de payload</h2>
+      <div class="ejemplo-cp">
+        <div class="ejemplo-cp-header">
+          <span class="ejemplo-cp-label" id="ejemplo-label">—</span>
+          <button class="copy-btn" id="copy-btn" onclick="copyExample()">Copiar</button>
+        </div>
+        <pre class="ejemplo-pre" id="ejemplo-pre">Cargando…</pre>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /#view-detail -->
 
 <!-- ═══ FOOTER ══════════════════════════════════════════ -->
@@ -545,14 +598,14 @@
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   CONFIG  ←  Editar con los datos de tu repositorio GitHub
+   CONFIG
    ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  owner:       'generix-b2b',   // ← cambiar
-  repo:        'API_JSON_WMS',      // ← cambiar
+  owner:       'generix-b2b',
+  repo:        'API_JSON_WMS',
   branch:      'main',
-  contentPath: 'Test_HTML',           // carpeta raíz con los subfolders
-  token:       ''                     // solo para repos privados
+  contentPath: 'Test_HTML',   // carpeta raíz con los subfolders
+  token:       ''
 };
 
 /* ── GitHub helpers ──────────────────────────────────────── */
@@ -622,12 +675,11 @@ async function init() {
   }
 }
 
-/* ── Descubre los ficheros JSON dentro de una carpeta ─────────
-   Funciona con cualquier nombre: schema.json, SchemaGECOM10.json, etc.
-   ──────────────────────────────────────────────────────────── */
+/* ── Descubre los ficheros JSON (+ readme) dentro de una carpeta ── */
 async function discoverFiles(folder) {
   const files = await ghList(`${CONFIG.contentPath}/${folder}`);
   const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
+  const mds   = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.md'));
 
   const schemaFile =
     jsons.find(f => f.name.toLowerCase() === 'schema.json') ||
@@ -639,7 +691,11 @@ async function discoverFiles(folder) {
     jsons.find(f => f.name.toLowerCase().startsWith('example')) ||
     jsons.find(f => f !== schemaFile) || null;
 
-  return { schemaFile, exampleFile };
+  const readmeFile =
+    mds.find(f => f.name.toLowerCase() === 'readme.md') ||
+    mds[0] || null;
+
+  return { schemaFile, exampleFile, readmeFile };
 }
 
 async function loadCard(folder) {
@@ -703,37 +759,44 @@ function showEmpty(msg) {
     </div>`;
 }
 
-/* ── Detail: open endpoint ───────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   DETAIL VIEW — openEndpoint
+   ═══════════════════════════════════════════════════════════ */
 let _exampleRaw = '';
 
 async function openEndpoint(folder) {
   showDetail();
-  document.getElementById('d-title').textContent       = 'Cargando...';
-  document.getElementById('d-desc').textContent        = '';
-  document.getElementById('ep-badges').innerHTML       = '';
-  document.getElementById('field-filter').value        = '';
-  document.getElementById('no-match').style.display    = 'none';
-  document.getElementById('fields-count').textContent  = '—';
-  document.getElementById('fields-tbody').innerHTML    =
-    `<tr><td colspan="4" style="color:var(--gray-500);padding:30px;text-align:center">Cargando campos...</td></tr>`;
-  document.getElementById('example-wrap').innerHTML    = '';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'descripcion'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-descripcion'));
+  document.getElementById('d-title').textContent = 'Cargando...';
+  document.getElementById('d-breadcrumb-name').textContent = folder;
+  document.getElementById('d-desc').textContent  = '';
+  document.getElementById('ep-badges').innerHTML = '';
+  document.getElementById('desc-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
+  document.getElementById('estructura-body').innerHTML    = '<p style="color:var(--gray-500)">Cargando…</p>';
+  document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
+  document.getElementById('ejemplo-pre').textContent = 'Cargando…';
+  document.getElementById('snav-btns-estructura').innerHTML    = '';
+  document.getElementById('snav-btns-enumeraciones').innerHTML = '';
   _exampleRaw = '';
 
   try {
-    const { schemaFile, exampleFile } = await discoverFiles(folder);
-    const [sRes, eRes] = await Promise.allSettled([
-      schemaFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`)  : Promise.reject('sin schema'),
-      exampleFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${exampleFile.name}`) : Promise.reject('sin ejemplo')
+    const { schemaFile, exampleFile, readmeFile } = await discoverFiles(folder);
+    const [sRes, eRes, rRes] = await Promise.allSettled([
+      schemaFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`)  : Promise.reject('no schema'),
+      exampleFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${exampleFile.name}`) : Promise.reject('no example'),
+      readmeFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${readmeFile.name}`)  : Promise.reject('no readme')
     ]);
 
-    const schema = sRes.status === 'fulfilled' ? JSON.parse(sRes.value) : {};
-    const exRaw  = eRes.status === 'fulfilled' ? eRes.value : null;
-    _exampleRaw  = exRaw ? fmtJSON(exRaw) : '';
+    const schema    = sRes.status === 'fulfilled' ? JSON.parse(sRes.value) : {};
+    const exRaw     = eRes.status === 'fulfilled' ? eRes.value : null;
+    const readmeRaw = rRes.status === 'fulfilled' ? rRes.value : null;
 
-    // ── Header ──
     const ep     = schema['x-wms-endpoint'] || {};
     const method = (ep.method || '').toUpperCase();
-    document.getElementById('d-title').textContent = schema.title || folder;
+    const title  = schema.title || folder;
+    document.getElementById('d-title').textContent = title;
+    document.getElementById('d-breadcrumb-name').textContent = title;
     document.getElementById('d-desc').textContent  = schema.description || '';
     document.getElementById('ep-badges').innerHTML = [
       method      ? `<span class="method-badge ${method}">${method}</span>` : '',
@@ -742,195 +805,328 @@ async function openEndpoint(folder) {
       ep.category ? `<span class="cat-pill">${ep.category}</span>` : ''
     ].join('');
 
-    // ── Fields ──
-    const rows = flattenSchema(schema);
-    document.getElementById('fields-count').textContent =
-      `${rows.length} campo${rows.length !== 1 ? 's' : ''}`;
-    document.getElementById('fields-tbody').innerHTML =
-      rows.map(fieldRow).join('') || '<tr><td colspan="4" style="color:var(--gray-500);padding:20px">Sin campos definidos.</td></tr>';
-
-    // ── Example ──
-    if (_exampleRaw) {
-      document.getElementById('example-wrap').innerHTML =
-        `<div class="example-code"><pre>${hlJSON(_exampleRaw)}</pre></div>`;
-    } else {
-      document.getElementById('example-wrap').innerHTML =
-        `<div class="no-example">No hay <code>example.json</code> para este endpoint.<br>Crea el fichero en la carpeta <code>${folder}/</code>.</div>`;
-      document.getElementById('copy-btn').style.display = 'none';
-    }
+    renderDescripcion(schema, readmeRaw, exampleFile);
+    renderEstructura(schema);
+    renderEnumeraciones(schema);
+    renderEjemplo(exRaw, exampleFile ? exampleFile.name : null);
 
   } catch (err) {
     document.getElementById('d-title').textContent = 'Error al cargar';
     document.getElementById('d-desc').textContent  = err.message;
-    document.getElementById('fields-tbody').innerHTML = '';
+    document.getElementById('desc-body').innerHTML = `<p style="color:#cf1322">${esc(err.message)}</p>`;
   }
 }
 
-/* ── Schema flattening ───────────────────────────────────────
-   Handles:
-   · Flat schemas         { properties: { fieldA, fieldB, ... } }
-   · Array-wrapped        { properties: { mainArray: { type:"array", items:{ properties:{...} } } } }
-   · Nested objects       { properties: { obj: { type:"object", properties:{...} } } }
-   · $ref via $defs/definitions
-   ─────────────────────────────────────────────────────────── */
-function flattenSchema(rootSchema, prefix, reqArr, depth, defs) {
-  prefix  = prefix  || '';
-  reqArr  = reqArr  || (rootSchema.required || []);
-  depth   = depth   || 0;
-  defs    = defs    || rootSchema.$defs || rootSchema.definitions || {};
-
-  const rows  = [];
-  const props = rootSchema.properties || {};
-
-  for (const [key, rawProp] of Object.entries(props)) {
-    const fullName = prefix ? `${prefix}.${key}` : key;
-    let   prop     = rawProp;
-
-    // Resolve $ref
-    if (prop.$ref) {
-      const refName = prop.$ref.replace(/^#\/([$a-z]+\/)*/, '');
-      prop = defs[refName] || prop;
-    }
-
-    const type  = prop.type || (rawProp.$ref ? 'object' : 'any');
-    const isReq = reqArr.includes(key);
-
-    rows.push({ fullName, type, isReq, depth,
-      desc:        prop.description || '',
-      enumVals:    prop.enum        || null,
-      dflt:        prop.default,
-      constraints: buildConstraints(prop, type)
-    });
-
-    // Recurse object properties
-    if (type === 'object' && prop.properties) {
-      rows.push(...flattenSchema(prop, fullName, prop.required || [], depth + 1, defs));
-    }
-
-    // Recurse array items
-    if (type === 'array' && prop.items) {
-      let items = prop.items;
-      if (items.$ref) {
-        const n = items.$ref.replace(/^#\/([$a-z]+\/)*/, '');
-        items   = defs[n] || items;
-      }
-      if (items.properties) {
-        rows.push(...flattenSchema(items, `${fullName}[]`, items.required || [], depth + 1, defs));
-      }
-    }
+/* ═══ TAB 1 — DESCRIPCIÓN ═══ */
+function renderDescripcion(schema, readmeText, exampleFile) {
+  const ep = schema['x-wms-endpoint'] || {};
+  let html = `<h2>${esc(schema.title || 'Descripción General')}</h2>`;
+  if (readmeText) {
+    html += simpleMarkdown(readmeText);
+  } else {
+    html += `<p>${esc(schema.description || '')}</p>`;
   }
-  return rows;
+  const specs = [];
+  if (ep.method)   specs.push({ label:'Método',    value: ep.method.toUpperCase() });
+  if (ep.path)     specs.push({ label:'Endpoint',  value: ep.path });
+  if (ep.category) specs.push({ label:'Categoría', value: ep.category });
+  if (ep.version)  specs.push({ label:'Versión',   value: ep.version });
+  if (schema.$schema) specs.push({ label:'JSON Schema', value: schema.$schema.replace('https://json-schema.org/','') });
+  if (exampleFile) specs.push({ label:'Ejemplo',   value: exampleFile.name });
+  if (specs.length) {
+    html += `<div class="spec-card">${specs.map(s =>
+      `<div class="spec-item"><span class="spec-label">${esc(s.label)}</span><span class="spec-value">${esc(s.value)}</span></div>`
+    ).join('')}</div>`;
+  }
+  document.getElementById('desc-body').innerHTML = html;
 }
 
-function buildConstraints(prop, type) {
-  const c = [];
-  if (prop.minLength  != null) c.push(`minLength: ${prop.minLength}`);
-  if (prop.maxLength  != null) c.push(`maxLength: ${prop.maxLength}`);
-  if (prop.minimum    != null) c.push(`min: ${prop.minimum}`);
-  if (prop.maximum    != null) c.push(`max: ${prop.maximum}`);
-  if (prop.minItems   != null) c.push(`minItems: ${prop.minItems}`);
-  if (prop.maxItems   != null) c.push(`maxItems: ${prop.maxItems}`);
-  if (prop.pattern)            c.push(`pattern: ${prop.pattern}`);
-  if (prop.format)             c.push(`format: ${prop.format}`);
-  return c;
-}
-
-/* Count only "leaf-level" meaningful fields for the card label */
-function countTopFields(schema) {
-  return flattenSchema(schema).length;
-}
-
-/* ── Field row HTML ──────────────────────────────────────── */
-function fieldRow(r) {
-  const tc = `t-${r.type || 'any'}`;
-  const dc = `d${Math.min(r.depth, 2)}`;
-
-  // Enum display: show all if ≤10 values, otherwise count
-  let enumHtml = '';
-  if (r.enumVals) {
-    if (r.enumVals.length <= 10) {
-      enumHtml = r.enumVals.map(v => `<span class="enum-pill">${v}</span>`).join(' ');
+function simpleMarkdown(md) {
+  const lines = md.split('\n');
+  let html = '', inUl = false;
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (line.startsWith('### ')) { if(inUl){html+='</ul>';inUl=false;} html+=`<h3>${esc(line.slice(4))}</h3>`; }
+    else if (line.startsWith('## ')) { if(inUl){html+='</ul>';inUl=false;} html+=`<h2>${esc(line.slice(3))}</h2>`; }
+    else if (line.startsWith('# '))  { if(inUl){html+='</ul>';inUl=false;} html+=`<h2>${esc(line.slice(2))}</h2>`; }
+    else if (line.startsWith('- ') || line.startsWith('* ')) {
+      if (!inUl) { html+='<ul>'; inUl=true; }
+      html+=`<li>${inlineMd(line.slice(2))}</li>`;
+    } else if (line.startsWith('> ')) {
+      if(inUl){html+='</ul>';inUl=false;}
+      html+=`<div class="highlight-box">${inlineMd(line.slice(2))}</div>`;
+    } else if (line.trim()==='') {
+      if(inUl){html+='</ul>';inUl=false;}
     } else {
-      // Show first 6 + count
-      const preview = r.enumVals.slice(0, 6).map(v => `<span class="enum-pill">${v}</span>`).join(' ');
-      enumHtml = `${preview} <span class="enum-more">+${r.enumVals.length - 6} más</span>`;
+      if(inUl){html+='</ul>';inUl=false;}
+      html+=`<p>${inlineMd(line)}</p>`;
     }
-    enumHtml = `<div class="field-constraints">${enumHtml}</div>`;
   }
-
-  // Default value pill
-  const dfltHtml = r.dflt !== undefined
-    ? `<span class="default-pill">default: ${JSON.stringify(r.dflt)}</span>`
-    : '';
-
-  // Extra constraints
-  const consHtml = r.constraints.length
-    ? `<div class="field-constraints">${r.constraints.join(' · ')}</div>`
-    : '';
-
-  return `<tr class="field-row"
-    data-name="${r.fullName.toLowerCase()}"
-    data-desc="${r.desc.toLowerCase()}">
-    <td>
-      <span class="fn ${dc}">
-        <span class="req-indicator ${r.isReq ? 'req' : 'opt'}"></span>${r.fullName}
-      </span>
-    </td>
-    <td><span class="tb ${tc}">${r.type || 'any'}</span></td>
-    <td style="text-align:center">
-      ${r.isReq
-        ? '<span style="color:#c2410c;font-weight:700;font-size:0.8rem">Sí</span>'
-        : '<span style="color:var(--gray-400);font-size:0.8rem">No</span>'}
-    </td>
-    <td>
-      <span class="field-desc">${r.desc}${dfltHtml}</span>
-      ${enumHtml}${consHtml}
-    </td>
-  </tr>`;
+  if(inUl) html+='</ul>';
+  return html;
+}
+function inlineMd(t) {
+  return esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/`(.+?)`/g, '<code style="background:var(--gray-100);padding:1px 5px;border-radius:3px;font-family:monospace">$1</code>');
 }
 
-/* ── Field filter ────────────────────────────────────────── */
-function filterFields(q) {
-  q = q.toLowerCase().trim();
-  let visible = 0;
-  document.querySelectorAll('#fields-tbody tr.field-row').forEach(tr => {
-    const match = !q
-      || tr.dataset.name.includes(q)
-      || tr.dataset.desc.includes(q);
-    tr.classList.toggle('hidden-row', !match);
-    if (match) visible++;
+/* ═══ TAB 2 — ESTRUCTURA ═══ */
+function renderEstructura(schema) {
+  const defs   = schema.$defs || schema.definitions || {};
+  const blocks = extractBlocks(schema, defs);
+  if (!blocks.length) {
+    document.getElementById('estructura-body').innerHTML = '<p style="color:var(--gray-500)">No se encontraron bloques.</p>';
+    return;
+  }
+  let bodyHtml = '', navHtml = '';
+  blocks.forEach((blk, i) => {
+    const id = `blk-${i}`;
+    const snippet = JSON.stringify(blk.schemaSnippet, null, 2);
+    const fieldTbl = buildFieldTable(blk.properties, blk.required);
+    navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(blk.label)}</button>`;
+    bodyHtml += `
+      <div class="block-wrap" id="${id}">
+        <div class="block-grid">
+          <div class="code-panel">
+            <div class="cp-header">${esc(blk.label)}</div>
+            <pre class="cp-pre">${esc(snippet)}</pre>
+          </div>
+          <div>
+            <div class="explanation-box"><p>${esc(blk.description || 'Sin descripción.')}</p></div>
+            <div class="tech-details">
+              <h4>Detalles Técnicos</h4>
+              <p><strong>Tipo:</strong> <span class="tag-type">${esc(blk.type || 'object')}</span></p>
+              ${blk.required && blk.required.length ? `<p><strong>Obligatorios:</strong> <span class="tag-req">${esc(blk.required.join(', '))}</span></p>` : ''}
+              ${blk.constraints ? `<p><strong>Restricciones:</strong> ${esc(blk.constraints)}</p>` : ''}
+            </div>
+          </div>
+        </div>
+        ${fieldTbl}
+        <div class="block-divider"></div>
+      </div>`;
   });
-  document.getElementById('no-match').style.display =
-    (q && visible === 0) ? '' : 'none';
+  document.getElementById('estructura-body').innerHTML    = bodyHtml;
+  document.getElementById('snav-btns-estructura').innerHTML = navHtml;
 }
 
-/* ── JSON utils ──────────────────────────────────────────── */
-function fmtJSON(t) {
-  try { return JSON.stringify(JSON.parse(t), null, 2); } catch { return t; }
-}
-
-function hlJSON(json) {
-  return json
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(
-      /("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-      m => {
-        if (/^"/.test(m)) return /:$/.test(m) ? `<span class="jk">${m}</span>` : `<span class="js">${m}</span>`;
-        if (/true|false/.test(m)) return `<span class="jb">${m}</span>`;
-        if (m === 'null') return `<span class="jnull">${m}</span>`;
-        return `<span class="jn">${m}</span>`;
+function extractBlocks(schema, defs) {
+  const blocks = [];
+  for (const [key, raw] of Object.entries(schema.properties || {})) {
+    const prop = resolveRef(raw, defs);
+    const type = prop.type || 'object';
+    if (type === 'array' && prop.items) {
+      const cons = [prop.minItems != null ? `minItems: ${prop.minItems}` : '', prop.maxItems != null ? `maxItems: ${prop.maxItems}` : ''].filter(Boolean).join(' · ');
+      blocks.push({ label: key, type: 'array', description: prop.description || '', schemaSnippet: trimSchema(prop, false), properties: {}, required: [], constraints: cons });
+      const items = resolveRef(prop.items, defs);
+      if (items.properties) {
+        const topProps = {};
+        for (const [k, v] of Object.entries(items.properties)) {
+          const res = resolveRef(v, defs);
+          if (res.type !== 'object' || !res.properties) topProps[k] = v;
+        }
+        blocks.push({ label: `${key}[ ] — campos principales`, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
+        for (const [k, v] of Object.entries(items.properties)) {
+          const res = resolveRef(v, defs);
+          if (res.type === 'object' && res.properties) {
+            blocks.push({ label: k, type: 'object', description: res.description || '', schemaSnippet: trimSchema(res, true), properties: res.properties, required: res.required || [] });
+          }
+        }
       }
-    );
+    } else if (type === 'object' && prop.properties) {
+      blocks.push({ label: key, type: 'object', description: prop.description || '', schemaSnippet: trimSchema(prop, true), properties: prop.properties, required: prop.required || [] });
+    }
+  }
+  return blocks;
 }
 
+function resolveRef(prop, defs) {
+  if (!prop || !prop.$ref) return prop || {};
+  const name = prop.$ref.replace(/^#\/(\$defs|definitions)\//, '');
+  return (defs && defs[name]) || prop;
+}
+function trimSchema(prop, trimEnums) {
+  const clone = JSON.parse(JSON.stringify(prop));
+  if (!trimEnums) return clone;
+  function trim(obj) {
+    if (!obj || typeof obj !== 'object') return;
+    if (Array.isArray(obj.enum) && obj.enum.length > 12) obj.enum = obj.enum.slice(0,5).concat([`... +${obj.enum.length-5} values`]);
+    for (const v of Object.values(obj)) { if (typeof v === 'object') trim(v); }
+  }
+  trim(clone);
+  return clone;
+}
+
+function buildFieldTable(props, req) {
+  if (!props || !Object.keys(props).length) return '';
+  const dash = '<span style="color:var(--gray-300)">—</span>';
+  let rows = '';
+  for (const [field, def] of Object.entries(props)) {
+    const type = getFieldType(def);
+    const cons = getFieldCons(def);
+    const isReq = (req || []).includes(field);
+    rows += `<tr>
+      <td><span class="tag-req">${esc(field)}</span></td>
+      <td>${def && def.description ? esc(def.description) : dash}</td>
+      <td>${type ? `<span class="tag-type">${esc(type)}</span>` : dash}</td>
+      <td>${isReq ? '<span class="tag-req">Sí</span>' : '<span style="color:var(--gray-500)">No</span>'}</td>
+      <td>${cons || dash}</td>
+    </tr>`;
+  }
+  return `<div class="field-tbl-wrap">
+    <p class="field-tbl-title">📝 Descripción de campos</p>
+    <table class="field-tbl">
+      <thead><tr><th>Campo</th><th>Descripción</th><th>Tipo</th><th>Req.</th><th>Restricciones</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+}
+function getFieldType(def) {
+  if (!def) return '';
+  if (def.$ref) return def.$ref.split('/').pop();
+  let t = def.type;
+  if (Array.isArray(t)) t = t.join(' | ');
+  if (t === 'array' && def.items) { const it = def.items.$ref ? def.items.$ref.split('/').pop() : (def.items.type||''); return it ? `array<${it}>` : 'array'; }
+  if (!t && Array.isArray(def.enum)) return 'enum';
+  return t || '';
+}
+function getFieldCons(def) {
+  if (!def) return '';
+  const c = [];
+  if (def.minLength != null) c.push(`minLength: ${def.minLength}`);
+  if (def.maxLength != null) c.push(`maxLength: ${def.maxLength}`);
+  if (def.minimum   != null) c.push(`min: ${def.minimum}`);
+  if (def.maximum   != null) c.push(`max: ${def.maximum}`);
+  if (def.minItems  != null) c.push(`minItems: ${def.minItems}`);
+  if (def.maxItems  != null) c.push(`maxItems: ${def.maxItems}`);
+  if (def.pattern)           c.push(`pattern: ${def.pattern}`);
+  if (def.format)            c.push(`format: ${def.format}`);
+  if (def.default  !== undefined) c.push(`default: ${JSON.stringify(def.default)}`);
+  return esc(c.join(' · '));
+}
+function scrollToBlock(id, btn) {
+  document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ═══ TAB 3 — ENUMERACIONES ═══ */
+function renderEnumeraciones(schema) {
+  const enums = extractEnums(schema);
+  if (!enums.length) {
+    document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">No se encontraron campos enum en este schema.</p>';
+    return;
+  }
+  let bodyHtml = '', navHtml = '';
+  enums.forEach((en, i) => {
+    const id = `enum-${i}`;
+    const snippet = JSON.stringify({ [en.field]: { type: en.type, enum: en.values } }, null, 2);
+    let pillsHtml;
+    if (en.values.length <= 20) {
+      pillsHtml = en.values.map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('');
+    } else {
+      pillsHtml = en.values.slice(0,12).map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('') + `<span class="ev-more">+${en.values.length-12} valores más</span>`;
+    }
+    navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(en.field)}</button>`;
+    bodyHtml += `
+      <div class="block-wrap" id="${id}">
+        <div class="block-grid">
+          <div class="code-panel">
+            <div class="cp-header">${esc(en.field)}</div>
+            <pre class="cp-pre">${esc(snippet)}</pre>
+          </div>
+          <div>
+            <div class="explanation-box"><p>${esc(en.description || 'Sin descripción.')}</p></div>
+            <div class="tech-details">
+              <h4>Valores admitidos (${en.values.length})</h4>
+              <div class="enum-val-wrap">${pillsHtml}</div>
+              <p style="margin-top:10px"><strong>Usado en:</strong> <code style="font-size:.8rem">${esc(en.path)}</code></p>
+            </div>
+          </div>
+        </div>
+        <div class="block-divider"></div>
+      </div>`;
+  });
+  document.getElementById('enumeraciones-body').innerHTML      = bodyHtml;
+  document.getElementById('snav-btns-enumeraciones').innerHTML = navHtml;
+}
+
+function extractEnums(schema) {
+  const results = [], seen = new Set();
+  function walk(obj, path) {
+    if (!obj || typeof obj !== 'object') return;
+    if (Array.isArray(obj.enum)) {
+      const key = path.split('.').pop().replace('[]','');
+      if (!seen.has(key)) {
+        seen.add(key);
+        results.push({ field: key, path, type: obj.type || 'string', description: obj.description || '', values: obj.enum });
+      }
+      return;
+    }
+    if (obj.properties) for (const [k,v] of Object.entries(obj.properties)) walk(v, path ? `${path}.${k}` : k);
+    if (obj.items) walk(obj.items, `${path}[]`);
+    if (obj.$defs) for (const [k,v] of Object.entries(obj.$defs)) walk(v, k);
+    if (obj.definitions) for (const [k,v] of Object.entries(obj.definitions)) walk(v, k);
+  }
+  walk(schema, '');
+  return results;
+}
+
+/* ═══ TAB 4 — EJEMPLO ═══ */
+function renderEjemplo(exRaw, fileName) {
+  if (!exRaw) {
+    document.getElementById('ejemplo-pre').innerHTML = '<span style="color:rgba(255,255,255,.4);font-style:italic">No hay fichero de ejemplo en esta carpeta.</span>';
+    document.getElementById('ejemplo-label').textContent = 'Sin ejemplo';
+    document.getElementById('copy-btn').style.display = 'none';
+    return;
+  }
+  _exampleRaw = fmtJSON(exRaw);
+  document.getElementById('ejemplo-label').textContent = fileName || 'example.json';
+  document.getElementById('copy-btn').style.display = '';
+  document.getElementById('ejemplo-pre').innerHTML = hlJSON(_exampleRaw);
+}
+
+/* ═══ TAB SWITCHING ═══ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${tab}`));
+  });
+});
+
+/* ═══ HELPERS ═══ */
+function esc(t) {
+  if (t == null) return '';
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtJSON(t) { try { return JSON.stringify(JSON.parse(t), null, 2); } catch { return t; } }
+function hlJSON(json) {
+  return json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, m => {
+      if (/^"/.test(m)) return /:$/.test(m) ? `<span class="jk">${m}</span>` : `<span class="js">${m}</span>`;
+      if (/true|false/.test(m)) return `<span class="jb">${m}</span>`;
+      if (m === 'null') return `<span class="jnull">${m}</span>`;
+      return `<span class="jn">${m}</span>`;
+    });
+}
 function copyExample() {
   if (!_exampleRaw) return;
   navigator.clipboard.writeText(_exampleRaw).then(() => {
     const btn = document.getElementById('copy-btn');
-    btn.textContent = '✓ Copiado';
-    btn.classList.add('ok');
+    btn.textContent = '✓ Copiado'; btn.classList.add('ok');
     setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
   });
+}
+function countTopFields(schema) {
+  let n = 0;
+  function walk(obj) {
+    if (!obj || typeof obj !== 'object') return;
+    if (obj.properties) { n += Object.keys(obj.properties).length; for (const v of Object.values(obj.properties)) walk(v); }
+    if (obj.items) walk(obj.items);
+  }
+  walk(schema);
+  return n;
 }
 
 /* ── Start ───────────────────────────────────────────────── */

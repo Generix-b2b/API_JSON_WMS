@@ -622,10 +622,31 @@ async function init() {
   }
 }
 
+/* ── Descubre los ficheros JSON dentro de una carpeta ─────────
+   Funciona con cualquier nombre: schema.json, SchemaGECOM10.json, etc.
+   ──────────────────────────────────────────────────────────── */
+async function discoverFiles(folder) {
+  const files = await ghList(`${CONFIG.contentPath}/${folder}`);
+  const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
+
+  const schemaFile =
+    jsons.find(f => f.name.toLowerCase() === 'schema.json') ||
+    jsons.find(f => f.name.toLowerCase().startsWith('schema')) ||
+    jsons[0] || null;
+
+  const exampleFile =
+    jsons.find(f => f.name.toLowerCase() === 'example.json') ||
+    jsons.find(f => f.name.toLowerCase().startsWith('example')) ||
+    jsons.find(f => f !== schemaFile) || null;
+
+  return { schemaFile, exampleFile };
+}
+
 async function loadCard(folder) {
-  const text   = await rawFetch(`${CONFIG.contentPath}/${folder}/schema.json`);
-  const schema = JSON.parse(text);
-  return { folder, schema };
+  const { schemaFile } = await discoverFiles(folder);
+  if (!schemaFile) throw new Error(`No se encontró ningún JSON en "${folder}"`);
+  const text = await rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`);
+  return { folder, schema: JSON.parse(text) };
 }
 
 /* ── Index: render card grid ─────────────────────────────── */
@@ -699,9 +720,10 @@ async function openEndpoint(folder) {
   _exampleRaw = '';
 
   try {
+    const { schemaFile, exampleFile } = await discoverFiles(folder);
     const [sRes, eRes] = await Promise.allSettled([
-      rawFetch(`${CONFIG.contentPath}/${folder}/schema.json`),
-      rawFetch(`${CONFIG.contentPath}/${folder}/example.json`)
+      schemaFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`)  : Promise.reject('sin schema'),
+      exampleFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${exampleFile.name}`) : Promise.reject('sin ejemplo')
     ]);
 
     const schema = sRes.status === 'fulfilled' ? JSON.parse(sRes.value) : {};

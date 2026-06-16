@@ -1,0 +1,21 @@
+## GECOM10 — Supplier Master Data
+
+Mensaje para la declaración y mantenimiento del **maestro de proveedores** en el WMS Generix Spain.
+Permite crear, modificar o cancelar registros de proveedor de forma sincronizada entre el ERP y el WMS.
+
+### Características Principales
+
+- **Operaciones soportadas (TRTEXC):** Creación (`1`), modificación o creación (`2`), modificación de cabecera (`7`) y cancelación (`9`). El valor por defecto es `2`.
+- **Identificación única:** El campo `CODFOU` es la clave del proveedor en el WMS. Debe coincidir con el código maestro del sistema origen (ERP).
+- **Dirección completa:** Hasta 3 líneas de dirección (`AD1FOU`, `AD2FOU`, `AD3FOU`) más ciudad, código postal numérico y país en formato ISO 3166 alpha-2 o alpha-3.
+- **Bloque adicional 01 (GEEX1001):** Datos de contacto, email, incoterms, control de calidad y gestión de series.
+- **Bloque adicional 02 (GEEX1002):** Comentarios libres (hasta 3 líneas) y nombres adicionales del proveedor.
+- **Gestión de recepción:** Configura el comportamiento de avisos de envío (`GSTAVI`), gestión RF (`GSTRCP`) y tipo de conector (`TYPPRT`).
+
+> **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del proveedor. Para modificar solo la cabecera sin afectar a los bloques `GEEX1001` y `GEEX1002`, utiliza `TRTEXC = 7`.
+
+### Integración
+
+Este mensaje debe enviarse al WMS **antes** de procesar órdenes de recepción del proveedor.
+La sincronización es necesaria para que el proveedor esté registrado como origen válido en el almacén.
+Un proveedor no declarado generará un error de rechazo en los mensajes de entrada de mercancía.

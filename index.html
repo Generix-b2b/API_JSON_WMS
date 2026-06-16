@@ -279,15 +279,19 @@
   .spec-label { font-size:.72rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.5px; }
   .spec-value { font-family:"SFMono-Regular",Consolas,monospace; font-size:.88rem; font-weight:600; color:var(--generix-dark); }
 
-  /* Three-column layout (Estructura / Enumeraciones) */
-  .three-col { display:grid; grid-template-columns:0px 1fr 0px; gap:0; align-items:start; }
+  /* Estructura / Enumeraciones: 2-column layout with real sidebar */
+  .three-col {
+    max-width:1240px; margin:0 auto; padding:40px 32px;
+    display:grid; grid-template-columns:220px 1fr;
+    gap:36px; align-items:start;
+  }
   .sidebar-nav {
     position:sticky; top:155px;
-    width:240px; max-height:calc(100vh - 170px); overflow-y:auto;
-    background:var(--gray-100); border-radius:0 6px 6px 0;
+    max-height:calc(100vh - 170px); overflow-y:auto;
+    background:var(--gray-100); border-radius:6px;
     border-left:4px solid var(--generix-orange);
     padding:14px; box-shadow:0 2px 8px rgba(0,35,51,.1);
-    z-index:40; margin-left:-276px;
+    z-index:40;
   }
   .sidebar-nav::-webkit-scrollbar { width:4px; }
   .sidebar-nav::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:2px; }
@@ -303,7 +307,7 @@
   .snav-btn:hover, .snav-btn.active { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
 
   /* Block layout */
-  .col-middle { padding:0 32px 0 32px; }
+  .col-middle { padding:0; }
   .block-wrap  { margin-bottom:56px; scroll-margin-top:160px; }
   .block-grid  { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
   .code-panel {
@@ -406,6 +410,8 @@
     .detail-body           { grid-template-columns:1fr; }
     .example-section       { position:static; }
     .example-code          { max-height:40vh; }
+    .three-col             { grid-template-columns:1fr; padding:24px 20px; }
+    .sidebar-nav           { position:static; max-height:none; }
   }
   @media (max-width:768px) {
     .hero                  { padding:70px 24px; }
@@ -535,10 +541,7 @@
         <div class="snav-title">Ir a</div>
         <div class="snav-btns" id="snav-btns-estructura"></div>
       </div>
-      <div class="col-middle" style="padding-top:40px">
-        <div id="estructura-body"><p style="color:var(--gray-500)">Cargando…</p></div>
-      </div>
-      <div></div>
+      <div id="estructura-body"><p style="color:var(--gray-500)">Cargando…</p></div>
     </div>
   </div>
 
@@ -549,10 +552,7 @@
         <div class="snav-title">Ir a</div>
         <div class="snav-btns" id="snav-btns-enumeraciones"></div>
       </div>
-      <div class="col-middle" style="padding-top:40px">
-        <div id="enumeraciones-body"><p style="color:var(--gray-500)">Cargando…</p></div>
-      </div>
-      <div></div>
+      <div id="enumeraciones-body"><p style="color:var(--gray-500)">Cargando…</p></div>
     </div>
   </div>
 
@@ -638,7 +638,7 @@ function showIndex() {
 }
 function showDetail() {
   document.getElementById('view-index').style.display = 'none';
-  document.getElementById('view-detail').style.display = '';
+  document.getElementById('view-detail').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

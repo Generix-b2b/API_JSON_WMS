@@ -648,6 +648,14 @@ async function init() {
 
     if (!folders.length) { showEmpty('No hay endpoints publicados todavía.'); return; }
 
+    // Pre-cargar contenido de todas las subcarpetas en paralelo (1 llamada API por carpeta, todas de golpe)
+    await Promise.allSettled(folders.map(async f => {
+      try {
+        const files = await ghList(`${CONFIG.contentPath}/${f.name}`);
+        _dirCache[f.name] = buildDirResult(files);
+      } catch (_) {}
+    }));
+
     const settled = await Promise.allSettled(folders.map(f => loadCard(f.name)));
     const eps = settled
       .filter(r => r.status === 'fulfilled' && r.value)
@@ -675,10 +683,7 @@ async function init() {
 /* ── Descubre los ficheros JSON (+ readme) dentro de una carpeta ── */
 const _dirCache = {};
 
-async function discoverFiles(folder) {
-  if (_dirCache[folder]) return _dirCache[folder];
-
-  const files = await ghList(`${CONFIG.contentPath}/${folder}`);
+function buildDirResult(files) {
   const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
   const mds   = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.md'));
 
@@ -699,9 +704,14 @@ async function discoverFiles(folder) {
     mds.find(f => f.name.toLowerCase() === 'readme.md') ||
     mds[0] || null;
 
-  const result = { schemaFile, exampleFiles: filesToUse, readmeFile };
-  _dirCache[folder] = result;
-  return result;
+  return { schemaFile, exampleFiles: filesToUse, readmeFile };
+}
+
+async function discoverFiles(folder) {
+  if (_dirCache[folder]) return _dirCache[folder];
+  const files = await ghList(`${CONFIG.contentPath}/${folder}`);
+  _dirCache[folder] = buildDirResult(files);
+  return _dirCache[folder];
 }
 
 async function loadCard(folder) {

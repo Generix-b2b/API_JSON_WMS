@@ -1,236 +1,229 @@
 {
-  "customerMasterData": [
-    {
-      "TRTEXC": "1",
-      "CODACT": "LOG",
-      "CODCLI": "CLI-ES-MAD-001",
-      "TYPCLI": "1",
-      "CATCLI": "RED",
-      "CLILIV": "CLI-ES-MAD-001",
-      "EDICLI": "EDI-CLI-0001",
-      "NOMCLI": "Supermercados La Huerta S.A.",
-      "AD1CLI": "Avenida de la Constitución 22",
-      "AD2CLI": "Polígono Industrial Norte",
-      "CPOCLI": "28100",
-      "VILCLI": "Alcobendas",
-      "PAYCLI": "ES",
-      "TELCLI": "+34 91 661 0000",
-      "FAXCLI": "+34 91 661 0001",
-      "CODLGE": "ESP",
-      "CODDEV": "EUR",
-      "IGLSIT": "001",
-      "PTYCLI": "A01",
-      "ETACLI": "40",
-      "INDADR": "P",
-      "CODCLV": "ENT",
-      "GEEX2001": {
-        "RSPCLI": "Ana Martínez Ruiz",
-        "CODMOP": "MOP",
-        "CODRGT": "ZMA",
-        "CODTRA": "TRANS-NORTE",
-        "TOULIV": [
-          "1001",
-          "1002",
-          "1003"
-        ],
-        "ORDLIV": [
-          "0010",
-          "0020",
-          "0030"
-        ],
-        "KAILIV": [
-          "901",
-          "902",
-          "903"
-        ],
-        "GSTALC": "0",
-        "PTYDES": "30",
-        "NUMACS": "00000000000000000001",
-        "CPICLI": "28100-ALB",
-        "TVACCE": "ESB12345678",
-        "CTRPRP": true,
-        "CLIDAE": "N",
-        "TYPDES": "D",
-        "BUREXP": "EXP-MAD1",
-        "PTYPRP": "20",
-        "GENAVI": "1",
-        "HEUCHV": false,
-        "TYPDES2": "D1",
-        "CODFCQ": "QC1"
-      },
-      "GEEX2002": {
-        "CM1CLI": "Cliente prioritario - Acuerdo marco 2025",
-        "CM2CLI": "Descarga en muelle posterior, acceso calle B",
-        "CM3CLI": "Requiere albarán firmado en cada entrega",
-        "EMLADR": "logistica@lahuerta.es"
-      },
-      "GEEX2003": {
-        "CODRST": "RST",
-        "LIBCPL": "Supermercados La Huerta - C. Logística",
-        "LIBCP2": "Grupo Huerta Distribución",
-        "EXLGRP": false,
-        "TYPDSV": "A",
-        "PTYSND": "1",
-        "IDEEXT": "EXT-HUERTA-001-MAD",
-        "ARDPEN": "N"
-      },
-      "GEEX2050": [
-        {
-          "TYPRUB": "2",
-          "CODRUB": "ZONA",
-          "VALRUB": "NORTE"
-        },
-        {
-          "TYPRUB": "2",
-          "CODRUB": "RUTA",
-          "VALRUB": "R-ALCOBENDAS-001"
-        },
-        {
-          "TYPRUB": "1",
-          "CODRUB": "GLN1",
-          "VALRUB": "8412345000016"
-        }
-      ]
-    },
-    {
-      "TRTEXC": "2",
-      "CODACT": "ALM",
-      "CODCLI": "CLI-ES-BCN-002",
-      "TYPCLI": "3",
-      "CATCLI": "PLT",
-      "CLILIV": "CLI-ES-BCN-002",
-      "NOMCLI": "Plataforma Logística Mediterránea S.L.",
-      "AD1CLI": "Carrer de la Indústria 88",
-      "AD2CLI": "Nave 5, Sector B",
-      "CPOCLI": "08040",
-      "VILCLI": "Barcelona",
-      "PAYCLI": "ES",
-      "TELCLI": "+34 93 444 2200",
-      "CODLGE": "CAT",
-      "CODDEV": "EUR",
-      "IGLSIT": "002",
-      "ETACLI": "30",
-      "CODCLV": "STD",
-      "GEEX2001": {
-        "RSPCLI": "Pere Puigdomènech",
-        "CODMOP": "PLA",
-        "CODRGT": "ZCA",
-        "CODTRA": "TRANS-MED",
-        "TOULIV": [
-          "1010",
-          "1011"
-        ],
-        "ORDLIV": [
-          "0100",
-          "0110"
-        ],
-        "KAILIV": [
-          "910",
-          "911"
-        ],
-        "GSTALC": "1",
-        "PTYDES": "50",
-        "NUMACS": "ALC-BCN-00002",
-        "CPICLI": "08040-BCN",
-        "IDEALC": "ALC-ID-BCN-002",
-        "CTRPRP": false,
-        "TYPDES": "P",
-        "PTYPRP": "40",
-        "GENAVI": "0",
-        "HEUCHV": true,
-        "TYPDES2": "P3",
-        "CODFCQ": "QC2"
-      },
-      "GEEX2002": {
-        "CM1CLI": "Plataforma cross-docking - Sin almacenaje",
-        "CM2CLI": "Ventana de recepción: 06:00-10:00",
-        "EMLADR": "recepcio@plataforma-med.cat"
-      },
-      "GEEX2003": {
-        "CODRST": "TRN",
-        "LIBCPL": "PLM - Operaciones Nocturnas",
-        "EXLGRP": true,
-        "TYPDSV": "B",
-        "PTYSND": "2",
-        "IDEEXT": "EXT-PLM-BCN-002",
-        "ARDPEN": "S"
+  "_metadata": {
+    "esquema": "GECOM20 - Customer Master Data (v1.0 - 2026-06-17)",
+    "descripcion": "Ejemplos de maestro de clientes: distintas tipologías, modificaciones y cancelaciones",
+    "total_ejemplos": 8
+  },
+
+  "ejemplo_01_creacion_minima_cliente": {
+    "_descripcion": "TRTEXC=1, TYPCLI=1 — Creación mínima de cliente punto de entrega final (código postal numérico).",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0001",
+        "TYPCLI": "1",
+        "NOMCLI": "Supermercados Norte S.L.",
+        "AD1CLI": "Calle Gran Vía 100",
+        "CPOCLI": "48015",
+        "VILCLI": "Bilbao",
+        "PAYCLI": "ES"
       }
-    },
-    {
-      "TRTEXC": "1",
-      "CODACT": "LOG",
-      "CODCLI": "CLI-FR-PAR-010",
-      "TYPCLI": "2",
-      "CATCLI": "GRP",
-      "NOMCLI": "Groupe Distribution France",
-      "AD1CLI": "22 Boulevard Haussmann",
-      "AD3CLI": "Rez-de-chaussée",
-      "CPOCLI": "75009",
-      "VILCLI": "Paris",
-      "PAYCLI": "FR",
-      "TELCLI": "+33 1 53 00 99 00",
-      "TLXCLI": "GDF75009",
-      "CODLGE": "FRA",
-      "CODDEV": "EUR",
-      "ETACLI": "40",
-      "CODCLV": "AGR",
-      "GEEX2001": {
-        "RSPCLI": "Sophie Bernard",
-        "CODMOP": "GRP",
-        "CODRGT": "ZFR",
-        "TOULIV": [
-          "4501",
-          "4502",
-          "4503",
-          "4504"
-        ],
-        "ORDLIV": [
-          "0010",
-          "0020",
-          "0030",
-          "0040"
-        ],
-        "KAILIV": [
-          "781",
-          "782"
-        ],
-        "GSTALC": "3",
-        "PTYDES": "10",
-        "TVACCE": "FR12345678901",
-        "CTRPRP": true,
-        "TYPDES": "G",
-        "BUREXP": "EXP-FR01",
-        "PTYPRP": "10",
-        "GENAVI": "1",
-        "HEUCHV": false,
-        "TYPDES2": "G2"
-      },
-      "GEEX2002": {
-        "CM1CLI": "Cliente agrupación - Pedidos consolidados",
-        "CM2CLI": "Facturación centralizada en Paris",
-        "CM3CLI": "Documentación en francés obligatoria",
-        "EMLADR": "logistics@groupe-distribution.fr"
-      },
-      "GEEX2050": [
-        {
-          "TYPRUB": "1",
-          "CODRUB": "GLN1",
-          "VALRUB": "3012345000012"
-        },
-        {
-          "TYPRUB": "2",
-          "CODRUB": "PAIS",
-          "VALRUB": "FR"
+    ]
+  },
+
+  "ejemplo_02_creacion_completa_con_bloque_adicional": {
+    "_descripcion": "TRTEXC=1, TYPCLI=1 — Cliente completo con rutas de entrega, gestión EDI y bloque GEEX2001.",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0002",
+        "TYPCLI": "1",
+        "CATCLI": "RED",
+        "CLILIV": "CLI0002",
+        "EDICLI": "EDICLI0002",
+        "NOMCLI": "Hipermercados Levante S.A.",
+        "AD1CLI": "Avenida del Puerto 200",
+        "AD2CLI": "Polígono Industrial Norte",
+        "AD3CLI": "Nave 5",
+        "CPOCLI": "46011",
+        "VILCLI": "Valencia",
+        "PAYCLI": "ESP",
+        "TELCLI": "+34963111111",
+        "FAXCLI": "+34963111112",
+        "CODLGE": "ESP",
+        "CODDEV": "EUR",
+        "IGLSIT": "2",
+        "PTYCLI": "001",
+        "ETACLI": "40",
+        "CODCLV": "CLV1",
+        "GEEX2001": {
+          "RSPCLI": "María López Sánchez",
+          "CODMOP": "MA1",
+          "CODRGT": "Z02",
+          "CODTRA": "TRANSP001",
+          "TOULIV": ["0010", "0020"],
+          "ORDLIV": ["0001", "0002"],
+          "KAILIV": ["12", "14"],
+          "GSTALC": "0",
+          "PTYDES": "20",
+          "TVACCE": "ES-B12345678",
+          "CTRPRP": true,
+          "CLIDAE": "A",
+          "GENAVI": "1",
+          "HEUCHV": false,
+          "CM1CLI": "Entregar en muelle trasero",
+          "CM2CLI": "Horario recepción: 08:00-14:00",
+          "EMLADR": "logistica@hipermercados-levante.es",
+          "LIBCPL": "Hipermercados Levante - Central",
+          "TYPDSV": "A",
+          "PTYSND": "1"
         }
-      ]
-    },
-    {
-      "TRTEXC": "9",
-      "CODACT": "LOG",
-      "CODCLI": "CLI-ES-SEV-099",
-      "NOMCLI": "Cliente Anulado Sevilla SL",
-      "AD1CLI": "Calle Betis 10",
-      "VILCLI": "Sevilla"
-    }
-  ]
+      }
+    ]
+  },
+
+  "ejemplo_03_cliente_plataforma": {
+    "_descripcion": "TYPCLI=3 — Cliente de tipo plataforma (recibe mercancía para redistribución).",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "PLF0001",
+        "TYPCLI": "3",
+        "NOMCLI": "Plataforma Logística Central",
+        "AD1CLI": "Carretera Nacional N-II km 30",
+        "CPICLI": "ES-19200",
+        "VILCLI": "Azuqueca de Henares",
+        "PAYCLI": "ESP",
+        "ETACLI": "30",
+        "GEEX2001": {
+          "CODMOP": "PL1",
+          "CODRGT": "Z00",
+          "TYPDES": "P"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_04_cliente_con_gestion_alcohol": {
+    "_descripcion": "GEEX2001.GSTALC=2 — Cliente licorería con gestión de alcohol bajo Acquit (DAC).",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "LIC0001",
+        "TYPCLI": "1",
+        "NOMCLI": "Importaciones Espirituosas S.A.",
+        "AD1CLI": "Calle del Vino 15",
+        "CPOCLI": "28080",
+        "VILCLI": "Madrid",
+        "PAYCLI": "ES",
+        "GEEX2001": {
+          "GSTALC": "2",
+          "NUMACS": "ES-DAC-0012345",
+          "IDEALC": "ALQ-MADRID-001",
+          "TVACCE": "ESB87654321",
+          "CM1CLI": "Régimen DAC activo",
+          "EMLADR": "alcohol@importaciones-esp.com"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_05_cliente_con_rubricas_geex2050": {
+    "_descripcion": "GEEX2050 — Cliente con atributos de trazabilidad EDIFACT e internos.",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0005",
+        "TYPCLI": "1",
+        "NOMCLI": "Farmacia Online Express S.L.",
+        "AD1CLI": "Calle Salud 22",
+        "CPOCLI": "08034",
+        "VILCLI": "Barcelona",
+        "PAYCLI": "ESP",
+        "ETACLI": "40",
+        "GEEX2001": {
+          "EMLADR": "pedidos@farmaciaonline.com",
+          "CTRPRP": true
+        },
+        "GEEX2050": [
+          {
+            "TYPRUB": "2",
+            "CODRUB": "SECT",
+            "VALRUB": "FARMACIA"
+          },
+          {
+            "TYPRUB": "2",
+            "CODRUB": "PRIO",
+            "VALRUB": "ALTA"
+          },
+          {
+            "TYPRUB": "1",
+            "CODRUB": "GLN",
+            "VALRUB": "5412345678901"
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_06_modificacion_cliente": {
+    "_descripcion": "TRTEXC=2 — Actualización de datos de contacto y transportista asignado.",
+    "customerMasterData": [
+      {
+        "TRTEXC": "2",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0001",
+        "NOMCLI": "Supermercados Norte S.L.",
+        "AD1CLI": "Calle Gran Vía 100 - Local B",
+        "CPOCLI": "48015",
+        "VILCLI": "Bilbao",
+        "PAYCLI": "ES",
+        "TELCLI": "+34944222333",
+        "GEEX2001": {
+          "CODTRA": "TRANSP003",
+          "EMLADR": "recepcion@supermercadosnorte.es",
+          "HEUCHV": true
+        }
+      }
+    ]
+  },
+
+  "ejemplo_07_cancelacion_cliente": {
+    "_descripcion": "TRTEXC=9 — Baja de cliente en el WMS.",
+    "customerMasterData": [
+      {
+        "TRTEXC": "9",
+        "CODACT": "WMS",
+        "CODCLI": "CLI9999",
+        "NOMCLI": "Cliente Inactivo S.L.",
+        "AD1CLI": "Dirección Baja 1",
+        "CPOCLI": "28000",
+        "VILCLI": "Madrid",
+        "PAYCLI": "ES"
+      }
+    ]
+  },
+
+  "ejemplo_08_cliente_internacional_alfanumerico": {
+    "_descripcion": "Cliente francés con código postal alfanumérico e idioma configurado.",
+    "customerMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODCLI": "CLIFR01",
+        "TYPCLI": "1",
+        "NOMCLI": "Grands Magasins Français S.A.",
+        "AD1CLI": "12 Rue du Commerce",
+        "AD2CLI": "Zone Industrielle Nord",
+        "CPICLI": "F-75001",
+        "VILCLI": "Paris",
+        "PAYCLI": "FR",
+        "TELCLI": "+33140000000",
+        "CODLGE": "FRA",
+        "CODDEV": "EUR",
+        "ETACLI": "30",
+        "GEEX2001": {
+          "EMLADR": "logistique@grandsmagasins.fr",
+          "CODRGT": "Z05",
+          "TYPDSV": "B",
+          "ARDPEN": "R"
+        }
+      }
+    ]
+  }
 }

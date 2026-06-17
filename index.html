@@ -673,7 +673,11 @@ async function init() {
 }
 
 /* ── Descubre los ficheros JSON (+ readme) dentro de una carpeta ── */
+const _dirCache = {};
+
 async function discoverFiles(folder) {
+  if (_dirCache[folder]) return _dirCache[folder];
+
   const files = await ghList(`${CONFIG.contentPath}/${folder}`);
   const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
   const mds   = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.md'));
@@ -683,8 +687,7 @@ async function discoverFiles(folder) {
     jsons.find(f => f.name.toLowerCase().startsWith('schema')) ||
     jsons[0] || null;
 
-  const exampleFiles =
-    jsons.filter(f =>
+  const exampleFiles = jsons.filter(f =>
     f !== schemaFile &&
     (f.name.toLowerCase().startsWith('example') || f.name.toLowerCase().startsWith('ejemplo'))
   );
@@ -696,7 +699,9 @@ async function discoverFiles(folder) {
     mds.find(f => f.name.toLowerCase() === 'readme.md') ||
     mds[0] || null;
 
-  return { schemaFile, exampleFiles: filesToUse, readmeFile };
+  const result = { schemaFile, exampleFiles: filesToUse, readmeFile };
+  _dirCache[folder] = result;
+  return result;
 }
 
 async function loadCard(folder) {

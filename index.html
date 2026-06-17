@@ -932,7 +932,7 @@ function renderDescripcion(schema, readmeText, examplesData) {
 
   if (readmeText) {
     /* readme.md found → append after spec card */
-    html += simpleMarkdown(readmeText);
+    html += simpleMarkdown(readmeText, true);
 
   } else {
     /* No readme.md → show auto-generated description + spec card + info block */
@@ -947,14 +947,24 @@ function renderDescripcion(schema, readmeText, examplesData) {
   document.getElementById('desc-body').innerHTML = html;
 }
 
-function simpleMarkdown(md) {
+function simpleMarkdown(md, skipFirstH = false) {
   const lines = md.split('\n');
-  let html = '', inUl = false;
+  let html = '', inUl = false, firstHDone = false;
   for (const raw of lines) {
     const line = raw.trimEnd();
-    if (line.startsWith('### ')) { if(inUl){html+='</ul>';inUl=false;} html+=`<h3>${esc(line.slice(4))}</h3>`; }
-    else if (line.startsWith('## ')) { if(inUl){html+='</ul>';inUl=false;} html+=`<h2>${esc(line.slice(3))}</h2>`; }
-    else if (line.startsWith('# '))  { if(inUl){html+='</ul>';inUl=false;} html+=`<h2>${esc(line.slice(2))}</h2>`; }
+    if (line.startsWith('### ')) {
+      if(inUl){html+='</ul>';inUl=false;}
+      html+=`<h3>${esc(line.slice(4))}</h3>`;
+    } else if (line.startsWith('## ') || line.startsWith('# ')) {
+      if(inUl){html+='</ul>';inUl=false;}
+      if (skipFirstH && !firstHDone) {
+        firstHDone = true;
+        html += `<div style="border-bottom:2px solid var(--generix-orange-soft);margin:0 0 24px"></div>`;
+      } else {
+        const text = line.startsWith('## ') ? line.slice(3) : line.slice(2);
+        html += `<h2>${esc(text)}</h2>`;
+      }
+    }
     else if (line.startsWith('- ') || line.startsWith('* ')) {
       if (!inUl) { html+='<ul>'; inUl=true; }
       html+=`<li>${inlineMd(line.slice(2))}</li>`;

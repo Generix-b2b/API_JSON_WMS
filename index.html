@@ -643,25 +643,16 @@ function showDetail() {
 async function init() {
   renderSkeletons(6);
   try {
-    const items   = await ghList(CONFIG.contentPath);
-    const folders = items.filter(i => i.type === 'dir');
+    const tree    = await loadRepoTree();
+    const folders = buildCacheFromTree(tree);
 
     if (!folders.length) { showEmpty('No hay endpoints publicados todavía.'); return; }
 
-    // Pre-cargar contenido de todas las subcarpetas en paralelo (1 llamada API por carpeta, todas de golpe)
-    await Promise.allSettled(folders.map(async f => {
-      try {
-        const files = await ghList(`${CONFIG.contentPath}/${f.name}`);
-        _dirCache[f.name] = buildDirResult(files);
-      } catch (_) {}
-    }));
-
-    const settled = await Promise.allSettled(folders.map(f => loadCard(f.name)));
+    const settled = await Promise.allSettled(folders.map(f => loadCard(f)));
     const eps = settled
       .filter(r => r.status === 'fulfilled' && r.value)
       .map(r => r.value);
 
-    // Sort by category then title
     eps.sort((a, b) => {
       const ca = a.schema['x-wms-endpoint']?.category || '';
       const cb = b.schema['x-wms-endpoint']?.category || '';
@@ -674,15 +665,13 @@ async function init() {
     document.getElementById('endpoints-grid').innerHTML =
       `<div class="error-banner">
         <strong>No se pudo conectar con el repositorio</strong>
-        Revisa los valores de CONFIG (owner, repo, branch) al inicio del script.<br>
+        Revisa los valores de CONFIG (owner, repo, branch).<br>
         <small style="opacity:.7">${err.message}</small>
       </div>`;
   }
 }
 
 /* ── Descubre los ficheros JSON (+ readme) dentro de una carpeta ── */
-const _dirCache = {};
-
 function buildDirResult(files) {
   const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
   const mds   = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.md'));
@@ -707,11 +696,84 @@ function buildDirResult(files) {
   return { schemaFile, exampleFiles: filesToUse, readmeFile };
 }
 
+const _dirCache = {};
+const _LS_KEY   = `wms_tree_${CONFIG.repo}`;
+const _LS_TTL   = 60 * 60 * 1000; // 1 hora
+
+/* Una sola llamada API para todo el repo, cacheada en localStorage */
+async function loadRepoTree() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(_LS_KEY) || '{}');
+    if (stored.ts && (Date.now() - stored.ts) < _LS_TTL && stored.tree) {
+      return stored.tree;
+    }
+  } catch {}
+
+  const r = await fetch(
+    `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/git/trees/${CONFIG.branch}?recursive=1`,
+    { headers: ghHeaders() }
+  );
+  if (!r.ok) throw new Error(`GitHub API ${r.status}`);
+  const data = await r.json();
+
+  try {
+    localStorage.setItem(_LS_KEY, JSON.stringify({ ts: Date.now(), tree: data.tree }));
+  } catch {}
+
+  return data.tree;
+}
+
+function buildDirResult(files) {
+  const jsons = files.filter(f => f.name.toLowerCase().endsWith('.json'));
+  const mds   = files.filter(f => f.name.toLowerCase().endsWith('.md'));
+
+  const schemaFile =
+    jsons.find(f => f.name.toLowerCase() === 'schema.json') ||
+    jsons.find(f => f.name.toLowerCase().startsWith('schema')) ||
+    jsons[0] || null;
+
+  const exampleFiles = jsons.filter(f =>
+    f !== schemaFile &&
+    (f.name.toLowerCase().startsWith('example') || f.name.toLowerCase().startsWith('ejemplo'))
+  );
+
+  const readmeFile =
+    mds.find(f => f.name.toLowerCase() === 'readme.md') ||
+    mds[0] || null;
+
+  return {
+    schemaFile,
+    exampleFiles: exampleFiles.length ? exampleFiles : jsons.filter(f => f !== schemaFile),
+    readmeFile
+  };
+}
+
+function buildCacheFromTree(tree) {
+  const prefix      = CONFIG.contentPath + '/';
+  const folderFiles = {};
+
+  tree.forEach(item => {
+    if (!item.path.startsWith(prefix)) return;
+    const rest  = item.path.slice(prefix.length);
+    const parts = rest.split('/');
+    if (parts.length !== 2 || item.type !== 'blob') return;
+    const [folderName, fileName] = parts;
+    if (!folderFiles[folderName]) folderFiles[folderName] = [];
+    folderFiles[folderName].push({ name: fileName });
+  });
+
+  Object.entries(folderFiles).forEach(([folder, files]) => {
+    _dirCache[folder] = buildDirResult(files);
+  });
+
+  return Object.keys(folderFiles);
+}
+
 async function discoverFiles(folder) {
   if (_dirCache[folder]) return _dirCache[folder];
-  const files = await ghList(`${CONFIG.contentPath}/${folder}`);
-  _dirCache[folder] = buildDirResult(files);
-  return _dirCache[folder];
+  const tree = await loadRepoTree();
+  buildCacheFromTree(tree);
+  return _dirCache[folder] || { schemaFile: null, exampleFiles: [], readmeFile: null };
 }
 
 async function loadCard(folder) {

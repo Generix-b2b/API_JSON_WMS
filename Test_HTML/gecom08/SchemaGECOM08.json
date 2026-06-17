@@ -6,7 +6,7 @@
   "x-wms-author": "GENERIX GROUP Spain",
   "x-wms-endpoint": {
     "method": "POST",
-    "path": "https://URLClientEnvironment.generix.biz/m08_tables",
+    "path": "https://[URL_Client_Environment].generix.biz/m08_tables",
     "category": "Inbound",
     "version": "v1.0",
     "releaseDate": "2026-06-17"

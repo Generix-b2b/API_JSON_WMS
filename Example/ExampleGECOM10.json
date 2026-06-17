@@ -1,154 +1,219 @@
 {
-  "supplierMasterData": [
-    {
-      "TRTEXC": "1",
-      "CODACT": "LOG",
-      "CODFOU": "PROV-ES-001",
-      "TYPFOU": "1",
-      "NOMFOU": "Distribuciones Ibericas S.L.",
-      "AD1FOU": "Calle Gran Via 45",
-      "AD2FOU": "Planta 3, Oficina B",
-      "CPOFOU": "28013",
-      "VILFOU": "Madrid",
-      "PAYFOU": "ES",
-      "TELFOU": "+34 91 555 1234",
-      "FAXFOU": "+34 91 555 1235",
-      "EDIFOU": "EDI-ES-001",
-      "CODTRA": "TRANS-MAD",
-      "IGLSIT": "001",
-      "CODTRE": "STD",
-      "GSTAVI": "1",
-      "GSTRCP": "1",
-      "TYPPRT": "1",
-      "CPIFOU": "28013-MAD",
-      "EMBTIE": false,
-      "FOUGMA": "1",
-      "SYSMES": false,
-      "CODCLV": "ENT",
-      "GEEX1001": {
-        "RSPFOU": "Juan García López",
-        "EMLADR": "jgarcia@dist-ibericas.es",
-        "CODCOG": "GEO-MAD-01",
-        "NUMACS": "ALC-0012345",
-        "AFFFAB": false,
-        "CODENL": "1",
-        "CODFDC01": "QC1",
-        "CODFDC02": "QC2",
-        "CODGRP": "1",
-        "CODICM": "EXW",
-        "CODTCT": "TC1",
-        "CUMPRT": "5",
-        "FOUGRP": "GRP-IBERICA",
-        "METREC": "A",
-        "NULRLQ": false,
-        "PAYFAB": "España",
-        "PEREMB": "1",
-        "UNIFSR": false,
-        "CODRGT": "ZCN"
+  "_metadata": {
+    "esquema": "GECOM10 - Supplier Master Data (v1.0 - 2026-06-17)",
+    "descripcion": "Ejemplos de maestro de proveedores: creación, modificación, cancelación y variantes funcionales",
+    "total_ejemplos": 8
+  },
+
+  "ejemplo_01_creacion_minima_proveedor_industrial": {
+    "_descripcion": "TRTEXC=1, TYPFOU=1 — Creación mínima de proveedor industrial con código postal numérico.",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODFOU": "FOU0001",
+        "TYPFOU": "1",
+        "NOMFOU": "Industrias Generix S.A.",
+        "AD1FOU": "Calle Industrial 45",
+        "VILFOU": "Madrid",
+        "PAYFOU": "ES",
+        "CPOFOU": "28001"
+      }
+    ]
+  },
+
+  "ejemplo_02_creacion_completa_mayorista": {
+    "_descripcion": "TRTEXC=1, TYPFOU=2 — Proveedor mayorista completo con bloque adicional GEEX1001.",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0002",
+        "TYPFOU": "2",
+        "NOMFOU": "Distribuciones Mayoreo S.L.",
+        "AD1FOU": "Avenida del Comercio 120",
+        "AD2FOU": "Polígono Industrial Norte",
+        "AD3FOU": "Nave 7",
+        "CPOFOU": "46011",
+        "VILFOU": "Valencia",
+        "PAYFOU": "ES",
+        "TELFOU": "+34963000000",
+        "FAXFOU": "+34963000001",
+        "EDIFOU": "EDIFOU0002",
+        "CODTRA": "TRANSP001",
+        "IGLSIT": "1",
+        "CODTRE": "STD",
+        "GSTAVI": "1",
+        "GSTRCP": "1",
+        "TYPPRT": "1",
+        "EMBTIE": true,
+        "FOUGMA": "1",
+        "SYSMES": false,
+        "CODCLV": "CLV",
+        "GEEX1001": {
+          "RSPFOU": "Juan García López",
+          "EMLADR": "jgarcia@distribuciones.com",
+          "CODCOG": "ES-46000",
+          "AFFFAB": false,
+          "CODENL": "1",
+          "CODFDC01": "CQ1",
+          "CODGRP": "1",
+          "CODICM": "DAP",
+          "CODTCT": "T01",
+          "FOUGRP": "GRP-MAYO",
+          "METREC": "A",
+          "NULRLQ": false,
+          "PAYFAB": "España",
+          "PEREMB": "1",
+          "UNIFSR": false,
+          "CODRGT": "Z01",
+          "CM1FOU": "Proveedor preferente zona este",
+          "CM2FOU": "Ventana de entrega: 08:00-16:00",
+          "LIBCPL": "Distribuciones Mayoreo Ibérica"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_03_proveedor_plataforma": {
+    "_descripcion": "TRTEXC=1, TYPFOU=3 — Proveedor de tipo plataforma (transferencias entre almacenes).",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODFOU": "FOU0003",
+        "TYPFOU": "3",
+        "NOMFOU": "Plataforma Central Logística",
+        "AD1FOU": "Carretera Nacional km 250",
+        "CPIFOU": "ES-50012",
+        "VILFOU": "Zaragoza",
+        "PAYFOU": "ESP",
+        "TELFOU": "+34976000000",
+        "GSTAVI": "2",
+        "GSTRCP": "2"
+      }
+    ]
+  },
+
+  "ejemplo_04_modificacion_proveedor": {
+    "_descripcion": "TRTEXC=2 — Actualización de datos de contacto y transportista habitual.",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "2",
+        "CODFOU": "FOU0001",
+        "NOMFOU": "Industrias Generix S.A.",
+        "AD1FOU": "Calle Industrial 45 - Edificio A",
+        "VILFOU": "Madrid",
+        "PAYFOU": "ES",
+        "CPOFOU": "28001",
+        "TELFOU": "+34910001111",
+        "CODTRA": "TRANSP002",
+        "GEEX1001": {
+          "EMLADR": "contacto@industriasgenerix.com",
+          "CM1FOU": "Nuevo responsable: Ana Martínez"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_05_cancelacion_proveedor": {
+    "_descripcion": "TRTEXC=9 — Baja de proveedor en el sistema WMS.",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "9",
+        "CODFOU": "FOU0099",
+        "NOMFOU": "Proveedor Inactivo S.A.",
+        "AD1FOU": "Dirección Antigua 1",
+        "VILFOU": "Barcelona",
+        "PAYFOU": "ES",
+        "CPOFOU": "08001"
+      }
+    ]
+  },
+
+  "ejemplo_06_proveedor_alcohol_con_impuestos": {
+    "_descripcion": "Proveedor bodega con número de impuestos especiales (alcohol) y código GAMM@.",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODFOU": "BOD0001",
+        "TYPFOU": "1",
+        "NOMFOU": "Bodegas Riojanas S.A.",
+        "AD1FOU": "Carretera Logroño km 5",
+        "CPOFOU": "26200",
+        "VILFOU": "Haro",
+        "PAYFOU": "ES",
+        "TELFOU": "+34941000000",
+        "CODTRE": "ALC",
+        "GEEX1001": {
+          "NUMACS": "ES00123456789",
+          "EMLADR": "compras@bodegas-riojanas.com",
+          "PAYFAB": "España",
+          "FOUGMA": "1",
+          "CM1FOU": "Régimen suspensivo DAC",
+          "CM2FOU": "DSAC habilitado"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_07_proveedor_internacional_codigo_postal_alfanumerico": {
+    "_descripcion": "Proveedor alemán con código postal en formato alfanumérico internacional (CPIFOU).",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODFOU": "FOUGER01",
+        "TYPFOU": "1",
+        "NOMFOU": "Deutsche Industrie GmbH",
+        "AD1FOU": "Industriestrasse 88",
+        "AD2FOU": "Gewerbegebiet West",
+        "CPIFOU": "D-80333",
+        "VILFOU": "München",
+        "PAYFOU": "DE",
+        "TELFOU": "+498900000000",
+        "EDIFOU": "EDIDE001",
+        "SYSMES": false,
+        "GEEX1001": {
+          "EMLADR": "logistics@deutsche-industrie.de",
+          "CODICM": "EXW",
+          "PAYFAB": "Deutschland"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_08_carga_multiple_proveedores": {
+    "_descripcion": "Carga múltiple de varios proveedores en una sola petición (creación y modificación).",
+    "supplierMasterData": [
+      {
+        "TRTEXC": "1",
+        "CODFOU": "FOU0010",
+        "TYPFOU": "1",
+        "NOMFOU": "Conservas del Sur S.L.",
+        "AD1FOU": "Polígono Industrial La Isla Parcela 12",
+        "CPOFOU": "41700",
+        "VILFOU": "Dos Hermanas",
+        "PAYFOU": "ES",
+        "GSTRCP": "1"
       },
-      "GEEX1002": {
-        "CM1FOU": "Proveedor homologado categoría A",
-        "CM2FOU": "Entrega de lunes a viernes 08:00-17:00",
-        "CM3FOU": "Requiere cita previa para descarga",
-        "LIBCPL": "Distribuciones Ibericas - Sede Central",
-        "LIBCP2": "Grupo Logístico Ibérico"
-      }
-    },
-    {
-      "TRTEXC": "2",
-      "CODACT": "LOG",
-      "CODFOU": "PROV-FR-042",
-      "TYPFOU": "2",
-      "NOMFOU": "Logistique Europe SARL",
-      "AD1FOU": "15 Rue de la Paix",
-      "AD3FOU": "ZI Nord, Bâtiment C",
-      "CPOFOU": "75001",
-      "VILFOU": "Paris",
-      "PAYFOU": "FR",
-      "TELFOU": "+33 1 42 00 11 22",
-      "EDIFOU": "EDI-FR-042",
-      "CODTRA": "TRANS-PAR",
-      "IGLSIT": "042",
-      "GSTAVI": "2",
-      "GSTRCP": "2",
-      "TYPPRT": "3",
-      "EMBTIE": true,
-      "FOUGMA": "2",
-      "SYSMES": true,
-      "CODCLV": "URG",
-      "GEEX1001": {
-        "RSPFOU": "Marie Dupont",
-        "EMLADR": "m.dupont@logistique-europe.fr",
-        "CODCOG": "GEO-FR-001",
-        "AFFFAB": true,
-        "CODENL": "0",
-        "CODFDC01": "QF1",
-        "CODGRP": "0",
-        "CODICM": "DAP",
-        "CODTCT": "TC2",
-        "CUMPRT": "12",
-        "FOUGRP": "GRP-EUROPE",
-        "METREC": "B",
-        "NULRLQ": true,
-        "PAYFAB": "Francia",
-        "PEREMB": "2",
-        "UNIFSR": true,
-        "CODRGT": "ZCA"
+      {
+        "TRTEXC": "1",
+        "CODFOU": "FOU0011",
+        "TYPFOU": "2",
+        "NOMFOU": "Aceites Andaluces S.A.",
+        "AD1FOU": "Camino del Olivar s/n",
+        "CPOFOU": "14940",
+        "VILFOU": "Cabra",
+        "PAYFOU": "ES",
+        "TELFOU": "+34957000000"
       },
-      "GEEX1002": {
-        "CM1FOU": "Agrupación de pedidos semanal",
-        "LIBCPL": "Logistique Europe - División Ibérica"
+      {
+        "TRTEXC": "2",
+        "CODFOU": "FOU0005",
+        "NOMFOU": "Lácteos Castellanos S.A. (actualizado)",
+        "AD1FOU": "Polígono Industrial Norte Nave 3",
+        "CPOFOU": "47001",
+        "VILFOU": "Valladolid",
+        "PAYFOU": "ES"
       }
-    },
-    {
-      "TRTEXC": "7",
-      "CODACT": "ALM",
-      "CODFOU": "PROV-DE-099",
-      "TYPFOU": "3",
-      "NOMFOU": "Deutsche Lager GmbH",
-      "AD1FOU": "Industriestraße 8",
-      "AD2FOU": "Lager Komplex Nord",
-      "CPOFOU": "10115",
-      "VILFOU": "Berlin",
-      "PAYFOU": "DE",
-      "TELFOU": "+49 30 1234 5678",
-      "TLXFOU": "DLAGER030",
-      "EDIFOU": "EDI-DE-099",
-      "IGLSIT": "099",
-      "GSTAVI": "0",
-      "GSTRCP": "3",
-      "TYPPRT": "1",
-      "EMBTIE": false,
-      "FOUGMA": "0",
-      "SYSMES": false,
-      "CODCLV": "STD",
-      "GEEX1001": {
-        "RSPFOU": "Klaus Müller",
-        "EMLADR": "k.muller@deutsche-lager.de",
-        "NUMACS": "ALC-DE-00099",
-        "AFFFAB": false,
-        "CODENL": "1",
-        "CODFDC01": "QD1",
-        "CODFDC02": "QD2",
-        "CODGRP": "1",
-        "CODICM": "CIF",
-        "CUMPRT": "3",
-        "METREC": "C",
-        "NULRLQ": false,
-        "PAYFAB": "Alemania",
-        "PEREMB": "0",
-        "UNIFSR": false,
-        "CODRGT": "ZEU"
-      }
-    },
-    {
-      "TRTEXC": "9",
-      "CODACT": "LOG",
-      "CODFOU": "PROV-ES-017",
-      "NOMFOU": "Anulado Proveedor Test SA",
-      "AD1FOU": "Calle Ficticia 1",
-      "VILFOU": "Barcelona",
-      "PAYFOU": "ES"
-    }
-  ]
+    ]
+  }
 }

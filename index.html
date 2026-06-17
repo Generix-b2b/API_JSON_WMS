@@ -925,8 +925,8 @@ function renderDescripcion(schema, readmeText, exampleFile) {
     }
 
   if (readmeText) {
-    /* readme.md found → show ONLY its content */
-    html = simpleMarkdown(readmeText);
+    /* readme.md found → append after spec card */
+    html += simpleMarkdown(readmeText);
 
   } else {
     /* No readme.md → show auto-generated description + spec card + info block */

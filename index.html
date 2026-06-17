@@ -563,16 +563,7 @@
   <div id="tab-ejemplo" class="tab-panel">
     <div class="ejemplo-wrap">
       <h2>Ejemplo de payload</h2>
-      <p style="margin-bottom:20px">
-        <a id="ejemplo-download" href="#" target="_blank" class="download-link" style="display:none">📥 Descargar ejemplo</a>
-      </p>
-      <div class="ejemplo-cp">
-        <div class="ejemplo-cp-header">
-          <span class="ejemplo-cp-label" id="ejemplo-label">—</span>
-          <button class="copy-btn" id="copy-btn" onclick="copyExample()">Copiar</button>
-        </div>
-        <pre class="ejemplo-pre" id="ejemplo-pre">Cargando…</pre>
-      </div>
+      <div id="ejemplo-inner"><p style="color:var(--gray-500)">Cargando…</p></div>
     </div>
   </div>
 
@@ -693,15 +684,19 @@ async function discoverFiles(folder) {
     jsons[0] || null;
 
   const exampleFile =
-    jsons.find(f => f.name.toLowerCase() === 'example.json') ||
-    jsons.find(f => f.name.toLowerCase().startsWith('example')) ||
-    jsons.find(f => f !== schemaFile) || null;
+    jsons.filter(f =>
+    f !== schemaFile &&
+    (f.name.toLowerCase().startsWith('example') || f.name.toLowerCase().startsWith('ejemplo'))
+  );
+  const filesToUse = exampleFiles.length
+    ? exampleFiles
+    : jsons.filter(f => f !== schemaFile);
 
   const readmeFile =
     mds.find(f => f.name.toLowerCase() === 'readme.md') ||
     mds[0] || null;
 
-  return { schemaFile, exampleFile, readmeFile };
+  return { schemaFile, exampleFiles: filesToUse, readmeFile };
 }
 
 async function loadCard(folder) {
@@ -768,7 +763,7 @@ function showEmpty(msg) {
 /* ═══════════════════════════════════════════════════════════
    DETAIL VIEW — openEndpoint
    ═══════════════════════════════════════════════════════════ */
-let _exampleRaw = '';
+  let _examples = [];
 
 async function openEndpoint(folder) {
   showDetail();
@@ -781,22 +776,27 @@ async function openEndpoint(folder) {
   document.getElementById('desc-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
   document.getElementById('estructura-body').innerHTML    = '<p style="color:var(--gray-500)">Cargando…</p>';
   document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
-  document.getElementById('ejemplo-pre').textContent = 'Cargando…';
+  document.getElementById('ejemplo-inner').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
   document.getElementById('snav-btns-estructura').innerHTML    = '';
   document.getElementById('snav-btns-enumeraciones').innerHTML = '';
   _exampleRaw = '';
 
   try {
-    const { schemaFile, exampleFile, readmeFile } = await discoverFiles(folder);
-    const [sRes, eRes, rRes] = await Promise.allSettled([
-      schemaFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`)  : Promise.reject('no schema'),
-      exampleFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${exampleFile.name}`) : Promise.reject('no example'),
-      readmeFile  ? rawFetch(`${CONFIG.contentPath}/${folder}/${readmeFile.name}`)  : Promise.reject('no readme')
+    const { schemaFile, exampleFiles, readmeFile } = await discoverFiles(folder);
+    const [sRes, rRes] = await Promise.allSettled([
+      schemaFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`) : Promise.reject('no schema'),
+      readmeFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${readmeFile.name}`) : Promise.reject('no readme')
     ]);
 
     const schema    = sRes.status === 'fulfilled' ? JSON.parse(sRes.value) : {};
-    const exRaw     = eRes.status === 'fulfilled' ? eRes.value : null;
     const readmeRaw = rRes.status === 'fulfilled' ? rRes.value : null;
+
+    const exResults = await Promise.allSettled(
+      exampleFiles.map(f => rawFetch(`${CONFIG.contentPath}/${folder}/${f.name}`))
+    );
+    const examplesData = exampleFiles
+      .map((f, i) => ({ name: f.name, raw: exResults[i].status === 'fulfilled' ? exResults[i].value : null }))
+      .filter(e => e.raw !== null);
 
     const ep     = schema['x-wms-endpoint'] || {};
     const method = (ep.method || '').toUpperCase();
@@ -814,7 +814,7 @@ async function openEndpoint(folder) {
     renderDescripcion(schema, readmeRaw, exampleFile);
     renderEstructura(schema, folder, schemaFile ? schemaFile.name : null);
     renderEnumeraciones(schema);
-    renderEjemplo(exRaw, exampleFile ? exampleFile.name : null, folder);
+    renderEjemplo(examplesData, folder);
 
   } catch (err) {
     document.getElementById('d-title').textContent = 'Error al cargar';
@@ -1097,24 +1097,41 @@ function extractEnums(schema) {
 }
 
 /* ═══ TAB 4 — EJEMPLO ═══ */
-function renderEjemplo(exRaw, fileName, folder) {
-  if (!exRaw) {
-    document.getElementById('ejemplo-pre').innerHTML = '<span style="color:rgba(255,255,255,.4);font-style:italic">No hay fichero de ejemplo en esta carpeta.</span>';
-    document.getElementById('ejemplo-label').textContent = 'Sin ejemplo';
-    document.getElementById('copy-btn').style.display = 'none';
+function renderEjemplo(examples, folder) {
+  _examples = [];
+  const inner = document.getElementById('ejemplo-inner');
+
+  if (!examples || !examples.length) {
+    inner.innerHTML =
+      `<div class="ejemplo-cp">
+        <div class="ejemplo-cp-header"><span class="ejemplo-cp-label">Sin ejemplo</span></div>
+        <div style="background:#0d1f2d;border-radius:0 0 10px 10px;padding:30px 20px;
+                    text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;font-style:italic">
+          No hay fichero de ejemplo en esta carpeta.
+        </div>
+      </div>`;
     return;
   }
-  _exampleRaw = fmtJSON(exRaw);
-  document.getElementById('ejemplo-label').textContent = fileName || 'example.json';
-  document.getElementById('copy-btn').style.display = '';
-  document.getElementById('ejemplo-pre').innerHTML = hlJSON(_exampleRaw);
-  const dl = document.getElementById('ejemplo-download');
-  if (dl && folder && fileName) {
-    const rawUrl = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${fileName}`;
-    dl.href = rawUrl;
-    dl.textContent = `📥 Descargar ejemplo completo (${fileName})`;
-    dl.style.display = '';
-  }
+
+  let html = '';
+  examples.forEach((ex, i) => {
+    const formatted = fmtJSON(ex.raw);
+    _examples.push(formatted);
+    const rawUrl = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${ex.name}`;
+    const sep = i > 0 ? `<div style="border-top:1px solid var(--gray-200);margin:36px 0 28px"></div>` : '';
+    html += `${sep}
+      <p style="margin-bottom:16px">
+        <a href="${rawUrl}" target="_blank" class="download-link">📥 Descargar ${esc(ex.name)}</a>
+      </p>
+      <div class="ejemplo-cp">
+        <div class="ejemplo-cp-header">
+          <span class="ejemplo-cp-label">${esc(ex.name)}</span>
+          <button class="copy-btn" onclick="copyExample(${i}, this)">Copiar</button>
+        </div>
+        <pre class="ejemplo-pre">${hlJSON(formatted)}</pre>
+      </div>`;
+  });
+  inner.innerHTML = html;
 }
 
 /* ═══ TAB SWITCHING ═══ */
@@ -1141,10 +1158,10 @@ function hlJSON(json) {
       return `<span class="jn">${m}</span>`;
     });
 }
-function copyExample() {
-  if (!_exampleRaw) return;
-  navigator.clipboard.writeText(_exampleRaw).then(() => {
-    const btn = document.getElementById('copy-btn');
+function copyExample(i, btn) {
+  const text = _examples[i !== undefined ? i : 0];
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
     btn.textContent = '✓ Copiado'; btn.classList.add('ok');
     setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
   });

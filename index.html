@@ -399,6 +399,8 @@
   .ejemplo-pre { margin:0; padding:24px; color:#e0e0e0; font-family:'Courier New',monospace; font-size:.82rem; line-height:1.7; overflow:auto; max-height:75vh; }
   /* JSON highlight */
   .jk{color:#93c5fd} .js{color:#86efac} .jn{color:#fcd34d} .jb{color:#f9a8d4} .jnull{color:#94a3b8}
+  .download-link { color:var(--generix-orange); text-decoration:none; font-weight:500; font-size:.95rem; }
+  .download-link:hover { text-decoration:underline; }
 
   /* ── FOOTER ─────────────────────────────────────────── */
   footer { background:var(--generix-dark); color:var(--white); padding:56px 32px 28px; position:relative; }
@@ -561,6 +563,9 @@
   <div id="tab-ejemplo" class="tab-panel">
     <div class="ejemplo-wrap">
       <h2>Ejemplo de payload</h2>
+      <p style="margin-bottom:20px">
+        <a id="ejemplo-download" href="#" target="_blank" class="download-link" style="display:none">📥 Descargar ejemplo</a>
+      </p>
       <div class="ejemplo-cp">
         <div class="ejemplo-cp-header">
           <span class="ejemplo-cp-label" id="ejemplo-label">—</span>
@@ -807,9 +812,9 @@ async function openEndpoint(folder) {
     ].join('');
 
     renderDescripcion(schema, readmeRaw, exampleFile);
-    renderEstructura(schema);
+    renderEstructura(schema, folder, schemaFile ? schemaFile.name : null);
     renderEnumeraciones(schema);
-    renderEjemplo(exRaw, exampleFile ? exampleFile.name : null);
+    renderEjemplo(exRaw, exampleFile ? exampleFile.name : null, folder);
 
   } catch (err) {
     document.getElementById('d-title').textContent = 'Error al cargar';
@@ -885,14 +890,20 @@ function inlineMd(t) {
 }
 
 /* ═══ TAB 2 — ESTRUCTURA ═══ */
-function renderEstructura(schema) {
+function renderEstructura(schema, folder, schemaFileName) {
   const defs   = schema.$defs || schema.definitions || {};
   const blocks = extractBlocks(schema, defs);
   if (!blocks.length) {
     document.getElementById('estructura-body').innerHTML = '<p style="color:var(--gray-500)">No se encontraron bloques.</p>';
     return;
   }
-  let bodyHtml = '', navHtml = '';
+  const rawLink = folder && schemaFileName
+    ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${schemaFileName}`
+    : null;
+  let bodyHtml = rawLink
+    ? `<p style="margin-bottom:28px"><a href="${rawLink}" target="_blank" class="download-link">📥 Ver ${schemaFileName} completo</a></p>`
+    : '';
+  let navHtml = '';
   blocks.forEach((blk, i) => {
     const id = `blk-${i}`;
     const snippet = JSON.stringify(blk.schemaSnippet, null, 2);
@@ -1086,7 +1097,7 @@ function extractEnums(schema) {
 }
 
 /* ═══ TAB 4 — EJEMPLO ═══ */
-function renderEjemplo(exRaw, fileName) {
+function renderEjemplo(exRaw, fileName, folder) {
   if (!exRaw) {
     document.getElementById('ejemplo-pre').innerHTML = '<span style="color:rgba(255,255,255,.4);font-style:italic">No hay fichero de ejemplo en esta carpeta.</span>';
     document.getElementById('ejemplo-label').textContent = 'Sin ejemplo';
@@ -1097,6 +1108,13 @@ function renderEjemplo(exRaw, fileName) {
   document.getElementById('ejemplo-label').textContent = fileName || 'example.json';
   document.getElementById('copy-btn').style.display = '';
   document.getElementById('ejemplo-pre').innerHTML = hlJSON(_exampleRaw);
+  const dl = document.getElementById('ejemplo-download');
+  if (dl && folder && fileName) {
+    const rawUrl = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${fileName}`;
+    dl.href = rawUrl;
+    dl.textContent = `📥 Descargar ejemplo completo (${fileName})`;
+    dl.style.display = '';
+  }
 }
 
 /* ═══ TAB SWITCHING ═══ */

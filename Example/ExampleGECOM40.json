@@ -1,349 +1,329 @@
 {
-  "receptionOrders": [
+  "_metadata": {
+    "esquema": "GECOM40 - Reception Orders (v1.0 - 2026-06-17)",
+    "descripcion": "Ejemplos de órdenes de recepción. Nota: HEIREC en formato HHMMSS (6 dígitos). GEEX4020 obligatorio cuando TRTEXC=1 o 2.",
+    "total_ejemplos": 8
+  },
 
-    {
-      "TRTEXC": "1",
-      "NUMREC": "10000001",
-      "SNUREC": "001",
-      "REFREC": "REF-ALTA-SIMPLE-001",
-      "CODTRE": "STD",
-      "CODACT": "REC",
-      "CODFOU": "PROV001",
-      "DTIREC": "20250610",
-      "HEIREC": "080000",
-      "CUMLIG": "1",
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "PROD-00001",
-          "UVCREA": 100
-        }
-      ]
-    },
+  "ejemplo_01_creacion_minima": {
+    "_descripcion": "TRTEXC=1 — Creación mínima: campos obligatorios + 1 línea de producto.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "REFREC": "REC-2026-000001",
+        "CODTRE": "STD",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0001",
+        "DTIREC": "20260620",
+        "HEIREC": "080000",
+        "CUMLIG": "1",
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "PROD000001",
+            "UVCREA": 100
+          }
+        ]
+      }
+    ]
+  },
 
-    {
-      "TRTEXC": "2",
-      "NUMREC": "10000002",
-      "SNUREC": "001",
-      "REFREC": "REF-COMPLETO-002",
-      "CODAPP": "APROV01",
-      "CODLDR": "A01",
-      "CODTRE": "STD",
-      "CODACT": "REC",
-      "CODFOU": "PROV002",
-      "CODTRA": "TRANS001",
-      "DTIREC": "20250615",
-      "HEIREC": "093000",
-      "KAIREC": "003",
-      "DTFREC": "20250615",
-      "METTRP": "1",
-      "CODRTN": "R01",
-      "CODRGT": "ZON",
-      "IGLSIT": "001",
-      "CUMLIG": "2",
-      "MSGREC": [
-        "Frágil - Manipular con cuidado",
-        "Temperatura controlada"
-      ],
-      "GEEX4001": {
-        "NOMFOU": "Proveedor Completo SA",
-        "AD1FOU": "Calle Gran Vía 45",
-        "AD2FOU": "Planta 3",
-        "AD3FOU": "Polígono Industrial Norte",
-        "CPOFOU": "28013",
-        "VILFOU": "Madrid",
-        "PAYFOU": "ES",
-        "TELFOU": "+34 91 555 0100",
-        "TYPFOU": "1",
-        "DIPRECH": "SISTEMA_ERP_v3",
-        "TOPREC": ["A", "B", "1"]
-      },
-      "GEEX4002": {
-        "CPIFOU": "28013-ESP",
-        "CODDDO": "ORIG-ES-001",
-        "CODCLV": "CLV",
-        "CODOWN": "OWNER-001"
-      },
-      "GEEX4005": [
-        { "CODRUB": "RUB1", "VALRUB": "Temperatura 2-8 grados" },
-        { "CODRUB": "RUB2", "VALRUB": "Certificado ISO 9001" }
-      ],
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "PROD-00010",
-          "CODCLI": "CLI-001",
-          "VALPRO": "01",
-          "UVCREA": 500,
-          "UNICDE": "PCZ",
-          "TYPOPE": "0",
-          "AIGPRI": false,
-          "MSGLIG": "Línea estándar sin incidencias",
-          "SPCPRO": 6,
-          "PCBPRO": 12,
-          "PDBCOL": 2.500,
-          "VOLCOL": "0015.250",
-          "COLCOU": 4,
-          "COUPAL": 5,
-          "CODEMB": "C01",
-          "GERPAL": "02",
-          "GERHAU": "03",
-          "CODMDR": "M01",
-          "INDUNI": false
+  "ejemplo_02_creacion_completa": {
+    "_descripcion": "TRTEXC=1 — Recepción completa: dirección proveedor, múltiples líneas, atributos de cabecera y texto libre.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "NUMREC": "10000001",
+        "SNUREC": "001",
+        "REFREC": "REC-2026-000002",
+        "CODAPP": "BUYER01",
+        "CODLDR": "M01",
+        "CODTRE": "STD",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0002",
+        "CODTRA": "TRANSP001",
+        "DTIREC": "20260621",
+        "HEIREC": "090000",
+        "KAIREC": "05",
+        "MSGREC": ["DESCARGA CON TRANSPALETA", "FRAGIL"],
+        "IGLSIT": "1",
+        "DTFREC": "20260621",
+        "EDIFOU": "EDIFOU0002",
+        "METTRP": "1",
+        "EDITRA": "EDITRA0001",
+        "CODRGT": "Z01",
+        "CUMLIG": "2",
+        "GEEX4001": {
+          "NOMFOU": "Distribuciones Mayoreo S.L.",
+          "AD1FOU": "Avenida del Comercio 120",
+          "AD2FOU": "Polígono Industrial Norte, Nave 7",
+          "CPOFOU": "46011",
+          "VILFOU": "Valencia",
+          "PAYFOU": "ES",
+          "TELFOU": "+34963000000",
+          "TYPFOU": "2",
+          "TOPREC": ["X", "Y"],
+          "CODCLV": "CLV1"
         },
-        {
-          "NLIREC": "2",
-          "CODPRO": "PROD-00011",
-          "UVCREA": 200,
-          "UNICDE": "KGM",
-          "TYPOPE": "0",
-          "AIGPRI": false,
-          "PDBCOL": 10.750,
-          "INDUNI": false
-        }
-      ],
-      "GEEX4080": [
-        { "SEQTXR": "1", "LIBTXR": "Pedido generado por sistema ERP automático" },
-        { "SEQTXR": "2", "LIBTXR": "Revisar temperatura en cámara de entrada" }
-      ]
-    },
-
-    {
-      "TRTEXC": "2",
-      "NUMREC": "10000003",
-      "REFREC": "REF-PROMO-003",
-      "CODTRE": "PRO",
-      "CODACT": "REC",
-      "CODFOU": "PROV003",
-      "DTIREC": "20250620",
-      "HEIREC": "100000",
-      "CUMLIG": "2",
-      "GEEX4001": {
-        "NOMFOU": "Distribuciones Promo SL",
-        "AD1FOU": "Avda. del Comercio 12",
-        "VILFOU": "Barcelona",
-        "PAYFOU": "ES"
-      },
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "PROD-PROMO-01",
-          "UVCREA": 1000,
-          "UNICDE": "PCZ",
-          "TYPOPE": "1",
-          "NUMOPE": "100023",
-          "AIGPRI": true,
-          "PRIREC": "001299.990",
-          "MSGLIG": "Producto en promoción verano",
-          "INDUNI": false,
-          "GEEX4021": {
-            "PRXPRO": "001199.000",
-            "EDIPRO": "EAN-PROMO-001",
-            "CODMDS": "FRG",
-            "ZONPRF": "A",
-            "ALLPRF": "012",
-            "REFLIV": "ENTREGA-PROMO-2025",
-            "QTEREA": "1000"
+        "GEEX4005": [
+          {
+            "CODRUB": "TEMP",
+            "VALRUB": "AMBIENTE"
           },
-          "GEEX4025": [
-            { "TYPRUB": "1", "CODRUB": "GS1", "VALRUB": "PROMO-VERANO-2025" },
-            { "TYPRUB": "2", "CODRUB": "INT1", "VALRUB": "CAMPAÑA-VERANO" }
-          ]
-        },
-        {
-          "NLIREC": "2",
-          "CODPRO": "PROD-PROMO-02",
-          "UVCREA": 500,
-          "TYPOPE": "1",
-          "NUMOPE": "100023",
-          "AIGPRI": true,
-          "PRIREC": "000599.990",
-          "INDUNI": false
-        }
-      ]
-    },
-
-    {
-      "TRTEXC": "2",
-      "NUMREC": "10000004",
-      "REFREC": "REF-RESERVA-004",
-      "CODTRE": "RSV",
-      "CODACT": "REC",
-      "CODFOU": "PROV004",
-      "CODRTN": "INM",
-      "DTIREC": "20250701",
-      "HEIREC": "140000",
-      "CUMLIG": "1",
-      "GEEX4001": {
-        "NOMFOU": "Farmacéutica Ibérica SA",
-        "AD1FOU": "Polígono Farmacéutico s/n",
-        "VILFOU": "Valencia",
-        "PAYFOU": "ESP",
-        "TYPFOU": "2"
-      },
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "PROD-FARMA-01",
-          "UVCREA": 2400,
-          "UNICDE": "UNI",
-          "TYPOPE": "2",
-          "NUMOPE": "200001",
-          "AIGPRI": false,
-          "CODLOT": "LOTE-2025-A01",
-          "DATFAB": "20250101",
-          "MOTIMM": "CUA",
-          "MSGLIG": "Producto en cuarentena hasta análisis",
-          "INDUNI": true,
-          "GEEX4021": {
-            "DIPRECL": "SISTEMA_QA",
-            "QTEREA": "2400",
-            "CODACR": "QUA"
+          {
+            "CODRUB": "PRIO",
+            "VALRUB": "NORMAL"
+          }
+        ],
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "PROD000010",
+            "VALPRO": "01",
+            "UVCREA": 480,
+            "UNICDE": "UND",
+            "TYPOPE": "0",
+            "SPCPRO": 0,
+            "PCBPRO": 12,
+            "PDBCOL": 13.5,
+            "VOLCOL": "0012.000",
+            "COLCOU": 6,
+            "COUPAL": 8,
+            "CODEMB": "CAJ",
+            "INDUNI": false,
+            "GEEX4021": {
+              "PRXPRO": "010.500",
+              "EDIPRO": "08412345000019",
+              "CODMDS": "RCK",
+              "ZONPRF": "A",
+              "ALLPRF": "001",
+              "QTEREA": "480"
+            }
           },
-          "GEEX4025": [
-            { "TYPRUB": "1", "CODRUB": "LOT", "VALRUB": "LOTE-2025-A01" },
-            { "TYPRUB": "1", "CODRUB": "EXP", "VALRUB": "20271231" }
-          ]
-        }
-      ]
-    },
-
-    {
-      "TRTEXC": "7",
-      "NUMREC": "10000002",
-      "SNUREC": "001",
-      "REFREC": "REF-COMPLETO-002",
-      "CODTRE": "STD",
-      "CODACT": "REC",
-      "CODFOU": "PROV002",
-      "DTIREC": "20250618",
-      "HEIREC": "110000",
-      "KAIREC": "005",
-      "CUMLIG": "2"
-    },
-
-    {
-      "TRTEXC": "9",
-      "NUMREC": "10000003",
-      "SNUREC": "001",
-      "REFREC": "REF-PROMO-003",
-      "CODTRE": "PRO",
-      "CODACT": "REC",
-      "CODFOU": "PROV003",
-      "DTIREC": "20250620",
-      "HEIREC": "100000",
-      "CUMLIG": "2",
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "PROD-PROMO-01",
-          "UVCREA": 0
-        },
-        {
-          "NLIREC": "2",
-          "CODPRO": "PROD-PROMO-02",
-          "UVCREA": 0
-        }
-      ]
-    },
-
-    {
-      "TRTEXC": "2",
-      "NUMREC": "10000008",
-      "REFREC": "REF-INTER-008",
-      "CODTRE": "IMP",
-      "CODACT": "IMP",
-      "CODFOU": "PROV-DE-001",
-      "CODTRA": "MARITIME01",
-      "METTRP": "3",
-      "DTIREC": "20250801",
-      "HEIREC": "070000",
-      "KAIREC": "010",
-      "CUMLIG": "3",
-      "EDIFOU": "EDI-DE-PROV-001",
-      "EDITRA": "EDI-CARRIER-M01",
-      "CODRGT": "PRT",
-      "IGLSIT": "002",
-      "GEEX4001": {
-        "NOMFOU": "Deutsche Industrie GmbH",
-        "AD1FOU": "Industriestraße 50",
-        "AD2FOU": "Halle B",
-        "CPOFOU": "80331",
-        "VILFOU": "München",
-        "PAYFOU": "DEU",
-        "TELFOU": "+49 89 123456",
-        "TYPFOU": "1"
-      },
-      "GEEX4002": {
-        "CPIFOU": "80331-DEU",
-        "CODDDO": "ORIG-DE-001",
-        "CODCLV": "IMP",
-        "CODOWN": "OWNER-002"
-      },
-      "GEEX4005": [
-        { "CODRUB": "BL",   "VALRUB": "BL-2025-MAR-00123" },
-        { "CODRUB": "CONT", "VALRUB": "MSCU1234567" },
-        { "CODRUB": "PAIS", "VALRUB": "DE" }
-      ],
-      "GEEX4020": [
-        {
-          "NLIREC": "1",
-          "CODPRO": "MACH-COMP-001",
-          "CODCLI": "CLI-IMP-001",
-          "UVCREA": 10,
-          "UNICDE": "PCZ",
-          "TYPOPE": "0",
-          "AIGPRI": false,
-          "CODLOT": "LOT-DE-2025-001",
-          "DATFAB": "20250115",
-          "PDBCOL": 125.500,
-          "VOLCOL": "0500.000",
-          "COLCOU": 1,
-          "COUPAL": 2,
-          "GERPAL": "02",
-          "GERHAU": "02",
-          "INDUNI": false,
-          "GEEX4021": {
-            "PRXPRO": "004500.000",
-            "EDIPRO": "EAN-MACH-001",
-            "CODMDS": "PAL",
-            "ZONPRF": "B",
-            "ALLPRF": "025",
-            "REFLIV": "BL-2025-MAR-00123",
-            "QTEREA": "10"
+          {
+            "NLIREC": "2",
+            "CODPRO": "PROD000020",
+            "UVCREA": 288,
+            "UNICDE": "UND",
+            "PCBPRO": 24,
+            "INDUNI": false,
+            "GEEX4025": [
+              {
+                "TYPRUB": "1",
+                "CODRUB": "DLOT",
+                "VALRUB": "LOTE-2026-AA"
+              },
+              {
+                "TYPRUB": "2",
+                "CODRUB": "TEMP",
+                "VALRUB": "AMBIENTE"
+              }
+            ]
+          }
+        ],
+        "GEEX4080": [
+          {
+            "SEQTXR": "1",
+            "LIBTXR": "Descarga en muelle 5 - llamar al responsable de almacén"
           },
-          "GEEX4025": [
-            { "TYPRUB": "1", "CODRUB": "HS",   "VALRUB": "8479.89" },
-            { "TYPRUB": "2", "CODRUB": "ORIG", "VALRUB": "MADE IN GERMANY" }
-          ]
-        },
-        {
-          "NLIREC": "2",
-          "CODPRO": "MACH-COMP-002",
-          "UVCREA": 20,
-          "UNICDE": "PCZ",
-          "TYPOPE": "0",
-          "AIGPRI": false,
-          "PDBCOL": 45.000,
-          "VOLCOL": "0120.000",
-          "INDUNI": false
-        },
-        {
-          "NLIREC": "3",
-          "CODPRO": "SPARE-PART-009",
-          "CODPRN": "MACH-COMP-001",
-          "UVCREA": 50,
-          "UNICDE": "PCZ",
-          "TYPOPE": "0",
-          "AIGPRI": false,
-          "INDUNI": false
-        }
-      ],
-      "GEEX4080": [
-        { "SEQTXR": "1", "LIBTXR": "Importación marítima - Revisar documentación aduanera" },
-        { "SEQTXR": "2", "LIBTXR": "Contenedor MSCU1234567 - Puerto Barcelona" }
-      ]
-    }
+          {
+            "SEQTXR": "2",
+            "LIBTXR": "Revisar temperaturas antes de aceptar la mercancía"
+          }
+        ]
+      }
+    ]
+  },
 
-  ]
+  "ejemplo_03_modificacion_cabecera": {
+    "_descripcion": "TRTEXC=7 — Modificación únicamente de la cabecera (fecha y muelle de recepción).",
+    "receptionOrders": [
+      {
+        "TRTEXC": "7",
+        "REFREC": "REC-2026-000002",
+        "CODTRE": "STD",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0002",
+        "DTIREC": "20260623",
+        "HEIREC": "110000",
+        "KAIREC": "08",
+        "CUMLIG": "2"
+      }
+    ]
+  },
+
+  "ejemplo_04_cancelacion": {
+    "_descripcion": "TRTEXC=9 — Cancelación de una orden de recepción.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "9",
+        "REFREC": "REC-2026-000002",
+        "CODTRE": "STD",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0002",
+        "DTIREC": "20260623",
+        "HEIREC": "080000",
+        "CUMLIG": "2"
+      }
+    ]
+  },
+
+  "ejemplo_05_recepcion_con_lote_y_fabricacion": {
+    "_descripcion": "Línea con código de lote, fecha de fabricación e inmobilización por control de calidad.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "REFREC": "REC-2026-000003",
+        "CODTRE": "ALC",
+        "CODACT": "WMS",
+        "CODFOU": "BOD0001",
+        "DTIREC": "20260625",
+        "HEIREC": "093000",
+        "CUMLIG": "1",
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "VINO000001",
+            "UVCREA": 600,
+            "UNICDE": "BOT",
+            "PCBPRO": 6,
+            "CODLOT": "LOTE-2026-VT-001",
+            "DATFAB": "20260101",
+            "MOTIMM": "QUA",
+            "MSGLIG": "Analisis de calidad obligatorio",
+            "AIGPRI": false,
+            "GEEX4025": [
+              {
+                "TYPRUB": "1",
+                "CODRUB": "DLOT",
+                "VALRUB": "LOTE-2026-VT-001"
+              },
+              {
+                "TYPRUB": "2",
+                "CODRUB": "DEGA",
+                "VALRUB": "13.50"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_06_recepcion_con_numeros_de_serie": {
+    "_descripcion": "GEEX4040 — Línea con números de serie de tipo UVC (productos electrónicos).",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "REFREC": "REC-2026-000004",
+        "CODTRE": "SER",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0010",
+        "DTIREC": "20260627",
+        "HEIREC": "100000",
+        "CUMLIG": "1",
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "ELEC000001",
+            "UVCREA": 3,
+            "UNICDE": "UND",
+            "GEEX4040": [
+              {
+                "CODPRO": "ELEC000001",
+                "CODPAL": "00345678900000001",
+                "CODSER": "SN-2026-001-AAAAA",
+                "TYPSER": "1",
+                "PDBSER": 1.250
+              },
+              {
+                "CODPRO": "ELEC000001",
+                "CODPAL": "00345678900000001",
+                "CODSER": "SN-2026-001-BBBBB",
+                "TYPSER": "1",
+                "PDBSER": 1.248
+              },
+              {
+                "CODPRO": "ELEC000001",
+                "CODPAL": "00345678900000001",
+                "CODSER": "SN-2026-001-CCCCC",
+                "TYPSER": "1",
+                "PDBSER": 1.252
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_07_recepcion_con_precio_marcado": {
+    "_descripcion": "AIGPRI=true — Recepción de producto con marcado de precio en el artículo.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "REFREC": "REC-2026-000005",
+        "CODTRE": "STD",
+        "CODACT": "WMS",
+        "CODFOU": "FOU0015",
+        "DTIREC": "20260628",
+        "HEIREC": "083000",
+        "CUMLIG": "1",
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "PROD000070",
+            "UVCREA": 200,
+            "UNICDE": "UND",
+            "TYPOPE": "1",
+            "NUMOPE": "000250",
+            "AIGPRI": true,
+            "PRIREC": "002.990",
+            "MSGLIG": "Precio promocional marcado"
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_08_recepcion_recogida_por_tercero": {
+    "_descripcion": "METTRP=2 — Mercancía recogida por tercero, con dirección proveedor alfanumérica y texto libre.",
+    "receptionOrders": [
+      {
+        "TRTEXC": "1",
+        "REFREC": "REC-2026-000006",
+        "CODTRE": "REC",
+        "CODACT": "WMS",
+        "CODFOU": "FOUFRK01",
+        "CODTRA": "TRANSP999",
+        "DTIREC": "20260630",
+        "HEIREC": "143000",
+        "METTRP": "2",
+        "CUMLIG": "1",
+        "GEEX4001": {
+          "NOMFOU": "Frankfurt Logistics AG",
+          "AD1FOU": "Industriepark Strasse 45",
+          "CPIFOU": "D-60549",
+          "VILFOU": "Frankfurt",
+          "PAYFOU": "DE",
+          "TYPFOU": "1"
+        },
+        "GEEX4020": [
+          {
+            "NLIREC": "1",
+            "CODPRO": "PROD000080",
+            "UVCREA": 50,
+            "UNICDE": "PAL",
+            "PCBPRO": 40
+          }
+        ],
+        "GEEX4080": [
+          {
+            "SEQTXR": "1",
+            "LIBTXR": "Recogida por cuenta del cliente - validar documentación ADR"
+          }
+        ]
+      }
+    ]
+  }
 }

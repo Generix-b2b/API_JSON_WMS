@@ -906,15 +906,9 @@ async function openEndpoint(folder) {
 function renderDescripcion(schema, readmeText, exampleFile) {
   const ep = schema['x-wms-endpoint'] || {};
   let html = '';
-
-  if (readmeText) {
-    /* readme.md found → show ONLY its content */
-    html = simpleMarkdown(readmeText);
-
-  } else {
-    /* No readme.md → show auto-generated description + spec card + info block */
-    html += `<h2>${esc(schema.title || 'Descripción General')}</h2>`;
-    if (schema.description) html += `<p>${esc(schema.description)}</p>`;
+  
+  html += `<h2>${esc(schema.title || 'Descripción General')}</h2>`;
+  if (schema.description) html += `<p>${esc(schema.description)}</p>`;
 
   const specs = [];
     if (ep.method)      specs.push({ label:'Método',    value: ep.method.toUpperCase() });
@@ -929,6 +923,14 @@ function renderDescripcion(schema, readmeText, exampleFile) {
         `<div class="spec-item"><span class="spec-label">${esc(s.label)}</span><span class="spec-value">${esc(s.value)}</span></div>`
       ).join('')}</div>`;
     }
+
+  if (readmeText) {
+    /* readme.md found → show ONLY its content */
+    html = simpleMarkdown(readmeText);
+
+  } else {
+    /* No readme.md → show auto-generated description + spec card + info block */
+  
 
     html += `<div class="info-box">
       <strong>📝 Sin descripción personalizada</strong>

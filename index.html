@@ -842,6 +842,7 @@ function showEmpty(msg) {
    DETAIL VIEW — openEndpoint
    ═══════════════════════════════════════════════════════════ */
   let _examples = [];
+  let _schemaRaw = '';
 
 async function openEndpoint(folder) {
   showDetail();
@@ -866,7 +867,8 @@ async function openEndpoint(folder) {
       readmeFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${readmeFile.name}`) : Promise.reject('no readme')
     ]);
 
-    const schema    = sRes.status === 'fulfilled' ? JSON.parse(sRes.value) : {};
+    _schemaRaw      = sRes.status === 'fulfilled' ? sRes.value : '';
+    const schema    = _schemaRaw ? JSON.parse(_schemaRaw) : {};
     const readmeRaw = rRes.status === 'fulfilled' ? rRes.value : null;
 
     const exResults = await Promise.allSettled(
@@ -998,9 +1000,12 @@ function renderEstructura(schema, folder, schemaFileName) {
   const rawLink = folder && schemaFileName
     ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${schemaFileName}`
     : null;
-  let bodyHtml = rawLink
+
+    let bodyHtml = schemaFileName
     ? `<p style="margin-bottom:28px">
-      <a href="${rawLink}" target="_blank" class="download-link">📥 Ver ${schemaFileName} completo</a>
+        <a href="#" onclick="downloadSchema('${schemaFileName}'); return false;" class="download-link">📥 Descargar ${schemaFileName} completo</a>
+        <br/>
+        <a href="${rawLink}" target="_blank" class="download-link">👁️ Ver ${schemaFileName} completo</a>
       </p>`
     : '';
   let navHtml = '';
@@ -1257,6 +1262,18 @@ function hlJSON(json) {
       if (m === 'null') return `<span class="jnull">${m}</span>`;
       return `<span class="jn">${m}</span>`;
     });
+}
+function downloadSchema(fileName) {
+  if (!_schemaRaw) return;
+  const blob = new Blob([_schemaRaw], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 function downloadExample(i, fileName) {
   const content = _examples[i];

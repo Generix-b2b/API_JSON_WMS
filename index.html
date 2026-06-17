@@ -683,7 +683,7 @@ async function discoverFiles(folder) {
     jsons.find(f => f.name.toLowerCase().startsWith('schema')) ||
     jsons[0] || null;
 
-  const exampleFile =
+  const exampleFiles =
     jsons.filter(f =>
     f !== schemaFile &&
     (f.name.toLowerCase().startsWith('example') || f.name.toLowerCase().startsWith('ejemplo'))
@@ -779,7 +779,7 @@ async function openEndpoint(folder) {
   document.getElementById('ejemplo-inner').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
   document.getElementById('snav-btns-estructura').innerHTML    = '';
   document.getElementById('snav-btns-enumeraciones').innerHTML = '';
-  _exampleRaw = '';
+  _examples = [];
 
   try {
     const { schemaFile, exampleFiles, readmeFile } = await discoverFiles(folder);
@@ -811,7 +811,7 @@ async function openEndpoint(folder) {
       ep.category ? `<span class="cat-pill">${ep.category}</span>` : ''
     ].join('');
 
-    renderDescripcion(schema, readmeRaw, exampleFile);
+    renderDescripcion(schema, readmeRaw, examplesData[0] || null);
     renderEstructura(schema, folder, schemaFile ? schemaFile.name : null);
     renderEnumeraciones(schema);
     renderEjemplo(examplesData, folder);

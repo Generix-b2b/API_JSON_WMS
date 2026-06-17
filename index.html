@@ -482,7 +482,7 @@
   <div class="stats">
     <div class="stats-inner">
       <div><div class="stat-number" id="stat-count">—</div><div class="stat-label">Endpoints documentados</div></div>
-      <div><div class="stat-number">ASINC</div><div class="stat-label">Comunicación</div></div>
+      <div><div class="stat-number">ASYNC</div><div class="stat-label">Comunicación</div></div>
       <div><div class="stat-number">REST</div><div class="stat-label">Protocolo</div></div>
       <div><div class="stat-number">JSON</div><div class="stat-label">Formato de integración</div></div>
       <div><div class="stat-number">WMS</div><div class="stat-label">Generix Spain</div></div>
@@ -887,7 +887,7 @@ async function openEndpoint(folder) {
       ep.path         ? `<span class="ep-path">${ep.path}</span>` : '',
       ep.version      ? `<span class="version-pill">${ep.version}</span>` : '',
       ep.category     ? `<span class="cat-pill">${ep.category}</span>` : '',     
-      ep.releasedate  ? `<span class="cat-pill">${ep.releasedate}</span>` : ''
+      ep.releaseDate  ? `<span class="cat-pill">${ep.releaseDate}</span>` : ''
     ].join('');
 
     renderDescripcion(schema, readmeRaw, examplesData[0] || null);
@@ -921,13 +921,14 @@ function renderDescripcion(schema, readmeText, exampleFile) {
     if (ep.path)        specs.push({ label:'Endpoint',  value: ep.path });
     if (ep.category)    specs.push({ label:'Categoría', value: ep.category });
     if (ep.version)     specs.push({ label:'Versión',   value: ep.version });
-  if (schema.$schema) specs.push({ label:'JSON Schema', value: schema.$schema.replace('https://json-schema.org/','') });
+    if (ep.releaseDate) specs.push({ label:'Fecha de Lanzamiento', value: ep.releaseDate });
+    if (schema.$schema) specs.push({ label:'JSON Schema', value: schema.$schema.replace('https://json-schema.org/','') });
     if (exampleFile)    specs.push({ label:'Ejemplo',   value: exampleFile.name });
-  if (specs.length) {
-    html += `<div class="spec-card">${specs.map(s =>
-      `<div class="spec-item"><span class="spec-label">${esc(s.label)}</span><span class="spec-value">${esc(s.value)}</span></div>`
-    ).join('')}</div>`;
-  }
+    if (specs.length) {
+      html += `<div class="spec-card">${specs.map(s =>
+        `<div class="spec-item"><span class="spec-label">${esc(s.label)}</span><span class="spec-value">${esc(s.value)}</span></div>`
+      ).join('')}</div>`;
+    }
 
     html += `<div class="info-box">
       <strong>📝 Sin descripción personalizada</strong>

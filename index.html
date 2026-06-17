@@ -881,7 +881,7 @@ async function openEndpoint(folder) {
     const title  = schema.title || folder;
     document.getElementById('d-title').textContent = title;
     document.getElementById('d-breadcrumb-name').textContent = title;
-    document.getElementById('d-desc').textContent  = schema.description || '';
+    document.getElementById('d-desc').textContent  = schema['x-wms-author'] || '';
     document.getElementById('ep-badges').innerHTML = [
       method          ? `<span class="method-badge ${method}">${method}</span>` : '',
       ep.path         ? `<span class="ep-path">${ep.path}</span>` : '',
@@ -890,7 +890,7 @@ async function openEndpoint(folder) {
       ep.releaseDate  ? `<span class="cat-pill">${ep.releaseDate}</span>` : ''
     ].join('');
 
-    renderDescripcion(schema, readmeRaw, examplesData[0] || null);
+    renderDescripcion(schema, readmeRaw, examplesData);
     renderEstructura(schema, folder, schemaFile ? schemaFile.name : null);
     renderEnumeraciones(schema);
     renderEjemplo(examplesData, folder);
@@ -903,7 +903,7 @@ async function openEndpoint(folder) {
 }
 
 /* ═══ TAB 1 — DESCRIPCIÓN ═══ */
-function renderDescripcion(schema, readmeText, exampleFile) {
+function renderDescripcion(schema, readmeText, examplesData) {
   const ep = schema['x-wms-endpoint'] || {};
   let html = '';
   
@@ -916,11 +916,17 @@ function renderDescripcion(schema, readmeText, exampleFile) {
     if (ep.category)    specs.push({ label:'Categoría', value: ep.category });
     if (ep.version)     specs.push({ label:'Versión',   value: ep.version });
     if (ep.releaseDate) specs.push({ label:'Fecha de Lanzamiento', value: ep.releaseDate });
-    if (schema.$schema) specs.push({ label:'JSON Schema', value: schema.$schema.replace('https://json-schema.org/','') });
-    if (exampleFile)    specs.push({ label:'Ejemplo',   value: exampleFile.name });
+    (examplesData || []).forEach((ex, i) => {
+      specs.push({ label: examplesData.length > 1 ? `Ejemplo ${i+1}` : 'Ejemplo', value: ex.name, dlIdx: i });
+    });
     if (specs.length) {
       html += `<div class="spec-card">${specs.map(s =>
-        `<div class="spec-item"><span class="spec-label">${esc(s.label)}</span><span class="spec-value">${esc(s.value)}</span></div>`
+        `<div class="spec-item">
+          <span class="spec-label">${esc(s.label)}</span>
+          ${s.dlIdx !== undefined
+            ? `<span class="spec-value"><a href="#" onclick="downloadExample(${s.dlIdx},'${esc(s.value)}');return false;" class="download-link" style="font-family:monospace;font-size:.85rem">${esc(s.value)}</a></span>`
+            : `<span class="spec-value">${esc(s.value)}</span>`}
+        </div>`
       ).join('')}</div>`;
     }
 
@@ -983,7 +989,9 @@ function renderEstructura(schema, folder, schemaFileName) {
     ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${schemaFileName}`
     : null;
   let bodyHtml = rawLink
-    ? `<p style="margin-bottom:28px"><a href="${rawLink}" target="_blank" class="download-link">📥 Ver ${schemaFileName} completo</a></p>`
+    ? `<p style="margin-bottom:28px">
+      <a href="${rawLink}" target="_blank" class="download-link">📥 Ver ${schemaFileName} completo</a>
+      </p>`
     : '';
   let navHtml = '';
   blocks.forEach((blk, i) => {
@@ -1203,7 +1211,7 @@ function renderEjemplo(examples, folder) {
     const sep = i > 0 ? `<div style="border-top:1px solid var(--gray-200);margin:36px 0 28px"></div>` : '';
     html += `${sep}
       <p style="margin-bottom:16px">
-        <a href="${rawUrl}" target="_blank" class="download-link">📥 Descargar ${esc(ex.name)}</a>
+        <a href="#" onclick="downloadExample(${i}, '${esc(ex.name)}'); return false;" class="download-link">📥 Descargar ${esc(ex.name)}</a>
       </p>
       <div class="ejemplo-cp">
         <div class="ejemplo-cp-header">
@@ -1239,6 +1247,19 @@ function hlJSON(json) {
       if (m === 'null') return `<span class="jnull">${m}</span>`;
       return `<span class="jn">${m}</span>`;
     });
+}
+function downloadExample(i, fileName) {
+  const content = _examples[i];
+  if (!content) return;
+  const blob = new Blob([content], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 function copyExample(i, btn) {
   const text = _examples[i !== undefined ? i : 0];

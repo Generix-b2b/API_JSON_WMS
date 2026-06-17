@@ -1,168 +1,408 @@
 {
-  "deliveryOrders": [
-    {
-      "TRTEXC": "1",
-      "NUMLIV": "10000001",
-      "SNULIV": "001",
-      "CODACT": "WMS",
-      "CODCLI": "CLI0001",
-      "DTILIV": "20260605",
-      "HEILIV": "0930",
-      "CUMLIG": "1",
-      "GEEX5010": {
-        "NOMCLI": "Distribuciones Iberia S.L.",
-        "AD1CLI": "Calle Mayor 25",
-        "VILCLI": "Madrid",
-        "PAYCLI": "ES"
-      },
-      "GEEX5020": [
-        {
-          "NLILIV": "1",
-          "CODPRO": "PROD000001",
-          "UVCCDE": 10
-        }
-      ]
-    },
-    {
-      "TRTEXC": "2",
-      "NUMLIV": "10000002",
-      "SNULIV": "001",
-      "CODACT": "WMS",
-      "CODCLI": "CLI0002",
-      "REFLIV": "REF-2026-000002",
-      "CODTLI": "STD",
-      "DTILIV": "20260610",
-      "HEILIV": "1100",
-      "CLILIV": "DEST0001",
-      "TYPLIV": "1",
-      "CODMOP": "MA1",
-      "CODTRA": "TRANSP001",
-      "CODRGT": "Z01",
-      "TOULIV": "0010",
-      "ORDLIV": "0001",
-      "KAILIV": "12",
-      "MSGPRP": ["MANIPULAR CON CUIDADO", "FRAGIL"],
-      "MSGLIV": ["ENTREGA EN HORARIO COMERCIAL"],
-      "GSTALC": "0",
-      "CODSIT": "S01",
-      "IGLSIT": "1",
-      "CODBAS": "ESP",
-      "TYPCDE": false,
-      "CUMLIG": "3",
-      "CUMPOI": "00000125.500",
-      "CUMVOL": "00000080.250",
-      "CUMCOL": "0000005",
-      "GEEX5001": {
-        "TOPLIV": ["X", "Y"],
-        "DATEXP": "20260610",
-        "HEUEXP": "0800",
-        "REFCLI": "PO-CLIENTE-2026-002",
-        "PTYCLI": "001",
-        "EDICLI": "EDI0000002",
-        "DATCHT": "20260610",
-        "HEUCHT": "0700"
-      },
-      "GEEX5002": {
-        "NUMTOU": "00000010",
-        "DATLIV": "20260610",
-        "CODTTO": "T01",
-        "HLIMIN": "0900",
-        "HLIMAX": "1800"
-      },
-      "GEEX5005": [
-        {
-          "CODRUB": "TEMP",
-          "VALRUB": "AMBIENTE"
-        },
-        {
-          "CODRUB": "PRIO",
-          "VALRUB": "NORMAL"
-        }
-      ],
-      "GEEX5010": {
-        "NOMCLI": "Logistica Mediterranea S.A.",
-        "AD1CLI": "Avenida del Puerto 120",
-        "AD2CLI": "Polígono Industrial Norte",
-        "AD3CLI": "Nave 14",
-        "CPOCLI": "46011",
-        "VILCLI": "Valencia",
-        "TELCLI": "+34963000000",
-        "PAYCLI": "ESP",
-        "CATCLI": "RED",
-        "EMLADR": "logistica@logmedi.com"
-      },
-      "GEEX5020": [
-        {
-          "NLILIV": "1",
-          "CODPRO": "PROD000010",
-          "VALPRO": "01",
-          "METRPL": "0",
-          "UVCCDE": 100,
-          "UNICDE": "UND",
-          "TYPSTK": "1",
-          "TYPOPE": "0",
-          "GEEX5021": {
-            "DS1PRO": "Aceite de oliva virgen extra",
-            "DS2PRO": "Botella 1 litro",
-            "EDIPRO": "EDI-PROD-010"
+  "_metadata": {
+    "esquema": "GECOM50 - Delivery Orders (v1.0 - 2026-06-17)",
+    "descripcion": "Ejemplos de pedidos de entrega. Notas clave: REFLIV y CODTLI ahora son obligatorios; HEILIV en HHMM; GEEX5001 unifica info adicional (antes GEEX5001+GEEX5002); GEEX5020 obligatorio cuando TRTEXC=1 o 2.",
+    "total_ejemplos": 9
+  },
+
+  "ejemplo_01_creacion_minima": {
+    "_descripcion": "TRTEXC=1 — Creación mínima con todos los obligatorios + 1 línea de producto.",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "DEL-2026-000001",
+        "CODTLI": "STD",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0001",
+        "DTILIV": "20260622",
+        "HEILIV": "0930",
+        "CUMLIG": "1",
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "PROD000001",
+            "UVCCDE": 10
           }
-        },
-        {
-          "NLILIV": "2",
-          "CODPRO": "PROD000011",
-          "VALPRO": "01",
-          "UVCCDE": 50,
-          "UNICDE": "CAJ",
-          "TYPSTK": "1",
-          "TYPOPE": "0",
-          "GEEX5021": {
-            "DS1PRO": "Conservas mixtas",
-            "DS2PRO": "Caja de 12 unidades"
-          }
-        },
-        {
-          "NLILIV": "3",
-          "CODPRO": "PROD000012",
-          "UVCCDE": 25,
-          "UNICDE": "UND",
-          "TYPSTK": "1",
-          "TYPOPE": "0"
-        }
-      ],
-      "GEEX5080": [
-        {
-          "SEQTXL": "1",
-          "LIBTXL": "Entregar en muelle de carga numero 4"
-        },
-        {
-          "SEQTXL": "2",
-          "LIBTXL": "Contactar al receptor antes de la entrega"
-        }
-      ]
-    },
-    {
-      "TRTEXC": "7",
-      "NUMLIV": "10000002",
-      "SNULIV": "001",
-      "CODACT": "WMS",
-      "CODCLI": "CLI0002",
-      "DTILIV": "20260612",
-      "HEILIV": "1400",
-      "CODTRA": "TRANSP999",
-      "CUMLIG": "3"
-    },
-    {
-      "TRTEXC": "9",
-      "NUMLIV": "10000002",
-      "SNULIV": "001",
-      "CODACT": "WMS",
-      "CODCLI": "CLI0002",
-      "DTILIV": "20260612",
-      "HEILIV": "1400",
-      "CUMLIG": "3",
-      "GEEX5002": {
-        "CODACL": "ANC"
+        ]
       }
-    }
-  ]
+    ]
+  },
+
+  "ejemplo_02_creacion_completa": {
+    "_descripcion": "TRTEXC=1 — Pedido firme completo: datos de transporte, dirección VPC, múltiples líneas, rúbricas y texto libre.",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "NUMLIV": "20000002",
+        "SNULIV": "001",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0002",
+        "REFLIV": "DEL-2026-000002",
+        "CODTLI": "STD",
+        "DTILIV": "20260623",
+        "HEILIV": "1100",
+        "CLILIV": "DEST0001",
+        "TYPLIV": "1",
+        "CODMOP": "MA1",
+        "CODTRA": "TRANSP001",
+        "CODRGT": "Z01",
+        "TOULIV": "0010",
+        "ORDLIV": "0001",
+        "KAILIV": "12",
+        "MSGPRP": ["MANIPULAR CON CUIDADO", "FRAGIL"],
+        "MSGLIV": ["ENTREGA EN HORARIO COMERCIAL"],
+        "GSTALC": "0",
+        "CODSIT": "S01",
+        "IGLSIT": "1",
+        "CODBAS": "ESP",
+        "TYPCDE": false,
+        "CUMLIG": "2",
+        "CUMPOI": "00000135.500",
+        "CUMVOL": "00000085.250",
+        "CUMCOL": "0000005",
+        "GEEX5001": {
+          "TOPLIV": ["X"],
+          "DATEXP": "20260623",
+          "HEUEXP": "0800",
+          "REFCLI": "PO-CLI0002-2026-002",
+          "PTYCLI": "001",
+          "EDICLI": "EDICLI0002",
+          "DATCHT": "20260623",
+          "HEUCHT": "0700",
+          "NUMTOU": "00000010",
+          "DATLIV": "20260623",
+          "CODTTO": "T01",
+          "HLIMIN": "0900",
+          "HLIMAX": "1800",
+          "CODCLV": "CLV1",
+          "REFEXT": "EXTREF-0002"
+        },
+        "GEEX5005": [
+          {
+            "CODRUB": "TEMP",
+            "VALRUB": "AMBIENTE"
+          },
+          {
+            "CODRUB": "PRIO",
+            "VALRUB": "NORMAL"
+          }
+        ],
+        "GEEX5010": {
+          "NOMCLI": "Logistica Mediterranea S.A.",
+          "AD1CLI": "Avenida del Puerto 120",
+          "AD2CLI": "Polígono Industrial Norte",
+          "CPOCLI": "46011",
+          "VILCLI": "Valencia",
+          "TELCLI": "+34963000000",
+          "PAYCLI": "ESP",
+          "CATCLI": "RED",
+          "EMLADR": "recepcion@logmedi.com"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "PROD000010",
+            "VALPRO": "01",
+            "METRPL": "0",
+            "UVCCDE": 100,
+            "UNICDE": "UND",
+            "TYPSTK": "1",
+            "TYPOPE": "0",
+            "GEEX5021": {
+              "DS1PRO": "Aceite de oliva virgen extra",
+              "DS2PRO": "Botella 1 litro",
+              "EDIPRO": "08412345000019"
+            }
+          },
+          {
+            "NLILIV": "2",
+            "CODPRO": "PROD000020",
+            "UVCCDE": 50,
+            "UNICDE": "CAJ",
+            "TYPSTK": "1",
+            "TYPOPE": "0"
+          }
+        ],
+        "GEEX5080": [
+          {
+            "SEQTXL": "1",
+            "LIBTXL": "Entregar en muelle de carga numero 4"
+          },
+          {
+            "SEQTXL": "2",
+            "LIBTXL": "Contactar receptor antes de la entrega"
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_03_modificacion_cabecera": {
+    "_descripcion": "TRTEXC=7 — Modificación únicamente de cabecera (transportista y ventana horaria).",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "7",
+        "REFLIV": "DEL-2026-000002",
+        "CODTLI": "STD",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0002",
+        "DTILIV": "20260625",
+        "HEILIV": "1400",
+        "CODTRA": "TRANSP999",
+        "CUMLIG": "2",
+        "GEEX5001": {
+          "HLIMIN": "1300",
+          "HLIMAX": "1700"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_04_cancelacion": {
+    "_descripcion": "TRTEXC=9 — Cancelación de un pedido de entrega con código de anulación.",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "9",
+        "REFLIV": "DEL-2026-000002",
+        "CODTLI": "STD",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0002",
+        "DTILIV": "20260625",
+        "HEILIV": "1400",
+        "CUMLIG": "2",
+        "GEEX5001": {
+          "CODACL": "ANC"
+        }
+      }
+    ]
+  },
+
+  "ejemplo_05_pedido_recogida": {
+    "_descripcion": "TYPLIV=2 — Pedido de recogida (mercancía retirada en cliente, no entregada).",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "REC-DEV-2026-000003",
+        "CODTLI": "REC",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0003",
+        "DTILIV": "20260627",
+        "HEILIV": "0830",
+        "TYPLIV": "2",
+        "CODTRA": "RECOG001",
+        "CUMLIG": "1",
+        "GEEX5010": {
+          "NOMCLI": "Industrias del Sur S.L.",
+          "AD1CLI": "Polígono La Isla Parcela 30",
+          "CPOCLI": "41700",
+          "VILCLI": "Dos Hermanas",
+          "PAYCLI": "ES"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "DEVPROD001",
+            "UVCCDE": 5,
+            "UNICDE": "PAL",
+            "TYPSTK": "2",
+            "GEEX5021": {
+              "DS1PRO": "Devolucion mercancia defectuosa"
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_06_pedido_alcohol_DAC": {
+    "_descripcion": "GSTALC=2 — Pedido con gestión de alcohol bajo régimen suspensivo (DAC).",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "DAC-2026-000004",
+        "CODTLI": "ALC",
+        "CODACT": "WMS",
+        "CODCLI": "BODEGA01",
+        "DTILIV": "20260628",
+        "HEILIV": "1000",
+        "TYPLIV": "1",
+        "GSTALC": "2",
+        "CUMLIG": "2",
+        "CUMPOI": "00001200.000",
+        "GEEX5010": {
+          "NOMCLI": "Importaciones Vinicolas S.A.",
+          "AD1CLI": "Carretera Logroño km 45",
+          "CPOCLI": "26200",
+          "VILCLI": "Haro",
+          "PAYCLI": "ES",
+          "EMLADR": "compras@importavinicolas.com"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "VINO000001",
+            "UVCCDE": 600,
+            "UNICDE": "BOT",
+            "GEEX5021": {
+              "DS1PRO": "Vino tinto Reserva 75cl"
+            }
+          },
+          {
+            "NLILIV": "2",
+            "CODPRO": "VINO000002",
+            "UVCCDE": 300,
+            "UNICDE": "BOT",
+            "GEEX5021": {
+              "DS1PRO": "Vino blanco Crianza 75cl"
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_07_pedido_con_promocion": {
+    "_descripcion": "TYPOPE=1 / TYPOPE=4 — Pedido con líneas en promoción y promo-circuito con precio marcado.",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "PROMO-2026-000005",
+        "CODTLI": "STD",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0005",
+        "DTILIV": "20260630",
+        "HEILIV": "0945",
+        "CUMLIG": "2",
+        "GEEX5010": {
+          "NOMCLI": "Cadena Supermercados Norte",
+          "AD1CLI": "Avenida Industrial 200",
+          "CPOCLI": "48015",
+          "VILCLI": "Bilbao",
+          "PAYCLI": "ES"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "PROD000040",
+            "UVCCDE": 200,
+            "UNICDE": "UND",
+            "AIGPRI": true,
+            "PRILIV": "02.990",
+            "TYPOPE": "1",
+            "NUMOPE": "000123",
+            "GEEX5021": {
+              "DS1PRO": "Detergente liquido 2L",
+              "CODOPE": "PROMO_VERANO"
+            }
+          },
+          {
+            "NLILIV": "2",
+            "CODPRO": "PROD000041",
+            "UVCCDE": 150,
+            "UNICDE": "UND",
+            "TYPOPE": "4",
+            "NUMOPE": "000124",
+            "GEEX5021": {
+              "DS1PRO": "Suavizante 1.5L",
+              "CODOPE": "PROMO_CIRCUITO"
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_08_pedido_provisional_con_lotes": {
+    "_descripcion": "TYPCDE=true — Pedido provisional con lotes, rúbricas de trazabilidad y código de palet.",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "PROV-2026-000006",
+        "CODTLI": "PRV",
+        "CODACT": "WMS",
+        "CODCLI": "CLI0007",
+        "DTILIV": "20260701",
+        "HEILIV": "0900",
+        "TYPCDE": true,
+        "CUMLIG": "1",
+        "CUMPOI": "00000350.750",
+        "GEEX5010": {
+          "NOMCLI": "Farmaceutica Catalana S.A.",
+          "AD1CLI": "Carrer de la Industria 88",
+          "CPOCLI": "08025",
+          "VILCLI": "Barcelona",
+          "TELCLI": "+34934567890",
+          "PAYCLI": "ESP",
+          "EMLADR": "logistica@farmacat.com"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "MED000001",
+            "UVCCDE": 500,
+            "UNICDE": "CAJ",
+            "CODLOT": "LOTE-2026-AB-001",
+            "DATFVI2": "20281231",
+            "MSGLIG": "Conservar entre 2 y 8 C",
+            "GEEX5021": {
+              "DS1PRO": "Antibiotico generico 500mg",
+              "DS2PRO": "Caja de 20 comprimidos",
+              "CODEMB": "FRI"
+            },
+            "GEEX5025": [
+              {
+                "TYPRUB": "1",
+                "CODRUB": "DLOT",
+                "VALRUB": "LOTE-2026-AB-001"
+              },
+              {
+                "TYPRUB": "2",
+                "CODRUB": "DFVI",
+                "VALRUB": "20281231",
+                "CODPAL": "00345678901234567"
+              }
+            ]
+          }
+        ],
+        "GEEX5080": [
+          {
+            "SEQTXL": "1",
+            "LIBTXL": "Pedido provisional pendiente confirmacion comercial"
+          }
+        ]
+      }
+    ]
+  },
+
+  "ejemplo_09_pedido_internacional_codigo_postal_alfanumerico": {
+    "_descripcion": "GEEX5010 con CPICLI — Dirección de entrega VPC en formato internacional (fuera de España).",
+    "deliveryOrders": [
+      {
+        "TRTEXC": "1",
+        "REFLIV": "INT-2026-000007",
+        "CODTLI": "INT",
+        "CODACT": "WMS",
+        "CODCLI": "CLIFR01",
+        "DTILIV": "20260703",
+        "HEILIV": "1400",
+        "CUMLIG": "1",
+        "GEEX5010": {
+          "NOMCLI": "Grands Magasins Français S.A.",
+          "AD1CLI": "12 Rue du Commerce",
+          "CPICLI": "F-75001",
+          "VILCLI": "Paris",
+          "TELCLI": "+33140000000",
+          "PAYCLI": "FR"
+        },
+        "GEEX5020": [
+          {
+            "NLILIV": "1",
+            "CODPRO": "PROD000010",
+            "UVCCDE": 240,
+            "UNICDE": "UND"
+          }
+        ]
+      }
+    ]
+  }
 }

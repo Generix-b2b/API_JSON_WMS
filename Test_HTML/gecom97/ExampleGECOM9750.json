@@ -1,0 +1,25 @@
+{
+  "statusDeliveryOrders": [
+    {
+      "TRTEXC": "2",
+      "EMTEXC": "FGE50CO0UE",
+      "RCTEXC": "203",
+      "DATEXC": "20260525",
+      "HEUEXC": "080229",
+      "CODACT": "001",
+      "NUMLIV": "26017552",
+      "SNULIV": "000",
+      "REFLIV": "TESTSANTI2",
+      "BLOLIV": "0",
+      "ETALIV": "",
+      "NUMVAG": "00000000",
+      "CODCLI": "103",
+      "NUMTOU": "00000000",
+      "ANLVAG": false,
+      "RUPTOT": false,
+      "KAILIV": "000",
+      "CODTLI": "STD",
+      "TOULIV": "0000"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "deliveryOrders": [
+    {
+      "TRTEXC": "1",
+      "NUMLIV": "10000001",
+      "SNULIV": "001",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0001",
+      "DTILIV": "20260605",
+      "HEILIV": "0930",
+      "CUMLIG": "1",
+      "GEEX5010": {
+        "NOMCLI": "Distribuciones Iberia S.L.",
+        "AD1CLI": "Calle Mayor 25",
+        "VILCLI": "Madrid",
+        "PAYCLI": "ES"
+      },
+      "GEEX5020": [
+        {
+          "NLILIV": "1",
+          "CODPRO": "PROD000001",
+          "UVCCDE": 10
+        }
+      ]
+    },
+    {
+      "TRTEXC": "2",
+      "NUMLIV": "10000002",
+      "SNULIV": "001",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "REFLIV": "REF-2026-000002",
+      "CODTLI": "STD",
+      "DTILIV": "20260610",
+      "HEILIV": "1100",
+      "CLILIV": "DEST0001",
+      "TYPLIV": "1",
+      "CODMOP": "MA1",
+      "CODTRA": "TRANSP001",
+      "CODRGT": "Z01",
+      "TOULIV": "0010",
+      "ORDLIV": "0001",
+      "KAILIV": "12",
+      "MSGPRP": ["MANIPULAR CON CUIDADO", "FRAGIL"],
+      "MSGLIV": ["ENTREGA EN HORARIO COMERCIAL"],
+      "GSTALC": "0",
+      "CODSIT": "S01",
+      "IGLSIT": "1",
+      "CODBAS": "ESP",
+      "TYPCDE": false,
+      "CUMLIG": "3",
+      "CUMPOI": "00000125.500",
+      "CUMVOL": "00000080.250",
+      "CUMCOL": "0000005",
+      "GEEX5001": {
+        "TOPLIV": ["X", "Y"],
+        "DATEXP": "20260610",
+        "HEUEXP": "0800",
+        "REFCLI": "PO-CLIENTE-2026-002",
+        "PTYCLI": "001",
+        "EDICLI": "EDI0000002",
+        "DATCHT": "20260610",
+        "HEUCHT": "0700"
+      },
+      "GEEX5002": {
+        "NUMTOU": "00000010",
+        "DATLIV": "20260610",
+        "CODTTO": "T01",
+        "HLIMIN": "0900",
+        "HLIMAX": "1800"
+      },
+      "GEEX5005": [
+        {
+          "CODRUB": "TEMP",
+          "VALRUB": "AMBIENTE"
+        },
+        {
+          "CODRUB": "PRIO",
+          "VALRUB": "NORMAL"
+        }
+      ],
+      "GEEX5010": {
+        "NOMCLI": "Logistica Mediterranea S.A.",
+        "AD1CLI": "Avenida del Puerto 120",
+        "AD2CLI": "Polígono Industrial Norte",
+        "AD3CLI": "Nave 14",
+        "CPOCLI": "46011",
+        "VILCLI": "Valencia",
+        "TELCLI": "+34963000000",
+        "PAYCLI": "ESP",
+        "CATCLI": "RED",
+        "EMLADR": "logistica@logmedi.com"
+      },
+      "GEEX5020": [
+        {
+          "NLILIV": "1",
+          "CODPRO": "PROD000010",
+          "VALPRO": "01",
+          "METRPL": "0",
+          "UVCCDE": 100,
+          "UNICDE": "UND",
+          "TYPSTK": "1",
+          "TYPOPE": "0",
+          "GEEX5021": {
+            "DS1PRO": "Aceite de oliva virgen extra",
+            "DS2PRO": "Botella 1 litro",
+            "EDIPRO": "EDI-PROD-010"
+          }
+        },
+        {
+          "NLILIV": "2",
+          "CODPRO": "PROD000011",
+          "VALPRO": "01",
+          "UVCCDE": 50,
+          "UNICDE": "CAJ",
+          "TYPSTK": "1",
+          "TYPOPE": "0",
+          "GEEX5021": {
+            "DS1PRO": "Conservas mixtas",
+            "DS2PRO": "Caja de 12 unidades"
+          }
+        },
+        {
+          "NLILIV": "3",
+          "CODPRO": "PROD000012",
+          "UVCCDE": 25,
+          "UNICDE": "UND",
+          "TYPSTK": "1",
+          "TYPOPE": "0"
+        }
+      ],
+      "GEEX5080": [
+        {
+          "SEQTXL": "1",
+          "LIBTXL": "Entregar en muelle de carga numero 4"
+        },
+        {
+          "SEQTXL": "2",
+          "LIBTXL": "Contactar al receptor antes de la entrega"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "7",
+      "NUMLIV": "10000002",
+      "SNULIV": "001",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "DTILIV": "20260612",
+      "HEILIV": "1400",
+      "CODTRA": "TRANSP999",
+      "CUMLIG": "3"
+    },
+    {
+      "TRTEXC": "9",
+      "NUMLIV": "10000002",
+      "SNULIV": "001",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "DTILIV": "20260612",
+      "HEILIV": "1400",
+      "CUMLIG": "3",
+      "GEEX5002": {
+        "CODACL": "ANC"
+      }
+    }
+  ]
+}

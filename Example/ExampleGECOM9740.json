@@ -1,19 +1,93 @@
 {
-  "statusReceptionOrders": [
-    {
-      "TRTEXC": "2",
-      "EMTEXC": "FGE50CO0UE",
-      "RCTEXC": "203",
-      "DATEXC": "20260525",
-      "HEUEXC": "080207",
-      "CODACT": "001",
-      "NUMREC": "26000104",
-      "SNUREC": "000",
-      "REFREC": "testpocSTD1",
-      "BLOREC": false,
-      "ETAREC": "40",
-      "CODFOU": "10021",
-      "CODTRE": "STD"
-    }
-  ]
+  "_metadata": {
+    "esquema": "GECOM97 - Status Orders (v1.0 - 2026-06-17)",
+    "descripcion": "Ejemplos de actualización de estado de órdenes de recepción y pedidos de entrega",
+    "total_ejemplos": 5
+  },
+
+  "ejemplo_01_estado_recepcion_pendiente": {
+    "_descripcion": "ETAREC=20 — Notificación de recepción en estado 'Pendiente de recepción' (creación).",
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "1",
+        "DATEXC": "20260617",
+        "HEUEXC": "080015",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000001",
+        "ETAREC": "20",
+        "CODFOU": "FOU0001",
+        "CODTRE": "STD"
+      }
+    ]
+  },
+
+  "ejemplo_02_estado_recepcion_en_curso": {
+    "_descripcion": "ETAREC=30 — Modificación de estado: recepción en curso, con sitio emisor y receptor.",
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "2",
+        "EMTEXC": "SITE-WMS-01",
+        "RCTEXC": "ERP-CLIENT",
+        "DATEXC": "20260618",
+        "HEUEXC": "094530",
+        "CODACT": "WMS",
+        "NUMREC": "10000001",
+        "SNUREC": "001",
+        "REFREC": "REC-2026-000001",
+        "BLOREC": false,
+        "ETAREC": "30",
+        "CODFOU": "FOU0001"
+      }
+    ]
+  },
+
+  "ejemplo_03_estado_recepcion_completada": {
+    "_descripcion": "ETAREC=40 — Recepción completada (mercancía recibida en almacén).",
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260618",
+        "HEUEXC": "113000",
+        "CODACT": "WMS",
+        "NUMREC": "10000001",
+        "SNUREC": "001",
+        "REFREC": "REC-2026-000001",
+        "ETAREC": "40",
+        "CODFOU": "FOU0001",
+        "CODTRE": "STD",
+        "VALRUB": "CONFIRMADO"
+      }
+    ]
+  },
+
+  "ejemplo_04_cancelacion_recepcion": {
+    "_descripcion": "ETAREC=90 — Cancelación de una orden de recepción (bloqueada).",
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260618",
+        "HEUEXC": "150000",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000002",
+        "BLOREC": true,
+        "ETAREC": "90",
+        "CODFOU": "FOU0002"
+      }
+    ]
+  },
+
+  "ejemplo_05_estado_recepcion_archivada": {
+    "_descripcion": "ETAREC=95 — Orden de recepción archivada tras cierre definitivo.",
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260619",
+        "HEUEXC": "080000",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000003",
+        "ETAREC": "95",
+        "CODFOU": "FOU0003"
+      }
+    ]
+  }
 }

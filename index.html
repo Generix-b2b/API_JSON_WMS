@@ -1057,7 +1057,9 @@ function extractBlocks(schema, defs) {
           const res = resolveRef(v, defs);
           if (res.type !== 'object' || !res.properties) topProps[k] = v;
         }
-        blocks.push({ label: `${key}[ ] — campos principales`, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
+        if (!prop.items.$ref) {
+          blocks.push({ label: `${key}[ ] — campos principales`, jsonKey: key, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
+        }
         for (const [k, v] of Object.entries(items.properties)) {
           const res = resolveRef(v, defs);
           if (res.type === 'object' && res.properties) {

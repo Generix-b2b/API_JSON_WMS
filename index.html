@@ -699,7 +699,7 @@ function buildDirResult(files) {
 }
 
 const _dirCache = {};
-const _LS_KEY   = `wms_tree_${CONFIG.repo}`;
+const _LS_KEY   = `wms_tree_${CONFIG.repo}_${CONFIG.contentPath}`;
 const _LS_TTL   = 60 * 60 * 1000; // 1 hora
 
 /* Una sola llamada API para todo el repo, cacheada en localStorage */

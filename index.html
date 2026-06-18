@@ -444,7 +444,7 @@
 </head>
 <body>
 
-<!-- ╝╝╝ TOPBAR ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ -->
+<!-- ═══ TOPBAR ══════════════════════════════════════════ -->
 <header class="topbar">
   <div class="topbar-inner">
     <a class="logo" onclick="showIndex()" aria-label="Generix">
@@ -456,7 +456,7 @@
   </div>
 </header>
 
-<!-- ╝╝╝ INDEX VIEW ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ -->
+<!-- ═══ INDEX VIEW ══════════════════════════════════════ -->
 <div id="view-index">
 
   <section class="hero">
@@ -503,7 +503,7 @@
 
 </div><!-- /#view-index -->
 
-<!-- ╝╝╝ DETAIL VIEW ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ -->
+<!-- ═══ DETAIL VIEW ═════════════════════════════════════ -->
 <div id="view-detail">
 
   <!-- Page header -->
@@ -571,7 +571,7 @@
 
 </div><!-- /#view-detail -->
 
-<!-- ╝╝╝ FOOTER ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ -->
+<!-- ═══ FOOTER ══════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -596,9 +596,9 @@
 </footer>
 
 <script>
-/* ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝
+/* ══════════════════════════════════════════════════════════
    CONFIG
-   ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ */
+   ══════════════════════════════════════════════════════════ */
 const CONFIG = {
   owner:       'generix-b2b',
   repo:        'API_JSON_WMS',
@@ -841,9 +841,9 @@ function showEmpty(msg) {
     </div>`;
 }
 
-/* ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝
+/* ═══════════════════════════════════════════════════════════
    DETAIL VIEW — openEndpoint
-   ╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝╝ */
+   ═══════════════════════════════════════════════════════════ */
   let _examples = [];
   let _schemaRaw = '';
 
@@ -907,7 +907,7 @@ async function openEndpoint(folder) {
   }
 }
 
-/* ╝╝╝ TAB 1 — DESCRIPCIÓN ╝╝╝ */
+/* ═══ TAB 1 — DESCRIPCIÓN ═══ */
 function renderDescripcion(schema, readmeText, examplesData) {
   const ep = schema['x-wms-endpoint'] || {};
   let html = '';
@@ -992,7 +992,7 @@ function inlineMd(t) {
     .replace(/`(.+?)`/g, '<code style="background:var(--gray-100);padding:1px 5px;border-radius:3px;font-family:monospace">$1</code>');
 }
 
-/* ╝╝╝ TAB 2 — ESTRUCTURA ╝╝╝ */
+/* ═══ TAB 2 — ESTRUCTURA ═══ */
 function renderEstructura(schema, folder, schemaFileName) {
   const defs   = schema.$defs || schema.definitions || {};
   const blocks = extractBlocks(schema, defs);
@@ -1008,7 +1008,7 @@ function renderEstructura(schema, folder, schemaFileName) {
     ? `<p style="margin-bottom:28px">
         <a href="#" onclick="downloadSchema('${schemaFileName}'); return false;" class="download-link">📥 Descargar ${schemaFileName} completo</a>
         <br/>
-        <a href="${rawLink}" target="_blank" class="download-link">👝︝ Ver ${schemaFileName} completo</a>
+        <a href="${rawLink}" target="_blank" class="download-link">👁️ Ver ${schemaFileName} completo</a>
       </p>`
     : '';
   let navHtml = '';
@@ -1169,7 +1169,7 @@ function scrollToBlock(id, btn) {
   if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-/* ╝╝╝ TAB 3 — ENUMERACIONES ╝╝╝ */
+/* ═══ TAB 3 — ENUMERACIONES ═══ */
 function renderEnumeraciones(schema) {
   const enums = extractEnums(schema);
   if (!enums.length) {
@@ -1248,7 +1248,7 @@ function extractEnums(schema) {
   return results;
 }
 
-/* ╝╝╝ TAB 4 — EJEMPLO ╝╝╝ */
+/* ═══ TAB 4 — EJEMPLO ═══ */
 function renderEjemplo(examples, folder) {
   _examples = [];
   const inner = document.getElementById('ejemplo-inner');
@@ -1286,7 +1286,7 @@ function renderEjemplo(examples, folder) {
   inner.innerHTML = html;
 }
 
-/* ╝╝╝ TAB SWITCHING ╝╝╝ */
+/* ═══ TAB SWITCHING ═══ */
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const tab = btn.dataset.tab;
@@ -1295,7 +1295,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-/* ╝╝╝ HELPERS ╝╝╝ */
+/* ═══ HELPERS ═══ */
 function esc(t) {
   if (t == null) return '';
   return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');

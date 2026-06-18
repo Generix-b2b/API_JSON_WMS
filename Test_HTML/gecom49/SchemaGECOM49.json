@@ -20,9 +20,18 @@
       "minItems": 1,
       "maxItems": 499,
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
+				"description": "Datos del documento de factura.",
+				"$ref": "#/definitions/GEEX4900"
+			}
+    }
+  },
+  "required": [
+		"dispatchAdvices"
+	],
+	"definitions": {
+    "GEEX4900": {
+			"type": "object",
+			"properties": {
           "TRTEXC": {
             "type": "string",
             "description": "Movement processing code / 1 = Create, 2 = Modification, 9 = Cancellation",
@@ -163,6 +172,36 @@
             "maxItems": 99,
             "items": {
               "type": "object",
+              "$ref": "#/definitions/GEEX4905Wrapper"
+            }
+          },
+          "GEEX4910": {
+            "type": "array",
+            "description": "Logistics object header",
+            "maxItems": 99,
+            "items": {
+              "type": "object",
+              "$ref": "#/definitions/GEEX4910Wrapper"
+            }
+          }
+        },
+        "required": ["TRTEXC","CODFOU","AVIREF","CODACT","DATEXP","CUMLIG"],
+        "if": {
+          "properties": {
+            "TRTEXC": { "enum": ["1", "2"] }
+          },
+          "required": ["TRTEXC"]
+        },
+        "then": {
+          "required": ["GEEX4910"]
+        }
+    },
+    "GEEX4905Wrapper": {
+            "type": "array",
+            "description": "Dispatch advice associated attributes",
+            "maxItems": 99,
+            "items": {
+              "type": "object",
               "additionalProperties": false,
               "properties": {
                 "CODRUB": {
@@ -180,8 +219,8 @@
               },
               "required": ["CODRUB","VALRUB"]
             }
-          },
-          "GEEX4910": {
+    },
+    "GEEX4910Wrapper": {
             "type": "array",
             "description": "Logistics object header",
             "maxItems": 99,
@@ -624,20 +663,6 @@
               },
               "required": ["CODOBL", "AVINLI", "GEEX4920"]
             }
-          }
-        },
-        "required": ["TRTEXC","CODFOU","AVIREF","CODACT","DATEXP","CUMLIG"],
-        "if": {
-          "properties": {
-            "TRTEXC": { "enum": ["1", "2"] }
-          },
-          "required": ["TRTEXC"]
-        },
-        "then": {
-          "required": ["GEEX4910"]
-        }
-      }
     }
-  },
-  "required": ["dispatchAdvices"]
+  }
 }

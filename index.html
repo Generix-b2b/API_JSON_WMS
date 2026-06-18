@@ -173,6 +173,7 @@
   .badge-patch  { background:#ede9fe; color:#6d28d9; }
   .badge-delete { background:#fee2e2; color:#dc2626; }
   .badge-cat    { background:var(--gray-100); color:var(--gray-700); }
+  .badge-ver    { background:var(--generix-orange-soft); color:var(--generix-orange); }
 
   .card-link {
     color: var(--generix-orange); font-weight: 600; font-size: 0.85rem;
@@ -799,6 +800,7 @@ function renderGrid(eps) {
     const ep     = schema['x-wms-endpoint'] || {};
     const method = (ep.method || '').toUpperCase();
     const cat    = ep.category || '';
+    const ver    = ep.version || '';
     const icon   = autoIcon(folder, schema);
     const title  = schema.title || folder;
     const desc   = schema.description || '';
@@ -809,6 +811,7 @@ function renderGrid(eps) {
       <div class="card-meta">
         ${method ? `<span class="badge badge-${method.toLowerCase()}">${method}</span>` : ''}
         ${cat    ? `<span class="badge badge-cat">${cat}</span>` : ''}
+        ${ver    ? `<span class="badge badge-ver">${ver}</span>` : ''}
       </div>
       <h3>${title}</h3>
       <p>${desc}</p>

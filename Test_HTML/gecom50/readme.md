@@ -11,7 +11,7 @@ Permite crear, modificar o cancelar pedidos de salida de mercancía de forma sin
 - **Gestión de alcohol (GSTALC):** Configurable a nivel de cabecera: sin gestión (`0`), entrega con DSAC (`1`), entrega con DAC (`2`) o exento de impuestos (`3`).
 - **Información adicional de cabecera (GEEX5001):** Fechas de expedición y carga, referencia del pedido del destinatario, código GLN, punto de relevo intermedio (`CLIVIA`), código de anulación y número de gira.
 - **Dirección de entrega VPC (GEEX5010):** Bloque opcional con nombre y dirección completa del destinatario final. Permite sobrescribir los datos del maestro para entregas de comercio electrónico o pedidos con dirección ad hoc.
-- **Líneas del pedido (GEEX5020):** Array de hasta 999 líneas, cada una con producto (`CODPRO`), cantidad en CSU (`UVCCDE`), lote, sustitución de producto, tipo de operación (promoción/reserva) y marcaje de precio. Requerido cuando `TRTEXC = 1` o `2`.
+- **Líneas del pedido (GEEX5020):** Array de hasta 99 líneas, cada una con producto (`CODPRO`), cantidad en CSU (`UVCCDE`), lote, sustitución de producto, tipo de operación (promoción/reserva) y marcaje de precio. Requerido cuando `TRTEXC = 1` o `2`.
 - **Rubriques:** A nivel de cabecera (`GEEX5005`) y de línea (`GEEX5025`), hasta 99 atributos de trazabilidad por nivel. Las rubriques de línea admiten además rangos de valor mínimo y máximo para control de lote.
 - **Texto libre (GEEX5080):** Array de hasta 99 líneas de texto libre impresas en el albarán de entrega (hasta 120 caracteres por línea).
 

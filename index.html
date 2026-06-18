@@ -1089,7 +1089,16 @@ function extractBlocks(schema, defs) {
   return blocks;
 }
 
-
+function resolvePointer(ref, schema) {
+  if (!ref || !ref.startsWith('#/')) return null;
+  const parts = ref.slice(2).split('/');
+  let node = schema;
+  for (const part of parts) {
+    if (node == null || typeof node !== 'object') return null;
+    node = node[part];
+  }
+  return node || null;
+}
 function resolveRef(prop, defs) {
   if (!prop || !prop.$ref) return prop || {};
   const name = prop.$ref.replace(/^#\/(\$defs|definitions)\//, '');
@@ -1212,10 +1221,10 @@ function extractEnums(schema) {
 
     // Resolver $ref antes de seguir
     if (obj.$ref) {
-      const name = obj.$ref.replace(/^#\/(\$defs|definitions)\//, '');
-      if (!seenDefs.has(name) && defs[name]) {
-        seenDefs.add(name);
-        walk(defs[name], path);
+      const resolved = resolvePointer(obj.$ref, schema);
+      if (resolved && !seenDefs.has(obj.$ref)) {
+        seenDefs.add(obj.$ref);
+        walk(resolved, path);
       }
       return;
     }

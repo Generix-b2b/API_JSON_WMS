@@ -30,6 +30,7 @@
 	],
 	"definitions": {
     "GEEX4900": {
+      "description": "Dispatch Advice Header",
 			"type": "object",
 			"properties": {
         "TRTEXC": {

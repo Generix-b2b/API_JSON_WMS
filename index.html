@@ -1202,22 +1202,39 @@ function renderEnumeraciones(schema) {
 }
 
 function extractEnums(schema) {
-  const results = [], seen = new Set();
+  const defs        = schema.$defs || schema.definitions || {};
+  const results     = [];
+  const seenFields  = new Set();
+  const seenDefs    = new Set();
+
   function walk(obj, path) {
     if (!obj || typeof obj !== 'object') return;
+
+    // Resolver $ref antes de seguir
+    if (obj.$ref) {
+      const name = obj.$ref.replace(/^#\/(\$defs|definitions)\//, '');
+      if (!seenDefs.has(name) && defs[name]) {
+        seenDefs.add(name);
+        walk(defs[name], path);
+      }
+      return;
+    }
+
     if (Array.isArray(obj.enum)) {
-      const key = path.split('.').pop().replace('[]','');
-      if (!seen.has(key)) {
-        seen.add(key);
+      const key = path.split('.').pop().replace('[]', '');
+      if (!seenFields.has(key)) {
+        seenFields.add(key);
         results.push({ field: key, path, type: obj.type || 'string', description: obj.description || '', values: obj.enum });
       }
       return;
     }
-    if (obj.properties) for (const [k,v] of Object.entries(obj.properties)) walk(v, path ? `${path}.${k}` : k);
-    if (obj.items) walk(obj.items, `${path}[]`);
-    if (obj.$defs) for (const [k,v] of Object.entries(obj.$defs)) walk(v, k);
-    if (obj.definitions) for (const [k,v] of Object.entries(obj.definitions)) walk(v, k);
+
+    if (obj.properties)  for (const [k, v] of Object.entries(obj.properties)) walk(v, path ? `${path}.${k}` : k);
+    if (obj.items)       walk(obj.items, `${path}[]`);
+    if (obj.$defs)       for (const [k, v] of Object.entries(obj.$defs))       walk(v, k);
+    if (obj.definitions) for (const [k, v] of Object.entries(obj.definitions)) walk(v, k);
   }
+
   walk(schema, '');
   return results;
 }

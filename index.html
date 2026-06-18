@@ -1014,7 +1014,7 @@ function renderEstructura(schema, folder, schemaFileName) {
   let navHtml = '';
   blocks.forEach((blk, i) => {
     const id = `blk-${i}`;
-    const snippet = JSON.stringify(blk.schemaSnippet, null, 2);
+    const snippet = JSON.stringify({ [blk.jsonKey || blk.label]: blk.schemaSnippet }, null, 2);
     const fieldTbl = buildFieldTable(blk.properties, blk.required);
     navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(blk.label)}</button>`;
     bodyHtml += `

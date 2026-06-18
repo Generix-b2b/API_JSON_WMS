@@ -1069,8 +1069,24 @@ function extractBlocks(schema, defs) {
       blocks.push({ label: key, type: 'object', description: prop.description || '', schemaSnippet: trimSchema(prop, true), properties: prop.properties, required: prop.required || [] });
     }
   }
+  // Schemas con definitions/$defs: un bloque por cada definición tipo objeto
+  const addedLabels = new Set(blocks.map(b => b.label));
+  for (const [name, def] of Object.entries(defs)) {
+    if (def && def.type === 'object' && def.properties && !addedLabels.has(name)) {
+      blocks.push({
+        label: name,
+        type: 'object',
+        description: def.description || '',
+        schemaSnippet: trimSchema(def, true),
+        properties: def.properties,
+        required: def.required || []
+      });
+      addedLabels.add(name);
+    }
+  }
   return blocks;
 }
+
 
 function resolveRef(prop, defs) {
   if (!prop || !prop.$ref) return prop || {};
@@ -1300,10 +1316,20 @@ function copyExample(i, btn) {
   });
 }
 function countTopFields(schema) {
+  const defs = schema.$defs || schema.definitions || {};
+  const seen = new Set();
   let n = 0;
   function walk(obj) {
     if (!obj || typeof obj !== 'object') return;
-    if (obj.properties) { n += Object.keys(obj.properties).length; for (const v of Object.values(obj.properties)) walk(v); }
+    if (obj.$ref) {
+      const name = obj.$ref.replace(/^#\/(\$defs|definitions)\//, '');
+      if (!seen.has(name) && defs[name]) { seen.add(name); walk(defs[name]); }
+      return;
+    }
+    if (obj.properties) {
+      n += Object.keys(obj.properties).length;
+      for (const v of Object.values(obj.properties)) walk(v);
+    }
     if (obj.items) walk(obj.items);
   }
   walk(schema);

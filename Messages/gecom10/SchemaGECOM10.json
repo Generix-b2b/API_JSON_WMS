@@ -8,545 +8,593 @@
     "method": "POST",
     "path": "https://[URL_Client_Environment].generix.biz/m10_supplier",
     "category": "Inbound",
-    "version": "v1.0",
+    "version": "v1.1",
     "releaseDate": "2026-06-17"
   },
-  "type": "object",
   "description": "JSON for supplier master data load",
+  "type": "object",
   "properties": {
     "supplierMasterData": {
-      "type": "array",
       "description": "Supplier declaration",
+      "type": "array",
       "minItems": 1,
       "maxItems": 499,
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "CODACT": {
-            "type": "string",
-            "description": "Logistics activity code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "CODFOU": {
-            "type": "string",
-            "description": "Supplier code",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "TYPFOU": {
-            "type": "string",
-            "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
-            "enum": ["1", "2", "3"]
-          },
-          "NOMFOU": {
-            "type": "string",
-            "description": "Supplier name",
-            "minLength": 1,
-            "maxLength": 38
-          },
-          "AD1FOU": {
-            "type": "string",
-            "description": "Supplier address line 1",
-            "minLength": 1,
-            "maxLength": 38
-          },
-          "AD2FOU": {
-            "type": "string",
-            "description": "Supplier address line 2",
-            "maxLength": 38
-          },
-          "AD3FOU": {
-            "type": "string",
-            "description": "Supplier address line 3",
-            "maxLength": 38
-          },
-          "CPOFOU": {
-            "type": "string",
-            "description": "Supplier postal code in numeric format",
-            "pattern": "^[0-9]{1,5}$"
-          },
-          "CPIFOU": {
-            "type": "string",
-            "description": "Supplier postal code in alphanumeric format",
-            "minLength": 1,
-            "maxLength": 10
-          },
-          "VILFOU": {
-            "type": "string",
-            "description": "Supplier city",
-            "minLength": 1,
-            "maxLength": 58
-          },
-          "PAYFOU": {
-            "type": "string",
-            "description": "Supplier country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
-            "enum": [
-              "AF", "AFG",
-              "AX", "ALA",
-              "AL", "ALB",
-              "DZ", "DZA",
-              "AS", "ASM",
-              "AD", "AND",
-              "AO", "AGO",
-              "AI", "AIA",
-              "AQ", "ATA",
-              "AG", "ATG",
-              "AR", "ARG",
-              "AM", "ARM",
-              "AW", "ABW",
-              "AU", "AUS",
-              "AT", "AUT",
-              "AZ", "AZE",
-              "BS", "BHS",
-              "BH", "BHR",
-              "BD", "BGD",
-              "BB", "BRB",
-              "BY", "BLR",
-              "BE", "BEL",
-              "BZ", "BLZ",
-              "BJ", "BEN",
-              "BM", "BMU",
-              "BT", "BTN",
-              "BO", "BOL",
-              "BQ", "BES",
-              "BA", "BIH",
-              "BW", "BWA",
-              "BV", "BVT",
-              "BR", "BRA",
-              "IO", "IOT",
-              "BN", "BRN",
-              "BG", "BGR",
-              "BF", "BFA",
-              "BI", "BDI",
-              "CV", "CPV",
-              "KH", "KHM",
-              "CM", "CMR",
-              "CA", "CAN",
-              "KY", "CYM",
-              "CF", "CAF",
-              "TD", "TCD",
-              "CL", "CHL",
-              "CN", "CHN",
-              "CX", "CXR",
-              "CC", "CCK",
-              "CO", "COL",
-              "KM", "COM",
-              "CG", "COG",
-              "CD", "COD",
-              "CK", "COK",
-              "CR", "CRI",
-              "CI", "CIV",
-              "HR", "HRV",
-              "CU", "CUB",
-              "CW", "CUW",
-              "CY", "CYP",
-              "CZ", "CZE",
-              "DK", "DNK",
-              "DJ", "DJI",
-              "DM", "DMA",
-              "DO", "DOM",
-              "EC", "ECU",
-              "EG", "EGY",
-              "SV", "SLV",
-              "GQ", "GNQ",
-              "ER", "ERI",
-              "EE", "EST",
-              "SZ", "SWZ",
-              "ET", "ETH",
-              "FK", "FLK",
-              "FO", "FRO",
-              "FJ", "FJI",
-              "FI", "FIN",
-              "FR", "FRA",
-              "GF", "GUF",
-              "PF", "PYF",
-              "TF", "ATF",
-              "GA", "GAB",
-              "GM", "GMB",
-              "GE", "GEO",
-              "DE", "DEU",
-              "GH", "GHA",
-              "GI", "GIB",
-              "GR", "GRC",
-              "GL", "GRL",
-              "GD", "GRD",
-              "GP", "GLP",
-              "GU", "GUM",
-              "GT", "GTM",
-              "GG", "GGY",
-              "GN", "GIN",
-              "GW", "GNB",
-              "GY", "GUY",
-              "HT", "HTI",
-              "HM", "HMD",
-              "VA", "VAT",
-              "HN", "HND",
-              "HK", "HKG",
-              "HU", "HUN",
-              "IS", "ISL",
-              "IN", "IND",
-              "ID", "IDN",
-              "IR", "IRN",
-              "IQ", "IRQ",
-              "IE", "IRL",
-              "IM", "IMN",
-              "IL", "ISR",
-              "IT", "ITA",
-              "JM", "JAM",
-              "JP", "JPN",
-              "JE", "JEY",
-              "JO", "JOR",
-              "KZ", "KAZ",
-              "KE", "KEN",
-              "KI", "KIR",
-              "KP", "PRK",
-              "KR", "KOR",
-              "KW", "KWT",
-              "KG", "KGZ",
-              "LA", "LAO",
-              "LV", "LVA",
-              "LB", "LBN",
-              "LS", "LSO",
-              "LR", "LBR",
-              "LY", "LBY",
-              "LI", "LIE",
-              "LT", "LTU",
-              "LU", "LUX",
-              "MO", "MAC",
-              "MG", "MDG",
-              "MW", "MWI",
-              "MY", "MYS",
-              "MV", "MDV",
-              "ML", "MLI",
-              "MT", "MLT",
-              "MH", "MHL",
-              "MQ", "MTQ",
-              "MR", "MRT",
-              "MU", "MUS",
-              "YT", "MYT",
-              "MX", "MEX",
-              "FM", "FSM",
-              "MD", "MDA",
-              "MC", "MCO",
-              "MN", "MNG",
-              "ME", "MNE",
-              "MS", "MSR",
-              "MA", "MAR",
-              "MZ", "MOZ",
-              "MM", "MMR",
-              "NA", "NAM",
-              "NR", "NRU",
-              "NP", "NPL",
-              "NL", "NLD",
-              "NC", "NCL",
-              "NZ", "NZL",
-              "NI", "NIC",
-              "NE", "NER",
-              "NG", "NGA",
-              "NU", "NIU",
-              "NF", "NFK",
-              "MK", "MKD",
-              "MP", "MNP",
-              "NO", "NOR",
-              "OM", "OMN",
-              "PK", "PAK",
-              "PW", "PLW",
-              "PS", "PSE",
-              "PA", "PAN",
-              "PG", "PNG",
-              "PY", "PRY",
-              "PE", "PER",
-              "PH", "PHL",
-              "PN", "PCN",
-              "PL", "POL",
-              "PT", "PRT",
-              "PR", "PRI",
-              "QA", "QAT",
-              "RE", "REU",
-              "RO", "ROU",
-              "RU", "RUS",
-              "RW", "RWA",
-              "BL", "BLM",
-              "SH", "SHN",
-              "KN", "KNA",
-              "LC", "LCA",
-              "MF", "MAF",
-              "PM", "SPM",
-              "VC", "VCT",
-              "WS", "WSM",
-              "SM", "SMR",
-              "ST", "STP",
-              "SA", "SAU",
-              "SN", "SEN",
-              "RS", "SRB",
-              "SC", "SYC",
-              "SL", "SLE",
-              "SG", "SGP",
-              "SX", "SXM",
-              "SK", "SVK",
-              "SI", "SVN",
-              "SB", "SLB",
-              "SO", "SOM",
-              "ZA", "ZAF",
-              "GS", "SGS",
-              "SS", "SSD",
-              "ES", "ESP",
-              "LK", "LKA",
-              "SD", "SDN",
-              "SR", "SUR",
-              "SJ", "SJM",
-              "SE", "SWE",
-              "CH", "CHE",
-              "SY", "SYR",
-              "TW", "TWN",
-              "TJ", "TJK",
-              "TZ", "TZA",
-              "TH", "THA",
-              "TL", "TLS",
-              "TG", "TGO",
-              "TK", "TKL",
-              "TO", "TON",
-              "TT", "TTO",
-              "TN", "TUN",
-              "TR", "TUR",
-              "TM", "TKM",
-              "TC", "TCA",
-              "TV", "TUV",
-              "UG", "UGA",
-              "UA", "UKR",
-              "AE", "ARE",
-              "GB", "GBR",
-              "UM", "UMI",
-              "US", "USA",
-              "UY", "URY",
-              "UZ", "UZB",
-              "VU", "VUT",
-              "VE", "VEN",
-              "VN", "VNM",
-              "VG", "VGB",
-              "VI", "VIR",
-              "WF", "WLF",
-              "EH", "ESH",
-              "YE", "YEM",
-              "ZM", "ZMB",
-              "ZW", "ZWE"
-            ]
-          },
-          "TELFOU": {
-            "type": "string",
-            "description": "Supplier phone number",
-            "maxLength": 20
-          },
-          "FAXFOU": {
-            "type": "string",
-            "description": "Supplier fax number",
-            "maxLength": 20
-          },
-          "TLXFOU": {
-            "type": "string",
-            "description": "Supplier telex number",
-            "maxLength": 15
-          },
-          "EDIFOU": {
-            "type": "string",
-            "description": "Supplier code for EDI",
-            "maxLength": 14
-          },
-          "CODTRA": {
-            "type": "string",
-            "description": "Carrier code",
-            "maxLength": 14
-          },
-          "IGLSIT": {
-            "type": "string",
-            "description": "Site identifier for Infolog GL",
-            "pattern": "^[0-9]{1,3}$"
-          },
-          "CODTRE": {
-            "type": "string",
-            "description": "Receipt type code",
-            "maxLength": 3
-          },
-          "GSTAVI": {
-            "type": "string",
-            "description": "Shipping notice management / 0 = no notice management, 1 = notices managed without disputes, 2 = notices managed with disputes",
-            "enum": ["0", "1", "2"]
-          },
-          "GSTRCP": {
-            "type": "string",
-            "description": "Radio frequency receiving management type",
-            "enum": ["0", "1", "2", "3"]
-          },
-          "TYPPRT": {
-            "type": "string",
-            "description": "Connector type (receiving)",
-            "enum": ["1", "3"]
-          },
-          "EMBTIE": {
-            "type": "boolean",
-            "description": "Packaging allocation",
-            "default": false
-          },
-          "FOUGMA": {
-            "type": "string",
-            "description": "Indicator for supplier management with GAMM@",
-            "enum": ["0", "1", "2"]
-          },
-          "SYSMES": {
-            "type": "boolean",
-            "description": "Measurement system / false = Metric, true = Imperial",
-            "default": false
-          },
-          "CODCLV": {
-            "type": "string",
-            "description": "Delivery requirement",
-            "maxLength": 3
-          },
-          "GEEX1001": {
-            "type": "object",
-            "description": "Supplier Additional Declaration",
-            "additionalProperties": false,
-            "properties": {
-              "RSPFOU": {
-                "type": "string",
-                "description": "Name of the person in charge at the supplier",
-                "maxLength": 30
-              },
-              "EMLADR": {
-                "type": "string",
-                "description": "Email address",
-                "minLength": 1,
-                "maxLength": 50,
-                "format": "email"
-              },
-              "CODCOG": {
-                "type": "string",
-                "description": "Geographic code",
-                "maxLength": 15
-              },
-              "NUMACS": {
-                "type": "string",
-                "description": "Excise duty number (Alcohol)",
-                "maxLength": 13
-              },
-              "AFFFAB": {
-                "type": "boolean",
-                "description": "Display MADE IN as batch",
-                "default": false
-              },
-              "CODENL": {
-                "type": "string",
-                "description": "Collection code",
-                "enum": ["0", "1"]
-              },
-              "CODFDC01": {
-                "type": "string",
-                "description": "Quality control sheet code 1",
-                "maxLength": 3
-              },
-              "CODFDC02": {
-                "type": "string",
-                "description": "Quality control sheet code 2",
-                "maxLength": 3
-              },
-              "CODGRP": {
-                "type": "string",
-                "description": "Grouping code",
-                "enum": ["0", "1"]
-              },
-              "CODICM": {
-                "type": "string",
-                "description": "Incoterm code",
-                "maxLength": 3
-              },
-              "CODTCT": {
-                "type": "string",
-                "description": "Control table code",
-                "maxLength": 3
-              },
-              "CUMPRT": {
-                "type": "string",
-                "description": "Total number of picks (Detail and/or pallet)",
-                "pattern": "^[0-9]{1,9}$"
-              },
-              "FOUGRP": {
-                "type": "string",
-                "description": "Generic group supplier",
-                "maxLength": 14
-              },
-              "METREC": {
-                "type": "string",
-                "description": "Receipt validation method",
-                "maxLength": 1
-              },
-              "NULRLQ": {
-                "type": "boolean",
-                "description": "Neutralization of remainder on receipt",
-                "default": false
-              },
-              "PAYFAB": {
-                "type": "string",
-                "description": "Country of manufacture (MADE IN)",
-                "maxLength": 20
-              },
-              "PEREMB": {
-                "type": "string",
-                "description": "Periodicity of packaging sales",
-                "enum": ["0", "1", "2"]
-              },
-              "UNIFSR": {
-                "type": "boolean",
-                "description": "Uniqueness of serial numbers for the product",
-                "default": false
-              },
-              "CODRGT": {
-                "type": "string",
-                "description": "Area code for transport",
-                "maxLength": 3
-              },
-              "CM1FOU": {
-                "type": "string",
-                "description": "Supplier comment (line 1)",
-                "maxLength": 45
-              },
-              "CM2FOU": {
-                "type": "string",
-                "description": "Supplier comment (line 2)",
-                "maxLength": 45
-              },
-              "CM3FOU": {
-                "type": "string",
-                "description": "Supplier comment (line 3)",
-                "maxLength": 45
-              },
-              "LIBCPL": {
-                "type": "string",
-                "description": "Additional name",
-                "maxLength": 38
-              },
-              "LIBCP2": {
-                "type": "string",
-                "description": "Additional name 2",
-                "maxLength": 38
-              }
-            }
-          }
-        },
-        "required": ["TRTEXC", "CODFOU", "NOMFOU", "AD1FOU", "VILFOU", "PAYFOU"],
-        "oneOf": [
-          { "required": ["CPOFOU"], "not": { "required": ["CPIFOU"] } },
-          { "required": ["CPIFOU"], "not": { "required": ["CPOFOU"] } }
-        ]
-      }
+				"$ref": "#/$defs/GEEX1000"
+			}
     }
   },
-  "required": ["supplierMasterData"]
+  "required": ["supplierMasterData"],
+  "$defs": {
+    "GEEX1000": {
+      "description": "Supplier declaration",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "TYPFOU": {
+          "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+          "$ref": "#/$defs/Enums/EnumTYPFOU"
+        },
+        "NOMFOU": {
+          "description": "Supplier name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD1FOU": {
+          "description": "Supplier address line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD2FOU": {
+          "description": "Supplier address line 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "AD3FOU": {
+          "description": "Supplier address line 3",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CPOFOU": {
+          "description": "Supplier postal code in numeric format",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "CPIFOU": {
+          "description": "Supplier postal code in alphanumeric format",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "VILFOU": {
+          "description": "Supplier city",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 58
+        },
+        "PAYFOU": {
+          "description": "Supplier country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
+          "$ref": "#/$defs/Enums/EnumPAYFOU"
+        },
+        "TELFOU": {
+          "description": "Supplier phone number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "FAXFOU": {
+          "description": "Supplier fax number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TLXFOU": {
+          "description": "Supplier telex number",
+          "type": "string",
+          "maxLength": 15
+        },
+        "EDIFOU": {
+          "description": "Supplier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "IGLSIT": {
+          "description": "Site identifier for Infolog GL",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "CODTRE": {
+          "description": "Receipt type code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GSTAVI": {
+          "description": "Shipping notice management / 0 = no notice management, 1 = notices managed without disputes, 2 = notices managed with disputes",
+          "$ref": "#/$defs/Enums/EnumGSTAVI"
+        },
+        "GSTRCP": {
+          "description": "Radio frequency receiving management type",
+          "$ref": "#/$defs/Enums/EnumGSTRCP"
+        },
+        "TYPPRT": {
+          "description": "Connector type (receiving)",
+          "$ref": "#/$defs/Enums/EnumTYPPRT"
+        },
+        "EMBTIE": {
+          "description": "Packaging allocation / false = No allocation, true = Allocation",
+          "type": "boolean",
+          "default": false
+        },
+        "FOUGMA": {
+          "description": "Indicator for supplier management with GAMM@",
+          "$ref": "#/$defs/Enums/EnumFOUGMA"
+        },
+        "SYSMES": {
+          "description": "Measurement system / false = Metric, true = Imperial",
+          "type": "boolean",
+          "default": false
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GEEX1001": {
+          "description": "Supplier Additional Declaration",
+          "$ref": "#/$defs/GEEX1001Wrapper"
+        }
+      },
+      "required": ["TRTEXC", "CODFOU", "NOMFOU", "AD1FOU", "VILFOU", "PAYFOU"],
+      "oneOf": [
+        { "required": ["CPOFOU"], "not": { "required": ["CPIFOU"] } },
+        { "required": ["CPIFOU"], "not": { "required": ["CPOFOU"] } }
+      ],
+      "additionalProperties": false
+    },
+    "GEEX1001Wrapper": {
+      "description": "Supplier Additional Declaration",
+      "type": "object",
+      "properties": {
+        "RSPFOU": {
+          "description": "Name of the person in charge at the supplier",
+          "type": "string",
+          "maxLength": 30
+        },
+        "EMLADR": {
+          "description": "Email address",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "format": "email"
+        },
+        "CODCOG": {
+          "description": "Geographic code",
+          "type": "string",
+          "maxLength": 15
+        },
+        "NUMACS": {
+          "description": "Excise duty number (Alcohol)",
+          "type": "string",
+          "maxLength": 13
+        },
+        "AFFFAB": {
+          "description": "Display MADE IN as batch / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "CODENL": {
+          "description": "Collection code",
+          "$ref": "#/$defs/Enums/EnumCODENL"
+        },
+        "CODFDC01": {
+          "description": "Quality control sheet code 1",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODFDC02": {
+          "description": "Quality control sheet code 2",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODGRP": {
+          "description": "Grouping code / false = No grouping, true = Grouping",
+          "type": "boolean",
+          "default": false
+        },
+        "CODICM": {
+          "description": "Incoterm code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODTCT": {
+          "description": "Control table code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CUMPRT": {
+          "description": "Total number of picks (Detail and/or pallet)",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "FOUGRP": {
+          "description": "Generic group supplier",
+          "type": "string",
+          "maxLength": 14
+        },
+        "METREC": {
+          "description": "Receipt validation method",
+          "type": "string",
+          "maxLength": 1
+        },
+        "NULRLQ": {
+          "description": "Neutralization of remainder on receipt / false = No neutralization, true = Neutralization",
+          "type": "boolean",
+          "default": false
+        },
+        "PAYFAB": {
+          "description": "Country of manufacture (MADE IN)",
+          "type": "string",
+          "maxLength": 20
+        },
+        "PEREMB": {
+          "description": "Periodicity of packaging sales / 0 = Manual balance, 1 = at midday and at the end of the month, 2 = at the end of the month",
+          "$ref": "#/$defs/Enums/EnumPEREMB"
+        },
+        "UNIFSR": {
+          "description": "Uniqueness of serial numbers for the product / false = No uniqueness, true = Uniqueness",
+          "type": "boolean",
+          "default": false
+        },
+        "CODRGT": {
+          "description": "Area code for transport",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CM1FOU": {
+          "description": "Supplier comment (line 1)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM2FOU": {
+          "description": "Supplier comment (line 2)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM3FOU": {
+          "description": "Supplier comment (line 3)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "LIBCPL": {
+          "description": "Additional name",
+          "type": "string",
+          "maxLength": 38
+        },
+        "LIBCP2": {
+          "description": "Additional name 2",
+          "type": "string",
+          "maxLength": 38
+        }
+      },
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "9"],
+        "default": "2"
+      },
+      "EnumTYPFOU": {
+        "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "type": "string",
+        "enum": ["1", "2", "3"]
+      },
+      "EnumPAYFOU": {
+        "description": "Supplier country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
+        "type": "string",
+        "enum": [
+          "AF", "AFG",
+          "AX", "ALA",
+          "AL", "ALB",
+          "DZ", "DZA",
+          "AS", "ASM",
+          "AD", "AND",
+          "AO", "AGO",
+          "AI", "AIA",
+          "AQ", "ATA",
+          "AG", "ATG",
+          "AR", "ARG",
+          "AM", "ARM",
+          "AW", "ABW",
+          "AU", "AUS",
+          "AT", "AUT",
+          "AZ", "AZE",
+          "BS", "BHS",
+          "BH", "BHR",
+          "BD", "BGD",
+          "BB", "BRB",
+          "BY", "BLR",
+          "BE", "BEL",
+          "BZ", "BLZ",
+          "BJ", "BEN",
+          "BM", "BMU",
+          "BT", "BTN",
+          "BO", "BOL",
+          "BQ", "BES",
+          "BA", "BIH",
+          "BW", "BWA",
+          "BV", "BVT",
+          "BR", "BRA",
+          "IO", "IOT",
+          "BN", "BRN",
+          "BG", "BGR",
+          "BF", "BFA",
+          "BI", "BDI",
+          "CV", "CPV",
+          "KH", "KHM",
+          "CM", "CMR",
+          "CA", "CAN",
+          "KY", "CYM",
+          "CF", "CAF",
+          "TD", "TCD",
+          "CL", "CHL",
+          "CN", "CHN",
+          "CX", "CXR",
+          "CC", "CCK",
+          "CO", "COL",
+          "KM", "COM",
+          "CG", "COG",
+          "CD", "COD",
+          "CK", "COK",
+          "CR", "CRI",
+          "CI", "CIV",
+          "HR", "HRV",
+          "CU", "CUB",
+          "CW", "CUW",
+          "CY", "CYP",
+          "CZ", "CZE",
+          "DK", "DNK",
+          "DJ", "DJI",
+          "DM", "DMA",
+          "DO", "DOM",
+          "EC", "ECU",
+          "EG", "EGY",
+          "SV", "SLV",
+          "GQ", "GNQ",
+          "ER", "ERI",
+          "EE", "EST",
+          "SZ", "SWZ",
+          "ET", "ETH",
+          "FK", "FLK",
+          "FO", "FRO",
+          "FJ", "FJI",
+          "FI", "FIN",
+          "FR", "FRA",
+          "GF", "GUF",
+          "PF", "PYF",
+          "TF", "ATF",
+          "GA", "GAB",
+          "GM", "GMB",
+          "GE", "GEO",
+          "DE", "DEU",
+          "GH", "GHA",
+          "GI", "GIB",
+          "GR", "GRC",
+          "GL", "GRL",
+          "GD", "GRD",
+          "GP", "GLP",
+          "GU", "GUM",
+          "GT", "GTM",
+          "GG", "GGY",
+          "GN", "GIN",
+          "GW", "GNB",
+          "GY", "GUY",
+          "HT", "HTI",
+          "HM", "HMD",
+          "VA", "VAT",
+          "HN", "HND",
+          "HK", "HKG",
+          "HU", "HUN",
+          "IS", "ISL",
+          "IN", "IND",
+          "ID", "IDN",
+          "IR", "IRN",
+          "IQ", "IRQ",
+          "IE", "IRL",
+          "IM", "IMN",
+          "IL", "ISR",
+          "IT", "ITA",
+          "JM", "JAM",
+          "JP", "JPN",
+          "JE", "JEY",
+          "JO", "JOR",
+          "KZ", "KAZ",
+          "KE", "KEN",
+          "KI", "KIR",
+          "KP", "PRK",
+          "KR", "KOR",
+          "KW", "KWT",
+          "KG", "KGZ",
+          "LA", "LAO",
+          "LV", "LVA",
+          "LB", "LBN",
+          "LS", "LSO",
+          "LR", "LBR",
+          "LY", "LBY",
+          "LI", "LIE",
+          "LT", "LTU",
+          "LU", "LUX",
+          "MO", "MAC",
+          "MG", "MDG",
+          "MW", "MWI",
+          "MY", "MYS",
+          "MV", "MDV",
+          "ML", "MLI",
+          "MT", "MLT",
+          "MH", "MHL",
+          "MQ", "MTQ",
+          "MR", "MRT",
+          "MU", "MUS",
+          "YT", "MYT",
+          "MX", "MEX",
+          "FM", "FSM",
+          "MD", "MDA",
+          "MC", "MCO",
+          "MN", "MNG",
+          "ME", "MNE",
+          "MS", "MSR",
+          "MA", "MAR",
+          "MZ", "MOZ",
+          "MM", "MMR",
+          "NA", "NAM",
+          "NR", "NRU",
+          "NP", "NPL",
+          "NL", "NLD",
+          "NC", "NCL",
+          "NZ", "NZL",
+          "NI", "NIC",
+          "NE", "NER",
+          "NG", "NGA",
+          "NU", "NIU",
+          "NF", "NFK",
+          "MK", "MKD",
+          "MP", "MNP",
+          "NO", "NOR",
+          "OM", "OMN",
+          "PK", "PAK",
+          "PW", "PLW",
+          "PS", "PSE",
+          "PA", "PAN",
+          "PG", "PNG",
+          "PY", "PRY",
+          "PE", "PER",
+          "PH", "PHL",
+          "PN", "PCN",
+          "PL", "POL",
+          "PT", "PRT",
+          "PR", "PRI",
+          "QA", "QAT",
+          "RE", "REU",
+          "RO", "ROU",
+          "RU", "RUS",
+          "RW", "RWA",
+          "BL", "BLM",
+          "SH", "SHN",
+          "KN", "KNA",
+          "LC", "LCA",
+          "MF", "MAF",
+          "PM", "SPM",
+          "VC", "VCT",
+          "WS", "WSM",
+          "SM", "SMR",
+          "ST", "STP",
+          "SA", "SAU",
+          "SN", "SEN",
+          "RS", "SRB",
+          "SC", "SYC",
+          "SL", "SLE",
+          "SG", "SGP",
+          "SX", "SXM",
+          "SK", "SVK",
+          "SI", "SVN",
+          "SB", "SLB",
+          "SO", "SOM",
+          "ZA", "ZAF",
+          "GS", "SGS",
+          "SS", "SSD",
+          "ES", "ESP",
+          "LK", "LKA",
+          "SD", "SDN",
+          "SR", "SUR",
+          "SJ", "SJM",
+          "SE", "SWE",
+          "CH", "CHE",
+          "SY", "SYR",
+          "TW", "TWN",
+          "TJ", "TJK",
+          "TZ", "TZA",
+          "TH", "THA",
+          "TL", "TLS",
+          "TG", "TGO",
+          "TK", "TKL",
+          "TO", "TON",
+          "TT", "TTO",
+          "TN", "TUN",
+          "TR", "TUR",
+          "TM", "TKM",
+          "TC", "TCA",
+          "TV", "TUV",
+          "UG", "UGA",
+          "UA", "UKR",
+          "AE", "ARE",
+          "GB", "GBR",
+          "UM", "UMI",
+          "US", "USA",
+          "UY", "URY",
+          "UZ", "UZB",
+          "VU", "VUT",
+          "VE", "VEN",
+          "VN", "VNM",
+          "VG", "VGB",
+          "VI", "VIR",
+          "WF", "WLF",
+          "EH", "ESH",
+          "YE", "YEM",
+          "ZM", "ZMB",
+          "ZW", "ZWE"
+        ]
+      },
+      "EnumGSTAVI": {
+        "description": "Shipping notice management / 0 = no notice management, 1 = notices managed without disputes, 2 = notices managed with disputes",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumGSTRCP": {
+        "description": "Radio frequency receiving management type",
+        "type": "string",
+        "enum": ["0", "1", "2", "3"]
+      },
+      "EnumTYPPRT": {
+        "description": "Connector type (receiving)",
+        "type": "string",
+        "enum": ["1", "3"]
+      },
+      "EnumFOUGMA": {
+        "description": "Indicator for supplier management with GAMM@",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumCODENL": {
+        "description": "Collection code",
+        "type": "string",
+        "enum": ["0", "1"]
+      },
+      "EnumPEREMB": {
+        "description": "Periodicity of packaging sales / 0 = Manual balance, 1 = at midday and at the end of the month, 2 = at the end of the month",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      }
+    }
+  }
 }

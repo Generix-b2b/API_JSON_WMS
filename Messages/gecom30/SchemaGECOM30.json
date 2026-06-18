@@ -8,1124 +8,1228 @@
     "method": "POST",
     "path": "https://[URL_Client_Environment].generix.biz/m30_product",
     "category": "Inbound",
-    "version": "v1.0",
+    "version": "v1.1",
     "releaseDate": "2026-06-17"
   },
-  "type": "object",
   "description": "JSON for product master data load",
+  "type": "object",
   "properties": {
     "productMasterData": {
-      "type": "array",
       "description": "Master Data declaration",
+      "type": "array",
       "minItems": 1,
       "maxItems": 499,
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "CODACT": {
-            "type": "string",
-            "description": "Logistics activity code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "CODPRO": {
-            "type": "string",
-            "description": "Internal product code",
-            "minLength": 1,
-            "maxLength": 17
-          },
-          "VALPRO": {
-            "type": "string",
-            "description": "Logistics variant (Gencod)",
-            "pattern": "^[0-9]{1,2}$"
-          },
-          "DS1PRO": {
-            "type": "string",
-            "description": "Product designation line 1",
-            "minLength": 1,
-            "maxLength": 30
-          },
-          "DS2PRO": {
-            "type": "string",
-            "description": "Product designation line 2",
-            "maxLength": 30
-          },
-          "FOUPRO": {
-            "type": "string",
-            "description": "Product supplier code",
-            "maxLength": 14
-          },
-          "VAPPRO": {
-            "type": "string",
-            "description": "Supply variant (Gencod)",
-            "pattern": "^[0-9]{1,2}$"
-          },
-          "FAMPRO": {
-            "type": "string",
-            "description": "Product classification family",
-            "maxLength": 10
-          },
-          "ANAPRO": {
-            "type": "string",
-            "description": "Product analysis code",
-            "maxLength": 15
-          },
-          "EDIPRO": {
-            "type": "string",
-            "description": "Product code for EDI",
-            "maxLength": 17
-          },
-          "SPCPRO": {
-            "type": "integer",
-            "description": "Product sub-pack quantity",
-            "minimum": 0,
-            "maximum": 9999
-          },
-          "PCBPRO": {
-            "type": "integer",
-            "description": "Product pack quantity",
-            "minimum": 0,
-            "maximum": 99999
-          },
-          "UNIPRO": {
-            "type": "string",
-            "description": "Product unit of measure",
-            "maxLength": 3
-          },
-          "MESPRO": {
-            "type": "string",
-            "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
-            "enum": ["1", "2", "3"],
-            "default": "1"
-          },
-          "PDBUVC": {
-            "type": "number",
-            "description": "CSU gross weight in kg",
-            "minimum": 0,
-            "maximum": 9999.999,
-            "multipleOf": 0.001
-          },
-          "PDNUVC": {
-            "type": "number",
-            "description": "CSU net weight in kg",
-            "minimum": 0,
-            "maximum": 9999.999,
-            "multipleOf": 0.001
-          },
-          "HAUUVC": {
-            "type": "integer",
-            "description": "CSU height expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "LNGUVC": {
-            "type": "integer",
-            "description": "CSU length expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "LRGUVC": {
-            "type": "integer",
-            "description": "CSU width expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "PDBCOL": {
-            "type": "number",
-            "description": "Package gross weight in kg",
-            "minimum": 0,
-            "maximum": 9999.999,
-            "multipleOf": 0.001
-          },
-          "HAUCOL": {
-            "type": "integer",
-            "description": "Package height expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "LNGCOL": {
-            "type": "integer",
-            "description": "Package length expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "LRGCOL": {
-            "type": "integer",
-            "description": "Package width expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "COLCOU": {
-            "type": "integer",
-            "description": "Number of packages per layer",
-            "minimum": 1,
-            "maximum": 9999
-          },
-          "COUPAL": {
-            "type": "integer",
-            "description": "Number of layers per pallet",
-            "minimum": 1,
-            "maximum": 9999
-          },
-          "GERPAL": {
-            "type": "string",
-            "description": "Number of pallet stacks in storage",
-            "pattern": "^[0-9]{1,2}$"
-          },
-          "GERHAU": {
-            "type": "string",
-            "description": "Number of pallets stacked high",
-            "pattern": "^[0-9]{1,2}$"
-          },
-          "HAUCOU": {
-            "type": "integer",
-            "description": "Layer height expressed in cm",
-            "minimum": 0,
-            "maximum": 999
-          },
-          "CODEMB": {
-            "type": "string",
-            "description": "Package code handling",
-            "maxLength": 3
-          },
-          "ABCPRO": {
-            "type": "string",
-            "description": "ABC product rotation class",
-            "maxLength": 1
-          },
-          "CODMDR": {
-            "type": "string",
-            "description": "Goods receipt method",
-            "maxLength": 3
-          },
-          "MODREC": {
-            "type": "string",
-            "description": "Receiving mode / 1 = Full Pallet, 2 = Unit",
-            "enum": ["1", "2"],
-            "default": "1"
-          },
-          "NBJDLV": {
-            "type": "string",
-            "description": "Number of DLV days",
-            "maxLength": 3
-          },
-          "MOTIMM": {
-            "type": "string",
-            "description": "Immobilization reason",
-            "maxLength": 3
-          },
-          "CODMDS": {
-            "type": "string",
-            "description": "Storage method code",
-            "maxLength": 3
-          },
-          "ZONPRF": {
-            "type": "string",
-            "description": "Preferred storage area",
-            "maxLength": 1
-          },
-          "ALLPRF": {
-            "type": "string",
-            "description": "Preferred storage aisle",
-            "pattern": "^[0-9]{1,3}$"
-          },
-          "ABCSTS": {
-            "type": "string",
-            "description": "Storage class",
-            "maxLength": 1
-          },
-          "CODADM": {
-            "type": "string",
-            "description": "Sheaf storage method",
-            "maxLength": 3
-          },
-          "HOMGRB": {
-            "type": "string",
-            "description": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
-            "enum": ["0", "1", "2", "3", "4", "5"],
-            "default": "0"
-          },
-          "PERGRB": {
-            "type": "string",
-            "description": "Pattern homogeneity period (rack/bulk)",
-            "maxLength": 3
-          },
-          "CODMDP": {
-            "type": "string",
-            "description": "Preparation process method",
-            "maxLength": 3
-          },
-          "TOPPRN": {
-            "type": "string",
-            "description": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
-            "enum": ["0", "1"],
-            "default": "0"
-          },
-          "ORIMAJ": {
-            "type": "string",
-            "description": "Update origin",
-            "maxLength": 1
-          },
-          "TOPPRO": {
-            "type": "string",
-            "description": "Product indicator",
-            "maxLength": 1
-          },
-          "GEEX3001": {
-            "type": "object",
-            "description": "Product Additional 01 declaration",
-            "additionalProperties": false,
-            "properties": {
-              "INDPRO": {
-                "type": "array",
-                "description": "Configurable product indicators",
-                "maxItems": 10,
-                "items": {
-                  "type": "string",
-                  "description": "Configurable product indicators",
-                  "maxLength": 1
-                }
-              },
-              "CODMRQ": {
-                "type": "string",
-                "description": "Manufacturer brand code",
-                "maxLength": 8
-              },
-              "DESFOU": {
-                "type": "string",
-                "description": "Product designation at the supplier",
-                "maxLength": 30
-              },
-              "CIRDET": {
-                "type": "string",
-                "description": "Detail picking preparation circuit",
-                "maxLength": 3
-              },
-              "CIRPAL": {
-                "type": "string",
-                "description": "Full pallet preparation circuit",
-                "maxLength": 3
-              },
-              "METRPL": {
-                "type": "string",
-                "description": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
-                "enum": ["0", "1", "2"],
-                "default": "0"
-              },
-              "CODRPL": {
-                "type": "string",
-                "description": "Replacement product code",
-                "maxLength": 17
-              },
-              "VALRPL": {
-                "type": "string",
-                "description": "Logistics variant of the substitute product",
-                "maxLength": 2
-              },
-              "CODALC": {
-                "type": "string",
-                "description": "Liquor seal code",
-                "maxLength": 4
-              },
-              "DEGALC": {
-                "type": "string",
-                "description": "Pure alcohol degree",
-                "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
-                "examples": ["12.50"]
-              },
-              "VOLALC": {
-                "type": "string",
-                "description": "Beverage volume for liquor management",
-                "pattern": "^[0-9]{1,3}\\.[0-9]{3}$",
-                "examples": ["0.750"]
-              },
-              "CODMDG": {
-                "type": "string",
-                "description": "Service management method code",
-                "maxLength": 3
-              },
-              "TAUPST": {
-                "type": "array",
-                "description": "Profit rate",
-                "maxItems": 4,
-                "items": {
-                  "type": "string",
-                  "description": "Profit rate",
-                  "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
-                  "examples": ["15.00"]
-                }
-              },
-              "COELOG": {
-                "type": "string",
-                "description": "Logistics coefficient",
-                "pattern": "^[0-9]{1,2}\\.[0-9]{3}$",
-                "examples": ["1.000"]
-              },
-              "PRXPRO": {
-                "type": "array",
-                "description": "Product price",
-                "maxItems": 4,
-                "items": {
-                  "type": "string",
-                  "description": "Product price",
-                  "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
-                  "examples": ["10.500"]
-                }
-              },
-              "CODMDI": {
-                "type": "string",
-                "description": "Cycle counting method",
-                "maxLength": 3
-              },
-              "NXTIVT": {
-                "type": "string",
-                "description": "Date of next product inventory / format YYYYMMDD",
-                "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
-                "examples": ["20250125"]
-              },
-              "SECSTK": {
-                "type": "string",
-                "description": "Safety stock in CSU",
-                "maxLength": 9
-              },
-              "CODMDF": {
-                "type": "string",
-                "description": "Manufacturing process method",
-                "maxLength": 3
-              },
-              "FMTFAB": {
-                "type": "string",
-                "description": "Product manufacturing format",
-                "maxLength": 5
-              },
-              "ACTFAB": {
-                "type": "string",
-                "description": "Activity after manufacturing process",
-                "maxLength": 3
-              },
-              "CODFAB": {
-                "type": "string",
-                "description": "Product code after manufacturing",
-                "maxLength": 17
-              },
-              "VRAFAB": {
-                "type": "string",
-                "description": "Manufactured product code (For statistics)",
-                "maxLength": 17
-              },
-              "VALFAB": {
-                "type": "string",
-                "description": "Logistics variant (Gencod) of manufacturing",
-                "maxLength": 2
-              },
-              "CODZVI": {
-                "type": "string",
-                "description": "Wine production area code",
-                "maxLength": 4
-              },
-              "CODEAP": {
-                "type": "string",
-                "description": "Packaging code associated with the product",
-                "maxLength": 3
-              },
-              "TOPCNA": {
-                "type": "boolean",
-                "description": "Products with alcohol rate for the CNAMTS",
-                "default": false
-              }
-            }
-          },
-          "GEEX3002": {
-            "type": "object",
-            "description": "Product Additional 02 declaration",
-            "additionalProperties": false,
-            "properties": {
-              "CODTMD": {
-                "type": "string",
-                "description": "Dangerous goods transport code",
-                "maxLength": 4
-              },
-              "CODSEC": {
-                "type": "string",
-                "description": "Safety code (Hazardous Materials)",
-                "maxLength": 4
-              },
-              "CODSPE": {
-                "type": "boolean",
-                "description": "Returnable product",
-                "default": false
-              },
-              "UNIFAC": {
-                "type": "string",
-                "description": "Billing unit",
-                "maxLength": 3
-              },
-              "COEFAC": {
-                "type": "string",
-                "description": "Billing coefficient",
-                "pattern": "^[0-9]{1,7}\\.[0-9]{3}$",
-                "examples": ["1.000"]
-              },
-              "SECDLV": {
-                "type": "string",
-                "description": "Number of safety days in addition to DLV",
-                "maxLength": 3
-              },
-              "CODRGP": {
-                "type": "string",
-                "description": "Product grouping code",
-                "maxLength": 17
-              },
-              "CODRSC": {
-                "type": "string",
-                "description": "Product hazard type code",
-                "maxLength": 3
-              },
-              "PROEAP": {
-                "type": "string",
-                "description": "Associated packaging code for the interface",
-                "maxLength": 17
-              },
-              "VTLPRO": {
-                "type": "string",
-                "description": "Indicator for product to be broken down",
-                "maxLength": 1
-              },
-              "CIRVTL": {
-                "type": "string",
-                "description": "Breakdown circuit code",
-                "maxLength": 3
-              },
-              "INFEXP": {
-                "type": "string",
-                "description": "Inventory number (Alcohol Customs)",
-                "maxLength": 16
-              },
-              "CODMTR": {
-                "type": "string",
-                "description": "Materials accounting",
-                "maxLength": 5
-              },
-              "TEMPRE": {
-                "type": "string",
-                "description": "Recommended temperature for the product",
-                "maxLength": 3
-              },
-              "QTELOT": {
-                "type": "string",
-                "description": "Quantity for batch size management",
-                "maxLength": 9
-              },
-              "UNILOT": {
-                "type": "string",
-                "description": "Unit for batch size management",
-                "maxLength": 3
-              },
-              "UNIARR": {
-                "type": "string",
-                "description": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
-                "enum": ["1", "2", "3", "4", "5"]
-              },
-              "UNICAL": {
-                "type": "string",
-                "description": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
-                "enum": ["1", "2", "3"]
-              },
-              "TEMMIN": {
-                "type": "string",
-                "description": "Minimum temperature",
-                "maxLength": 3
-              },
-              "TEMMAX": {
-                "type": "string",
-                "description": "Maximum temperature",
-                "maxLength": 3
-              },
-              "TOLPOI": {
-                "type": "string",
-                "description": "Package weight deviation tolerance",
-                "maxLength": 3
-              },
-              "COECOL": {
-                "type": "string",
-                "description": "Package expansion coefficient",
-                "pattern": "^[0-9]{1}\\.[0-9]{3}$",
-                "examples": ["1.000"]
-              },
-              "COESPC": {
-                "type": "string",
-                "description": "SPCB expansion coefficient",
-                "pattern": "^[0-9]{1}\\.[0-9]{3}$",
-                "examples": ["1.000"]
-              },
-              "COEUVC": {
-                "type": "string",
-                "description": "CSU expansion coefficient",
-                "pattern": "^[0-9]{1}\\.[0-9]{3}$",
-                "examples": ["1.000"]
-              },
-              "INDTOL": {
-                "type": "boolean",
-                "description": "Weight tolerance indicator",
-                "default": false
-              },
-              "HAUSPC": {
-                "type": "integer",
-                "description": "SPCB height",
-                "minimum": 0,
-                "maximum": 999
-              },
-              "LNGSPC": {
-                "type": "integer",
-                "description": "SPCB length expressed in cm",
-                "minimum": 0,
-                "maximum": 999
-              },
-              "LRGSPC": {
-                "type": "integer",
-                "description": "SPCB width expressed in cm",
-                "minimum": 0,
-                "maximum": 999
-              },
-              "PDBSPC": {
-                "type": "number",
-                "description": "SPCB gross weight in kg",
-                "minimum": 0,
-                "maximum": 9999.999,
-                "multipleOf": 0.001
-              },
-              "CODMDT": {
-                "type": "string",
-                "description": "Traceability method code",
-                "maxLength": 3
-              },
-              "ETIMTR": {
-                "type": "string",
-                "description": "Materials labeling code",
-                "maxLength": 3
-              },
-              "CODPHR": {
-                "type": "string",
-                "description": "Risk phrase code",
-                "maxLength": 3
-              },
-              "NBJFVI": {
-                "type": "string",
-                "description": "Product shelf life",
-                "maxLength": 4
-              },
-              "CODGAM": {
-                "type": "string",
-                "description": "Operation range code",
-                "maxLength": 10
-              },
-              "CODQLP": {
-                "type": "string",
-                "description": "Product qualifier code",
-                "maxLength": 3
-              },
-              "EMBCLQ": {
-                "type": "string",
-                "description": "LQ packaging type",
-                "enum": ["1", "2"]
-              },
-              "CTRPRP": {
-                "type": "boolean",
-                "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
-                "default": false
-              },
-              "CODRDS": {
-                "type": "string",
-                "description": "Storage restriction code",
-                "maxLength": 3
-              },
-              "HAUCOL2": {
-                "type": "number",
-                "description": "Package height expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "HAUCOU2": {
-                "type": "number",
-                "description": "Layer height expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "HAUSPC2": {
-                "type": "number",
-                "description": "SPCB height in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "HAUUVC2": {
-                "type": "number",
-                "description": "CSU height expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LNGCOL2": {
-                "type": "number",
-                "description": "Package length expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LNGSPC2": {
-                "type": "number",
-                "description": "SPCB length expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LNGUVC2": {
-                "type": "number",
-                "description": "CSU length expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LRGCOL2": {
-                "type": "number",
-                "description": "Package width expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LRGSPC2": {
-                "type": "number",
-                "description": "SPCB width expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "LRGUVC2": {
-                "type": "number",
-                "description": "CSU width expressed in cm",
-                "minimum": 0,
-                "maximum": 999.99,
-                "multipleOf": 0.01
-              },
-              "CODMNN": {
-                "type": "string",
-                "description": "Handling rule code",
-                "maxLength": 3
-              }
-            }
-          },
-          "GEEX3003": {
-            "type": "object",
-            "description": "Product Additional 03 declaration",
-            "additionalProperties": false,
-            "properties": {
-              "CODCVI": {
-                "type": "string",
-                "description": "Wine color code",
-                "maxLength": 10
-              },
-              "NBJIMM": {
-                "type": "string",
-                "description": "Number of immobilization days",
-                "maxLength": 3
-              },
-              "NBHIMM": {
-                "type": "string",
-                "description": "Number of immobilization hours",
-                "maxLength": 3
-              },
-              "IMMLOT": {
-                "type": "string",
-                "description": "Immobilization reason applicable to a batch",
-                "maxLength": 3
-              },
-              "EMBUVC": {
-                "type": "string",
-                "description": "CSU packaging code",
-                "maxLength": 3
-              },
-              "CODMTI": {
-                "type": "string",
-                "description": "Commercial code",
-                "maxLength": 3
-              },
-              "CODOWN": {
-                "type": "string",
-                "description": "Owner code",
-                "maxLength": 14
-              },
-              "DS3PRO": {
-                "type": "string",
-                "description": "Product designation line 3",
-                "maxLength": 35
-              },
-              "CODRSQ": {
-                "type": "string",
-                "description": "Risk typology code",
-                "maxLength": 3
-              },
-              "INDTEM": {
-                "type": "string",
-                "description": "Flash point: product ignition temperature.",
-                "pattern": "^[0-9]{1,4}$"
-              },
-              "SENTEM": {
-                "type": "string",
-                "description": "Flash point direction",
-                "maxLength": 1
-              },
-              "CODITC": {
-                "type": "string",
-                "description": "Interlayer packaging",
-                "maxLength": 3
-              },
-              "QTEITC": {
-                "type": "string",
-                "description": "Quantity for the pallet standard",
-                "maxLength": 2
-              },
-              "CODFCQ": {
-                "type": "string",
-                "description": "Quality control sheet code",
-                "maxLength": 3
-              }
-            }
-          },
-          "GEEX3004": {
-            "type": "object",
-            "description": "Product Additional 04 declaration",
-            "additionalProperties": false,
-            "properties": {
-              "CODCMM": {
-                "type": "array",
-                "description": "Material account code (multi-material)",
-                "maxItems": 5,
-                "items": {
-                  "type": "string",
-                  "description": "Material account code (multi-material)",
-                  "maxLength": 5
-                }
-              },
-              "QTECMM": {
-                "type": "array",
-                "description": "Quantity of material",
-                "maxItems": 5,
-                "items": {
-                  "type": "string",
-                  "description": "Quantity of material",
-                  "pattern": "^[0-9]{1,10}\\.[0-9]{3}$",
-                  "examples": ["1000.000"]
-                }
-              },
-              "NUMACS": {
-                "type": "string",
-                "description": "Excise duty number (Alcohol)",
-                "maxLength": 4
-              },
-              "NUMACS1": {
-                "type": "string",
-                "description": "Excise duty product code",
-                "maxLength": 4
-              },
-              "NUMACS2": {
-                "type": "string",
-                "description": "Excise duty product code",
-                "maxLength": 4
-              },
-              "NUMACS3": {
-                "type": "string",
-                "description": "Excise duty product code",
-                "maxLength": 4
-              },
-              "NUMACS4": {
-                "type": "string",
-                "description": "Excise duty product code",
-                "maxLength": 4
-              },
-              "NUMACS5": {
-                "type": "string",
-                "description": "Excise duty product code",
-                "maxLength": 4
-              }
-            }
-          },
-          "GEEX3010": {
-            "type": "array",
-            "description": "Product components declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CODPRN": {
-                  "type": "string",
-                  "description": "Product code from a bill of materials (Same as PRODN)",
-                  "maxLength": 17
-                },
-                "CODPRO": {
-                  "type": "string",
-                  "description": "Internal product code",
-                  "maxLength": 17
-                },
-                "NBRCPS": {
-                  "type": "string",
-                  "description": "Number of components required",
-                  "maxLength": 4
-                },
-                "ACTCPS": {
-                  "type": "string",
-                  "description": "Component activity code",
-                  "maxLength": 3
-                },
-                "ORDCPS": {
-                  "type": "string",
-                  "description": "Component order number",
-                  "maxLength": 4
-                },
-                "TYPCPS": {
-                  "type": "string",
-                  "description": "Component indicator / 1 = Main, 2 = Secondary",
-                  "enum": ["1", "2"]
-                },
-                "DVSCPS": {
-                  "type": "string",
-                  "description": "Divisor of the number of components required",
-                  "maxLength": 4
-                },
-                "UNIPRN": {
-                  "type": "string",
-                  "description": "Unit produced with the component",
-                  "maxLength": 3
-                }
-              }
-            }
-          },
-          "GEEX3020": {
-            "type": "array",
-            "description": "Product EAN declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "EDIPRO": {
-                  "type": "string",
-                  "description": "Product code for EDI",
-                  "minLength": 1,
-                  "maxLength": 17
-                },
-                "EANDS1": {
-                  "type": "string",
-                  "description": "Designation linked to the EAN code",
-                  "maxLength": 30
-                },
-                "EDIPRM": {
-                  "type": "boolean",
-                  "description": "Main EDI code identification / false = Secondary code, true = Primary code"
-                },
-                "EDIQLF": {
-                  "type": "string",
-                  "description": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
-                  "enum": ["0", "1", "2", "3", "4", "5"]
-                },
-                "EANVTE": {
-                  "type": "boolean",
-                  "description": "Sale EAN",
-                  "default": false
-                }
-              },
-              "required": ["EDIPRO", "EDIPRM", "EDIQLF"]
-            }
-          },
-          "GEEX3030": {
-            "type": "array",
-            "description": "Product multi-language declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CODLGE": {
-                  "type": "string",
-                  "description": "Language code",
-                  "minLength": 3,
-                  "maxLength": 3
-                },
-                "DS1PRO": {
-                  "type": "string",
-                  "description": "Product designation line 1",
-                  "minLength": 1,
-                  "maxLength": 30
-                },
-                "DS2PRO": {
-                  "type": "string",
-                  "description": "Product designation line 2",
-                  "maxLength": 30
-                },
-                "DESPRO": {
-                  "type": "array",
-                  "description": "Product designation lines",
-                  "maxItems": 2,
-                  "items": {
-                    "type": "string",
-                    "description": "Product designation lines",
-                    "maxLength": 35
-                  }
-                }
-              },
-              "required": ["CODLGE", "DS1PRO"]
-            }
-          },
-          "GEEX3040": {
-            "type": "array",
-            "description": "Product ICPE declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "CODRIC": {
-                  "type": "string",
-                  "description": "ICPE heading code",
-                  "maxLength": 5
-                },
-                "QTERIC": {
-                  "type": "string",
-                  "description": "Authorized quantity for an ICPE heading",
-                  "pattern": "^[0-9]{1,10}\\.[0-9]{2}$",
-                  "examples": ["1000.00"]
-                },
-                "CODSRB": {
-                  "type": "string",
-                  "description": "Sub-heading code",
-                  "maxLength": 2
-                },
-                "CODRIC2": {
-                  "type": "string",
-                  "description": "ICPE heading code",
-                  "maxLength": 12
-                },
-                "TYPRIC": {
-                  "type": "string",
-                  "description": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
-                  "enum": ["0", "1", "2", "9"]
-                }
-              }
-            }
-          },
-          "GEEX3050": {
-            "type": "array",
-            "description": "Product rubriques declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "TYPRUB": {
-                  "type": "string",
-                  "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
-                  "enum": ["1", "2"],
-                  "default": "2"
-                },
-                "CODRUB": {
-                  "type": "string",
-                  "description": "Section code",
-                  "minLength": 1,
-                  "maxLength":4
-                },
-                "VALRUB": {
-                  "type": "string",
-                  "description": "Item value",
-                  "minLength": 1,
-                  "maxLength": 35
-                }
-              },
-              "required": ["TYPRUB", "CODRUB", "VALRUB"]
-            }
-          },
-          "GEEX3060": {
-            "type": "array",
-            "description": "Product Satellite declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "IDEPSA1": {
-                  "type": "string",
-                  "description": "Product satellite data identifier",
-                  "maxLength": 3
-                },
-                "CODPSA1": {
-                  "type": "string",
-                  "description": "Product satellite data code",
-                  "maxLength": 10
-                },
-                "LIBPSA1": {
-                  "type": "string",
-                  "description": "Product satellite data label",
-                  "maxLength": 70
-                },
-                "IDEPSA2": {
-                  "type": "string",
-                  "description": "Product satellite data identifier",
-                  "maxLength": 3
-                },
-                "CODPSA2": {
-                  "type": "string",
-                  "description": "Product satellite data code",
-                  "maxLength": 10
-                },
-                "LIBPSA2": {
-                  "type": "string",
-                  "description": "Product satellite data label",
-                  "maxLength": 70
-                }
-              }
-            }
-          },
-          "GEEX3080": {
-            "type": "array",
-            "description": "Product replacement declaration",
-            "maxItems": 99,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "RPLPRO": {
-                  "type": "string",
-                  "description": "Internal replacement product code",
-                  "minLength": 1,
-                  "maxLength": 17
-                },
-                "RPLVAL": {
-                  "type": "string",
-                  "description": "Logistics variant (Gencod) of replaced product",
-                  "pattern": "^[0-9]{1,2}$"
-                },
-                "FACCON": {
-                  "type": "string",
-                  "description": "Conversion factor",
-                  "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
-                "examples": ["1.00"]
-                }
-              },
-              "required": ["RPLPRO", "FACCON"]
-            }
-          }
-        },
-        "required": ["TRTEXC", "CODACT", "CODPRO", "DS1PRO"]
-      }
+				"$ref": "#/$defs/GEEX3000"
+			}
     }
   },
-  "required": ["productMasterData"]
+  "required": ["productMasterData"],
+  "$defs": {
+    "GEEX3000": {
+      "description": "Master Data declaration",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "CODPRO": {
+          "description": "Internal product code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 17
+        },
+        "VALPRO": {
+          "description": "Logistics variant (Gencod)",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "DS1PRO": {
+          "description": "Product designation line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "DS2PRO": {
+          "description": "Product designation line 2",
+          "type": "string",
+          "maxLength": 30
+        },
+        "FOUPRO": {
+          "description": "Product supplier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "VAPPRO": {
+          "description": "Supply variant (Gencod)",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "FAMPRO": {
+          "description": "Product classification family",
+          "type": "string",
+          "maxLength": 10
+        },
+        "ANAPRO": {
+          "description": "Product analysis code",
+          "type": "string",
+          "maxLength": 15
+        },
+        "EDIPRO": {
+          "description": "Product code for EDI",
+          "type": "string",
+          "maxLength": 17
+        },
+        "SPCPRO": {
+          "description": "Product sub-pack quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999
+        },
+        "PCBPRO": {
+          "description": "Product pack quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999
+        },
+        "UNIPRO": {
+          "description": "Product unit of measure",
+          "type": "string",
+          "maxLength": 3
+        },
+        "MESPRO": {
+          "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+          "$ref": "#/$defs/Enums/EnumMESPRO"
+        },
+        "PDBUVC": {
+          "description": "CSU gross weight in kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "PDNUVC": {
+          "description": "CSU net weight in kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "HAUUVC": {
+          "description": "CSU height expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LNGUVC": {
+          "description": "CSU length expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LRGUVC": {
+          "description": "CSU width expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "PDBCOL": {
+          "description": "Package gross weight in kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "HAUCOL": {
+          "description": "Package height expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LNGCOL": {
+          "description": "Package length expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LRGCOL": {
+          "description": "Package width expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "COLCOU": {
+          "description": "Number of packages per layer",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999
+        },
+        "COUPAL": {
+          "description": "Number of layers per pallet",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999
+        },
+        "GERPAL": {
+          "description": "Number of pallet stacks in storage",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "GERHAU": {
+          "description": "Number of pallets stacked high",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "HAUCOU": {
+          "description": "Layer height expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "CODEMB": {
+          "description": "Package code handling",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ABCPRO": {
+          "description": "ABC product rotation class",
+          "type": "string",
+          "maxLength": 1
+        },
+        "CODMDR": {
+          "description": "Goods receipt method",
+          "type": "string",
+          "maxLength": 3
+        },
+        "MODREC": {
+          "description": "Receiving mode / 1 = Full Pallet, 2 = Unit",
+          "$ref": "#/$defs/Enums/EnumMODREC"
+        },
+        "NBJDLV": {
+          "description": "Number of DLV days",
+          "type": "string",
+          "maxLength": 3
+        },
+        "MOTIMM": {
+          "description": "Immobilization reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODMDS": {
+          "description": "Storage method code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ZONPRF": {
+          "description": "Preferred storage area",
+          "type": "string",
+          "maxLength": 1
+        },
+        "ALLPRF": {
+          "description": "Preferred storage aisle",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "ABCSTS": {
+          "description": "Storage class",
+          "type": "string",
+          "maxLength": 1
+        },
+        "CODADM": {
+          "description": "Sheaf storage method",
+          "type": "string",
+          "maxLength": 3
+        },
+        "HOMGRB": {
+          "description": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
+          "$ref": "#/$defs/Enums/EnumHOMGRB"
+        },
+        "PERGRB": {
+          "description": "Pattern homogeneity period (rack/bulk)",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODMDP": {
+          "description": "Preparation process method",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TOPPRN": {
+          "description": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
+          "$ref": "#/$defs/Enums/EnumTOPPRN"
+        },
+        "ORIMAJ": {
+          "description": "Update origin",
+          "type": "string",
+          "maxLength": 1
+        },
+        "TOPPRO": {
+          "description": "Product indicator",
+          "type": "string",
+          "maxLength": 1
+        },
+        "GEEX3001": {
+          "description": "Product Additional 01 declaration",
+          "$ref": "#/$defs/GEEX3001Wrapper"
+        },
+        "GEEX3002": {
+          "description": "Product Additional 02 declaration",
+          "$ref": "#/$defs/GEEX3002Wrapper"
+        },
+        "GEEX3003": {
+          "description": "Product Additional 03 declaration",
+          "$ref": "#/$defs/GEEX3003Wrapper"
+        },
+        "GEEX3004": {
+          "description": "Product Additional 04 declaration",
+          "$ref": "#/$defs/GEEX3004Wrapper"
+        },
+        "GEEX3010": {
+          "description": "Product components declaration",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX3010Wrapper"
+          }
+        },
+        "GEEX3020": {
+          "description": "Product EAN declaration",
+          "type": "array",
+          "maxItems": 49,
+          "items": {
+            "$ref": "#/$defs/GEEX3020Wrapper"
+          }
+        },
+        "GEEX3030": {
+          "type": "array",
+          "description": "Product multi-language declaration",
+          "maxItems": 49,
+          "items": {
+            "$ref": "#/$defs/GEEX3030Wrapper"
+          }
+        },
+        "GEEX3040": {
+          "type": "array",
+          "description": "Product ICPE declaration",
+          "maxItems": 49,
+          "items": {
+            "$ref": "#/$defs/GEEX3040Wrapper"
+          }
+        },
+        "GEEX3050": {
+          "type": "array",
+          "description": "Product rubriques declaration",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX3050Wrapper"
+          }
+        },
+        "GEEX3060": {
+          "type": "array",
+          "description": "Product Satellite declaration",
+          "maxItems": 49,
+          "items": {
+            "$ref": "#/$defs/GEEX3060Wrapper"
+          }
+        },
+        "GEEX3080": {
+          "type": "array",
+          "description": "Product replacement declaration",
+          "maxItems": 49,
+          "items": {
+            "$ref": "#/$defs/GEEX3080Wrapper"
+          }
+        }
+      },
+      "required": ["TRTEXC", "CODACT", "CODPRO", "DS1PRO"],
+      "additionalProperties": false
+    },
+    "GEEX3001Wrapper": {
+      "description": "Product Additional 01 declaration",
+      "type": "object",
+      "properties": {
+        "INDPRO": {
+          "description": "Configurable product indicators",
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "description": "Configurable product indicators",
+            "type": "string",
+            "maxLength": 1
+          }
+        },
+        "CODMRQ": {
+          "description": "Manufacturer brand code",
+          "type": "string",
+          "maxLength": 8
+        },
+        "DESFOU": {
+          "description": "Product designation at the supplier",
+          "type": "string",
+          "maxLength": 30
+        },
+        "CIRDET": {
+          "description": "Detail picking preparation circuit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CIRPAL": {
+          "description": "Full pallet preparation circuit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "METRPL": {
+          "description": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
+          "$ref": "#/$defs/Enums/EnumMETRPL"
+        },
+        "CODRPL": {
+          "description": "Replacement product code",
+          "type": "string",
+          "maxLength": 17
+        },
+        "VALRPL": {
+          "description": "Logistics variant of the substitute product",
+          "type": "string",
+          "maxLength": 2
+        },
+        "CODALC": {
+          "description": "Liquor seal code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "DEGALC": {
+          "description": "Pure alcohol degree",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
+          "examples": ["12.50"]
+        },
+        "VOLALC": {
+          "description": "Beverage volume for liquor management",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}\\.[0-9]{3}$",
+          "examples": ["0.750"]
+        },
+        "CODMDG": {
+          "description": "Service management method code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TAUPST": {
+          "description": "Profit rate",
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "description": "Profit rate",
+            "type": "string",
+            "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
+            "examples": ["15.00"]
+          }
+        },
+        "COELOG": {
+          "description": "Logistics coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}\\.[0-9]{3}$",
+          "examples": ["1.000"]
+        },
+        "PRXPRO": {
+          "description": "Product price",
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "description": "Product price",
+            "type": "string",
+            "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+            "examples": ["10.500"]
+          }
+        },
+        "CODMDI": {
+          "description": "Cycle counting method",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NXTIVT": {
+          "description": "Date of next product inventory / format YYYYMMDD",
+          "type": "string",
+          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "SECSTK": {
+          "description": "Safety stock in CSU",
+          "type": "string",
+          "maxLength": 9
+        },
+        "CODMDF": {
+          "description": "Manufacturing process method",
+          "type": "string",
+          "maxLength": 3
+        },
+        "FMTFAB": {
+          "description": "Product manufacturing format",
+          "type": "string",
+          "maxLength": 5
+        },
+        "ACTFAB": {
+          "description": "Activity after manufacturing process",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODFAB": {
+          "description": "Product code after manufacturing",
+          "type": "string",
+          "maxLength": 17
+        },
+        "VRAFAB": {
+          "description": "Manufactured product code (For statistics)",
+          "type": "string",
+          "maxLength": 17
+        },
+        "VALFAB": {
+          "description": "Logistics variant (Gencod) of manufacturing",
+          "type": "string",
+          "maxLength": 2
+        },
+        "CODZVI": {
+          "description": "Wine production area code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "CODEAP": {
+          "description": "Packaging code associated with the product",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TOPCNA": {
+          "description": "Products with alcohol rate for the CNAMTS / false = not subject to tax , true = Subject to tax ",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3002Wrapper": {
+      "description": "Product Additional 02 declaration",
+      "type": "object",
+      "properties": {
+        "CODTMD": {
+          "description": "Dangerous goods transport code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "CODSEC": {
+          "description": "Safety code (Hazardous Materials)",
+          "type": "string",
+          "maxLength": 4
+        },
+        "CODSPE": {
+          "description": "Returnable product / false = Non-returnable, true = Returnable",
+          "type": "boolean",
+          "default": false
+        },
+        "UNIFAC": {
+          "description": "Billing unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "COEFAC": {
+          "description": "Billing coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1,7}\\.[0-9]{3}$",
+          "examples": ["1.000"]
+        },
+        "SECDLV": {
+          "description": "Number of safety days in addition to DLV",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODRGP": {
+          "description": "Product grouping code",
+          "type": "string",
+          "maxLength": 17
+        },
+        "CODRSC": {
+          "description": "Product hazard type code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "PROEAP": {
+          "description": "Associated packaging code for the interface",
+          "type": "string",
+          "maxLength": 17
+        },
+        "VTLPRO": {
+          "description": "Indicator for product to be broken down",
+          "type": "string",
+          "maxLength": 1
+        },
+        "CIRVTL": {
+          "description": "Breakdown circuit code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "INFEXP": {
+          "description": "Inventory number (Alcohol Customs)",
+          "type": "string",
+          "maxLength": 16
+        },
+        "CODMTR": {
+          "description": "Materials accounting",
+          "type": "string",
+          "maxLength": 5
+        },
+        "TEMPRE": {
+          "description": "Recommended temperature for the product",
+          "type": "string",
+          "maxLength": 3
+        },
+        "QTELOT": {
+          "description": "Quantity for batch size management",
+          "type": "string",
+          "maxLength": 9
+        },
+        "UNILOT": {
+          "description": "Unit for batch size management",
+          "type": "string",
+          "maxLength": 3
+        },
+        "UNIARR": {
+          "description": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
+          "$ref": "#/$defs/Enums/EnumUNIARR"
+        },
+        "UNICAL": {
+          "description": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
+          "$ref": "#/$defs/Enums/EnumUNICAL"
+        },
+        "TEMMIN": {
+          "description": "Minimum temperature",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TEMMAX": {
+          "description": "Maximum temperature",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TOLPOI": {
+          "description": "Package weight deviation tolerance",
+          "type": "string",
+          "maxLength": 3
+        },
+        "COECOL": {
+          "description": "Package expansion coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1}\\.[0-9]{3}$",
+          "examples": ["1.000"]
+        },
+        "COESPC": {
+          "description": "SPCB expansion coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1}\\.[0-9]{3}$",
+          "examples": ["1.000"]
+        },
+        "COEUVC": {
+          "description": "CSU expansion coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1}\\.[0-9]{3}$",
+          "examples": ["1.000"]
+        },
+        "INDTOL": {
+          "description": "Weight tolerance indicator / false = No tolerance, true = Tolerance",
+          "type": "boolean",
+          "default": false
+        },
+        "HAUSPC": {
+          "description": "SPCB height",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LNGSPC": {
+          "description": "SPCB length expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "LRGSPC": {
+          "description": "SPCB width expressed in cm",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "PDBSPC": {
+          "description": "SPCB gross weight in kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "CODMDT": {
+          "description": "Traceability method code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ETIMTR": {
+          "description": "Materials labeling code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODPHR": {
+          "description": "Risk phrase code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NBJFVI": {
+          "description": "Product shelf life",
+          "type": "string",
+          "maxLength": 4
+        },
+        "CODGAM": {
+          "description": "Operation range code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "CODQLP": {
+          "description": "Product qualifier code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "EMBCLQ": {
+          "description": "LQ packaging type",
+          "$ref": "#/$defs/Enums/EnumEMBCLQ"
+        },
+        "CTRPRP": {
+          "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
+          "type": "boolean",
+          "default": false
+        },
+        "CODRDS": {
+          "description": "Storage restriction code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "HAUCOL2": {
+          "description": "Package height expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "HAUCOU2": {
+          "description": "Layer height expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "HAUSPC2": {
+          "description": "SPCB height in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "HAUUVC2": {
+          "description": "CSU height expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LNGCOL2": {
+          "description": "Package length expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LNGSPC2": {
+          "description": "SPCB length expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LNGUVC2": {
+          "description": "CSU length expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LRGCOL2": {
+          "description": "Package width expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LRGSPC2": {
+          "description": "SPCB width expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "LRGUVC2": {
+          "description": "CSU width expressed in cm",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 999.99,
+          "multipleOf": 0.01
+        },
+        "CODMNN": {
+          "description": "Handling rule code",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3003Wrapper": {
+      "description": "Product Additional 03 declaration",
+      "type": "object",
+      "properties": {
+        "CODCVI": {
+          "description": "Wine color code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "NBJIMM": {
+          "description": "Number of immobilization days",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NBHIMM": {
+          "description": "Number of immobilization hours",
+          "type": "string",
+          "maxLength": 3
+        },
+        "IMMLOT": {
+          "description": "Immobilization reason applicable to a batch",
+          "type": "string",
+          "maxLength": 3
+        },
+        "EMBUVC": {
+          "description": "CSU packaging code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODMTI": {
+          "description": "Commercial code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODOWN": {
+          "description": "Owner code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DS3PRO": {
+          "description": "Product designation line 3",
+          "type": "string",
+          "maxLength": 35
+        },
+        "CODRSQ": {
+          "description": "Risk typology code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "INDTEM": {
+          "description": "Flash point: product ignition temperature.",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "SENTEM": {
+          "description": "Flash point direction",
+          "type": "string",
+          "maxLength": 1
+        },
+        "CODITC": {
+          "description": "Interlayer packaging",
+          "type": "string",
+          "maxLength": 3
+        },
+        "QTEITC": {
+          "description": "Quantity for the pallet standard",
+          "type": "string",
+          "maxLength": 2
+        },
+        "CODFCQ": {
+          "description": "Quality control sheet code",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3004Wrapper": {
+      "description": "Product Additional 04 declaration",
+      "type": "object",
+      "properties": {
+        "CODCMM": {
+          "description": "Material account code (multi-material)",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "description": "Material account code (multi-material)",
+            "type": "string",
+            "maxLength": 5
+          }
+        },
+        "QTECMM": {
+          "description": "Quantity of material",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "description": "Quantity of material",
+            "type": "string",
+            "pattern": "^[0-9]{1,10}\\.[0-9]{3}$",
+            "examples": ["1000.000"]
+          }
+        },
+        "NUMACS": {
+          "description": "Excise duty number (Alcohol)",
+          "type": "string",
+          "maxLength": 4
+        },
+        "NUMACS1": {
+          "description": "Excise duty product code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "NUMACS2": {
+          "description": "Excise duty product code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "NUMACS3": {
+          "description": "Excise duty product code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "NUMACS4": {
+          "description": "Excise duty product code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "NUMACS5": {
+          "description": "Excise duty product code",
+          "type": "string",
+          "maxLength": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3010Wrapper": {
+      "description": "Product components declaration",
+      "type": "object",
+      "properties": {
+        "CODPRN": {
+          "description": "Product code from a bill of materials (Same as PRODN)",
+          "type": "string",
+          "maxLength": 17
+        },
+        "CODPRO": {
+          "description": "Internal product code",
+          "type": "string",
+          "maxLength": 17
+        },
+        "NBRCPS": {
+          "description": "Number of components required",
+          "type": "string",
+          "maxLength": 4
+        },
+        "ACTCPS": {
+          "description": "Component activity code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ORDCPS": {
+          "description": "Component order number",
+          "type": "string",
+          "maxLength": 4
+        },
+        "TYPCPS": {
+          "description": "Component indicator / 1 = Main, 2 = Secondary",
+          "$ref": "#/$defs/Enums/EnumTYPCPS"
+        },
+        "DVSCPS": {
+          "description": "Divisor of the number of components required",
+          "type": "string",
+          "maxLength": 4
+        },
+        "UNIPRN": {
+          "description": "Unit produced with the component",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3020Wrapper": {
+      "description": "Product EAN declaration",
+      "type": "object",
+      "properties": {
+        "EDIPRO": {
+          "description": "Product code for EDI",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 17
+        },
+        "EANDS1": {
+          "description": "Designation linked to the EAN code",
+          "type": "string",
+          "maxLength": 30
+        },
+        "EDIPRM": {
+          "description": "Main EDI code identification / false = Secondary code, true = Primary code",
+          "type": "boolean"          
+        },
+        "EDIQLF": {
+          "description": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
+          "$ref": "#/$defs/Enums/EnumEDIQLF"
+        },
+        "EANVTE": {
+          "description": "Sale EAN / false = Not for sale, true = For sale",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["EDIPRO", "EDIPRM", "EDIQLF"],
+      "additionalProperties": false
+    },
+    "GEEX3030Wrapper": {
+      "description": "Product multi-language declaration",
+      "type": "object",
+      "properties": {
+        "CODLGE": {
+          "description": "Language code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "DS1PRO": {
+          "description": "Product designation line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "DS2PRO": {
+          "description": "Product designation line 2",
+          "type": "string",
+          "maxLength": 30
+        },
+        "DESPRO": {
+          "description": "Product designation lines",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Product designation lines",
+            "type": "string",
+            "maxLength": 35
+          }
+        }
+      },
+      "required": ["CODLGE", "DS1PRO"],
+      "additionalProperties": false
+    },
+    "GEEX3040Wrapper": {
+      "description": "Product ICPE declaration",
+      "type": "object",
+      "properties": {
+        "CODRIC": {
+          "description": "ICPE heading code",
+          "type": "string",
+          "maxLength": 5
+        },
+        "QTERIC": {
+          "description": "Authorized quantity for an ICPE heading",
+          "type": "string",
+          "pattern": "^[0-9]{1,10}\\.[0-9]{2}$",
+          "examples": ["1000.00"]
+        },
+        "CODSRB": {
+          "description": "Sub-heading code",
+          "type": "string",
+          "maxLength": 2
+        },
+        "CODRIC2": {
+          "description": "ICPE heading code",
+          "type": "string",
+          "maxLength": 12
+        },
+        "TYPRIC": {
+          "description": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
+          "$ref": "#/$defs/Enums/EnumTYPRIC"
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3050Wrapper": {
+      "description": "Product rubriques declaration",
+      "type": "object",
+      "properties": {
+        "TYPRUB": {
+          "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
+          "$ref": "#/$defs/Enums/EnumTYPRUB"
+        },
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength":4
+        },
+        "VALRUB": {
+          "description": "Item value",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["TYPRUB", "CODRUB", "VALRUB"],
+      "additionalProperties": false
+    },
+    "GEEX3060Wrapper": {
+      "description": "Product Satellite declaration",
+      "type": "object",
+      "properties": {
+        "IDEPSA1": {
+          "description": "Product satellite data identifier",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODPSA1": {
+          "description": "Product satellite data code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "LIBPSA1": {
+          "description": "Product satellite data label",
+          "type": "string",
+          "maxLength": 70
+        },
+        "IDEPSA2": {
+          "description": "Product satellite data identifier",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODPSA2": {
+          "description": "Product satellite data code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "LIBPSA2": {
+          "description": "Product satellite data label",
+          "type": "string",
+          "maxLength": 70
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX3080Wrapper": {
+      "description": "Product replacement declaration",
+      "type": "object",
+      "properties": {
+        "RPLPRO": {
+          "description": "Internal replacement product code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 17
+        },
+        "RPLVAL": {
+          "description": "Logistics variant (Gencod) of replaced product",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "FACCON": {
+          "description": "Conversion factor",
+          "type": "string",
+          "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
+          "examples": ["1.00"]
+        }
+      },
+      "required": ["RPLPRO", "FACCON"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "9"],
+        "default": "2"
+      },
+      "EnumMESPRO": {
+        "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+        "type": "string",
+        "enum": ["1", "2", "3"],
+        "default": "1"
+      },
+      "EnumMODREC": {
+        "description": "Receiving mode / 1 = Full Pallet, 2 = Unit",
+        "type": "string",
+        "enum": ["1", "2"],
+        "default": "1"
+      },
+      "EnumHOMGRB": {
+        "description": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
+        "type": "string",
+        "enum": ["0", "1", "2", "3", "4", "5"],
+        "default": "0"
+      },
+      "EnumTOPPRN": {
+        "description": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
+        "type": "string",
+        "enum": ["0", "1"],
+        "default": "0"
+      },
+      "EnumMETRPL": {
+        "description": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
+        "type": "string",
+        "enum": ["0", "1", "2"],
+        "default": "0"
+      },
+      "EnumUNIARR": {
+        "description": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
+        "type": "string",
+        "enum": ["1", "2", "3", "4", "5"]
+      },
+      "EnumUNICAL": {
+        "description": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
+        "type": "string",
+        "enum": ["1", "2", "3"]
+      },
+      "EnumEMBCLQ": {
+        "description": "LQ packaging type / 1 = Box, 2 = Pallet",
+        "type": "string",
+        "enum": ["1", "2"]
+      },
+      "EnumTYPCPS": {
+        "description": "Component indicator / 1 = Main, 2 = Secondary",
+        "type": "string",
+        "enum": ["1", "2"]
+      },
+      "EnumEDIQLF": {
+        "description": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
+        "type": "string",
+        "enum": ["0", "1", "2", "3", "4", "5"]
+      },
+      "EnumTYPRIC": {
+        "description": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
+        "type": "string",
+        "enum": ["0", "1", "2", "9"]
+      },
+      "EnumTYPRUB": {
+        "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "type": "string",
+        "enum": ["1","2"],
+        "default": "2"
+      }
+    }
+  }
 }

@@ -555,6 +555,13 @@
         <p>Consulta y descarga las distintas versiones publicadas de los esquemas JSON.</p>
         <span class="card-link">Ver versiones</span>
       </div>
+      <div class="card" id="resp-card" style="display:none" onclick="openEndpoint(CONFIG.responsesFolder)">
+        <div class="card-icon">↩</div>
+        <div class="card-meta"><span class="badge badge-cat">Schema</span></div>
+        <h3>Respuestas</h3>
+        <p>Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.</p>
+        <span class="card-link">Ver respuestas</span>
+      </div>
     </div>
   </section>
 
@@ -684,6 +691,7 @@ const CONFIG = {
   branch:      'main',
   contentPath: 'Messages',   // carpeta raíz con los subfolders
   versionsPath: 'Versions',  // carpeta con las versiones de esquemas
+  responsesFolder: 'Responses', // carpeta con las respuestas
   token:       ''
 };
 
@@ -727,9 +735,13 @@ async function init() {
   renderSkeletons(6);
   try {
     const tree    = await loadRepoTree();
-    const folders = buildCacheFromTree(tree);
+    const allFolders = buildCacheFromTree(tree);
+    const folders = allFolders.filter(f => f !== CONFIG.responsesFolder);
 
     if (!folders.length) { showEmpty('No hay endpoints publicados todavía.'); return; }
+
+    const respCard = document.getElementById('resp-card');
+    if (respCard) respCard.style.display = allFolders.includes(CONFIG.responsesFolder) ? '' : 'none';
 
     const settled = await Promise.allSettled(folders.map(f => loadCard(f)));
     const eps = settled

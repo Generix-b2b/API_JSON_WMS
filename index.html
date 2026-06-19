@@ -1016,7 +1016,7 @@ function renderEstructura(schema, folder, schemaFileName) {
     const id = `blk-${i}`;
     const snippet = JSON.stringify({ [blk.jsonKey || blk.label]: blk.schemaSnippet }, null, 2);
     const fieldTbl = buildFieldTable(blk.properties, blk.required);
-    navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(blk.label)}</button>`;
+    navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(blk.label.replace(/Wrapper$/i, ''))}</button>`;
     bodyHtml += `
       <div class="block-wrap" id="${id}">
         <div class="block-grid">

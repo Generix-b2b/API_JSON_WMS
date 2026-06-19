@@ -15,20 +15,24 @@
   "type": "object",
   "properties": {
     "status": {
-      "statusReceptionOrders": {
-        "description": "Status Reception Orders",
-        "type": "array",
-        "maxItems": 499,
-        "items": {
-          "$ref": "#/$defs/GEEX9740"
-        }
-      },
-      "statusDeliveryOrders": {
-        "description": "Status Delivery Orders",
-        "type": "array",
-        "maxItems": 499,
-        "items": {
-          "$ref": "#/$defs/GEEX9750"
+      "description": "Status Reception Orders",
+      "type": "object",
+      "properties": {
+        "statusReceptionOrders": {
+          "description": "Status Reception Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9740"
+          }
+        },
+        "statusDeliveryOrders": {
+          "description": "Status Delivery Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9750"
+          }
         }
       },
       "oneOf": [
@@ -42,7 +46,6 @@
     }
   },
   "required": ["status"],
-  
   "$defs": {
     "GEEX9740": {
       "description": "Status Reception Orders",

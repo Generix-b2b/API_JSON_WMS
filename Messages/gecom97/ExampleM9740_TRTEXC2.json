@@ -1,60 +1,62 @@
 {
-  "statusReceptionOrders": [
-    {
-      "TRTEXC": "2",
-      "DATEXC": "20260617",
-      "HEUEXC": "080015",
-      "CODACT": "WMS",
-      "REFREC": "REC-2026-000001",
-      "ETAREC": "20",
-      "CODFOU": "FOU0001",
-      "CODTRE": "STD"
-    },
-    {
-      "TRTEXC": "2",
-      "EMTEXC": "SITE-WMS-01",
-      "RCTEXC": "ERP-CLIENT",
-      "DATEXC": "20260618",
-      "HEUEXC": "094530",
-      "CODACT": "WMS",
-      "NUMREC": "10000001",
-      "SNUREC": "001",
-      "REFREC": "REC-2026-000001",
-      "BLOREC": false,
-      "ETAREC": "30",
-      "CODFOU": "FOU0001"
-    },
-    {
-      "TRTEXC": "2",
-      "DATEXC": "20260618",
-      "HEUEXC": "113000",
-      "CODACT": "WMS",
-      "NUMREC": "10000001",
-      "SNUREC": "001",
-      "REFREC": "REC-2026-000001",
-      "ETAREC": "40",
-      "CODFOU": "FOU0001",
-      "CODTRE": "STD",
-      "VALRUB": "CONFIRMADO"
-    },
-    {
-      "TRTEXC": "2",
-      "DATEXC": "20260618",
-      "HEUEXC": "150000",
-      "CODACT": "WMS",
-      "REFREC": "REC-2026-000002",
-      "BLOREC": true,
-      "ETAREC": "90",
-      "CODFOU": "FOU0002"
-    },
-    {
-      "TRTEXC": "2",
-      "DATEXC": "20260619",
-      "HEUEXC": "080000",
-      "CODACT": "WMS",
-      "REFREC": "REC-2026-000003",
-      "ETAREC": "95",
-      "CODFOU": "FOU0003"
-    }
-  ]
+  "status": {
+    "statusReceptionOrders": [
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260617",
+        "HEUEXC": "080015",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000001",
+        "ETAREC": "20",
+        "CODFOU": "FOU0001",
+        "CODTRE": "STD"
+      },
+      {
+        "TRTEXC": "2",
+        "EMTEXC": "SITE-WMS-01",
+        "RCTEXC": "ERP-CLIENT",
+        "DATEXC": "20260618",
+        "HEUEXC": "094530",
+        "CODACT": "WMS",
+        "NUMREC": "10000001",
+        "SNUREC": "001",
+        "REFREC": "REC-2026-000001",
+        "BLOREC": false,
+        "ETAREC": "30",
+        "CODFOU": "FOU0001"
+      },
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260618",
+        "HEUEXC": "113000",
+        "CODACT": "WMS",
+        "NUMREC": "10000001",
+        "SNUREC": "001",
+        "REFREC": "REC-2026-000001",
+        "ETAREC": "40",
+        "CODFOU": "FOU0001",
+        "CODTRE": "STD",
+        "VALRUB": "CONFIRMADO"
+      },
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260618",
+        "HEUEXC": "150000",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000002",
+        "BLOREC": true,
+        "ETAREC": "90",
+        "CODFOU": "FOU0002"
+      },
+      {
+        "TRTEXC": "2",
+        "DATEXC": "20260619",
+        "HEUEXC": "080000",
+        "CODACT": "WMS",
+        "REFREC": "REC-2026-000003",
+        "ETAREC": "95",
+        "CODFOU": "FOU0003"
+      }
+    ]
+  }
 }

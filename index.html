@@ -446,6 +446,9 @@
   .file-btn:hover { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
   .file-btn--primary { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
   .file-btn--primary:hover { background:var(--generix-orange-hover); }
+  .ejemplo-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; align-items:start; }
+  @media (max-width:1100px) { .ejemplo-grid { grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:700px)  { .ejemplo-grid { grid-template-columns:1fr; } }
 
   /* ── FOOTER ─────────────────────────────────────────── */
   footer { background:var(--generix-dark); color:var(--white); padding:56px 32px 28px; position:relative; }
@@ -1411,7 +1414,7 @@ function renderEjemplo(examples, folder) {
     return;
   }
 
-  let html = '';
+  let html = '<div class="ejemplo-grid">';
   examples.forEach((ex, i) => {
     const formatted = fmtJSON(ex.raw);
     _examples.push(formatted);
@@ -1440,6 +1443,7 @@ function renderEjemplo(examples, folder) {
         </div>
       </div>`;
   });
+  html += '</div>';
   inner.innerHTML = html;
 }
 

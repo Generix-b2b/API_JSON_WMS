@@ -1089,6 +1089,17 @@ function renderEstructura(schema, folder, schemaFileName) {
               <p><strong>Tipo:</strong> <span class="tag-type">${esc(blk.type || 'object')}</span></p>
               ${blk.required && blk.required.length ? `<p><strong>Obligatorios:</strong> <span class="tag-req">${esc(blk.required.join(', '))}</span></p>` : ''}
               ${blk.constraints ? `<p><strong>Restricciones:</strong> ${esc(blk.constraints)}</p>` : ''}
+              ${(() => {
+                if (!blk.oneOf || !blk.oneOf.length) return '';
+                const opts = blk.oneOf.map(o => (o.required || []).join(' + ')).filter(Boolean);
+                if (!opts.length) return '';
+                return `<div style="margin-top:10px;background:#fff7ed;border-left:3px solid var(--generix-orange);
+                          padding:10px 12px;border-radius:4px">
+                  <strong style="color:var(--generix-orange-hover)">⚠️ Exclusivo (oneOf):</strong>
+                  se debe incluir <u>solo uno</u> de:
+                  ${opts.map(o => `<span class="tag-req" style="margin:2px">${esc(o)}</span>`).join(' o ')}
+                </div>`;
+              })()}
             </div>
           </div>
         </div>
@@ -1124,7 +1135,7 @@ function extractBlocks(schema, defs) {
         }
       }
     } else if (type === 'object' && prop.properties) {
-      blocks.push({ label: key, type: 'object', description: prop.description || '', schemaSnippet: trimSchema(prop, true), properties: prop.properties, required: prop.required || [] });
+      blocks.push({ label: key, type: 'object', description: prop.description || '', schemaSnippet: trimSchema(prop, true), properties: prop.properties, required: prop.required || [], oneOf: prop.oneOf || null });
     }
   }
   // Schemas con definitions/$defs: un bloque por cada definición tipo objeto
@@ -1137,7 +1148,8 @@ function extractBlocks(schema, defs) {
         description: def.description || '',
         schemaSnippet: trimSchema(def, true),
         properties: def.properties,
-        required: def.required || []
+        required: def.required || [],
+        oneOf: def.oneOf || null
       });
       addedLabels.add(name);
     }

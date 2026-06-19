@@ -1,0 +1,78 @@
+{
+  "customerMasterData": [
+    {
+      "TRTEXC": "1",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0001",
+      "TYPCLI": "1",
+      "NOMCLI": "Supermercados Norte S.L.",
+      "AD1CLI": "Calle Gran Vía 100",
+      "CPOCLI": "48015",
+      "VILCLI": "Bilbao",
+      "PAYCLI": "ES"
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "TYPCLI": "1",
+      "CATCLI": "RED",
+      "CLILIV": "CLI0002",
+      "EDICLI": "EDICLI0002",
+      "NOMCLI": "Hipermercados Levante S.A.",
+      "AD1CLI": "Avenida del Puerto 200",
+      "AD2CLI": "Polígono Industrial Norte",
+      "AD3CLI": "Nave 5",
+      "CPOCLI": "46011",
+      "VILCLI": "Valencia",
+      "PAYCLI": "ESP",
+      "TELCLI": "+34963111111",
+      "FAXCLI": "+34963111112",
+      "CODLGE": "ESP",
+      "CODDEV": "EUR",
+      "IGLSIT": "2",
+      "PTYCLI": "001",
+      "ETACLI": "40",
+      "CODCLV": "CLV1",
+      "GEEX2001": {
+        "RSPCLI": "María López Sánchez",
+        "CODMOP": "MA1",
+        "CODRGT": "Z02",
+        "CODTRA": "TRANSP001",
+        "TOULIV": ["0010", "0020"],
+        "ORDLIV": ["0001", "0002"],
+        "KAILIV": ["12", "14"],
+        "GSTALC": "0",
+        "PTYDES": "20",
+        "TVACCE": "ES-B12345678",
+        "CTRPRP": true,
+        "CLIDAE": "A",
+        "GENAVI": "1",
+        "HEUCHV": false,
+        "CM1CLI": "Entregar en muelle trasero",
+        "CM2CLI": "Horario recepción: 08:00-14:00",
+        "EMLADR": "logistica@hipermercados-levante.es",
+        "LIBCPL": "Hipermercados Levante - Central",
+        "TYPDSV": "A",
+        "PTYSND": "1"
+      }
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "WMS",
+      "CODCLI": "PLF0001",
+      "TYPCLI": "3",
+      "NOMCLI": "Plataforma Logística Central",
+      "AD1CLI": "Carretera Nacional N-II km 30",
+      "CPICLI": "ES-19200",
+      "VILCLI": "Azuqueca de Henares",
+      "PAYCLI": "ESP",
+      "ETACLI": "30",
+      "GEEX2001": {
+        "CODMOP": "PL1",
+        "CODRGT": "Z00",
+        "TYPDES": "P"
+      }
+    }
+  ]
+}

@@ -8,263 +8,292 @@
     "method": "POST",
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.0",
+    "version": "v1.1",
     "releaseDate": "2026-06-17"
   },
-  "type": "object",
   "description": "JSON for updating the status of Reception Orders or Delivery Orders in the WMS",
+  "type": "object",
   "properties": {
-    "statusReceptionOrders": {
-      "type": "array",
+    "status": {
       "description": "Status Reception Orders",
-      "maxItems": 999,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "EMTEXC": {
-            "type": "string",
-            "description": "Sender site of the information to be processed",
-            "maxLength": 14
-          },
-          "RCTEXC": {
-            "type": "string",
-            "description": "Exchange recipient code",
-            "maxLength": 14
-          },
-          "DATEXC": {
-            "type": "string",
-            "description": "Exchange date / format YYYYMMDD",
-            "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
-            "examples": ["20250125"]
-          },
-          "HEUEXC": {
-            "type": "string",
-            "description": "Exchange time / format HHMMSS",
-            "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
-            "examples": ["143023"]
-          },
-          "CODACT": {
-            "type": "string",
-            "description": "Logistics activity code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "NUMREC": {
-            "type": "string",
-            "description": "Order number to be received",
-            "pattern": "^[0-9]{1,8}$"
-          },
-          "SNUREC": {
-            "type": "string",
-            "description": "Sub-number of the order to be received",
-            "pattern": "^[0-9]{1,3}$"
-          },
-          "REFREC": {
-            "type": "string",
-            "description": "Reception reference",
-            "minLength": 1,
-            "maxLength": 30
-          },
-          "BLOREC": {
-            "type": "boolean",
-            "description": "Reception block",
-            "default": false
-          },
-          "ETAREC": {
-            "type": "string",
-            "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
-            "enum": ["00", "10", "20", "30", "35", "40", "50", "90", "95"]
-          },
-          "CODFOU": {
-            "type": "string",
-            "description": "Supplier code",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "CODTRE": {
-            "type": "string",
-            "description": "Reception type code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "VALRUB": {
-            "type": "string",
-            "description": "Traceability element value array",
-            "minLength": 1,
-            "maxLength": 35
+      "type": "object",
+      "properties": {
+        "statusReceptionOrders": {
+          "description": "Status Reception Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9740"
           }
         },
-        "required": ["TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFREC", "ETAREC"]
-      }
-    },
-    "statusDeliveryOrders": {
-      "type": "array",
-      "description": "Status Delivery Orders",
-      "maxItems": 999,
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "EMTEXC": {
-            "type": "string",
-            "description": "Sender site of the information to be processed",
-            "maxLength": 14
-          },
-          "RCTEXC": {
-            "type": "string",
-            "description": "Exchange recipient code",
-            "maxLength": 14
-          },
-          "DATEXC": {
-            "type": "string",
-            "description": "Exchange date / format YYYYMMDD",
-            "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
-            "examples": ["20250125"]
-          },
-          "HEUEXC": {
-            "type": "string",
-            "description": "Exchange time / format HHMMSS",
-            "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
-            "examples": ["143023"]
-          },
-          "CODACT": {
-            "type": "string",
-            "description": "Logistics activity code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "NUMLIV": {
-            "type": "string",
-            "description": "Order number to be delivered",
-            "pattern": "^[0-9]{1,8}$"
-          },
-          "SNULIV": {
-            "type": "string",
-            "description": "Sub-number of the order to be delivered",
-            "pattern": "^[0-9]{1,3}$"
-          },
-          "REFLIV": {
-            "type": "string",
-            "description": "Delivery reference",
-            "minLength": 1,
-            "maxLength": 30
-          },
-          "BLOLIV": {
-            "type": "boolean",
-            "description": "Delivery block",
-            "default": false
-          },
-          "ETALIV": {
-            "type": "string",
-            "description": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
-            "enum": ["00", "10", "20", "30", "35", "40", "50", "60", "90", "95"]
-          },
-          "NUMVAG": {
-            "type": "string",
-            "description": "Preparation wave number",
-            "minLength": 1,
-            "maxLength": 8
-          },
-          "CODCLI": {
-            "type": "string",
-            "description": "Customer code",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "CODACL": {
-            "type": "string",
-            "description": "Code to cancel a delivery order",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "NUMTOU": {
-            "type": "string",
-            "description": "Round trip record number",
-            "minLength": 1,
-            "maxLength": 8
-          },
-          "ANLVAG": {
-            "type": "boolean",
-            "description": "Wave cancellation",
-            "default": false
-          },
-          "RUPTOT": {
-            "type": "boolean",
-            "description": "Total break indicator",
-            "default": false
-          },
-          "ACCRCP": {
-            "type": "string",
-            "description": "Reception access",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "CODEMT": {
-            "type": "string",
-            "description": "Sender code",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "KAILIV": {
-            "type": "string",
-            "description": "Shipping dock for loading",
-            "minLength": 1,
-            "maxLength": 3
-          },
-          "CODTLI": {
-            "type": "string",
-            "description": "Delivery type code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "VALRUB": {
-            "type": "string",
-            "description": "Traceability element value array",
-            "minLength": 1,
-            "maxLength": 35
-          },
-          "TOULIV": {
-            "type": "string",
-            "description": "Goods delivery round",
-            "minLength": 1,
-            "maxLength": 4
-          },
-          "CRILIV": {
-            "type": "string",
-            "description": "Order extraction criteria",
-            "minLength": 1,
-            "maxLength": 20
-          },
-          "CODOFT": {
-            "type": "string",
-            "description": "Carrier offer code",
-            "minLength": 1,
-            "maxLength": 14
+        "statusDeliveryOrders": {
+          "description": "Status Delivery Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9750"
           }
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["statusReceptionOrders"]
         },
-        "required": ["TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFLIV", "ETALIV"]
-      }
+        {
+          "required": ["statusDeliveryOrders"]
+        }
+      ]
     }
   },
-  "oneOf": [
-    {
-      "required": ["statusReceptionOrders"]
+  "required": ["status"],
+  "$defs": {
+    "GEEX9740": {
+      "description": "Status Reception Orders",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "EMTEXC": {
+          "description": "Sender site of the information to be processed",
+          "type": "string",
+          "maxLength": 14
+        },
+        "RCTEXC": {
+          "description": "Exchange recipient code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXC": {
+          "description": "Exchange date / format YYYYMMDD",
+          "type": "string",
+          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXC": {
+          "description": "Exchange time / format HHMMSS",
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
+          "examples": ["143023"]
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "NUMREC": {
+          "description": "Order number to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNUREC": {
+          "description": "Sub-number of the order to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFREC": {
+          "description": "Reception reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "BLOREC": {
+          "description": "Reception block / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ETAREC": {
+          "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
+          "$ref": "#/$defs/Enums/EnumETAREC"
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODTRE": {
+          "description": "Reception type code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "VALRUB": {
+          "description": "Traceability element value array",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFREC", "ETAREC"],
+      "additionalProperties": false
     },
-    {
-      "required": ["statusDeliveryOrders"]
+    "GEEX9750": {
+      "description": "Status Delivery Orders",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "EMTEXC": {
+          "description": "Sender site of the information to be processed",
+          "type": "string",
+          "maxLength": 14
+        },
+        "RCTEXC": {
+          "description": "Exchange recipient code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXC": {
+          "description": "Exchange date / format YYYYMMDD",
+          "type": "string",
+          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXC": {
+          "description": "Exchange time / format HHMMSS",
+          "type": "string",
+          "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
+          "examples": ["143023"]
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "NUMLIV": {
+          "description": "Order number to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNULIV": {
+          "description": "Sub-number of the order to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "BLOLIV": {
+          "description": "Delivery block / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ETALIV": {
+          "description": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
+          "$ref": "#/$defs/Enums/EnumETALIV"
+        },
+        "NUMVAG": {
+          "description": "Preparation wave number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8
+        },
+        "CODCLI": {
+          "description": "Customer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODACL": {
+          "description": "Code to cancel a delivery order",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "NUMTOU": {
+          "description": "Round trip record number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8
+        },
+        "ANLVAG": {
+          "description": "Wave cancellation",
+          "type": "boolean",
+          "default": false
+        },
+        "RUPTOT": {
+          "description": "Total break indicator / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ACCRCP": {
+          "description": "Reception access",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODEMT": {
+          "description": "Sender code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "KAILIV": {
+          "description": "Shipping dock for loading",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODTLI": {
+          "description": "Delivery type code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "VALRUB": {
+          "description": "Traceability element value array",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "TOULIV": {
+          "description": "Goods delivery round",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "CRILIV": {
+          "description": "Order extraction criteria",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "CODOFT": {
+          "description": "Carrier offer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        }
+      },
+      "required": ["TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFLIV", "ETALIV"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1","2","9"],
+        "default": "2"
+      },
+      "EnumETAREC": {
+        "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
+          "type": "string",
+        "enum": ["00", "10", "20", "30", "35", "40", "50", "90", "95"]
+      },
+      "EnumETALIV": {
+        "description": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
+        "type": "string",
+        "enum": ["00", "10", "20", "30", "35", "40", "50", "60", "90", "95"]
+      }
     }
-  ]
+  }
 }

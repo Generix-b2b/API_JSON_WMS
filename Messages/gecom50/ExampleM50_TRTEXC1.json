@@ -1,0 +1,124 @@
+{
+  "deliveryOrders": [
+    {
+      "TRTEXC": "1",
+      "REFLIV": "DEL-2026-000001",
+      "CODTLI": "STD",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0001",
+      "DTILIV": "20260622",
+      "HEILIV": "0930",
+      "CUMLIG": "1",
+      "GEEX5020": [
+        {
+          "NLILIV": "1",
+          "CODPRO": "PROD000001",
+          "UVCCDE": 10
+        }
+      ]
+    },
+    {
+      "TRTEXC": "1",
+      "NUMLIV": "20000002",
+      "SNULIV": "001",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "REFLIV": "DEL-2026-000002",
+      "CODTLI": "STD",
+      "DTILIV": "20260623",
+      "HEILIV": "1100",
+      "CLILIV": "DEST0001",
+      "TYPLIV": "1",
+      "CODMOP": "MA1",
+      "CODTRA": "TRANSP001",
+      "CODRGT": "Z01",
+      "TOULIV": "0010",
+      "ORDLIV": "0001",
+      "KAILIV": "12",
+      "MSGPRP": ["MANIPULAR CON CUIDADO", "FRAGIL"],
+      "MSGLIV": ["ENTREGA EN HORARIO COMERCIAL"],
+      "GSTALC": "0",
+      "CODSIT": "S01",
+      "IGLSIT": "1",
+      "CODBAS": "ESP",
+      "TYPCDE": false,
+      "CUMLIG": "2",
+      "CUMPOI": "00000135.500",
+      "CUMVOL": "00000085.250",
+      "CUMCOL": "0000005",
+      "GEEX5001": {
+        "TOPLIV": ["X"],
+        "DATEXP": "20260623",
+        "HEUEXP": "0800",
+        "REFCLI": "PO-CLI0002-2026-002",
+        "PTYCLI": "001",
+        "EDICLI": "EDICLI0002",
+        "DATCHT": "20260623",
+        "HEUCHT": "0700",
+        "NUMTOU": "00000010",
+        "DATLIV": "20260623",
+        "CODTTO": "T01",
+        "HLIMIN": "0900",
+        "HLIMAX": "1800",
+        "CODCLV": "CLV1",
+        "REFEXT": "EXTREF-0002"
+      },
+      "GEEX5005": [
+        {
+          "CODRUB": "TEMP",
+          "VALRUB": "AMBIENTE"
+        },
+        {
+          "CODRUB": "PRIO",
+          "VALRUB": "NORMAL"
+        }
+      ],
+      "GEEX5010": {
+        "NOMCLI": "Logistica Mediterranea S.A.",
+        "AD1CLI": "Avenida del Puerto 120",
+        "AD2CLI": "Polígono Industrial Norte",
+        "CPOCLI": "46011",
+        "VILCLI": "Valencia",
+        "TELCLI": "+34963000000",
+        "PAYCLI": "ESP",
+        "CATCLI": "RED",
+        "EMLADR": "recepcion@logmedi.com"
+      },
+      "GEEX5020": [
+        {
+          "NLILIV": "1",
+          "CODPRO": "PROD000010",
+          "VALPRO": "01",
+          "METRPL": "0",
+          "UVCCDE": 100,
+          "UNICDE": "UND",
+          "TYPSTK": "1",
+          "TYPOPE": "0",
+          "GEEX5021": {
+            "DS1PRO": "Aceite de oliva virgen extra",
+            "DS2PRO": "Botella 1 litro",
+            "EDIPRO": "08412345000019"
+          }
+        },
+        {
+          "NLILIV": "2",
+          "CODPRO": "PROD000020",
+          "UVCCDE": 50,
+          "UNICDE": "CAJ",
+          "TYPSTK": "1",
+          "TYPOPE": "0"
+        }
+      ],
+      "GEEX5080": [
+        {
+          "SEQTXL": "1",
+          "LIBTXL": "Entregar en muelle de carga numero 4"
+        },
+        {
+          "SEQTXL": "2",
+          "LIBTXL": "Contactar receptor antes de la entrega"
+        }
+      ]
+    }
+  ]
+}

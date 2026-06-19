@@ -1,0 +1,35 @@
+{
+  "deliveryOrders": [
+    {
+      "TRTEXC": "2",
+      "REFLIV": "REC-DEV-2026-000003",
+      "CODTLI": "REC",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0003",
+      "DTILIV": "20260627",
+      "HEILIV": "0830",
+      "TYPLIV": "2",
+      "CODTRA": "RECOG001",
+      "CUMLIG": "1",
+      "GEEX5010": {
+        "NOMCLI": "Industrias del Sur S.L.",
+        "AD1CLI": "Polígono La Isla Parcela 30",
+        "CPOCLI": "41700",
+        "VILCLI": "Dos Hermanas",
+        "PAYCLI": "ES"
+      },
+      "GEEX5020": [
+        {
+          "NLILIV": "1",
+          "CODPRO": "DEVPROD001",
+          "UVCCDE": 5,
+          "UNICDE": "PAL",
+          "TYPSTK": "2",
+          "GEEX5021": {
+            "DS1PRO": "Devolucion mercancia defectuosa"
+          }
+        }
+      ]
+    }
+  ]
+}

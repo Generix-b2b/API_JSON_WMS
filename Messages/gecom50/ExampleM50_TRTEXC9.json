@@ -1,0 +1,17 @@
+{
+  "deliveryOrders": [
+    {
+      "TRTEXC": "9",
+      "REFLIV": "DEL-2026-000002",
+      "CODTLI": "STD",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0002",
+      "DTILIV": "20260625",
+      "HEILIV": "1400",
+      "CUMLIG": "2",
+      "GEEX5001": {
+        "CODACL": "ANC"
+      }
+    }
+  ]
+}

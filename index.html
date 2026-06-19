@@ -431,6 +431,22 @@
   .file-preview pre { margin:0; padding:16px; color:#e0e0e0; font-family:'Courier New',monospace;
     font-size:.78rem; line-height:1.55; overflow:auto; max-height:420px; }
 
+  /* ── EJEMPLO file-cards ── */
+  .file-card { background:#fff; border:1px solid var(--gray-200); border-radius:10px; padding:18px;
+    transition:all .25s; display:flex; flex-direction:column; gap:10px; }
+  .file-card:hover { border-color:var(--generix-orange); box-shadow:0 6px 18px rgba(0,35,51,.08); }
+  .file-card__head { display:flex; align-items:flex-start; gap:12px; }
+  .file-card__icon { font-size:1.6rem; line-height:1; }
+  .file-card__name { font-weight:700; color:var(--generix-dark); word-break:break-word; }
+  .file-card__meta { color:var(--gray-500); font-size:.8rem; margin-top:2px; }
+  .file-card__actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+  .file-btn { font-size:.82rem; font-weight:600; text-decoration:none; cursor:pointer; padding:6px 12px;
+    border-radius:6px; border:1px solid var(--gray-300); color:var(--generix-dark); background:var(--gray-50);
+    transition:all .2s; font-family:inherit; }
+  .file-btn:hover { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
+  .file-btn--primary { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
+  .file-btn--primary:hover { background:var(--generix-orange-hover); }
+
   /* ── FOOTER ─────────────────────────────────────────── */
   footer { background:var(--generix-dark); color:var(--white); padding:56px 32px 28px; position:relative; }
   footer::before {
@@ -601,7 +617,10 @@
   <!-- Tab: Ejemplo -->
   <div id="tab-ejemplo" class="tab-panel">
     <div class="ejemplo-wrap">
-      <h2>Ejemplo de payload</h2>
+      <h2>Ejemplos</h2>
+      <div class="highlight-box" style="margin-bottom:24px">
+        <strong>⚠️ Aviso:</strong> Los datos utilizados en estos ejemplos no tienen relación con datos reales. Confirma con tu consultor WMS que los valores sean correctos.
+      </div>
       <div id="ejemplo-inner"><p style="color:var(--gray-500)">Cargando…</p></div>
     </div>
   </div>
@@ -1388,14 +1407,7 @@ function renderEjemplo(examples, folder) {
   const inner = document.getElementById('ejemplo-inner');
 
   if (!examples || !examples.length) {
-    inner.innerHTML =
-      `<div class="ejemplo-cp">
-        <div class="ejemplo-cp-header"><span class="ejemplo-cp-label">Sin ejemplo</span></div>
-        <div style="background:#0d1f2d;border-radius:0 0 10px 10px;padding:30px 20px;
-                    text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;font-style:italic">
-          No hay fichero de ejemplo en esta carpeta.
-        </div>
-      </div>`;
+    inner.innerHTML = `<p style="color:var(--gray-500)">No hay fichero de ejemplo en esta carpeta.</p>`;
     return;
   }
 
@@ -1403,18 +1415,29 @@ function renderEjemplo(examples, folder) {
   examples.forEach((ex, i) => {
     const formatted = fmtJSON(ex.raw);
     _examples.push(formatted);
-    const rawUrl = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${ex.name}`;
-    const sep = i > 0 ? `<div style="border-top:1px solid var(--gray-200);margin:36px 0 28px"></div>` : '';
-    html += `${sep}
-      <p style="margin-bottom:16px">
-        <a href="#" onclick="downloadExample(${i}, '${esc(ex.name)}'); return false;" class="download-link">📥 Descargar ${esc(ex.name)}</a>
-      </p>
-      <div class="ejemplo-cp">
-        <div class="ejemplo-cp-header">
-          <span class="ejemplo-cp-label">${esc(ex.name)}</span>
-          <button class="copy-btn" onclick="copyExample(${i}, this)">Copiar</button>
+    const ghUrl = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/blob/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${ex.name.split('/').map(encodeURIComponent).join('/')}`;
+    const pid = `ex-code-${i}`;
+    html += `
+      <div class="file-card" style="margin-bottom:18px">
+        <div class="file-card__head">
+          <div class="file-card__icon">🟨</div>
+          <div>
+            <div class="file-card__name">${esc(ex.name)}</div>
+            <div class="file-card__meta">JSON</div>
+          </div>
         </div>
-        <pre class="ejemplo-pre">${hlJSON(formatted)}</pre>
+        <div class="file-card__actions">
+          <a class="file-btn file-btn--primary" href="#" onclick="downloadExample(${i},'${esc(ex.name)}');return false;">Descargar</a>
+          <a class="file-btn" target="_blank" href="${ghUrl}">Ver en GitHub</a>
+          <button class="file-btn" onclick="toggleExampleCode('${pid}', this)">Ver contenido</button>
+        </div>
+        <div class="ejemplo-cp" id="${pid}" style="display:none;margin-top:6px">
+          <div class="ejemplo-cp-header">
+            <span class="ejemplo-cp-label">${esc(ex.name)}</span>
+            <button class="copy-btn" onclick="copyExample(${i}, this)">Copiar</button>
+          </div>
+          <pre class="ejemplo-pre">${hlJSON(formatted)}</pre>
+        </div>
       </div>`;
   });
   inner.innerHTML = html;
@@ -1468,6 +1491,13 @@ function downloadExample(i, fileName) {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+function toggleExampleCode(pid, btn) {
+  const el = document.getElementById(pid);
+  if (!el) return;
+  const open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? 'Ver contenido' : 'Ocultar';
 }
 function copyExample(i, btn) {
   const text = _examples[i !== undefined ? i : 0];

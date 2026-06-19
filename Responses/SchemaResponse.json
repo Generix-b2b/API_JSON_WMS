@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Responses/SchemaResponse.json",
+  "title": "WMS API - Responses",
+  "x-wms-icon": "↩",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "category": "Responses",
+    "version": "v1.0",
+    "releaseDate": "2026-06-17"
+  },
+  "description": "JSON schemas for the two response types of the WMS API asynchronous flow.",
+  "type": "object",
+  "$defs": {
+    "ImmediateACK": {
+      "title": "Immediate Acknowledgment",
+      "description": "Synchronous response returned immediately by the WMS when a message is received. This confirms delivery only — it does NOT guarantee the message has been validated or processed.",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Human-readable message confirming receipt of the request.",
+          "example": "Message has been received. This is not a guarantee that the message has been read or understood."
+        },
+        "success": {
+          "type": "integer",
+          "description": "Reception status code / 1 = message received by the WMS.",
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "success"
+      ],
+      "additionalProperties": false
+    },
+    "AsyncErrorCallback": {
+      "title": "Async Error Callback",
+      "description": "Sent asynchronously BY THE WMS to the client's own endpoint when validation errors are detected during message processing. The client must expose a webhook endpoint to receive this payload. This response is optional — it is only sent if the client has configured a callback URL with their WMS consultant.",
+      "type": "object",
+      "properties": {
+        "response": {
+          "description": "Root wrapper of the error callback payload.",
+          "$ref": "#/$defs/ResponseBody"
+        }
+      },
+      "required": [
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "ResponseBody": {
+      "title": "Response Body",
+      "description": "Body of the async error callback. Contains message metadata and the list of validation errors detected by the WMS.",
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "description": "Unique identifier of the original message. Empty string if not applicable.",
+          "example": ""
+        },
+        "message": {
+          "type": "string",
+          "description": "Code of the WMS message type that generated the errors (e.g. M40 = Reception Orders, M30 = Product Master).",
+          "example": "M40"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Date and time when the WMS processed the message / format YYYYMMDDHHmmss.",
+          "pattern": "^[0-9]{14}$",
+          "example": "20260608121120"
+        },
+        "errors": {
+          "type": "array",
+          "description": "List of validation errors detected in the original message. One entry per field error.",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/ErrorDetail"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "timestamp",
+        "errors"
+      ],
+      "additionalProperties": false
+    },
+    "ErrorDetail": {
+      "title": "Error Detail",
+      "description": "Individual validation error detected on a specific field of the original message.",
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "string",
+          "description": "Line number of the record in the original message where the error was detected (1-based).",
+          "pattern": "^[0-9]+$",
+          "example": "4"
+        },
+        "type": {
+          "type": "string",
+          "description": "Data type of the field that failed validation / string = text field, integer = integer field, string_double = decimal number, date = date field (YYYYMMDD), boolean = true/false field.",
+          "$ref": "#/$defs/Enums/EnumErrorType"
+        },
+        "field": {
+          "type": "string",
+          "description": "Name of the WMS field that contains the validation error.",
+          "example": "MSGLIG"
+        },
+        "receivedValue": {
+          "type": "string",
+          "description": "Actual value received in the field that caused the error.",
+          "example": "Producto en cuarentena hasta análisis"
+        },
+        "error": {
+          "type": "string",
+          "description": "Human-readable description of the validation rule that was violated.",
+          "example": "Max valor permitido : 30 Valor indicado en : MSGLIG = Producto en cuarentena hasta análisis"
+        }
+      },
+      "required": [
+        "line",
+        "type",
+        "field",
+        "receivedValue",
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumErrorType": {
+        "description": "Data type of the field that failed validation / string = text, integer = integer, string_double = decimal number, date = date YYYYMMDD, boolean = true/false",
+        "type": "string",
+        "enum": [
+          "string",
+          "integer",
+          "string_double",
+          "date",
+          "boolean"
+        ]
+      }
+    }
+  }
+}

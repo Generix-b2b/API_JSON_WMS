@@ -1,0 +1,10 @@
+{
+  "InitialTableLoad": [
+    {
+      "TRTEXC": "9",
+      "FAMPAR": "ZON",
+      "CLEPAR": "Z99",
+      "LIBPAR": "Zona obsoleta a eliminar"
+    }
+  ]
+}

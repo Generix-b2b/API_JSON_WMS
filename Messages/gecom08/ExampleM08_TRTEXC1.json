@@ -1,0 +1,38 @@
+{
+  "InitialTableLoad": [
+    {
+      "TRTEXC": "1",
+      "FAMPAR": "TRE",
+      "CLEPAR": "STD",
+      "LIBPAR": "Recepción estándar"
+    },
+    {
+      "TRTEXC": "1",
+      "FAMPAR": "TRE",
+      "CLEPAR": "AUT",
+      "LIBPAR": "Recepción automática"
+    },
+    {
+      "TRTEXC": "1",
+      "FAMPAR": "TRE",
+      "CLEPAR": "RET",
+      "LIBPAR": "Recepción en retención"
+    },
+    {
+      "TRTEXC": "1",
+      "FAMPAR": "TRA",
+      "CLEPAR": "TRANSP01",
+      "LIBPAR": "Transportes Ibéricos S.L.",
+      "LIBPAR2": "TIB EDI Transport",
+      "CLEPAR2": "EDIIBERIC"
+    },
+    {
+      "TRTEXC": "1",
+      "FAMPAR": "TRA",
+      "CLEPAR": "TRANSP02",
+      "LIBPAR": "Logística Norte S.A.",
+      "LIBPAR2": "Norte EDI Code",
+      "CLEPAR2": "EDINORTE"
+    }
+  ]
+}

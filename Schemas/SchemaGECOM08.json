@@ -8,59 +8,70 @@
     "method": "POST",
     "path": "https://[URL_Client_Environment].generix.biz/m08_tables",
     "category": "Inbound",
-    "version": "v1.0",
+    "version": "v1.1",
     "releaseDate": "2026-06-17"
   },
-  "type": "object",
   "description": "JSON for table load declaration",
+  "type": "object",
   "properties": {
     "InitialTableLoad": {
+      "description": "Table declaration",
       "type": "array",
-      "description": "Initial Table declaration",
       "minItems": 1,
-      "maxItems": 999,
+      "maxItems": 499,
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "FAMPAR": {
-            "type": "string",
-            "description": "Parameter family",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "CLEPAR": {
-            "type": "string",
-            "description": "Parameter key",
-            "minLength": 1,
-            "maxLength": 10
-          },
-          "LIBPAR": {
-            "type": "string",
-            "description": "Parameter label",
-            "minLength": 1,
-            "maxLength": 48
-          },
-          "LIBPAR2": {
-            "type": "string",
-            "description": "Parameter label 2",
-            "maxLength": 48
-          },
-          "CLEPAR2": {
-            "type": "string",
-            "description": "Parameter key 2",
-            "maxLength": 10
-          }
-        },
-        "required": ["TRTEXC", "FAMPAR", "CLEPAR", "LIBPAR"]
-      }
+				"$ref": "#/$defs/GEEX0800"
+			}
     }
   },
-  "required": ["InitialTableLoad"]
+  "required": ["InitialTableLoad"],
+  "$defs": {
+    "GEEX0800": {
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "FAMPAR": {
+          "description": "Parameter family",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "CLEPAR": {
+          "description": "Parameter key",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "LIBPAR": {
+          "description": "Parameter label",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 48
+        },
+        "LIBPAR2": {
+          "description": "Parameter label 2",
+          "type": "string",
+          "maxLength": 48
+        },
+        "CLEPAR2": {
+          "description": "Parameter key 2",
+          "type": "string",
+          "maxLength": 10
+        }
+      },
+      "required": ["TRTEXC", "FAMPAR", "CLEPAR", "LIBPAR"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1","2","9"],
+        "default": "2"
+      }
+    } 
+  }
 }

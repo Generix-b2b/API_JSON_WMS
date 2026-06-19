@@ -1100,6 +1100,26 @@ function renderEstructura(schema, folder, schemaFileName) {
                   ${opts.map(o => `<span class="tag-req" style="margin:2px">${esc(o)}</span>`).join(' o ')}
                 </div>`;
               })()}
+              ${(() => {
+                if (!blk.ifCond || !blk.thenCond) return '';
+                const condParts = [];
+                if (blk.ifCond.properties) {
+                  for (const [k, v] of Object.entries(blk.ifCond.properties)) {
+                    if (Array.isArray(v.enum)) condParts.push(`${k} = ${v.enum.join(' o ')}`);
+                    else if (v.const !== undefined) condParts.push(`${k} = ${v.const}`);
+                    else condParts.push(k);
+                  }
+                }
+                const thenReq = blk.thenCond.required || [];
+                if (!condParts.length || !thenReq.length) return '';
+                return `<div style="margin-top:10px;background:#eff6ff;border-left:3px solid #3b82f6;
+                          padding:10px 12px;border-radius:4px">
+                  <strong style="color:#1d4ed8">🔀 Condicional (if/then):</strong>
+                  si ${condParts.map(c => `<span class="tag-type">${esc(c)}</span>`).join(' y ')},
+                  entonces ${thenReq.map(r => `<span class="tag-req" style="margin:2px">${esc(r)}</span>`).join(', ')}
+                  ${thenReq.length > 1 ? 'son obligatorios' : 'es obligatorio'}.
+                </div>`;
+              })()}
             </div>
           </div>
         </div>
@@ -1126,7 +1146,7 @@ function extractBlocks(schema, defs) {
           const res = resolveRef(v, defs);
           if (res.type !== 'object' || !res.properties) topProps[k] = v;
         }
-        blocks.push({ label: `${key}[ ] — campos principales`, jsonKey: key, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
+        blocks.push({ label: `${key}[ ] — campos principales`, jsonKey: key, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [], ifCond: items.if || null, thenCond: items.then || null });
         for (const [k, v] of Object.entries(items.properties)) {
           const res = resolveRef(v, defs);
           if (res.type === 'object' && res.properties) {
@@ -1149,7 +1169,9 @@ function extractBlocks(schema, defs) {
         schemaSnippet: trimSchema(def, true),
         properties: def.properties,
         required: def.required || [],
-        oneOf: def.oneOf || null
+        oneOf: def.oneOf || null,
+        ifCond: def.if || null,
+        thenCond: def.then || null
       });
       addedLabels.add(name);
     }

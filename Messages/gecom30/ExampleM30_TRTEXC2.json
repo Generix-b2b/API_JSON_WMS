@@ -1,0 +1,34 @@
+{
+  "productMasterData": [
+    {
+      "TRTEXC": "2",
+      "CODACT": "WMS",
+      "CODPRO": "PROD000060",
+      "DS1PRO": "Papel higiénico 4 rollos (antiguo)",
+      "PCBPRO": 10,
+      "GEEX3001": {
+        "METRPL": "1",
+        "CODRPL": "PROD000061",
+        "VALRPL": "01"
+      },
+      "GEEX3080": [
+        {
+          "RPLPRO": "PROD000061",
+          "RPLVAL": "01",
+          "FACCON": "1.00"
+        }
+      ]
+    },
+    {
+      "TRTEXC": "2",
+      "CODACT": "WMS",
+      "CODPRO": "PROD000010",
+      "DS1PRO": "Aceite de oliva virgen extra 1L",
+      "ABCPRO": "B",
+      "GEEX3001": {
+        "PRXPRO": ["011.000", "010.250"],
+        "NXTIVT": "20270101"
+      }
+    }
+  ]
+  }

@@ -1,0 +1,113 @@
+{
+  "supplierMasterData": [
+    {
+      "TRTEXC": "1",
+      "CODFOU": "FOU0001",
+      "TYPFOU": "1",
+      "NOMFOU": "Industrias Generix S.A.",
+      "AD1FOU": "Calle Industrial 45",
+      "VILFOU": "Madrid",
+      "PAYFOU": "ES",
+      "CPOFOU": "28001"
+    },
+    {
+      "TRTEXC": "1",
+      "CODACT": "WMS",
+      "CODFOU": "FOU0002",
+      "TYPFOU": "2",
+      "NOMFOU": "Distribuciones Mayoreo S.L.",
+      "AD1FOU": "Avenida del Comercio 120",
+      "AD2FOU": "Polígono Industrial Norte",
+      "AD3FOU": "Nave 7",
+      "CPOFOU": "46011",
+      "VILFOU": "Valencia",
+      "PAYFOU": "ES",
+      "TELFOU": "+34963000000",
+      "FAXFOU": "+34963000001",
+      "EDIFOU": "EDIFOU0002",
+      "CODTRA": "TRANSP001",
+      "IGLSIT": "1",
+      "CODTRE": "STD",
+      "GSTAVI": "1",
+      "GSTRCP": "1",
+      "TYPPRT": "1",
+      "EMBTIE": true,
+      "FOUGMA": "1",
+      "SYSMES": false,
+      "CODCLV": "CLV",
+      "GEEX1001": {
+        "RSPFOU": "Juan García López",
+        "EMLADR": "jgarcia@distribuciones.com",
+        "CODCOG": "ES-46000",
+        "AFFFAB": false,
+        "CODENL": "1",
+        "CODFDC01": "CQ1",
+        "CODGRP": "1",
+        "CODICM": "DAP",
+        "CODTCT": "T01",
+        "FOUGRP": "GRP-MAYO",
+        "METREC": "A",
+        "NULRLQ": false,
+        "PAYFAB": "España",
+        "PEREMB": "1",
+        "UNIFSR": false,
+        "CODRGT": "Z01",
+        "CM1FOU": "Proveedor preferente zona este",
+        "CM2FOU": "Ventana de entrega: 08:00-16:00",
+        "LIBCPL": "Distribuciones Mayoreo Ibérica"
+      }
+    },
+    {
+      "TRTEXC": "1",
+      "CODFOU": "FOU0003",
+      "TYPFOU": "3",
+      "NOMFOU": "Plataforma Central Logística",
+      "AD1FOU": "Carretera Nacional km 250",
+      "CPIFOU": "ES-50012",
+      "VILFOU": "Zaragoza",
+      "PAYFOU": "ESP",
+      "TELFOU": "+34976000000",
+      "GSTAVI": "2",
+      "GSTRCP": "2"
+    },
+    {
+      "TRTEXC": "1",
+      "CODFOU": "BOD0001",
+      "TYPFOU": "1",
+      "NOMFOU": "Bodegas Riojanas S.A.",
+      "AD1FOU": "Carretera Logroño km 5",
+      "CPOFOU": "26200",
+      "VILFOU": "Haro",
+      "PAYFOU": "ES",
+      "TELFOU": "+34941000000",
+      "CODTRE": "ALC",
+      "GEEX1001": {
+        "NUMACS": "ES00123456789",
+        "EMLADR": "compras@bodegas-riojanas.com",
+        "PAYFAB": "España",
+        "FOUGMA": "1",
+        "CM1FOU": "Régimen suspensivo DAC",
+        "CM2FOU": "DSAC habilitado"
+      }
+    },
+    {
+      "TRTEXC": "1",
+      "CODFOU": "FOUGER01",
+      "TYPFOU": "1",
+      "NOMFOU": "Deutsche Industrie GmbH",
+      "AD1FOU": "Industriestrasse 88",
+      "AD2FOU": "Gewerbegebiet West",
+      "CPIFOU": "D-80333",
+      "VILFOU": "München",
+      "PAYFOU": "DE",
+      "TELFOU": "+498900000000",
+      "EDIFOU": "EDIDE001",
+      "SYSMES": false,
+      "GEEX1001": {
+        "EMLADR": "logistics@deutsche-industrie.de",
+        "CODICM": "EXW",
+        "PAYFAB": "Deutschland"
+      }
+    }
+  ]
+}

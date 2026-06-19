@@ -447,6 +447,7 @@
   .file-btn--primary { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
   .file-btn--primary:hover { background:var(--generix-orange-hover); }
   .ejemplo-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; align-items:start; }
+  .ejemplo-grid .file-card.expanded { grid-column:1 / -1; }
   @media (max-width:1100px) { .ejemplo-grid { grid-template-columns:repeat(2, 1fr); } }
   @media (max-width:700px)  { .ejemplo-grid { grid-template-columns:1fr; } }
 
@@ -1502,6 +1503,8 @@ function toggleExampleCode(pid, btn) {
   const open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
   btn.textContent = open ? 'Ver contenido' : 'Ocultar';
+  const card = el.closest('.file-card');
+  if (card) card.classList.toggle('expanded', !open);
 }
 function copyExample(i, btn) {
   const text = _examples[i !== undefined ? i : 0];

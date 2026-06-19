@@ -14,31 +14,35 @@
   "description": "JSON for updating the status of Reception Orders or Delivery Orders in the WMS",
   "type": "object",
   "properties": {
-    "statusReceptionOrders": {
-      "description": "Status Reception Orders",
-      "type": "array",
-      "maxItems": 499,
-      "items": {
-				"$ref": "#/$defs/GEEX9740"
-			}
-    },
-    "statusDeliveryOrders": {
-      "description": "Status Delivery Orders",
-      "type": "array",
-      "maxItems": 499,
-      "items": {
-				"$ref": "#/$defs/GEEX9750"
-			}
+    "status": {
+      "statusReceptionOrders": {
+        "description": "Status Reception Orders",
+        "type": "array",
+        "maxItems": 499,
+        "items": {
+          "$ref": "#/$defs/GEEX9740"
+        }
+      },
+      "statusDeliveryOrders": {
+        "description": "Status Delivery Orders",
+        "type": "array",
+        "maxItems": 499,
+        "items": {
+          "$ref": "#/$defs/GEEX9750"
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["statusReceptionOrders"]
+        },
+        {
+          "required": ["statusDeliveryOrders"]
+        }
+      ]
     }
   },
-  "oneOf": [
-    {
-      "required": ["statusReceptionOrders"]
-    },
-    {
-      "required": ["statusDeliveryOrders"]
-    }
-  ],
+  "required": ["status"],
+  
   "$defs": {
     "GEEX9740": {
       "description": "Status Reception Orders",

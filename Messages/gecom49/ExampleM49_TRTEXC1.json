@@ -1,0 +1,138 @@
+{
+  "dispatchAdvices": [
+    {
+      "TRTEXC": "1",
+      "CODFOU": "FOU0001",
+      "AVIREF": "AVI-2026-000001",
+      "CODACT": "WMS",
+      "DATEXP": "20260620",
+      "CUMLIG": "1",
+      "GEEX4910": [
+        {
+          "CODOBL": "PAL000000000001",
+          "AVINLI": "1",
+          "GEEX4920": {
+            "NLIOBL": "1",
+            "CODPRO": "PROD000001"
+          }
+        }
+      ]
+    },
+    {
+      "TRTEXC": "1",
+      "CODFOU": "FOU0002",
+      "AVIREF": "AVI-2026-000002",
+      "CODACT": "WMS",
+      "REFLET": "CMR001234",
+      "EDIFOU": "EDIFOU0002",
+      "EDIACT": "EDIWMS01",
+      "EDITRA": "EDITRA01",
+      "CODTRA": "TRANSP001",
+      "DATEXP": "20260621",
+      "HEUEXP": "070000",
+      "DATLIV": "20260622",
+      "HEULIV": "140000",
+      "TYPTPT": "RTE",
+      "TYPCHT": "PAL",
+      "REFPLB": "PRC009988",
+      "CAMCOD": "1234-ABC",
+      "SITRCT": "S01",
+      "CRERCP": false,
+      "NUMTOU": "00000125",
+      "INDSBY": "0",
+      "CODTRE": "STD",
+      "TYPRMT": "R",
+      "CUMLIG": "2",
+      "GEEX4905": [
+        {
+          "CODRUB": "TEMP",
+          "VALRUB": "AMBIENTE"
+        },
+        {
+          "CODRUB": "INCO",
+          "VALRUB": "DAP"
+        }
+      ],
+      "GEEX4910": [
+        {
+          "CODOBL": "PAL000000000010",
+          "AVINLI": "1",
+          "CUMCOL": "0000040",
+          "TYPMQG": "SSC",
+          "CODEB1": "EUR",
+          "CODEB2": "CAJ",
+          "PDBOBL": 325.5,
+          "UNIPDB": "KG",
+          "LNGOBL": "120.00",
+          "LRGOBL": "80.00",
+          "HAUOBL": "144.00",
+          "UNIDIM": "CM",
+          "DATCRE": "20260620",
+          "HEUCRE": "153000",
+          "PROEMB": ["PALET-EUR-STD"],
+          "MSGOBJ": "Palet homogeneo - fragil",
+          "GEEX4920": {
+            "NLIOBL": "1",
+            "CODPRO": "PROD000010",
+            "VALPRO": "01",
+            "CODCLI": "CLI0010",
+            "CODPAY": "ES",
+            "NATSTK": "DIS",
+            "CODLOT": "LOTE-2026-AA-001",
+            "PDNLIV": 300.0,
+            "PCBPRO": 24
+          },
+          "GEEX4921": {
+            "UVCOBI": 960,
+            "UNIUVC": "UND",
+            "NUOOBI": "40",
+            "UNIUOA": "CAJ",
+            "REFREC": "REC-2026-000002",
+            "NLIREC": "1",
+            "TYPREF": "0"
+          },
+          "GEEX4922": {
+            "EANUVC": "08412345000019",
+            "PRXAVI": "010.500",
+            "PDNAVI": 300.0,
+            "REFLIV": "DEL-2026-000002",
+            "NLILIV": "1",
+            "DS1PRO": "Aceite de oliva virgen 1L",
+            "DS2PRO": "Caja 12 unidades",
+            "PDBLIV": 325.5,
+            "VOLCOL": "0240.000",
+            "CODTLI": "STD"
+          }
+        },
+        {
+          "CODOBL": "PAL000000000011",
+          "AVINLI": "2",
+          "CUMCOL": "0000030",
+          "CODEB1": "EUR",
+          "PDBOBL": 210.75,
+          "UNIPDB": "KG",
+          "GEEX4920": {
+            "NLIOBL": "2",
+            "CODPRO": "PROD000020",
+            "CODLOT": "LOTE-2026-AA-002",
+            "PCBPRO": 24
+          },
+          "GEEX4921": {
+            "UVCOBI": 720,
+            "UNIUVC": "UND",
+            "REFREC": "REC-2026-000002",
+            "NLIREC": "2",
+            "TYPREF": "0"
+          },
+          "GEEX4922": {
+            "REFLIV": "DEL-2026-000002",
+            "NLILIV": "2",
+            "DS1PRO": "Refresco cola 33cl",
+            "PDBLIV": 210.75,
+            "CODTLI": "STD"
+          }
+        }
+      ]
+    }
+  ]
+}

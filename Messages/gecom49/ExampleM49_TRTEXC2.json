@@ -1,0 +1,25 @@
+{
+  "dispatchAdvices": [
+    {
+      "TRTEXC": "2",
+      "CODFOU": "FOU0002",
+      "AVIREF": "AVI-2026-000002",
+      "CODACT": "WMS",
+      "DATEXP": "20260621",
+      "DATLIV": "20260623",
+      "HEULIV": "100000",
+      "CAMCOD": "5678-XYZ",
+      "CUMLIG": "2",
+      "GEEX4910": [
+        {
+          "CODOBL": "PAL000000000010",
+          "AVINLI": "1",
+          "GEEX4920": {
+            "NLIOBL": "1",
+            "CODPRO": "PROD000010"
+          }
+        }
+      ]
+    }
+  ]
+}

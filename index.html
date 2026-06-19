@@ -362,7 +362,7 @@
   .field-tbl { width:100%; border-collapse:collapse; background:var(--white); border:1px solid var(--gray-200); border-radius:6px; overflow:hidden; font-size:.85rem; }
   .field-tbl thead { background:var(--generix-dark); color:#fff; }
   .field-tbl th { padding:9px 12px; text-align:left; font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.3px; }
-  .field-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); vertical-align:top; color:var(--gray-700); line-height:1.5; }
+  .field-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); vertical-align:middle; color:var(--gray-700); line-height:1.5; }
   .field-tbl tbody tr:last-child td { border-bottom:none; }
   .field-tbl tbody tr:hover { background:var(--gray-50); }
 
@@ -1018,7 +1018,7 @@ function renderEstructura(schema, folder, schemaFileName) {
     const fieldTbl = buildFieldTable(blk.properties, blk.required);
     navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(blk.label.replace(/Wrapper$/i, ''))}</button>`;
     bodyHtml += `
-      <div class="block-wrap" id="${id}">
+      <div class="block-wrap" id="${id}" data-label="${esc(blk.label)}">
         <div class="block-grid">
           <div class="code-panel">
             <div class="cp-header">${esc(blk.label)}</div>
@@ -1122,12 +1122,38 @@ function buildFieldTable(props, req) {
     const type = getFieldType(def);
     const cons = getFieldCons(def);
     const isReq = (req || []).includes(field);
+
+    // Detectar $ref directo (objeto) o en items ($ref dentro de array)
+    let refTarget = '';
+    if (def && def.$ref) refTarget = def.$ref;
+    else if (def && def.items && def.items.$ref) refTarget = def.items.$ref;
+
+    let refLink = '';
+    if (refTarget) {
+      const isEnum      = refTarget.includes('/Enums/');
+      const refName     = refTarget.split('/').pop();
+      const displayName = refName.replace(/^Enum/, '').replace(/Wrapper$/i, '');
+      const onclick     = isEnum
+        ? `goToEnum('${esc(displayName)}');return false;`
+        : `scrollToBlockByName('${esc(refName)}');return false;`;
+      refLink = `<a href="javascript:void(0)"
+        style="text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;
+              background:var(--gray-100);color:var(--generix-dark);padding:2px 8px;border-radius:4px;
+              font-family:monospace;font-size:.8rem;font-weight:500"
+        title="Ir a ${esc(refName)}"
+        onclick="${onclick}">🔗 ${esc(displayName)}</a>`;
+    }
+
+    // Combinar restricciones existentes + enlace en líneas separadas
+    const restrParts = [cons, refLink].filter(Boolean);
+    const restrHtml  = restrParts.length ? restrParts.join('<div style="height:6px"></div>') : dash;
+
     rows += `<tr>
       <td><span class="tag-req">${esc(field)}</span></td>
       <td>${def && def.description ? esc(def.description) : dash}</td>
       <td>${type ? `<span class="tag-type">${esc(type)}</span>` : dash}</td>
       <td>${isReq ? '<span class="tag-req">Sí</span>' : '<span style="color:var(--gray-500)">No</span>'}</td>
-      <td>${cons || dash}</td>
+      <td>${restrHtml}</td>
     </tr>`;
   }
   return `<div class="field-tbl-wrap">
@@ -1156,9 +1182,27 @@ function getFieldCons(def) {
   if (def.minItems  != null) c.push(`minItems: ${def.minItems}`);
   if (def.maxItems  != null) c.push(`maxItems: ${def.maxItems}`);
   if (def.pattern)           c.push(`pattern: ${def.pattern}`);
+  if (def.examples)          c.push(`examples: ${JSON.stringify(def.examples)}`);
   if (def.format)            c.push(`format: ${def.format}`);
   if (def.default  !== undefined) c.push(`default: ${JSON.stringify(def.default)}`);
-  return esc(c.join(' · '));
+  return c.map(esc).join('<br>');
+}
+function scrollToBlockByName(refName) {
+  const tries = [refName, refName + 'Wrapper', refName.replace(/Wrapper$/i, '')];
+  for (const name of tries) {
+    const header = [...document.querySelectorAll('#estructura-body .block-wrap .cp-header')]
+      .find(h => h.textContent.trim() === name);
+    if (header) { header.closest('.block-wrap').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+  }
+}
+function goToEnum(fieldName) {
+  const tab = document.querySelector('.tab-btn[data-tab="enumeraciones"]');
+  if (tab) tab.click();
+  setTimeout(() => {
+    const header = [...document.querySelectorAll('#enumeraciones-body .block-wrap .cp-header')]
+      .find(h => h.textContent.trim() === fieldName);
+    if (header) header.closest('.block-wrap').scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 60);
 }
 function scrollToBlock(id, btn) {
   document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('active'));

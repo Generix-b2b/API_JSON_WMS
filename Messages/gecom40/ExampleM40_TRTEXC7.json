@@ -1,0 +1,15 @@
+{
+  "receptionOrders": [
+    {
+      "TRTEXC": "7",
+      "REFREC": "REC-2026-000002",
+      "CODTRE": "STD",
+      "CODACT": "WMS",
+      "CODFOU": "FOU0002",
+      "DTIREC": "20260623",
+      "HEIREC": "110000",
+      "KAIREC": "08",
+      "CUMLIG": "2"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "receptionOrders": [
+    {
+      "TRTEXC": "2",
+      "REFREC": "REC-2026-000003",
+      "CODTRE": "ALC",
+      "CODACT": "WMS",
+      "CODFOU": "BOD0001",
+      "DTIREC": "20260625",
+      "HEIREC": "093000",
+      "CUMLIG": "1",
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "VINO000001",
+          "UVCREA": 600,
+          "UNICDE": "BOT",
+          "PCBPRO": 6,
+          "CODLOT": "LOTE-2026-VT-001",
+          "DATFAB": "20260101",
+          "MOTIMM": "QUA",
+          "MSGLIG": "Analisis de calidad obligatorio",
+          "AIGPRI": false,
+          "GEEX4025": [
+            {
+              "TYPRUB": "1",
+              "CODRUB": "DLOT",
+              "VALRUB": "LOTE-2026-VT-001"
+            },
+            {
+              "TYPRUB": "2",
+              "CODRUB": "DEGA",
+              "VALRUB": "13.50"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

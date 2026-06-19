@@ -1,0 +1,122 @@
+{
+  "receptionOrders": [
+    {
+      "TRTEXC": "1",
+      "REFREC": "REC-2026-000001",
+      "CODTRE": "STD",
+      "CODACT": "WMS",
+      "CODFOU": "FOU0001",
+      "DTIREC": "20260620",
+      "HEIREC": "080000",
+      "CUMLIG": "1",
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD000001",
+          "UVCREA": 100
+        }
+      ]
+    },
+    {
+      "TRTEXC": "1",
+      "NUMREC": "10000001",
+      "SNUREC": "001",
+      "REFREC": "REC-2026-000002",
+      "CODAPP": "BUYER01",
+      "CODLDR": "M01",
+      "CODTRE": "STD",
+      "CODACT": "WMS",
+      "CODFOU": "FOU0002",
+      "CODTRA": "TRANSP001",
+      "DTIREC": "20260621",
+      "HEIREC": "090000",
+      "KAIREC": "05",
+      "MSGREC": ["DESCARGA CON TRANSPALETA", "FRAGIL"],
+      "IGLSIT": "1",
+      "DTFREC": "20260621",
+      "EDIFOU": "EDIFOU0002",
+      "METTRP": "1",
+      "EDITRA": "EDITRA0001",
+      "CODRGT": "Z01",
+      "CUMLIG": "2",
+      "GEEX4001": {
+        "NOMFOU": "Distribuciones Mayoreo S.L.",
+        "AD1FOU": "Avenida del Comercio 120",
+        "AD2FOU": "Polígono Industrial Norte, Nave 7",
+        "CPOFOU": "46011",
+        "VILFOU": "Valencia",
+        "PAYFOU": "ES",
+        "TELFOU": "+34963000000",
+        "TYPFOU": "2",
+        "TOPREC": ["X", "Y"],
+        "CODCLV": "CLV1"
+      },
+      "GEEX4005": [
+        {
+          "CODRUB": "TEMP",
+          "VALRUB": "AMBIENTE"
+        },
+        {
+          "CODRUB": "PRIO",
+          "VALRUB": "NORMAL"
+        }
+      ],
+      "GEEX4020": [
+        {
+          "NLIREC": "1",
+          "CODPRO": "PROD000010",
+          "VALPRO": "01",
+          "UVCREA": 480,
+          "UNICDE": "UND",
+          "TYPOPE": "0",
+          "SPCPRO": 0,
+          "PCBPRO": 12,
+          "PDBCOL": 13.5,
+          "VOLCOL": "0012.000",
+          "COLCOU": 6,
+          "COUPAL": 8,
+          "CODEMB": "CAJ",
+          "INDUNI": false,
+          "GEEX4021": {
+            "PRXPRO": "010.500",
+            "EDIPRO": "08412345000019",
+            "CODMDS": "RCK",
+            "ZONPRF": "A",
+            "ALLPRF": "001",
+            "QTEREA": "480"
+          }
+        },
+        {
+          "NLIREC": "2",
+          "CODPRO": "PROD000020",
+          "UVCREA": 288,
+          "UNICDE": "UND",
+          "PCBPRO": 24,
+          "INDUNI": false,
+          "GEEX4025": [
+            {
+              "TYPRUB": "1",
+              "CODRUB": "DLOT",
+              "VALRUB": "LOTE-2026-AA"
+            },
+            {
+              "TYPRUB": "2",
+              "CODRUB": "TEMP",
+              "VALRUB": "AMBIENTE"
+            }
+          ]
+        }
+      ],
+      "GEEX4080": [
+        {
+          "SEQTXR": "1",
+          "LIBTXR": "Descarga en muelle 5 - llamar al responsable de almacén"
+        },
+        {
+          "SEQTXR": "2",
+          "LIBTXR": "Revisar temperaturas antes de aceptar la mercancía"
+        }
+      ]
+    }
+  ]
+}

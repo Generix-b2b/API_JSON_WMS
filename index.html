@@ -555,7 +555,7 @@
         <p>Consulta y descarga las distintas versiones publicadas de los esquemas JSON.</p>
         <span class="card-link">Ver versiones</span>
       </div>
-      <div class="card" id="resp-card" style="display:none" onclick="openEndpoint(CONFIG.responsesFolder)">
+      <div class="card" id="resp-card" style="display:none" onclick="openEndpoint(CONFIG.responsesPath, CONFIG.responsesPath)">
         <div class="card-icon">↩</div>
         <div class="card-meta"><span class="badge badge-cat">Schema</span></div>
         <h3>Respuestas</h3>
@@ -686,13 +686,13 @@
    CONFIG
    ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  owner:       'generix-b2b',
-  repo:        'API_JSON_WMS',
-  branch:      'main',
-  contentPath: 'Messages',   // carpeta raíz con los subfolders
-  versionsPath: 'Versions',  // carpeta con las versiones de esquemas
-  responsesFolder: 'Responses', // carpeta con las respuestas
-  token:       ''
+  owner:          'generix-b2b',
+  repo:           'API_JSON_WMS',
+  branch:         'main',
+  contentPath:    'Messages',   // carpeta raíz con los subfolders
+  versionsPath:   'Versions',  // carpeta con las versiones de esquemas
+  responsesPath:  'Responses', // carpeta con las respuestas
+  token:          ''
 };
 
 /* ── GitHub helpers ──────────────────────────────────────── */
@@ -735,13 +735,13 @@ async function init() {
   renderSkeletons(6);
   try {
     const tree    = await loadRepoTree();
-    const allFolders = buildCacheFromTree(tree);
-    const folders = allFolders.filter(f => f !== CONFIG.responsesFolder);
+    const folders = buildCacheFromTree(tree);
 
     if (!folders.length) { showEmpty('No hay endpoints publicados todavía.'); return; }
 
+    const hasResp = tree.some(it => it.type === 'blob' && it.path.startsWith(CONFIG.responsesPath + '/'));
     const respCard = document.getElementById('resp-card');
-    if (respCard) respCard.style.display = allFolders.includes(CONFIG.responsesFolder) ? '' : 'none';
+    if (respCard) respCard.style.display = hasResp ? '' : 'none';
 
     const settled = await Promise.allSettled(folders.map(f => loadCard(f)));
     const eps = settled
@@ -871,6 +871,19 @@ async function discoverFiles(folder) {
   return _dirCache[folder] || { schemaFile: null, exampleFiles: [], readmeFile: null };
 }
 
+let _detailDir = '';   // directorio que contiene el schema abierto actualmente
+
+async function discoverFilesAt(dir) {
+  if (_dirCache[dir]) return _dirCache[dir];
+  const tree = await loadRepoTree();
+  const prefix = dir + '/';
+  const files = tree
+    .filter(it => it.type === 'blob' && it.path.startsWith(prefix) && !it.path.slice(prefix.length).includes('/'))
+    .map(it => ({ name: it.path.slice(prefix.length) }));
+  _dirCache[dir] = buildDirResult(files);
+  return _dirCache[dir];
+}
+
 async function loadCard(folder) {
   const { schemaFile } = await discoverFiles(folder);
   if (!schemaFile) throw new Error(`No se encontró ningún JSON en "${folder}"`);
@@ -940,7 +953,8 @@ function showEmpty(msg) {
   let _examples = [];
   let _schemaRaw = '';
 
-async function openEndpoint(folder) {
+async function openEndpoint(folder, dir) {
+  _detailDir = dir || `${CONFIG.contentPath}/${folder}`;
   showDetail();
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'descripcion'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-descripcion'));
@@ -957,10 +971,10 @@ async function openEndpoint(folder) {
   _examples = [];
 
   try {
-    const { schemaFile, exampleFiles, readmeFile } = await discoverFiles(folder);
+    const { schemaFile, exampleFiles, readmeFile } = await discoverFilesAt(_detailDir);
     const [sRes, rRes] = await Promise.allSettled([
-      schemaFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`) : Promise.reject('no schema'),
-      readmeFile ? rawFetch(`${CONFIG.contentPath}/${folder}/${readmeFile.name}`) : Promise.reject('no readme')
+      schemaFile ? rawFetch(`${_detailDir}/${schemaFile.name}`) : Promise.reject('no schema'),
+      readmeFile ? rawFetch(`${_detailDir}/${readmeFile.name}`) : Promise.reject('no readme')
     ]);
 
     _schemaRaw      = sRes.status === 'fulfilled' ? sRes.value : '';
@@ -968,7 +982,7 @@ async function openEndpoint(folder) {
     const readmeRaw = rRes.status === 'fulfilled' ? rRes.value : null;
 
     const exResults = await Promise.allSettled(
-      exampleFiles.map(f => rawFetch(`${CONFIG.contentPath}/${folder}/${f.name}`))
+      exampleFiles.map(f => rawFetch(`${_detailDir}/${f.name}`))
     );
     const examplesData = exampleFiles
       .map((f, i) => ({ name: f.name, raw: exResults[i].status === 'fulfilled' ? exResults[i].value : null }))
@@ -1094,7 +1108,7 @@ function renderEstructura(schema, folder, schemaFileName) {
     return;
   }
   const rawLink = folder && schemaFileName
-    ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${schemaFileName}`
+    ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${_detailDir}/${schemaFileName}`
     : null;
 
     let bodyHtml = schemaFileName
@@ -1431,7 +1445,7 @@ function renderEjemplo(examples, folder) {
   examples.forEach((ex, i) => {
     const formatted = fmtJSON(ex.raw);
     _examples.push(formatted);
-    const ghUrl = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/blob/${CONFIG.branch}/${CONFIG.contentPath}/${folder}/${ex.name.split('/').map(encodeURIComponent).join('/')}`;
+    const ghUrl = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/blob/${CONFIG.branch}/${_detailDir}/${ex.name.split('/').map(encodeURIComponent).join('/')}`;
     const pid = `ex-code-${i}`;
     html += `
       <div class="file-card" style="margin-bottom:18px">

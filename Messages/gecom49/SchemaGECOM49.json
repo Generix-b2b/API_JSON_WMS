@@ -349,26 +349,6 @@
         "GEEX4920": {
           "description": "Logistics object details",
           "$ref": "#/$defs/GEEX4920Wrapper"
-        },
-        "GEEX4921": {
-          "description": "Logistics object details",
-          "$ref": "#/$defs/GEEX4921Wrapper"
-        },
-        "GEEX4922": {
-          "description": "Logistics object details",
-          "$ref": "#/$defs/GEEX4922Wrapper"
-        },
-        "GEEX4923": {
-          "description": "Logistics object details",
-          "$ref": "#/$defs/GEEX4923Wrapper"
-        },
-        "GEEX4925": {
-          "description": "Rubriques Declaration Line",
-          "type": "array",
-          "maxItems": 99,
-          "items": {
-            "$ref": "#/$defs/GEEX4925Wrapper"
-          }
         }
       },
       "required": ["CODOBL", "AVINLI", "GEEX4920"],
@@ -441,6 +421,26 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 99999
+        },
+        "GEEX4921": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4921Wrapper"
+        },
+        "GEEX4922": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4922Wrapper"
+        },
+        "GEEX4923": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4923Wrapper"
+        },
+        "GEEX4925": {
+          "description": "Rubriques Declaration Line",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4925Wrapper"
+          }
         }
       },
       "required": ["NLIOBL", "CODPRO"],

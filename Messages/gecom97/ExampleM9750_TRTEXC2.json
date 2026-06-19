@@ -1,0 +1,70 @@
+{
+  "statusDeliveryOrders": [
+    {
+      "TRTEXC": "2",
+      "DATEXC": "20260617",
+      "HEUEXC": "090000",
+      "CODACT": "WMS",
+      "NUMLIV": "20000001",
+      "SNULIV": "001",
+      "REFLIV": "DEL-2026-000001",
+      "BLOLIV": false,
+      "ETALIV": "10",
+      "CODCLI": "CLI0001",
+      "CODTLI": "STD"
+    },
+    {
+      "TRTEXC": "2",
+      "EMTEXC": "SITE-WMS-01",
+      "RCTEXC": "ERP-CLIENT",
+      "DATEXC": "20260618",
+      "HEUEXC": "100000",
+      "CODACT": "WMS",
+      "NUMLIV": "20000001",
+      "SNULIV": "001",
+      "REFLIV": "DEL-2026-000001",
+      "ETALIV": "35",
+      "NUMVAG": "VAG00125",
+      "CODCLI": "CLI0001",
+      "KAILIV": "12",
+      "TOULIV": "0010",
+      "CRILIV": "CRITERIO-A"
+    },
+    {
+      "TRTEXC": "2",
+      "DATEXC": "20260618",
+      "HEUEXC": "143023",
+      "CODACT": "WMS",
+      "REFLIV": "DEL-2026-000001",
+      "ETALIV": "50",
+      "CODCLI": "CLI0001",
+      "NUMTOU": "TOU00001",
+      "CODOFT": "OFERTA001",
+      "ACCRCP": "RECEP001"
+    },
+    {
+      "TRTEXC": "2",
+      "DATEXC": "20260618",
+      "HEUEXC": "160000",
+      "CODACT": "WMS",
+      "REFLIV": "DEL-2026-000001",
+      "ETALIV": "60",
+      "CODCLI": "CLI0001",
+      "CODEMT": "WMS-SENDER",
+      "VALRUB": "DESPACHADO-OK"
+    },
+    {
+      "TRTEXC": "2",
+      "DATEXC": "20260619",
+      "HEUEXC": "090000",
+      "CODACT": "WMS",
+      "REFLIV": "DEL-2026-000002",
+      "BLOLIV": true,
+      "ETALIV": "90",
+      "CODCLI": "CLI0002",
+      "CODACL": "ANC",
+      "RUPTOT": true,
+      "ANLVAG": false
+    }
+  ]
+  }

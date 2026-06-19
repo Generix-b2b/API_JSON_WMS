@@ -1051,15 +1051,13 @@ function extractBlocks(schema, defs) {
       const cons = [prop.minItems != null ? `minItems: ${prop.minItems}` : '', prop.maxItems != null ? `maxItems: ${prop.maxItems}` : ''].filter(Boolean).join(' · ');
       blocks.push({ label: key, type: 'array', description: prop.description || '', schemaSnippet: trimSchema(prop, false), properties: {}, required: [], constraints: cons });
       const items = resolveRef(prop.items, defs);
-      if (items.properties) {
+      if (items.properties && !prop.items.$ref) {
         const topProps = {};
         for (const [k, v] of Object.entries(items.properties)) {
           const res = resolveRef(v, defs);
           if (res.type !== 'object' || !res.properties) topProps[k] = v;
         }
-        if (!prop.items.$ref) {
-          blocks.push({ label: `${key}[ ] — campos principales`, jsonKey: key, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
-        }
+        blocks.push({ label: `${key}[ ] — campos principales`, jsonKey: key, type: 'object', description: items.description || '', schemaSnippet: trimSchema(items, true), properties: topProps, required: items.required || [] });
         for (const [k, v] of Object.entries(items.properties)) {
           const res = resolveRef(v, defs);
           if (res.type === 'object' && res.properties) {

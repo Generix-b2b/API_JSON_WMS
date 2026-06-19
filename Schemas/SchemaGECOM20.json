@@ -8,631 +8,678 @@
     "method": "POST",
     "path": "https://[URL_Client_Environment].generix.biz/m20_client",
     "category": "Inbound",
-    "version": "v1.0",
+    "version": "v1.1",
     "releaseDate": "2026-06-17"
   },
-  "type": "object",
   "description": "JSON for customer master data load",
+  "type": "object",
   "properties": {
     "customerMasterData": {
-      "type": "array",
       "description": "Customer declaration",
+      "type": "array",
       "minItems": 1,
       "maxItems": 499,
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "TRTEXC": {
-            "type": "string",
-            "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-            "enum": ["1", "2", "9"],
-            "default": "2"
-          },
-          "CODACT": {
-            "type": "string",
-            "description": "Logistics activity code",
-            "minLength": 3,
-            "maxLength": 3
-          },
-          "CODCLI": {
-            "type": "string",
-            "description": "Stock owner customer code",
-            "minLength": 1,
-            "maxLength": 14
-          },
-          "TYPCLI": {
-            "type": "string",
-            "description": "Customer type / 1 = Final Delivery Point, 2 = Grouping Customer, 3 = Platform, 4 = Workshop",
-            "enum": ["1", "2", "3", "4"]
-          },
-          "CATCLI": {
-            "type": "string",
-            "description": "Customer category (e.g.: network)",
-            "maxLength": 3
-          },
-          "CLILIV": {
-            "type": "string",
-            "description": "Customer code to be delivered to",
-            "maxLength": 14
-          },
-          "EDICLI": {
-            "type": "string",
-            "description": "Customer code for EDI",
-            "maxLength": 14
-          },
-          "NOMCLI": {
-            "type": "string",
-            "description": "Customer name",
-            "minLength": 1,
-            "maxLength": 38
-          },
-          "AD1CLI": {
-            "type": "string",
-            "description": "Customer address line 1",
-            "minLength": 1,
-            "maxLength": 38
-          },
-          "AD2CLI": {
-            "type": "string",
-            "description": "Customer address line 2",
-            "maxLength": 38
-          },
-          "AD3CLI": {
-            "type": "string",
-            "description": "Customer address line 3",
-            "maxLength": 38
-          },
-          "CPOCLI": {
-            "type": "string",
-            "description": "Customer postal code in numeric format",
-            "pattern": "^[0-9]{1,5}$"
-          },
-          "CPICLI": {
-            "type": "string",
-            "description": "Customer postal code (international format)",
-            "minLength": 1,
-            "maxLength": 10
-          },
-          "VILCLI": {
-            "type": "string",
-            "description": "Customer city",
-            "minLength": 1,
-            "maxLength": 38
-          },
-          "PAYCLI": {
-            "type": "string",
-            "description": "Customer country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
-            "enum": [
-              "AF", "AFG",
-              "AX", "ALA",
-              "AL", "ALB",
-              "DZ", "DZA",
-              "AS", "ASM",
-              "AD", "AND",
-              "AO", "AGO",
-              "AI", "AIA",
-              "AQ", "ATA",
-              "AG", "ATG",
-              "AR", "ARG",
-              "AM", "ARM",
-              "AW", "ABW",
-              "AU", "AUS",
-              "AT", "AUT",
-              "AZ", "AZE",
-              "BS", "BHS",
-              "BH", "BHR",
-              "BD", "BGD",
-              "BB", "BRB",
-              "BY", "BLR",
-              "BE", "BEL",
-              "BZ", "BLZ",
-              "BJ", "BEN",
-              "BM", "BMU",
-              "BT", "BTN",
-              "BO", "BOL",
-              "BQ", "BES",
-              "BA", "BIH",
-              "BW", "BWA",
-              "BV", "BVT",
-              "BR", "BRA",
-              "IO", "IOT",
-              "BN", "BRN",
-              "BG", "BGR",
-              "BF", "BFA",
-              "BI", "BDI",
-              "CV", "CPV",
-              "KH", "KHM",
-              "CM", "CMR",
-              "CA", "CAN",
-              "KY", "CYM",
-              "CF", "CAF",
-              "TD", "TCD",
-              "CL", "CHL",
-              "CN", "CHN",
-              "CX", "CXR",
-              "CC", "CCK",
-              "CO", "COL",
-              "KM", "COM",
-              "CG", "COG",
-              "CD", "COD",
-              "CK", "COK",
-              "CR", "CRI",
-              "CI", "CIV",
-              "HR", "HRV",
-              "CU", "CUB",
-              "CW", "CUW",
-              "CY", "CYP",
-              "CZ", "CZE",
-              "DK", "DNK",
-              "DJ", "DJI",
-              "DM", "DMA",
-              "DO", "DOM",
-              "EC", "ECU",
-              "EG", "EGY",
-              "SV", "SLV",
-              "GQ", "GNQ",
-              "ER", "ERI",
-              "EE", "EST",
-              "SZ", "SWZ",
-              "ET", "ETH",
-              "FK", "FLK",
-              "FO", "FRO",
-              "FJ", "FJI",
-              "FI", "FIN",
-              "FR", "FRA",
-              "GF", "GUF",
-              "PF", "PYF",
-              "TF", "ATF",
-              "GA", "GAB",
-              "GM", "GMB",
-              "GE", "GEO",
-              "DE", "DEU",
-              "GH", "GHA",
-              "GI", "GIB",
-              "GR", "GRC",
-              "GL", "GRL",
-              "GD", "GRD",
-              "GP", "GLP",
-              "GU", "GUM",
-              "GT", "GTM",
-              "GG", "GGY",
-              "GN", "GIN",
-              "GW", "GNB",
-              "GY", "GUY",
-              "HT", "HTI",
-              "HM", "HMD",
-              "VA", "VAT",
-              "HN", "HND",
-              "HK", "HKG",
-              "HU", "HUN",
-              "IS", "ISL",
-              "IN", "IND",
-              "ID", "IDN",
-              "IR", "IRN",
-              "IQ", "IRQ",
-              "IE", "IRL",
-              "IM", "IMN",
-              "IL", "ISR",
-              "IT", "ITA",
-              "JM", "JAM",
-              "JP", "JPN",
-              "JE", "JEY",
-              "JO", "JOR",
-              "KZ", "KAZ",
-              "KE", "KEN",
-              "KI", "KIR",
-              "KP", "PRK",
-              "KR", "KOR",
-              "KW", "KWT",
-              "KG", "KGZ",
-              "LA", "LAO",
-              "LV", "LVA",
-              "LB", "LBN",
-              "LS", "LSO",
-              "LR", "LBR",
-              "LY", "LBY",
-              "LI", "LIE",
-              "LT", "LTU",
-              "LU", "LUX",
-              "MO", "MAC",
-              "MG", "MDG",
-              "MW", "MWI",
-              "MY", "MYS",
-              "MV", "MDV",
-              "ML", "MLI",
-              "MT", "MLT",
-              "MH", "MHL",
-              "MQ", "MTQ",
-              "MR", "MRT",
-              "MU", "MUS",
-              "YT", "MYT",
-              "MX", "MEX",
-              "FM", "FSM",
-              "MD", "MDA",
-              "MC", "MCO",
-              "MN", "MNG",
-              "ME", "MNE",
-              "MS", "MSR",
-              "MA", "MAR",
-              "MZ", "MOZ",
-              "MM", "MMR",
-              "NA", "NAM",
-              "NR", "NRU",
-              "NP", "NPL",
-              "NL", "NLD",
-              "NC", "NCL",
-              "NZ", "NZL",
-              "NI", "NIC",
-              "NE", "NER",
-              "NG", "NGA",
-              "NU", "NIU",
-              "NF", "NFK",
-              "MK", "MKD",
-              "MP", "MNP",
-              "NO", "NOR",
-              "OM", "OMN",
-              "PK", "PAK",
-              "PW", "PLW",
-              "PS", "PSE",
-              "PA", "PAN",
-              "PG", "PNG",
-              "PY", "PRY",
-              "PE", "PER",
-              "PH", "PHL",
-              "PN", "PCN",
-              "PL", "POL",
-              "PT", "PRT",
-              "PR", "PRI",
-              "QA", "QAT",
-              "RE", "REU",
-              "RO", "ROU",
-              "RU", "RUS",
-              "RW", "RWA",
-              "BL", "BLM",
-              "SH", "SHN",
-              "KN", "KNA",
-              "LC", "LCA",
-              "MF", "MAF",
-              "PM", "SPM",
-              "VC", "VCT",
-              "WS", "WSM",
-              "SM", "SMR",
-              "ST", "STP",
-              "SA", "SAU",
-              "SN", "SEN",
-              "RS", "SRB",
-              "SC", "SYC",
-              "SL", "SLE",
-              "SG", "SGP",
-              "SX", "SXM",
-              "SK", "SVK",
-              "SI", "SVN",
-              "SB", "SLB",
-              "SO", "SOM",
-              "ZA", "ZAF",
-              "GS", "SGS",
-              "SS", "SSD",
-              "ES", "ESP",
-              "LK", "LKA",
-              "SD", "SDN",
-              "SR", "SUR",
-              "SJ", "SJM",
-              "SE", "SWE",
-              "CH", "CHE",
-              "SY", "SYR",
-              "TW", "TWN",
-              "TJ", "TJK",
-              "TZ", "TZA",
-              "TH", "THA",
-              "TL", "TLS",
-              "TG", "TGO",
-              "TK", "TKL",
-              "TO", "TON",
-              "TT", "TTO",
-              "TN", "TUN",
-              "TR", "TUR",
-              "TM", "TKM",
-              "TC", "TCA",
-              "TV", "TUV",
-              "UG", "UGA",
-              "UA", "UKR",
-              "AE", "ARE",
-              "GB", "GBR",
-              "UM", "UMI",
-              "US", "USA",
-              "UY", "URY",
-              "UZ", "UZB",
-              "VU", "VUT",
-              "VE", "VEN",
-              "VN", "VNM",
-              "VG", "VGB",
-              "VI", "VIR",
-              "WF", "WLF",
-              "EH", "ESH",
-              "YE", "YEM",
-              "ZM", "ZMB",
-              "ZW", "ZWE"
-            ]
-          },
-          "TELCLI": {
-            "type": "string",
-            "description": "Customer phone number",
-            "maxLength": 20
-          },
-          "FAXCLI": {
-            "type": "string",
-            "description": "Customer fax number",
-            "maxLength": 20
-          },
-          "TLXCLI": {
-            "type": "string",
-            "description": "Customer telex number",
-            "maxLength": 15
-          },
-          "CODLGE": {
-            "type": "string",
-            "description": "Language code",
-            "maxLength": 3
-          },
-          "CODDEV": {
-            "type": "string",
-            "description": "Currency code",
-            "maxLength": 3
-          },
-          "IGLSIT": {
-            "type": "string",
-            "description": "Site identifier for Infolog GL",
-            "pattern": "^[0-9]{1,3}$"
-          },
-          "PTYCLI": {
-            "type": "string",
-            "description": "Store service priority",
-            "maxLength": 3
-          },
-          "ETACLI": {
-            "type": "string",
-            "description": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
-            "enum": ["20", "30", "40"]
-          },
-          "INDADR": {
-            "type": "string",
-            "description": "Address indicator",
-            "maxLength": 1
-          },
-          "CODCLV": {
-            "type": "string",
-            "description": "Delivery requirement",
-            "maxLength": 3
-          },
-          "GEEX2001": {
-            "type": "object",
-            "description": "Customer Additional Declaration",
-            "additionalProperties": false,
-            "properties": {
-              "RSPCLI": {
-                "type": "string",
-                "description": "Name of the person in charge at the customer",
-                "maxLength": 30
-              },
-              "CODMOP": {
-                "type": "string",
-                "description": "Preparation mode code for a customer",
-                "maxLength": 3
-              },
-              "CODRGT": {
-                "type": "string",
-                "description": "Area code for transport",
-                "maxLength": 3
-              },
-              "CODTRA": {
-                "type": "string",
-                "description": "Carrier code",
-                "maxLength": 14
-              },
-              "TOULIV": {
-                "type": "array",
-                "description": "Goods delivery round",
-                "maxItems": 7,
-                "items": {
-                  "type": "string",
-                  "description": "Goods delivery round",
-                  "pattern": "^[0-9]{1,4}$"
-                }
-              },
-              "ORDLIV": {
-                "type": "array",
-                "description": "Delivery order in the round",
-                "maxItems": 7,
-                "items": {
-                  "type": "string",
-                  "description": "Delivery order in the round",
-                  "pattern": "^[0-9]{1,4}$"
-                }
-              },
-              "KAILIV": {
-                "type": "array",
-                "description": "Freight transport docks",
-                "maxItems": 7,
-                "items": {
-                  "type": "string",
-                  "description": "Freight transport docks",
-                  "pattern": "^[0-9]{1,3}$"
-                }
-              },
-              "GSTALC": {
-                "type": "string",
-                "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
-                "enum": ["0", "1", "2", "3"]
-              },
-              "PTYDES": {
-                "type": "string",
-                "description": "Pallet retrieval priority",
-                "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "95"]
-              },
-              "NUMACS": {
-                "type": "string",
-                "description": "Excise duty number (Alcohol)",
-                "maxLength": 20
-              },
-              "TVACCE": {
-                "type": "string",
-                "description": "Intra-community VAT",
-                "maxLength": 20
-              },
-              "IDEALC": {
-                "type": "string",
-                "description": "Alcohol identifier",
-                "maxLength": 20
-              },
-              "CTRPRP": {
-                "type": "boolean",
-                "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
-                "default": false
-              },
-              "CLIDAE": {
-                "type": "string",
-                "description": "DEA management mode",
-                "maxLength": 1
-              },
-              "TYPDES": {
-                "type": "string",
-                "description": "GAMM@ destination type",
-                "maxLength": 1
-              },
-              "BUREXP": {
-                "type": "string",
-                "description": "Ref. GAMM@ Export Office",
-                "maxLength":8
-              },
-              "PTYPRP": {
-                "type": "string",
-                "description": "Priority of heterogeneous supports in ML preparation",
-                "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90"]
-              },
-              "GENAVI": {
-                "type": "string",
-                "description": "Shipping notice generation",
-                "maxLength": 1
-              },
-              "HEUCHV": {
-                "type": "boolean",
-                "description": "Riding Time /  false = No, true = Yes",
-                "default": false
-              },
-              "TYPDES2": {
-                "type": "string",
-                "description": "GAMM@ destination type",
-                "maxLength": 2
-              },
-              "CODFCQ": {
-                "type": "string",
-                "description": "Quality control sheet code",
-                "maxLength": 3
-              },
-              "CM1CLI": {
-                "type": "string",
-                "description": "Customer comment (line 1)",
-                "maxLength":45
-              },
-              "CM2CLI": {
-                "type": "string",
-                "description": "Customer comment (line 2)",
-                "maxLength":45
-              },
-              "CM3CLI": {
-                "type": "string",
-                "description": "Customer comment (line 3)",
-                "maxLength":45
-              },
-              "EMLADR": {
-                "type": "string",
-                "description": "Email address",
-                "minLength": 1,
-                "maxLength":50,
-                "format": "email"
-              },
-              "CODRST": {
-                "type": "string",
-                "description": "In-transit inventory rule code",
-                "maxLength": 3
-              },
-              "LIBCPL": {
-                "type": "string",
-                "description": "Additional name",
-                "maxLength": 38
-              },
-              "LIBCP2": {
-                "type": "string",
-                "description": "Additional name 2",
-                "maxLength": 38
-              },
-              "EXLGRP": {
-                "type": "boolean",
-                "description": "Out of group / false = no, true = Yes",
-                "default": false
-              },
-              "TYPDSV": {
-                "type": "string",
-                "description": "DESADV type",
-                "maxLength": 1
-              },
-              "PTYSND": {
-                "type": "string",
-                "description": "Shipping priority",
-                "maxLength": 1
-              },
-              "IDEEXT": {
-                "type": "string",
-                "description": "External identifier",
-                "maxLength": 35
-              },
-              "ARDPEN": {
-                "type": "string",
-                "description": "Shortage rounding indicator",
-                "maxLength": 1
-              }
-            }
-          },
-          "GEEX2050": {
-            "type": "array",
-            "description": "Customer rubriques declaration",
-            "maxItems": 99,
-            "items":
-              {
-                "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                  "TYPRUB": {
-                    "type": "string",
-                    "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
-                    "enum": ["1", "2"],
-                    "default": "2"
-                  },
-                  "CODRUB": {
-                    "type": "string",
-                    "description": "Section code",
-                    "minLength": 1,
-                    "maxLength":4
-                  },
-                  "VALRUB": {
-                    "type": "string",
-                    "description": "Item value",
-                    "minLength": 1,
-                    "maxLength": 35
-                  }
-                },
-                "required": ["TYPRUB", "CODRUB", "VALRUB"]
-              }
-          }
-        },
-        "required": ["TRTEXC", "CODACT", "CODCLI", "NOMCLI", "AD1CLI", "VILCLI", "PAYCLI"],
-        "oneOf": [
-          { "required": ["CPOCLI"], "not": { "required": ["CPICLI"] } },
-          { "required": ["CPICLI"], "not": { "required": ["CPOCLI"] } }
-        ]
-      }
+				"$ref": "#/$defs/GEEX2000"
+			}
     }
   },
-  "required": ["customerMasterData"]
+  "required": ["customerMasterData"],
+  "$defs": {
+    "GEEX2000": {
+      "description": "Customer declaration",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "CODCLI": {
+          "description": "Stock owner customer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "TYPCLI": {
+          "description": "Customer type / 1 = Final Delivery Point, 2 = Grouping Customer, 3 = Platform, 4 = Workshop",
+          "$ref": "#/$defs/Enums/EnumTYPCLI"
+        },
+        "CATCLI": {
+          "description": "Customer category (e.g.: network)",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CLILIV": {
+          "description": "Customer code to be delivered to",
+          "type": "string",
+          "maxLength": 14
+        },
+        "EDICLI": {
+          "description": "Customer code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "NOMCLI": {
+          "description": "Customer name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD1CLI": {
+          "description": "Customer address line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD2CLI": {
+          "description": "Customer address line 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "AD3CLI": {
+          "description": "Customer address line 3",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CPOCLI": {
+          "description": "Customer postal code in numeric format",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "CPICLI": {
+          "description": "Customer postal code (international format)",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "VILCLI": {
+          "description": "Customer city",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "PAYCLI": {
+          "description": "Customer country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
+          "$ref": "#/$defs/Enums/EnumPAYCLI"
+        },
+        "TELCLI": {
+          "description": "Customer phone number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "FAXCLI": {
+          "description": "Customer fax number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TLXCLI": {
+          "description": "Customer telex number",
+          "type": "string",
+          "maxLength": 15
+        },
+        "CODLGE": {
+          "description": "Language code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODDEV": {
+          "description": "Currency code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "IGLSIT": {
+          "description": "Site identifier for Infolog GL",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "PTYCLI": {
+          "description": "Store service priority",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ETACLI": {
+          "description": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
+          "$ref": "#/$defs/Enums/EnumETACLI"
+        },
+        "INDADR": {
+          "description": "Address indicator",
+          "type": "string",
+          "maxLength": 1
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GEEX2001": {
+          "description": "Customer Additional Declaration",
+          "$ref": "#/$defs/GEEX2001Wrapper"
+        },
+        "GEEX2050": {
+          "description": "Customer rubriques declaration",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX2050Wrapper"
+          }
+        }
+      },
+      "required": ["TRTEXC", "CODACT", "CODCLI", "NOMCLI", "AD1CLI", "VILCLI", "PAYCLI"],
+      "oneOf": [
+        { "required": ["CPOCLI"], "not": { "required": ["CPICLI"] } },
+        { "required": ["CPICLI"], "not": { "required": ["CPOCLI"] } }
+      ],
+      "additionalProperties": false
+    },
+    "GEEX2001Wrapper": {
+      "description": "Customer Additional Declaration",
+      "type": "object",
+      "properties": {
+        "RSPCLI": {
+          "description": "Name of the person in charge at the customer",
+          "type": "string",
+          "maxLength": 30
+        },
+        "CODMOP": {
+          "description": "Preparation mode code for a customer",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODRGT": {
+          "description": "Area code for transport",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "TOULIV": {
+          "description": "Goods delivery round",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Goods delivery round",
+            "type": "string",
+            "pattern": "^[0-9]{1,4}$"
+          }
+        },
+        "ORDLIV": {
+          "description": "Delivery order in the round",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Delivery order in the round",
+            "type": "string",
+            "pattern": "^[0-9]{1,4}$"
+          }
+        },
+        "KAILIV": {
+          "description": "Freight transport docks",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Freight transport docks",
+            "type": "string",
+            "pattern": "^[0-9]{1,3}$"
+          }
+        },
+        "GSTALC": {
+          "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
+          "$ref": "#/$defs/Enums/EnumGSTALC"
+        },
+        "PTYDES": {
+          "description": "Pallet retrieval priority",
+          "$ref": "#/$defs/Enums/EnumPTYDES"
+        },
+        "NUMACS": {
+          "description": "Excise duty number (Alcohol)",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TVACCE": {
+          "description": "Intra-community VAT",
+          "type": "string",
+          "maxLength": 20
+        },
+        "IDEALC": {
+          "description": "Alcohol identifier",
+          "type": "string",
+          "maxLength": 20
+        },
+        "CTRPRP": {
+          "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
+          "type": "boolean",
+          "default": false
+        },
+        "CLIDAE": {
+          "description": "DEA management mode",
+          "type": "string",
+          "maxLength": 1
+        },
+        "TYPDES": {
+          "description": "GAMM@ destination type",
+          "type": "string",
+          "maxLength": 1
+        },
+        "BUREXP": {
+          "description": "Ref. GAMM@ Export Office",
+          "type": "string",
+          "maxLength":8
+        },
+        "PTYPRP": {
+          "description": "Priority of heterogeneous supports in ML preparation",
+          "$ref": "#/$defs/Enums/EnumPTYPRP"
+        },
+        "GENAVI": {
+          "description": "Shipping notice generation",
+          "type": "string",
+          "maxLength": 1
+        },
+        "HEUCHV": {
+          "description": "Riding Time /  false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "TYPDES2": {
+          "description": "GAMM@ destination type",
+          "type": "string",
+          "maxLength": 2
+        },
+        "CODFCQ": {
+          "description": "Quality control sheet code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CM1CLI": {
+          "description": "Customer comment (line 1)",
+          "type": "string",
+          "maxLength":45
+        },
+        "CM2CLI": {
+          "description": "Customer comment (line 2)",
+          "type": "string",
+          "maxLength":45
+        },
+        "CM3CLI": {
+          "description": "Customer comment (line 3)",
+          "type": "string",
+          "maxLength":45
+        },
+        "EMLADR": {
+          "description": "Email address",
+          "type": "string",
+          "minLength": 1,
+          "maxLength":50,
+          "format": "email"
+        },
+        "CODRST": {
+          "description": "In-transit inventory rule code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "LIBCPL": {
+          "description": "Additional name",
+          "type": "string",
+          "maxLength": 38
+        },
+        "LIBCP2": {
+          "description": "Additional name 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "EXLGRP": {
+          "description": "Out of group / false = no, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "TYPDSV": {
+          "description": "DESADV type",
+          "type": "string",
+          "maxLength": 1
+        },
+        "PTYSND": {
+          "description": "Shipping priority",
+          "type": "string",
+          "maxLength": 1
+        },
+        "IDEEXT": {
+          "description": "External identifier",
+          "type": "string",
+          "maxLength": 35
+        },
+        "ARDPEN": {
+          "description": "Shortage rounding indicator",
+          "type": "string",
+          "maxLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX2050Wrapper": {
+      "description": "Customer rubriques declaration",
+      "type": "object",
+      "properties": {
+        "TYPRUB": {
+          "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
+					"$ref": "#/$defs/Enums/EnumTYPRUB"
+        },
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength":4
+        },
+        "VALRUB": {
+          "description": "Item value",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["TYPRUB", "CODRUB", "VALRUB"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "9"],
+        "default": "2"
+      },
+      "EnumTYPCLI": {
+        "description": "Customer type / 1 = Final Delivery Point, 2 = Grouping Customer, 3 = Platform, 4 = Workshop",
+        "type": "string",
+        "enum": ["1", "2", "3", "4"]
+      },
+      "EnumPAYCLI": {
+        "description": "Customer country code (ISO 3166-1 alpha-2 or alpha-3 accepted)",
+        "type": "string",
+        "enum": [
+          "AF", "AFG",
+          "AX", "ALA",
+          "AL", "ALB",
+          "DZ", "DZA",
+          "AS", "ASM",
+          "AD", "AND",
+          "AO", "AGO",
+          "AI", "AIA",
+          "AQ", "ATA",
+          "AG", "ATG",
+          "AR", "ARG",
+          "AM", "ARM",
+          "AW", "ABW",
+          "AU", "AUS",
+          "AT", "AUT",
+          "AZ", "AZE",
+          "BS", "BHS",
+          "BH", "BHR",
+          "BD", "BGD",
+          "BB", "BRB",
+          "BY", "BLR",
+          "BE", "BEL",
+          "BZ", "BLZ",
+          "BJ", "BEN",
+          "BM", "BMU",
+          "BT", "BTN",
+          "BO", "BOL",
+          "BQ", "BES",
+          "BA", "BIH",
+          "BW", "BWA",
+          "BV", "BVT",
+          "BR", "BRA",
+          "IO", "IOT",
+          "BN", "BRN",
+          "BG", "BGR",
+          "BF", "BFA",
+          "BI", "BDI",
+          "CV", "CPV",
+          "KH", "KHM",
+          "CM", "CMR",
+          "CA", "CAN",
+          "KY", "CYM",
+          "CF", "CAF",
+          "TD", "TCD",
+          "CL", "CHL",
+          "CN", "CHN",
+          "CX", "CXR",
+          "CC", "CCK",
+          "CO", "COL",
+          "KM", "COM",
+          "CG", "COG",
+          "CD", "COD",
+          "CK", "COK",
+          "CR", "CRI",
+          "CI", "CIV",
+          "HR", "HRV",
+          "CU", "CUB",
+          "CW", "CUW",
+          "CY", "CYP",
+          "CZ", "CZE",
+          "DK", "DNK",
+          "DJ", "DJI",
+          "DM", "DMA",
+          "DO", "DOM",
+          "EC", "ECU",
+          "EG", "EGY",
+          "SV", "SLV",
+          "GQ", "GNQ",
+          "ER", "ERI",
+          "EE", "EST",
+          "SZ", "SWZ",
+          "ET", "ETH",
+          "FK", "FLK",
+          "FO", "FRO",
+          "FJ", "FJI",
+          "FI", "FIN",
+          "FR", "FRA",
+          "GF", "GUF",
+          "PF", "PYF",
+          "TF", "ATF",
+          "GA", "GAB",
+          "GM", "GMB",
+          "GE", "GEO",
+          "DE", "DEU",
+          "GH", "GHA",
+          "GI", "GIB",
+          "GR", "GRC",
+          "GL", "GRL",
+          "GD", "GRD",
+          "GP", "GLP",
+          "GU", "GUM",
+          "GT", "GTM",
+          "GG", "GGY",
+          "GN", "GIN",
+          "GW", "GNB",
+          "GY", "GUY",
+          "HT", "HTI",
+          "HM", "HMD",
+          "VA", "VAT",
+          "HN", "HND",
+          "HK", "HKG",
+          "HU", "HUN",
+          "IS", "ISL",
+          "IN", "IND",
+          "ID", "IDN",
+          "IR", "IRN",
+          "IQ", "IRQ",
+          "IE", "IRL",
+          "IM", "IMN",
+          "IL", "ISR",
+          "IT", "ITA",
+          "JM", "JAM",
+          "JP", "JPN",
+          "JE", "JEY",
+          "JO", "JOR",
+          "KZ", "KAZ",
+          "KE", "KEN",
+          "KI", "KIR",
+          "KP", "PRK",
+          "KR", "KOR",
+          "KW", "KWT",
+          "KG", "KGZ",
+          "LA", "LAO",
+          "LV", "LVA",
+          "LB", "LBN",
+          "LS", "LSO",
+          "LR", "LBR",
+          "LY", "LBY",
+          "LI", "LIE",
+          "LT", "LTU",
+          "LU", "LUX",
+          "MO", "MAC",
+          "MG", "MDG",
+          "MW", "MWI",
+          "MY", "MYS",
+          "MV", "MDV",
+          "ML", "MLI",
+          "MT", "MLT",
+          "MH", "MHL",
+          "MQ", "MTQ",
+          "MR", "MRT",
+          "MU", "MUS",
+          "YT", "MYT",
+          "MX", "MEX",
+          "FM", "FSM",
+          "MD", "MDA",
+          "MC", "MCO",
+          "MN", "MNG",
+          "ME", "MNE",
+          "MS", "MSR",
+          "MA", "MAR",
+          "MZ", "MOZ",
+          "MM", "MMR",
+          "NA", "NAM",
+          "NR", "NRU",
+          "NP", "NPL",
+          "NL", "NLD",
+          "NC", "NCL",
+          "NZ", "NZL",
+          "NI", "NIC",
+          "NE", "NER",
+          "NG", "NGA",
+          "NU", "NIU",
+          "NF", "NFK",
+          "MK", "MKD",
+          "MP", "MNP",
+          "NO", "NOR",
+          "OM", "OMN",
+          "PK", "PAK",
+          "PW", "PLW",
+          "PS", "PSE",
+          "PA", "PAN",
+          "PG", "PNG",
+          "PY", "PRY",
+          "PE", "PER",
+          "PH", "PHL",
+          "PN", "PCN",
+          "PL", "POL",
+          "PT", "PRT",
+          "PR", "PRI",
+          "QA", "QAT",
+          "RE", "REU",
+          "RO", "ROU",
+          "RU", "RUS",
+          "RW", "RWA",
+          "BL", "BLM",
+          "SH", "SHN",
+          "KN", "KNA",
+          "LC", "LCA",
+          "MF", "MAF",
+          "PM", "SPM",
+          "VC", "VCT",
+          "WS", "WSM",
+          "SM", "SMR",
+          "ST", "STP",
+          "SA", "SAU",
+          "SN", "SEN",
+          "RS", "SRB",
+          "SC", "SYC",
+          "SL", "SLE",
+          "SG", "SGP",
+          "SX", "SXM",
+          "SK", "SVK",
+          "SI", "SVN",
+          "SB", "SLB",
+          "SO", "SOM",
+          "ZA", "ZAF",
+          "GS", "SGS",
+          "SS", "SSD",
+          "ES", "ESP",
+          "LK", "LKA",
+          "SD", "SDN",
+          "SR", "SUR",
+          "SJ", "SJM",
+          "SE", "SWE",
+          "CH", "CHE",
+          "SY", "SYR",
+          "TW", "TWN",
+          "TJ", "TJK",
+          "TZ", "TZA",
+          "TH", "THA",
+          "TL", "TLS",
+          "TG", "TGO",
+          "TK", "TKL",
+          "TO", "TON",
+          "TT", "TTO",
+          "TN", "TUN",
+          "TR", "TUR",
+          "TM", "TKM",
+          "TC", "TCA",
+          "TV", "TUV",
+          "UG", "UGA",
+          "UA", "UKR",
+          "AE", "ARE",
+          "GB", "GBR",
+          "UM", "UMI",
+          "US", "USA",
+          "UY", "URY",
+          "UZ", "UZB",
+          "VU", "VUT",
+          "VE", "VEN",
+          "VN", "VNM",
+          "VG", "VGB",
+          "VI", "VIR",
+          "WF", "WLF",
+          "EH", "ESH",
+          "YE", "YEM",
+          "ZM", "ZMB",
+          "ZW", "ZWE"
+        ]
+      },
+      "EnumETACLI": {
+        "description": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
+        "type": "string",
+        "enum": ["20", "30", "40"]
+      },
+      "EnumGSTALC": {
+        "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
+        "type": "string",
+        "enum": ["0", "1", "2", "3"]
+      },
+      "EnumPTYDES": {
+        "description": "Pallet retrieval priority",
+        "type": "string",
+        "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "95"]
+      },
+      "EnumPTYPRP": {
+        "description": "Priority of heterogeneous supports in ML preparation",
+        "type": "string",
+        "enum": ["10", "20", "30", "40", "50", "60", "70", "80", "90"]
+      },
+      "EnumTYPRUB": {
+        "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "type": "string",
+        "enum": ["1","2"],
+        "default": "2"
+      }
+    }
+  }
 }

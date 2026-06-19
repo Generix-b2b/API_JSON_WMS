@@ -1,0 +1,14 @@
+{
+  "customerMasterData": [
+    {
+      "TRTEXC": "9",
+      "CODACT": "WMS",
+      "CODCLI": "CLI9999",
+      "NOMCLI": "Cliente Inactivo S.L.",
+      "AD1CLI": "Dirección Baja 1",
+      "CPOCLI": "28000",
+      "VILCLI": "Madrid",
+      "PAYCLI": "ES"
+    }
+  ]
+}

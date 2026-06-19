@@ -1,0 +1,42 @@
+{
+  "customerMasterData": [
+    {
+      "TRTEXC": "2",
+      "CODACT": "WMS",
+      "CODCLI": "CLI0001",
+      "NOMCLI": "Supermercados Norte S.L.",
+      "AD1CLI": "Calle Gran Vía 100 - Local B",
+      "CPOCLI": "48015",
+      "VILCLI": "Bilbao",
+      "PAYCLI": "ES",
+      "TELCLI": "+34944222333",
+      "GEEX2001": {
+        "CODTRA": "TRANSP003",
+        "EMLADR": "recepcion@supermercadosnorte.es",
+        "HEUCHV": true
+      }
+    },
+    {
+      "TRTEXC": "2",
+      "CODACT": "WMS",
+      "CODCLI": "CLIFR01",
+      "TYPCLI": "1",
+      "NOMCLI": "Grands Magasins Français S.A.",
+      "AD1CLI": "12 Rue du Commerce",
+      "AD2CLI": "Zone Industrielle Nord",
+      "CPICLI": "F-75001",
+      "VILCLI": "Paris",
+      "PAYCLI": "FR",
+      "TELCLI": "+33140000000",
+      "CODLGE": "FRA",
+      "CODDEV": "EUR",
+      "ETACLI": "30",
+      "GEEX2001": {
+        "EMLADR": "logistique@grandsmagasins.fr",
+        "CODRGT": "Z05",
+        "TYPDSV": "B",
+        "ARDPEN": "R"
+      }
+    }
+  ]
+}

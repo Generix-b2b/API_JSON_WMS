@@ -30,7 +30,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "FAMPAR": {

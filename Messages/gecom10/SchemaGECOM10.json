@@ -31,7 +31,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "CODACT": {
@@ -47,7 +47,7 @@
           "maxLength": 14
         },
         "TYPFOU": {
-          "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+          "description": "Supplier type - see EnumTYPFOU",
           "$ref": "#/$defs/Enums/EnumTYPFOU"
         },
         "NOMFOU": {
@@ -126,15 +126,15 @@
           "maxLength": 3
         },
         "GSTAVI": {
-          "description": "Shipping notice management / 0 = No notice management, 1 = Notices managed without disputes, 2 = Notices managed with disputes",
+          "description": "Shipping notice management - see EnumGSTAVI",
           "$ref": "#/$defs/Enums/EnumGSTAVI"
         },
         "GSTRCP": {
-          "description": "Radio frequency receiving management type / 0 = No management, 1 = Product code management, 2 =  EAN 13/14 management, 3 = EAN 128 management",
+          "description": "Radio frequency receiving management type - see EnumGSTRCP",
           "$ref": "#/$defs/Enums/EnumGSTRCP"
         },
         "TYPPRT": {
-          "description": "Connector type (receiving) / 1 = Pallet, 3 = Package",
+          "description": "Connector type (receiving) - see EnumTYPPRT",
           "$ref": "#/$defs/Enums/EnumTYPPRT"
         },
         "EMBTIE": {
@@ -143,7 +143,7 @@
           "default": false
         },
         "FOUGMA": {
-          "description": "Indicator for supplier management with GAMM@ / 0 = Not managed, 1 = Mandatory management, 2 = Optional management",
+          "description": "Indicator for supplier management with GAMM@ - see EnumFOUGMA",
           "$ref": "#/$defs/Enums/EnumFOUGMA"
         },
         "SYSMES": {
@@ -196,7 +196,7 @@
           "default": false
         },
         "CODENL": {
-          "description": "Collection code / 0 = Without collection, 1 = With collection",
+          "description": "Collection code - see EnumCODENL",
           "$ref": "#/$defs/Enums/EnumCODENL"
         },
         "CODFDC01": {
@@ -250,7 +250,7 @@
           "maxLength": 20
         },
         "PEREMB": {
-          "description": "Periodicity of packaging sales / 0 = Manual balance, 1 = at midday and at the end of the month, 2 = at the end of the month",
+          "description": "Periodicity of packaging sales - see EnumPEREMB",
           "$ref": "#/$defs/Enums/EnumPEREMB"
         },
         "UNIFSR": {

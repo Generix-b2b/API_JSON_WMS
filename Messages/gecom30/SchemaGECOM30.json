@@ -6,10 +6,10 @@
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
     "method": "POST",
-    "path": "https://[URL_Client_Environment].generix.biz/m30_product",
+    "path": "https://[URL_Client_Environment].generix.biz/m30_product?uuid=[Value]",
     "category": "Inbound",
     "version": "v1.1",
-    "releaseDate": "2026-06-17"
+    "releaseDate": "2026-06-22"
   },
   "description": "JSON for product master data load",
   "type": "object",
@@ -457,7 +457,7 @@
         "NXTIVT": {
           "description": "Date of next product inventory / format YYYYMMDD",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "SECSTK": {
@@ -1011,7 +1011,7 @@
         "CODLGE": {
           "description": "Language code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "DS1PRO": {

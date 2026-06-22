@@ -1,145 +1,157 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Responses/SchemaResponse.json",
-  "title": "WMS API - Responses",
-  "x-wms-icon": "↩",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/response/SchemaRESPONSE.json",
+  "title": "ACK - Document reception acknowledgement and validation result",
+  "x-wms-icon": "ACK",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
-    "category": "Responses",
-    "version": "v1.0",
-    "releaseDate": "2026-06-17"
+    "method": "POST",
+    "path": "https://[URL_Client]/endpoint",
+    "category": "Outbound",
+    "version": "v1.1",
+    "releaseDate": "2026-06-22"
   },
-  "description": "JSON schemas for the two response types of the WMS API asynchronous flow.",
+  "description": "JSON for ACK message returned by the middleware: reports the reception status of an inbound document and, after processing, the result of its schema validation",
   "type": "object",
-  "$defs": {
-    "ImmediateACK": {
-      "title": "Immediate Acknowledgment",
-      "description": "Synchronous response returned immediately by the WMS when a message is received. This confirms delivery only — it does NOT guarantee the message has been validated or processed.",
+  "properties": {
+    "response": {
+      "description": "Status document",
       "type": "object",
       "properties": {
-        "label": {
-          "type": "string",
-          "description": "Human-readable message confirming receipt of the request.",
-          "example": "Message has been received. This is not a guarantee that the message has been read or understood."
+        "receptionAck": {
+          "description": "Asynchronous acknowledgement returned when the document is received by the middleware",
+          "$ref": "#/$defs/immediateACK"
         },
-        "success": {
-          "type": "integer",
-          "description": "Reception status code / 1 = message received by the WMS.",
-          "enum": [
-            1
-          ]
+        "validationResult": {
+          "description": "CValidation outcome returned after the document is processed",
+          "$ref": "#/$defs/validationDetail"
         }
       },
-      "required": [
-        "label",
-        "success"
-      ],
-      "additionalProperties": false
-    },
-    "AsyncErrorCallback": {
-      "title": "Async Error Callback",
-      "description": "Sent asynchronously BY THE WMS to the client's own endpoint when validation errors are detected during message processing. The client must expose a webhook endpoint to receive this payload. This response is optional — it is only sent if the client has configured a callback URL with their WMS consultant.",
-      "type": "object",
-      "properties": {
-        "response": {
-          "description": "Root wrapper of the error callback payload.",
-          "$ref": "#/$defs/ResponseBody"
+      "oneOf": [
+        {
+          "required": ["receptionAck"]
+        },
+        {
+          "required": ["validationResult"]
         }
-      },
-      "required": [
-        "response"
       ],
       "additionalProperties": false
-    },
-    "ResponseBody": {
-      "title": "Response Body",
-      "description": "Body of the async error callback. Contains message metadata and the list of validation errors detected by the WMS.",
+    }
+  },
+  "required": ["response"],
+  "additionalProperties": false,
+  "$defs": {
+    "immediateACK": {
+      "description": "Asynchronous acknowledgement returned when the document is received by the middleware",
       "type": "object",
       "properties": {
         "uuid": {
+          "description": "Unique identifier of the message",
           "type": "string",
-          "description": "Unique identifier of the original message. Empty string if not applicable.",
-          "example": ""
+          "minLength": 1
         },
-        "message": {
+        "endpoint": {
+          "description": "Target endpoint",
           "type": "string",
-          "description": "Code of the WMS message type that generated the errors (e.g. M40 = Reception Orders, M30 = Product Master).",
-          "example": "M40"
+          "minLength": 1
         },
         "timestamp": {
+          "description": "Processing timestamp (Format: YYYYMMDDHHMMSS)",
           "type": "string",
-          "description": "Date and time when the WMS processed the message / format YYYYMMDDHHmmss.",
-          "pattern": "^[0-9]{14}$",
-          "example": "20260608121120"
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["20250125125912"]
+        },
+        "label": {
+          "description": "Descriptive text of the message status",
+          "type": "string",
+          "minLength": 1
+        },
+        "success": {
+          "description": "Success indicator - see EnumSuccess",
+          "$ref": "#/$defs/Enums/EnumSuccess"
+        }
+      },
+      "required": ["uuid", "endpoint", "timestamp", "label", "success"],
+      "additionalProperties": false
+    },
+    "validationDetail": {
+      "description": "Validation outcome returned after the document is processed",
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "description": "Unique identifier of the message",
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "description": "Message code - see EnumMessageCode",
+          "$ref": "#/$defs/Enums/EnumMessageCode"
+        },
+        "timestamp": {
+          "description": "Processing timestamp (Format: YYYYMMDDHHMMSS)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])([01][0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["20250125125912"]
         },
         "errors": {
+          "description": "List of validation errors found",
           "type": "array",
-          "description": "List of validation errors detected in the original message. One entry per field error.",
           "minItems": 1,
+          "maxItems": 999,
           "items": {
-            "$ref": "#/$defs/ErrorDetail"
+            "$ref": "#/$defs/errorDetail"
           }
         }
       },
-      "required": [
-        "message",
-        "timestamp",
-        "errors"
-      ],
+      "required": ["uuid", "message", "timestamp", "errors"],
       "additionalProperties": false
     },
-    "ErrorDetail": {
-      "title": "Error Detail",
-      "description": "Individual validation error detected on a specific field of the original message.",
+    "errorDetail": {
+      "description": "List of validation errors found",
       "type": "object",
       "properties": {
         "line": {
+          "description": "Line number where the error was detected",
           "type": "string",
-          "description": "Line number of the record in the original message where the error was detected (1-based).",
-          "pattern": "^[0-9]+$",
-          "example": "4"
+          "minLength": 1
         },
         "type": {
-          "type": "string",
-          "description": "Data type of the field that failed validation / string = text field, integer = integer field, string_double = decimal number, date = date field (YYYYMMDD), boolean = true/false field.",
+          "description": "Data type of the field that failed validation - see EnumErrorType",
           "$ref": "#/$defs/Enums/EnumErrorType"
         },
         "field": {
+          "description": "Name of the field that failed validation",
           "type": "string",
-          "description": "Name of the WMS field that contains the validation error.",
-          "example": "MSGLIG"
+          "minLength": 1
         },
         "receivedValue": {
-          "type": "string",
-          "description": "Actual value received in the field that caused the error.",
-          "example": "Producto en cuarentena hasta análisis"
+          "description": "Value received for the field",
+          "type": "string"
         },
         "error": {
+          "description": "Descriptive validation error message",
           "type": "string",
-          "description": "Human-readable description of the validation rule that was violated.",
-          "example": "Max valor permitido : 30 Valor indicado en : MSGLIG = Producto en cuarentena hasta análisis"
+          "minLength": 1
         }
       },
-      "required": [
-        "line",
-        "type",
-        "field",
-        "receivedValue",
-        "error"
-      ],
+      "required": ["line", "type", "field", "receivedValue", "error"],
       "additionalProperties": false
     },
     "Enums": {
-      "EnumErrorType": {
-        "description": "Data type of the field that failed validation / string = text, integer = integer, string_double = decimal number, date = date YYYYMMDD, boolean = true/false",
+      "EnumSuccess": {
+        "description": "Success indicator / 1 = success, 0 = error",
         "type": "string",
-        "enum": [
-          "string",
-          "integer",
-          "string_double",
-          "date",
-          "boolean"
-        ]
+        "enum": ["0", "1"]
+      },
+      "EnumMessageCode": {
+        "description": "Message code / M08 = Load Table, M10 = Supplier Master Data, M20 = Customer Master Data, M30 = Product Master Data, M40 = Reception Orders, M49 = Dispatch Advice, M50 = Delivery Orders",
+        "type": "string",
+        "enum": ["M08", "M10", "M20", "M30", "M40", "M49", "M50"]
+      },
+      "EnumErrorType": {
+        "description": "Data type of the field that failed validation / enum = Enumerations, string = Text, string_num = Integer number in text format, integer = Integer number, string_double = Decimal number in text format, double = Decimal Number, date = Date YYYYMMDD, time = Time HHMMSS, boolean = TRUE or FALSE",
+        "type": "string",
+        "enum": ["enum", "string", "string_num", "integer", "string_double", "double", "date", "time", "boolean"]
       }
     }
   }

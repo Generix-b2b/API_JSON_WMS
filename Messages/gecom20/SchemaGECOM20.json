@@ -31,7 +31,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "CODACT": {
@@ -47,7 +47,7 @@
           "maxLength": 14
         },
         "TYPCLI": {
-          "description": "Customer type / 1 = Final Delivery Point, 2 = Grouping Customer, 3 = Platform, 4 = Workshop",
+          "description": "Customer type - see EnumTYPCLI",
           "$ref": "#/$defs/Enums/EnumTYPCLI"
         },
         "CATCLI": {
@@ -141,7 +141,7 @@
           "maxLength": 3
         },
         "ETACLI": {
-          "description": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
+          "description": "Customer status code - see EnumETACLI",
           "$ref": "#/$defs/Enums/EnumETACLI"
         },
         "INDADR": {
@@ -225,11 +225,11 @@
           }
         },
         "GSTALC": {
-          "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
+          "description": "Liquor management mode - see EnumGSTALC",
           "$ref": "#/$defs/Enums/EnumGSTALC"
         },
         "PTYDES": {
-          "description": "Pallet retrieval priority / 10 = S.O.S., 20 = S.O.S., 30 = Urgent, 40 = Urgent, 50 = Normal, 60 = Normal, 70= Normal, 80 = Normal, 90 = Blocking, 95 = Interceptable",
+          "description": "Pallet retrieval priority - see EnumPTYDES",
           "$ref": "#/$defs/Enums/EnumPTYDES"
         },
         "NUMACS": {
@@ -268,7 +268,7 @@
           "maxLength":8
         },
         "PTYPRP": {
-          "description": "Priority of heterogeneous supports in ML preparation / 10 = S.O.S., 20 = S.O.S., 30 = Urgent, 40 = Urgent, 50 = Normal, 60 = Normal, 70= Normal, 80 = Normal, 90 = Blocking",
+          "description": "Priority of heterogeneous supports in ML preparation - see EnumPTYPRP",
           "$ref": "#/$defs/Enums/EnumPTYPRP"
         },
         "GENAVI": {
@@ -361,7 +361,7 @@
       "type": "object",
       "properties": {
         "TYPRUB": {
-          "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
+          "description": "Heading type - see EnumTYPRUB",
 					"$ref": "#/$defs/Enums/EnumTYPRUB"
         },
         "CODRUB": {

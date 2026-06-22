@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Schemas/SchemaGECOM40.json",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom40/SchemaGECOM40.json",
   "title": "GECOM40 - Reception Orders",
   "x-wms-icon": "GECOM40",
   "x-wms-author": "GENERIX Group Spain",

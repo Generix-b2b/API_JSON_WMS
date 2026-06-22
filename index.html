@@ -172,8 +172,42 @@
   .badge-put    { background:#fef3c7; color:#92400e; }
   .badge-patch  { background:#ede9fe; color:#6d28d9; }
   .badge-delete { background:#fee2e2; color:#dc2626; }
-  .badge-cat    { background:var(--gray-100); color:var(--gray-700); }
+  .badge-cat    { background: var(--gray-100); color: var(--gray-700); }
+  .badge-new    { background: #00A59A; color: #fff; letter-spacing: 0.6px;
+                  box-shadow: 0 0 0 0 rgba(22,163,74,.5); animation: pulseNew 1.8s infinite; }
+  @keyframes pulseNew {
+    0%   { box-shadow: 0 0 0 0 rgba(22,163,74,.45); }
+    70%  { box-shadow: 0 0 0 7px rgba(22,163,74,0); }
+    100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  }
   .badge-ver    { background:var(--generix-orange-soft); color:var(--generix-orange); }
+    /* Esquina NEW: tiñe el triángulo de la esquina y añade el texto encima */
+  .card.is-new::before {
+    border-color: transparent #00A59A transparent transparent !important;
+    border-width: 0 70px 70px 0;
+  }
+  .card.is-new:hover::before {
+    border-color: transparent #008C80 transparent transparent !important;
+  }
+  .card.is-new .new-flag {
+    position: absolute; top: 11px; right: 6px;
+    color: #fff; font-size: 0.62rem; font-weight: 800;
+    letter-spacing: 0.5px; transform: rotate(45deg);
+    pointer-events: none; z-index: 2;
+  }
+  /* Halo pulsante anclado en la punta de la esquina */
+  .card.is-new::after {
+    content: ""; position: absolute;
+    top: 0; right: 0;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: transparent; z-index: 1; pointer-events: none;
+    animation: pulseCorner 1.8s ease-out infinite;
+  }
+  @keyframes pulseCorner {
+    0%   { box-shadow: 0 0 0 0 rgba(0,165,154,.55); }
+    70%  { box-shadow: 0 0 0 55px rgba(0,165,154,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,165,154,0); }
+  }
 
   .card-link {
     color: var(--generix-orange); font-weight: 600; font-size: 0.85rem;
@@ -901,6 +935,13 @@ function autoIcon(folder, schema) {
   return folder.replace(/-/g, '').slice(0, 6).toUpperCase();
 }
 
+function isRecent(releaseDate, days = 6) {
+  if (!releaseDate) return false;
+  const d = new Date(releaseDate);
+  if (isNaN(d)) return false;
+  const diff = Date.now() - d.getTime();
+  return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+}
 function renderGrid(eps) {
   document.getElementById('endpoints-grid').innerHTML = eps.map(({ folder, schema }) => {
     const ep     = schema['x-wms-endpoint'] || {};
@@ -912,7 +953,9 @@ function renderGrid(eps) {
     const desc   = schema.description || '';
     const nf     = countTopFields(schema);
 
-    return `<div class="card" onclick="openEndpoint('${folder}')">
+    const recent = isRecent(ep.releaseDate);
+    return `<div class="card${recent ? ' is-new' : ''}" onclick="openEndpoint('${folder}')">
+      ${recent ? '<span class="new-flag">✦ NEW</span>' : ''}
       <div class="card-icon">${icon}</div>
       <div class="card-meta">
         ${method ? `<span class="badge badge-${method.toLowerCase()}">${method}</span>` : ''}

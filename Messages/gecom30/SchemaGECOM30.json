@@ -31,7 +31,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "CODACT": {
@@ -105,7 +105,7 @@
           "maxLength": 3
         },
         "MESPRO": {
-          "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+          "description": "Product measurement method - see EnumMESPRO",
           "$ref": "#/$defs/Enums/EnumMESPRO"
         },
         "PDBUVC": {
@@ -209,7 +209,7 @@
           "maxLength": 3
         },
         "MODREC": {
-          "description": "Receiving mode / 1 = Full Pallet, 2 = Unit",
+          "description": "Receiving mode - see EnumMODREC",
           "$ref": "#/$defs/Enums/EnumMODREC"
         },
         "NBJDLV": {
@@ -248,7 +248,7 @@
           "maxLength": 3
         },
         "HOMGRB": {
-          "description": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
+          "description": "Type of sheaf homogeneity (rack or bulk) - see EnumHOMGRB",
           "$ref": "#/$defs/Enums/EnumHOMGRB"
         },
         "PERGRB": {
@@ -262,7 +262,7 @@
           "maxLength": 3
         },
         "TOPPRN": {
-          "description": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
+          "description": "Indicator for composite or unit product - see EnumTOPPRN",
           "$ref": "#/$defs/Enums/EnumTOPPRN"
         },
         "ORIMAJ": {
@@ -386,7 +386,7 @@
           "maxLength": 3
         },
         "METRPL": {
-          "description": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
+          "description": "Product replacement method - see EnumMETRPL",
           "$ref": "#/$defs/Enums/EnumMETRPL"
         },
         "CODRPL": {
@@ -455,9 +455,9 @@
           "maxLength": 3
         },
         "NXTIVT": {
-          "description": "Date of next product inventory / format YYYYMMDD",
+          "description": "Date of next product inventory (format YYYYMMDD)",
           "type": "string",
-          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "SECSTK": {
@@ -599,11 +599,11 @@
           "maxLength": 3
         },
         "UNIARR": {
-          "description": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
+          "description": "Upper rounding unit - see EnumUNIARR",
           "$ref": "#/$defs/Enums/EnumUNIARR"
         },
         "UNICAL": {
-          "description": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
+          "description": "Hazardous materials quantity calculation unit - see EnumUNICAL",
           "$ref": "#/$defs/Enums/EnumUNICAL"
         },
         "TEMMIN": {
@@ -700,7 +700,7 @@
           "maxLength": 3
         },
         "EMBCLQ": {
-          "description": "LQ packaging type",
+          "description": "LQ packaging type - see EnumEMBCLQ",
           "$ref": "#/$defs/Enums/EnumEMBCLQ"
         },
         "CTRPRP": {
@@ -956,7 +956,7 @@
           "maxLength": 4
         },
         "TYPCPS": {
-          "description": "Component indicator / 1 = Main, 2 = Secondary",
+          "description": "Component indicator - see EnumTYPCPS",
           "$ref": "#/$defs/Enums/EnumTYPCPS"
         },
         "DVSCPS": {
@@ -992,7 +992,7 @@
           "type": "boolean"          
         },
         "EDIQLF": {
-          "description": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
+          "description": "EDI code qualifier - see EnumEDIQLF",
           "$ref": "#/$defs/Enums/EnumEDIQLF"
         },
         "EANVTE": {
@@ -1065,7 +1065,7 @@
           "maxLength": 12
         },
         "TYPRIC": {
-          "description": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
+          "description": "Applied regulation - see EnumTYPRIC",
           "$ref": "#/$defs/Enums/EnumTYPRIC"
         }
       },
@@ -1076,7 +1076,7 @@
       "type": "object",
       "properties": {
         "TYPRUB": {
-          "description": "Heading type / 1 = EDIFACT Standard, 2 = Internal Coding",
+          "description": "Heading type - see EnumTYPRUB",
           "$ref": "#/$defs/Enums/EnumTYPRUB"
         },
         "CODRUB": {

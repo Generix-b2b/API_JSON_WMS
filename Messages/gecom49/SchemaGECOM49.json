@@ -1,15 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Schemas/SchemaGECOM49.json",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom49/SchemaGECOM49.json",
   "title": "GECOM49 - Dispatch Advice",
   "x-wms-icon": "GECOM49",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
     "method": "POST",
-    "path": "https://[URL_Client_Environment].generix.biz/m49_dispatchAdvice",
+    "path": "https://[URL_Client_Environment].generix.biz/m49_dispatchAdvice?uuid=[Value]",
     "category": "Inbound",
     "version": "v1.1",
-    "releaseDate": "2026-06-17"
+    "releaseDate": "2026-06-22"
   },
   "description": "JSON for creating a Dispatch Advice",
   "type": "object",
@@ -80,7 +80,7 @@
         "DATEXP": {
           "description": "Goods dispatch date / format YYYYMMDD",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "HEUEXP": {
@@ -92,7 +92,7 @@
         "DATLIV": {
           "description": "Order delivery date / format YYYYMMDD",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "HEULIV": {
@@ -281,7 +281,7 @@
         "DATCRE": {
           "description": "Creation date / format YYYYMMDD",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "HEUCRE": {
@@ -314,7 +314,7 @@
           "items": {
             "description": "Support validation start and end dates / format YYYYMMDD",
             "type": "string",
-            "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
             "examples": ["20250125"]
           }
         },
@@ -453,7 +453,7 @@
         "DATFAB": {
           "description": "Manufacturing date / format YYYYMMDD",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "UVCOBI": {
@@ -618,7 +618,7 @@
           "items": {
             "description": "Immobilization start and end dates / format YYYYMMDD",
             "type": "string",
-            "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "pattern": "^[1-9]{1}[0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
             "examples": ["20250125"]
           }
         },

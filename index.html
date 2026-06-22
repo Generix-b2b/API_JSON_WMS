@@ -1353,6 +1353,29 @@ function scrollToBlock(id, btn) {
 }
 
 /* ═══ TAB 3 — ENUMERACIONES ═══ */
+function parseEnumMeanings(desc, values) {
+  desc = desc || '';
+  const slashIdx = desc.indexOf(' / ');
+  const general = (slashIdx >= 0 ? desc.slice(0, slashIdx) : desc).trim();
+  const rest = slashIdx >= 0 ? desc.slice(slashIdx + 3) : '';
+  const rows = [];
+  if (rest) {
+    const escRe = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const marks = [];
+    values.forEach(v => {
+      const re = new RegExp('(^|[\\s,;])(' + escRe(v) + ')\\s*=');
+      const m = re.exec(rest);
+      if (m) marks.push({ code: String(v), idx: m.index + m[1].length, eq: m.index + m[0].length });
+    });
+    marks.sort((a, b) => a.idx - b.idx);
+    marks.forEach((mk, i) => {
+      const end = i + 1 < marks.length ? marks[i + 1].idx : rest.length;
+      const meaning = rest.slice(mk.eq, end).trim().replace(/[,;]\s*$/, '').trim();
+      rows.push({ code: mk.code, meaning });
+    });
+  }
+  return { general, rows };
+}
 function renderEnumeraciones(schema) {
   const enums = extractEnums(schema);
   if (!enums.length) {
@@ -1362,7 +1385,7 @@ function renderEnumeraciones(schema) {
   let bodyHtml = '', navHtml = '';
   enums.forEach((en, i) => {
     const id = `enum-${i}`;
-    const snippet = JSON.stringify({ [en.field]: { type: en.type, enum: en.values } }, null, 2);
+    const snippet = JSON.stringify({ [en.defName]: en.raw }, null, 2);
     let pillsHtml;
     if (en.values.length <= 20) {
       pillsHtml = en.values.map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('');
@@ -1377,14 +1400,29 @@ function renderEnumeraciones(schema) {
             <div class="cp-header">${esc(en.field)}</div>
             <pre class="cp-pre">${esc(snippet)}</pre>
           </div>
-          <div>
-            <div class="explanation-box"><p>${esc(en.description || 'Sin descripción.')}</p></div>
-            <div class="tech-details">
-              <h4>Valores admitidos (${en.values.length})</h4>
-              <div class="enum-val-wrap">${pillsHtml}</div>
-              <p style="margin-top:10px"><strong>Usado en:</strong> <code style="font-size:.8rem">${esc(en.path)}</code></p>
-            </div>
-          </div>
+          ${(() => {
+            const parsed = parseEnumMeanings(en.description, en.values);
+            const valBlock = parsed.rows.length
+              ? `<table class="field-tbl" style="margin-top:6px">
+                  <thead><tr><th style="width:90px">Código</th><th>Significado</th></tr></thead>
+                  <tbody>${parsed.rows.map(r => {
+                    const isDef = en.default !== undefined && String(en.default) === String(r.code);
+                    return `<tr${isDef ? ' style="background:var(--generix-orange-soft)"' : ''}>
+                      <td><span class="tag-req">${esc(r.code)}</span></td>
+                      <td>${esc(r.meaning)}${isDef ? ' <span class="badge badge-cat" style="margin-left:6px">por defecto</span>' : ''}</td>
+                    </tr>`;
+                  }).join('')}</tbody>
+                </table>`
+              : `<div class="enum-val-wrap">${pillsHtml}</div>`;
+            return `<div>
+              <div class="explanation-box"><p>${esc(parsed.general || 'Sin descripción.')}</p></div>
+              <div class="tech-details">
+                <p style="margin-top:10px"><strong>Usado en:</strong> <code style="font-size:.8rem">${esc(en.path)}</code></p>
+                <h4>Valores admitidos (${en.values.length})</h4>
+                ${valBlock}
+              </div>
+            </div>`;
+          })()}
         </div>
         <div class="block-divider"></div>
       </div>`;
@@ -1399,7 +1437,7 @@ function extractEnums(schema) {
   const seenFields  = new Set();
   const seenDefs    = new Set();
 
-  function walk(obj, path) {
+  function walk(obj, path, refName) {
     if (!obj || typeof obj !== 'object') return;
 
     // Resolver $ref antes de seguir
@@ -1407,7 +1445,7 @@ function extractEnums(schema) {
       const resolved = resolvePointer(obj.$ref, schema);
       if (resolved && !seenDefs.has(obj.$ref)) {
         seenDefs.add(obj.$ref);
-        walk(resolved, path);
+        walk(resolved, path, obj.$ref.split('/').pop());
       }
       return;
     }
@@ -1416,7 +1454,7 @@ function extractEnums(schema) {
       const key = path.split('.').pop().replace('[]', '');
       if (!seenFields.has(key)) {
         seenFields.add(key);
-        results.push({ field: key, path, type: obj.type || 'string', description: obj.description || '', values: obj.enum });
+        results.push({ field: key, path, type: obj.type || 'string', description: obj.description || '', values: obj.enum, default: obj.default, raw: obj, defName: refName || key });
       }
       return;
     }

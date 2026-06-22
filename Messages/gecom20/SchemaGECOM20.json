@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Schemas/SchemaGECOM20.json",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom49/SchemaGECOM20.json",
   "title": "GECOM20 - Customer Master Data",
   "x-wms-icon": "GECOM20",
   "x-wms-author": "GENERIX Group Spain",

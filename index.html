@@ -205,7 +205,7 @@
   }
   @keyframes pulseCorner {
     0%   { box-shadow: 0 0 0 0 rgba(0,165,154,.55); }
-    70%  { box-shadow: 0 0 0 55px rgba(0,165,154,0); }
+    70%  { box-shadow: 0 0 0 70px rgba(0,165,154,0); }
     100% { box-shadow: 0 0 0 0 rgba(0,165,154,0); }
   }
 
@@ -361,17 +361,20 @@
   .block-wrap  { margin-bottom:56px; scroll-margin-top:160px; }
   .block-grid  { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
   .code-panel {
-    background:var(--gray-900); border-radius:8px; overflow-y:auto;
+    background:var(--gray-900); border-radius:8px; overflow:auto;
     box-shadow:0 4px 16px rgba(0,35,51,.15); max-height:480px; min-height:200px;
+    scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent;
   }
-  .code-panel::-webkit-scrollbar { width:5px; }
+  .code-panel::-webkit-scrollbar { width:5px; height:4px; }
+  .code-panel::-webkit-scrollbar-track { background:transparent; }
   .code-panel::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:3px; }
+  .code-panel::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
   .cp-header {
     position:sticky; top:0; display:flex; align-items:center; gap:10px;
     padding:10px 16px; background:var(--generix-dark); color:#fff; font-weight:600; font-size:.88rem;
     z-index:2;
   }
-  .cp-pre { margin:0; padding:20px; color:#e0e0e0; font-family:'Courier New',monospace; font-size:.82rem; line-height:1.65; overflow-x:auto; }
+  .cp-pre { margin:0; padding:20px; color:#e0e0e0; font-family:'Courier New',monospace; font-size:.82rem; line-height:1.65; }
   .explanation-box {
     background:var(--generix-orange-soft); border-left:4px solid var(--generix-orange);
     padding:18px 20px; border-radius:6px; margin-bottom:16px;
@@ -935,12 +938,16 @@ function autoIcon(folder, schema) {
   return folder.replace(/-/g, '').slice(0, 6).toUpperCase();
 }
 
-function isRecent(releaseDate, days = 6) {
+function isRecent(releaseDate, days = 5) {
   if (!releaseDate) return false;
   const d = new Date(releaseDate);
   if (isNaN(d)) return false;
-  const diff = Date.now() - d.getTime();
-  return diff >= 0 && diff <= days * 24 * 60 * 60 * 1000;
+  // Normalizar a medianoche para comparar solo por día (sin la hora)
+  const rel   = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const now   = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const dayDiff = Math.round((today - rel) / 86400000);
+  return dayDiff >= 0 && dayDiff <= days;
 }
 function renderGrid(eps) {
   document.getElementById('endpoints-grid').innerHTML = eps.map(({ folder, schema }) => {

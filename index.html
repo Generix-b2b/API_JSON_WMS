@@ -358,19 +358,19 @@
 
   /* Block layout */
   .col-middle { padding:0; }
-  .block-wrap  { margin-bottom:56px; scroll-margin-top:160px; }
-  .block-grid  { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
+  .block-wrap { margin-bottom:56px; scroll-margin-top:160px; }
+  .block-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
   .code-panel {
     background:var(--gray-900); border-radius:8px; overflow:auto;
     box-shadow:0 4px 16px rgba(0,35,51,.15); max-height:480px; min-height:200px;
-    scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent;
   }
   .code-panel::-webkit-scrollbar { width:5px; height:4px; }
   .code-panel::-webkit-scrollbar-track { background:transparent; }
   .code-panel::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:3px; }
   .code-panel::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
+  .code-panel::-webkit-scrollbar-corner { background:transparent; }
   .cp-header {
-    position:sticky; top:0; display:flex; align-items:center; gap:10px;
+    position:sticky; top:0; left:0; display:flex; align-items:center; gap:10px;
     padding:10px 16px; background:var(--generix-dark); color:#fff; font-weight:600; font-size:.88rem;
     z-index:2;
   }

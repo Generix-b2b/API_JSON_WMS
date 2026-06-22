@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Schemas/SchemaGECOM97.json",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom97/SchemaGECOM97.json",
   "title": "GECOM97 - Status Orders",
   "x-wms-icon": "GECOM97",
   "x-wms-author": "GENERIX Group Spain",
@@ -9,7 +9,7 @@
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
     "version": "v1.1",
-    "releaseDate": "2026-06-17"
+    "releaseDate": "2026-06-22"
   },
   "description": "JSON for updating the status of Reception Orders or Delivery Orders in the WMS",
   "type": "object",
@@ -52,7 +52,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "EMTEXC": {
@@ -66,15 +66,15 @@
           "maxLength": 14
         },
         "DATEXC": {
-          "description": "Exchange date / format YYYYMMDD",
+          "description": "Exchange date (format YYYYMMDD)",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "HEUEXC": {
-          "description": "Exchange time / format HHMMSS",
+          "description": "Exchange time (format HHMMSS)",
           "type": "string",
-          "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
           "examples": ["143023"]
         },
         "CODACT": {
@@ -105,7 +105,7 @@
           "default": false
         },
         "ETAREC": {
-          "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
+          "description": "Reception status code - see EnumETAREC",
           "$ref": "#/$defs/Enums/EnumETAREC"
         },
         "CODFOU": {
@@ -135,7 +135,7 @@
       "type": "object",
       "properties": {
         "TRTEXC": {
-          "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+          "description": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "EMTEXC": {
@@ -149,15 +149,15 @@
           "maxLength": 14
         },
         "DATEXC": {
-          "description": "Exchange date / format YYYYMMDD",
+          "description": "Exchange date (format YYYYMMDD)",
           "type": "string",
-          "pattern": "^(20|21|22)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "HEUEXC": {
-          "description": "Exchange time / format HHMMSS",
+          "description": "Exchange time (format HHMMSS)",
           "type": "string",
-          "pattern": "^([01]\\d|2[0-3])([0-5]\\d)([0-5]\\d)$",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
           "examples": ["143023"]
         },
         "CODACT": {
@@ -188,7 +188,7 @@
           "default": false
         },
         "ETALIV": {
-          "description": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
+          "description": "Delivery status code - see EnumETALIV",
           "$ref": "#/$defs/Enums/EnumETALIV"
         },
         "NUMVAG": {

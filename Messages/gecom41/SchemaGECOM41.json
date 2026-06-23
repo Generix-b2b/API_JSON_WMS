@@ -1,0 +1,1068 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom41/SchemaGECOM41.json",
+  "title": "GECOM41 - Reception Order Confirmation",
+  "x-wms-icon": "GECOM41",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/m41_reception_confirmation",
+    "category": "Outbound",
+    "version": "v1.1",
+    "releaseDate": "2026-06-22"
+  },
+  "description": "JSON for reception order confirmation feedback from the WMS",
+  "type": "object",
+  "properties": {
+    "confirmationReceptionOrders": {
+      "description": "Reception confirmation header",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 499,
+      "items": {
+        "$ref": "#/$defs/GEEX4100"
+      }
+    }
+  },
+  "required": [
+    "confirmationReceptionOrders"
+  ],
+  "$defs": {
+    "GEEX4100": {
+      "description": "Reception confirmation header",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "NUMREC": {
+          "description": "Order number received",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNUREC": {
+          "description": "Sub-number of the order to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFREC": {
+          "description": "Reception reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "CODAPP": {
+          "description": "Replenisher code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "CODLDR": {
+          "description": "Goods reception location code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODTRE": {
+          "description": "Reception type code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "ORICDE": {
+          "description": "Order origin - see EnumORICDE",
+          "$ref": "#/$defs/Enums/EnumORICDE"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DTIREC": {
+          "description": "Initially scheduled reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "HEIREC": {
+          "description": "Originally scheduled reception time (format HHMM)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$",
+          "examples": [
+            "0930"
+          ]
+        },
+        "DTMREC": {
+          "description": "Modified reception date (rescheduling) (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "HEMREC": {
+          "description": "Modified reception time (rescheduling) (format HHMM)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$",
+          "examples": [
+            "0930"
+          ]
+        },
+        "DTRREC": {
+          "description": "Actual reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "HERREC": {
+          "description": "Actual reception time (format HHMM)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])$",
+          "examples": [
+            "0930"
+          ]
+        },
+        "KAIREC": {
+          "description": "Goods reception dock",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "CTRREC": {
+          "description": "Reception control number",
+          "type": "string",
+          "maxLength": 10
+        },
+        "REFCNT": {
+          "description": "Obsolete area replaced by CODCNT",
+          "type": "string",
+          "maxLength": 10
+        },
+        "CMTREC": {
+          "description": "Comments for reception reservations",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Reservation comment",
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "DATRLQ": {
+          "description": "Expected backorder reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "CODACR": {
+          "description": "Reception order cancellation code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NATREC": {
+          "description": "Reception flow nature - see EnumNATREC",
+          "$ref": "#/$defs/Enums/EnumNATREC"
+        },
+        "EDIFOU": {
+          "description": "Supplier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODCNT": {
+          "description": "Container code (e.g.: wagon no., container no.)",
+          "type": "string",
+          "maxLength": 14
+        },
+        "TYPRMT": {
+          "description": "Feedback type - see EnumTYPRMT",
+          "$ref": "#/$defs/Enums/EnumTYPRMT"
+        },
+        "CUMLIG": {
+          "description": "Total number of lines in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "CUMPAL": {
+          "description": "Total number of detail elements per support",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "COLTOT": {
+          "description": "Total number of packages in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
+          "examples": [
+            "100.00"
+          ]
+        },
+        "TOTPRO": {
+          "description": "Number of products in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "GEEX4101": {
+          "description": "Reception confirmation additional header information",
+          "$ref": "#/$defs/GEEX4101Wrapper"
+        },
+        "GEEX4105": {
+          "description": "Reception associated attributes",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/GEEX4105Wrapper"
+          }
+        },
+        "GEEX4120": {
+          "description": "Received lines",
+          "type": "array",
+          "maxItems": 999,
+          "items": {
+            "$ref": "#/$defs/GEEX4120Wrapper"
+          }
+        },
+        "GEEX4180": {
+          "description": "Received packaging",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4180Wrapper"
+          }
+        }
+      },
+      "required": [
+        "TRTEXC",
+        "NUMREC",
+        "REFREC",
+        "CODACT",
+        "CODFOU"
+      ],
+      "additionalProperties": false
+    },
+    "GEEX4101Wrapper": {
+      "description": "Reception confirmation additional header information",
+      "type": "object",
+      "properties": {
+        "DIPREC": {
+          "description": "Data transit area between software",
+          "type": "string",
+          "maxLength": 50
+        },
+        "TOPREC": {
+          "description": "Indicators for specific users",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "description": "Indicator for specific users",
+            "type": "string",
+            "maxLength": 1
+          }
+        },
+        "DATBDR": {
+          "description": "Last reception note edition date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "EDIACT": {
+          "description": "Warehouse code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "EDITRA": {
+          "description": "Carrier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATBDL": {
+          "description": "Delivery note date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "CODTDD": {
+          "description": "Symbolic document code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NUMTOU": {
+          "description": "Tour record number",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "CODRCN": {
+          "description": "Receiver code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "RCTSAP": {
+          "description": "SAP receiver",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATDEB": {
+          "description": "Start date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "HEUDEB": {
+          "description": "Start time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": [
+            "093000"
+          ]
+        },
+        "MSGREC": {
+          "description": "Message to be printed on the receipt",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Receipt message",
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "INFLIV": {
+          "description": "Delivery note information",
+          "type": "string",
+          "maxLength": 15
+        },
+        "INFCMR": {
+          "description": "Goods convention by road information",
+          "type": "string",
+          "maxLength": 15
+        },
+        "INFVET": {
+          "description": "Veterinary information",
+          "type": "string",
+          "maxLength": 15
+        },
+        "INFDOU": {
+          "description": "Customs information",
+          "type": "string",
+          "maxLength": 15
+        },
+        "TEMCAM": {
+          "description": "Truck temperature",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}\\.[0-9]{1}$",
+          "examples": [
+            "5.0"
+          ]
+        },
+        "MOTRCP": {
+          "description": "Reception reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NUMBDL": {
+          "description": "Delivery note number",
+          "type": "string",
+          "maxLength": 6
+        },
+        "MOTRFU": {
+          "description": "Refusal reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CMTRFU": {
+          "description": "Comments for reception refusal",
+          "type": "string",
+          "maxLength": 30
+        },
+        "CM2RFU": {
+          "description": "Comments for reception refusal (2)",
+          "type": "string",
+          "maxLength": 30
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4105Wrapper": {
+      "description": "Reception associated attributes",
+      "type": "object",
+      "properties": {
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Traceability element value",
+          "type": "string",
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "CODRUB",
+        "VALRUB"
+      ],
+      "additionalProperties": false
+    },
+    "GEEX4120Wrapper": {
+      "description": "Received lines",
+      "type": "object",
+      "properties": {
+        "NLIREC": {
+          "description": "Line number for the reception interface",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "CODPRO": {
+          "description": "Internal product code",
+          "type": "string",
+          "maxLength": 17
+        },
+        "VALPRO": {
+          "description": "Logistics variant",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "UVCREA": {
+          "description": "Number of replenished (ordered) units",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UNICDE": {
+          "description": "Order quantity entry unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODPRN": {
+          "description": "Product code from a bill of materials",
+          "type": "string",
+          "maxLength": 17
+        },
+        "TYPOPE": {
+          "description": "Operation type - see EnumTYPOPE",
+          "$ref": "#/$defs/Enums/EnumTYPOPE"
+        },
+        "NUMOPE": {
+          "description": "Operation number (Promo or reservation)",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}$"
+        },
+        "UVCREC": {
+          "description": "Total number of CSUs received",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UVCGRA": {
+          "description": "Of which: free CSUs received",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UVCIMM": {
+          "description": "Total number of immobilized CSUs",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "MOTIMM": {
+          "description": "Immobilization reason (Table IMO)",
+          "type": "string",
+          "maxLength": 3
+        },
+        "UVCRFU": {
+          "description": "Number of CSUs refused during reception",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "MOTRFU": {
+          "description": "Reception refusal reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "UVCRLQ": {
+          "description": "Number of CSUs in backorder",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "MESPRO": {
+          "description": "Product measurement method - see EnumMESPRO",
+          "$ref": "#/$defs/Enums/EnumMESPRO"
+        },
+        "PDNREC": {
+          "description": "Net weight received (pro forma valuation)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99999999.999,
+          "multipleOf": 0.001
+        },
+        "RECSOL": {
+          "description": "Settled reception line indicator / false = Line not settled, true = Line settled",
+          "type": "boolean",
+          "default": false
+        },
+        "CODMTR": {
+          "description": "Materials accounting",
+          "type": "string",
+          "maxLength": 5
+        },
+        "INDPRO": {
+          "description": "Configurable product indicators",
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "description": "Configurable product indicators",
+            "type": "string",
+            "maxLength": 1
+          }
+        },
+        "PCBPRO": {
+          "description": "Product pack quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999
+        },
+        "GEEX4121": {
+          "description": "Received line optional information",
+          "$ref": "#/$defs/GEEX4121Wrapper"
+        },
+        "GEEX4125": {
+          "description": "Imposed sections on received line",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4125Wrapper"
+          }
+        },
+        "GEEX4130": {
+          "description": "Support detail",
+          "type": "array",
+          "maxItems": 999,
+          "items": {
+            "$ref": "#/$defs/GEEX4130Wrapper"
+          }
+        }
+      },
+      "required": [
+        "NLIREC",
+        "CODPRO"
+      ],
+      "additionalProperties": false
+    },
+    "GEEX4121Wrapper": {
+      "description": "Received line optional information",
+      "type": "object",
+      "properties": {
+        "DIPREC": {
+          "description": "Data transit area between software",
+          "type": "string",
+          "maxLength": 50
+        },
+        "PRXPRO": {
+          "description": "Product price",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+          "examples": [
+            "10.500"
+          ]
+        },
+        "EDIPRO": {
+          "description": "Product code for EDI",
+          "type": "string",
+          "maxLength": 17
+        },
+        "EDICLI": {
+          "description": "Customer code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "UVCPRE": {
+          "description": "Number of pre-received CSUs (e.g. Alcohols)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UNIREC": {
+          "description": "Received quantity entry unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "QTEUOM": {
+          "description": "Number of handling work units",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "NUMMTR": {
+          "description": "Materials accounting number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "SENPDS": {
+          "description": "Weight direction",
+          "type": "string",
+          "maxLength": 1
+        },
+        "ECAPDS": {
+          "description": "Deviation between parent and children (weight)",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}\\.[0-9]{3}$",
+          "examples": [
+            "10.000"
+          ]
+        },
+        "TYPPRX": {
+          "description": "Price type - see EnumTYPPRX",
+          "$ref": "#/$defs/Enums/EnumTYPPRX"
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "type": "string",
+          "maxLength": 30
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4125Wrapper": {
+      "description": "Imposed sections on received line",
+      "type": "object",
+      "properties": {
+        "TYPRUB": {
+          "description": "Section type - see EnumTYPRUB",
+          "$ref": "#/$defs/Enums/EnumTYPRUB"
+        },
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Traceability element value",
+          "type": "string",
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "CODRUB",
+        "VALRUB"
+      ],
+      "additionalProperties": false
+    },
+    "GEEX4130Wrapper": {
+      "description": "Support detail",
+      "type": "object",
+      "properties": {
+        "UVCMVT": {
+          "description": "Number of CSUs received on the pallet",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "SPCPRO": {
+          "description": "Product sub-pack quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999
+        },
+        "CODLOT": {
+          "description": "Stored batch code",
+          "type": "string",
+          "maxLength": 20
+        },
+        "NUMLOT": {
+          "description": "Internal goods batch number",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "CODNDS": {
+          "description": "Serial number codification",
+          "type": "string",
+          "maxLength": 20
+        },
+        "DATFAB": {
+          "description": "Manufacturing date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "DATFVI": {
+          "description": "Product end-of-life date (obsolescence) (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "CODPAL": {
+          "description": "Stored pallet code per EAN128 standards",
+          "type": "string",
+          "maxLength": 18
+        },
+        "MOTIMM": {
+          "description": "Immobilization reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "DATIMM": {
+          "description": "Immobilization start and end dates",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization date (format YYYYMMDD)",
+            "type": "string",
+            "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "examples": [
+              "20250125"
+            ]
+          }
+        },
+        "HEUIMM": {
+          "description": "Immobilization start and end times",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization time (format HHMMSS)",
+            "type": "string",
+            "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+            "examples": [
+              "093000"
+            ]
+          }
+        },
+        "CODSIT": {
+          "description": "Storage site code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ZONSTS": {
+          "description": "Warehouse storage area",
+          "type": "string",
+          "maxLength": 1
+        },
+        "ALLSTS": {
+          "description": "Aisle code in the area",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "DPLSTS": {
+          "description": "Location displacement in the aisle",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "NIVSTS": {
+          "description": "Location level in the column",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "CODCLI": {
+          "description": "Stock owner customer code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "PDBPAL": {
+          "description": "Gross weight of the pallet in Kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "PDNREC": {
+          "description": "Net weight received (pro forma valuation)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "GEEX4131": {
+          "description": "Support complementary detail",
+          "$ref": "#/$defs/GEEX4131Wrapper"
+        },
+        "GEEX4140": {
+          "description": "Serial number detail",
+          "type": "array",
+          "maxItems": 999,
+          "items": {
+            "$ref": "#/$defs/GEEX4140Wrapper"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4131Wrapper": {
+      "description": "Support complementary detail",
+      "type": "object",
+      "properties": {
+        "DATREC": {
+          "description": "Reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "HEUREC": {
+          "description": "Reception time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": [
+            "093000"
+          ]
+        },
+        "HEUFAB": {
+          "description": "Manufacturing time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": [
+            "093000"
+          ]
+        },
+        "CODEAP": {
+          "description": "Packaging code associated with the product",
+          "type": "string",
+          "maxLength": 3
+        },
+        "PROEAP": {
+          "description": "Associated packaging code for the interface",
+          "type": "string",
+          "maxLength": 17
+        },
+        "TEMPAL": {
+          "description": "Recorded pallet temperature",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}\\.[0-9]{2}$",
+          "examples": [
+            "4.00"
+          ]
+        },
+        "SENTEM": {
+          "description": "Temperature direction (-/+)",
+          "type": "string",
+          "maxLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4140Wrapper": {
+      "description": "Serial number detail",
+      "type": "object",
+      "properties": {
+        "CODSER": {
+          "description": "Primary serial number",
+          "type": "string",
+          "maxLength": 30
+        },
+        "SNUSER": {
+          "description": "Serial sub-number",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "NUMPAL": {
+          "description": "Stored pallet number",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "SNUPAL": {
+          "description": "Stored pallet sub-number",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "NUMSER": {
+          "description": "Serial number",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "CODOBI": {
+          "description": "CODOBI1 = Package code / CODOBI2 = SPCB code",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Object code",
+            "type": "string",
+            "maxLength": 18
+          }
+        },
+        "TYPSER": {
+          "description": "Serial number type - see EnumTYPSER",
+          "$ref": "#/$defs/Enums/EnumTYPSER"
+        },
+        "PDBSER": {
+          "description": "Serial number weight",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        }
+      },
+      "required": [
+        "CODSER"
+      ],
+      "additionalProperties": false
+    },
+    "GEEX4180Wrapper": {
+      "description": "Received packaging",
+      "type": "object",
+      "properties": {
+        "CODEMB": {
+          "description": "Handling packaging code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "QTBSOR": {
+          "description": "Number of packaging delivered (Output)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "QTBENT": {
+          "description": "Number of packaging returned (Input)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "PRXEMB": {
+          "description": "Indicative unit price of the packaging",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}\\.[0-9]{2}$",
+          "examples": [
+            "1.00"
+          ]
+        },
+        "PROEMB": {
+          "description": "Packaging product code for interfacing",
+          "type": "string",
+          "maxLength": 17
+        },
+        "DATEMB": {
+          "description": "Physical movement entry date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "TYPTIE": {
+          "description": "Third-party type for packaging management - see EnumTYPTIE",
+          "$ref": "#/$defs/Enums/EnumTYPTIE"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / Empty",
+        "type": "string",
+        "enum": [
+          ""
+        ]
+      },
+      "EnumORICDE": {
+        "description": "Order origin / 1 = By interface, 2 = Local entry, 3 = Global reintegration, 4 = Reception to check",
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "EnumNATREC": {
+        "description": "Reception flow nature / 1 = Goods reception, 2 = Delivery return, 3 = Inter-site transfer",
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "EnumTYPRMT": {
+        "description": "Feedback type / C = Package put in stock, R = Reception put in stock, U = Unloading",
+        "type": "string",
+        "enum": [
+          "C",
+          "R",
+          "U"
+        ]
+      },
+      "EnumTYPOPE": {
+        "description": "Operation type / 0 = Normal, 1 = Promotion, 2 = Reservation",
+        "type": "string",
+        "enum": [
+          "0",
+          "1",
+          "2"
+        ],
+        "default": "0"
+      },
+      "EnumMESPRO": {
+        "description": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
+        "type": "string",
+        "enum": [
+          "1",
+          "2",
+          "3"
+        ],
+        "default": "1"
+      },
+      "EnumTYPRUB": {
+        "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "type": "string",
+        "enum": [
+          "1",
+          "2"
+        ],
+        "default": "2"
+      },
+      "EnumTYPPRX": {
+        "description": "Price type / 0 = Kilo, 1 = Package",
+        "type": "string",
+        "enum": [
+          "0",
+          "1"
+        ]
+      },
+      "EnumTYPSER": {
+        "description": "Serial number type / 1 = CSU, 2 = Package",
+        "type": "string",
+        "enum": [
+          "1",
+          "2"
+        ]
+      },
+      "EnumTYPTIE": {
+        "description": "Third-party type for packaging management / 0 = All third parties (1+2+3+5), 1 = Supplier, 2 = Carrier, 3 = Customer, 4 = Site, 5 = Owner",
+        "type": "string",
+        "enum": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    }
+  }
+}

@@ -12,10 +12,6 @@ Permite declarar los valores de configuración (familias de parámetros y sus cl
 
 > **Nota importante:** Las familias de parámetros (`FAMPAR`) deben estar acordadas con el equipo de implantación de Generix. Una clave no declarada en las tablas generará errores de validación en los mensajes que la referencien.
 
-### Anidaciones
-
-InitialTableLoad [arr] (499) · 6 campos
-
 ### Integración
 
 Este mensaje debe enviarse al WMS **antes** que cualquier otro mensaje del interfaz, ya que los códigos declarados aquí son utilizados como valores válidos en campos como `CODTRE`, `CODTLI`, `CODMOP` o `ABCPRO`, entre otros.

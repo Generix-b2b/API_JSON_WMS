@@ -10,26 +10,11 @@ Permite crear, modificar o cancelar fichas de producto de forma sincronizada ent
 - **Dimensiones físicas:** Pesos y medidas (altura, longitud, anchura) a nivel de CSU, caja (`COL`) y SPCB, más configuración de paletización (cajas por capa, capas por palet).
 - **Gestión de almacenamiento:** Clase ABC, método de almacenamiento, zona y pasillo preferidos, homogeneidad de gaveta y modo de recepción (`MODREC`).
 - **Bloques adicionales (GEEX3001–GEEX3004):** Datos de marca, circuitos de preparación, sustitución de producto, gestión de alcohol (grado, volumen, sello), mercancías peligrosas, temperaturas, trazabilidad, inmobilización, datos multimateria y códigos de impuestos especiales.
-- **Códigos EAN (GEEX3020):** Array de hasta 99 códigos EDI con su cualificador de nivel (CSU, SPCB, caja, palet…) e indicador de código principal.
+- **Códigos EAN (GEEX3020):** Array de hasta 49 códigos EDI con su cualificador de nivel (CSU, SPCB, caja, palet…) e indicador de código principal.
 - **Componentes BOM (GEEX3010):** Array de hasta 99 componentes para productos compuestos (`TOPPRN = 1`), con cantidad requerida y tipo (principal/secundario).
 - **Bloques de clasificación y extensión:** Designaciones multiidioma (`GEEX3030`), declaraciones ICPE (`GEEX3040`), rubriques (`GEEX3050`), datos satélite (`GEEX3060`) y productos sustitutos (`GEEX3080`), todos con capacidad de hasta 99 entradas.
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del producto, incluyendo todos los bloques adicionales y arrays declarados.
-
-### Anidaciones
-
-productMasterData [arr] (499) · 46 campos
-├─ GEEX3001 [obj]      · 27
-├─ GEEX3002 [obj]      · 49
-├─ GEEX3003 [obj]      · 14
-├─ GEEX3004 [obj]      · 8
-├─ GEEX3010 [arr] (99) · 8
-├─ GEEX3020 [arr] (49) · 5
-├─ GEEX3030 [arr] (49) · 4
-├─ GEEX3040 [arr] (49) · 5
-├─ GEEX3050 [arr] (99) · 3
-├─ GEEX3060 [arr] (49) · 6
-└─ GEEX3080 [arr] (49) · 3
 
 ### Integración
 

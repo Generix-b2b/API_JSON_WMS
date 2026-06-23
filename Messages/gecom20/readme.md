@@ -14,12 +14,6 @@ Permite crear, modificar o cancelar registros de cliente de forma sincronizada e
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del cliente, incluyendo los bloques `GEEX2001` y `GEEX2050`.
 
-### Anidaciones
-
-customerMasterData [arr] (499) · 25 campos
-├─ GEEX2001 [obj]      · 33
-└─ GEEX2050 [arr] (99) · 3
-
 ### Integración
 
 Este mensaje debe enviarse al WMS **antes** de procesar órdenes de expedición del cliente.

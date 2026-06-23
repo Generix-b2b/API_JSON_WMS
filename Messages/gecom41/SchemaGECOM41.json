@@ -65,7 +65,7 @@
         "CODTRE": {
           "description": "Reception type code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "ORICDE": {
@@ -75,7 +75,7 @@
         "CODACT": {
           "description": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "CODFOU": {

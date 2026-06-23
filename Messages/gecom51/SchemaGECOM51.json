@@ -49,7 +49,7 @@
         "CODACT": {
           "description": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "CODCLI": {
@@ -67,7 +67,7 @@
         "CODTLI": {
           "description": "Delivery type code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "CODACL": {

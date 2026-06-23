@@ -13,11 +13,6 @@ Permite crear, modificar o cancelar registros de proveedor de forma sincronizada
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del proveedor, incluyendo el bloque `GEEX1001`.
 
-### Anidaciones
-
-supplierMasterData [arr] (499) · 26 campos
-└─ GEEX1001 [obj] · 24
-
 ### Integración
 
 Este mensaje debe enviarse al WMS **antes** de procesar órdenes de recepción del proveedor.

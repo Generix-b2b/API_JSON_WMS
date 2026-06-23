@@ -80,7 +80,7 @@
         "CODACT": {
           "description": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "NUMREC": {
@@ -117,7 +117,7 @@
         "CODTRE": {
           "description": "Reception type code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "VALRUB": {
@@ -163,7 +163,7 @@
         "CODACT": {
           "description": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "NUMLIV": {
@@ -279,10 +279,9 @@
     },
     "Enums": {
       "EnumTRTEXC": {
-        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "description": "Movement processing code / Empty",
         "type": "string",
-        "enum": ["1","2","9"],
-        "default": "2"
+        "enum": [""]
       },
       "EnumETAREC": {
         "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",

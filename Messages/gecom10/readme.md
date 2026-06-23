@@ -7,11 +7,16 @@ Permite crear, modificar o cancelar registros de proveedor de forma sincronizada
 
 - **Operaciones soportadas (TRTEXC):** Creación (`1`), modificación o creación (`2`) y cancelación (`9`). El valor por defecto es `2`.
 - **Identificación única:** El campo `CODFOU` es la clave del proveedor en el WMS. Debe coincidir con el código maestro del sistema origen (ERP).
-- **Dirección completa:** Hasta 3 líneas de dirección (`AD1FOU`, `AD2FOU`, `AD3FOU`) más ciudad, código postal numérico y país en formato ISO 3166 alpha-2 o alpha-3.
+- **Dirección completa:** Hasta 3 líneas de dirección (`AD1FOU`, `AD2FOU`, `AD3FOU`) más ciudad, código postal y país.
 - **Bloque adicional (GEEX1001):** Datos de contacto, email, incoterms, control de calidad, gestión de series, comentarios libres (hasta 3 líneas) y nombres adicionales del proveedor.
 - **Gestión de recepción:** Configura el comportamiento de avisos de envío (`GSTAVI`), gestión RF (`GSTRCP`) y tipo de conector (`TYPPRT`).
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del proveedor, incluyendo el bloque `GEEX1001`.
+
+### Anidaciones
+
+supplierMasterData [arr] (499) · 26 campos
+└─ GEEX1001 [obj] · 24
 
 ### Integración
 

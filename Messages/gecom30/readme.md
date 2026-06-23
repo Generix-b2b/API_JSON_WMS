@@ -16,6 +16,21 @@ Permite crear, modificar o cancelar fichas de producto de forma sincronizada ent
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del producto, incluyendo todos los bloques adicionales y arrays declarados.
 
+### Anidaciones
+
+productMasterData [arr] (499) · 46 campos
+├─ GEEX3001 [obj]      · 27
+├─ GEEX3002 [obj]      · 49
+├─ GEEX3003 [obj]      · 14
+├─ GEEX3004 [obj]      · 8
+├─ GEEX3010 [arr] (99) · 8
+├─ GEEX3020 [arr] (49) · 5
+├─ GEEX3030 [arr] (49) · 4
+├─ GEEX3040 [arr] (49) · 5
+├─ GEEX3050 [arr] (99) · 3
+├─ GEEX3060 [arr] (49) · 6
+└─ GEEX3080 [arr] (49) · 3
+
 ### Integración
 
 Este mensaje debe enviarse al WMS **antes** de procesar cualquier movimiento de stock que referencie el producto.

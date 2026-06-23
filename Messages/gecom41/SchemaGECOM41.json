@@ -193,29 +193,6 @@
           "description": "Feedback type - see EnumTYPRMT",
           "$ref": "#/$defs/Enums/EnumTYPRMT"
         },
-        "CUMLIG": {
-          "description": "Total number of lines in the order",
-          "type": "string",
-          "pattern": "^[0-9]{1,4}$"
-        },
-        "CUMPAL": {
-          "description": "Total number of detail elements per support",
-          "type": "string",
-          "pattern": "^[0-9]{1,5}$"
-        },
-        "COLTOT": {
-          "description": "Total number of packages in the order",
-          "type": "string",
-          "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
-          "examples": [
-            "100.00"
-          ]
-        },
-        "TOTPRO": {
-          "description": "Number of products in the order",
-          "type": "string",
-          "pattern": "^[0-9]{1,5}$"
-        },
         "GEEX4101": {
           "description": "Reception confirmation additional header information",
           "$ref": "#/$defs/GEEX4101Wrapper"
@@ -243,6 +220,10 @@
           "items": {
             "$ref": "#/$defs/GEEX4180Wrapper"
           }
+        },
+        "GEEX4199": {
+          "description": "Reception confirmation totals",
+          "$ref": "#/$defs/GEEX4199Wrapper"
         }
       },
       "required": [
@@ -966,6 +947,36 @@
         "TYPTIE": {
           "description": "Third-party type for packaging management - see EnumTYPTIE",
           "$ref": "#/$defs/Enums/EnumTYPTIE"
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4199Wrapper": {
+      "description": "Reception confirmation totals",
+      "type": "object",
+      "properties": {
+        "CUMLIG": {
+          "description": "Total number of lines in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "CUMPAL": {
+          "description": "Total number of detail elements per support",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "COLTOT": {
+          "description": "Total number of packages in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
+          "examples": [
+            "100.00"
+          ]
+        },
+        "TOTPRO": {
+          "description": "Number of products in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
         }
       },
       "additionalProperties": false

@@ -785,11 +785,11 @@ async function init() {
       .filter(r => r.status === 'fulfilled' && r.value)
       .map(r => r.value);
 
-    eps.sort((a, b) => {
-      const ca = a.schema['x-wms-endpoint']?.category || '';
-      const cb = b.schema['x-wms-endpoint']?.category || '';
-      return ca.localeCompare(cb) || (a.schema.title || a.folder).localeCompare(b.schema.title || b.folder);
-    });
+    const numOf = e => {
+      const m = (e.schema.title || e.folder || '').match(/(\d+)/);
+      return m ? parseInt(m[1], 10) : Number.MAX_SAFE_INTEGER;
+    };
+    eps.sort((a, b) => numOf(a) - numOf(b) || (a.schema.title || a.folder).localeCompare(b.schema.title || b.folder));
 
     document.getElementById('stat-count').textContent = eps.length;
     renderGrid(eps);

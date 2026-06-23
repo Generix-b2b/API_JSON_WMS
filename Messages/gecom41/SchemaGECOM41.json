@@ -6,10 +6,10 @@
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
     "method": "POST",
-    "path": "https://[URL_Client_Environment].generix.biz/m41_reception_confirmation",
+    "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.1",
-    "releaseDate": "2026-06-22"
+    "version": "v1.1-BETA",
+    "releaseDate": "2026-06-23"
   },
   "description": "JSON for reception order confirmation feedback from the WMS",
   "type": "object",

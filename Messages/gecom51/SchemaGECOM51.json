@@ -9,7 +9,7 @@
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
     "version": "v1.1-Beta",
-    "releaseDate": "2026-06-22"
+    "releaseDate": "2026-06-23"
   },
   "description": "JSON for delivery order confirmation feedback from the WMS",
   "type": "object",

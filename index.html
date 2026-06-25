@@ -566,11 +566,11 @@
   .val-code-scroll::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:4px; }
   .val-code-scroll::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
   .val-code-content { min-width:max-content; }
-  .val-line { display:grid; grid-template-columns:60px 1fr; align-items:stretch; min-height:22px; }
+  .val-line { display:grid; grid-template-columns:60px 1fr; align-items:center; min-height:22px; }
   .val-line:hover { background:rgba(255,255,255,.02); }
-  .val-ln { display:flex; align-items:center; justify-content:flex-end; width:60px; min-width:60px; padding:0 .6rem 0 .5rem; color:#8ca0af;
+  .val-ln { display:flex; align-items:center; justify-content:flex-end; align-self:stretch; width:60px; min-width:60px; padding:0 .6rem 0 .5rem; color:#8ca0af;
     border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; font-size:.84rem; user-select:none; background:rgba(255,255,255,.02); }
-  .val-lc { display:flex; align-items:center; min-width:max-content; padding:0 .6rem; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.4; font-family:'Courier New',monospace; }
+  .val-lc { min-width:max-content; padding:.15rem .6rem; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.5; font-family:'Courier New',monospace; }
   .val-line.is-error .val-ln, .val-line.is-error .val-lc { background:rgba(240,68,56,.12); }
   .val-line.is-error .val-lc { border-left:3px solid #f04438; padding-left:calc(.6rem - 3px); }
   .val-minimap { position:relative; min-height:100%; background:rgba(255,255,255,.035); border-left:1px solid rgba(255,255,255,.07); cursor:pointer; user-select:none; overflow:hidden; }
@@ -1852,7 +1852,7 @@ async function toggleVersPreview(path, pid, btn) {
 }
 
 /* ═══ VALIDADOR ═══ */
-try { window.discoverFilesAt = discoverFilesAt; window.rawFetch = rawFetch; } catch(e){}
+try { window.discoverFilesAt = discoverFilesAt; window.rawFetch = rawFetch; window.hlJSON = hlJSON; } catch(e){}
 
 async function showValidacion() {
   document.getElementById('view-index').style.display = 'none';
@@ -1991,7 +1991,7 @@ init();
     let fmt; try{ fmt=JSON.stringify(JSON.parse(text),null,2); }catch{ fmt=text; }
     const lines=fmt.split('\n'), errs=parseErrors(rawErr), el=errorLines(lines,errs);
     const mh=Math.max(2, Math.min(6, 100/Math.max(lines.length,1)));
-    const rows=lines.map((l,i)=>`<div class="val-line ${el.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="val-ln">${i+1}</div><div class="val-lc">${esc(l)}</div></div>`).join('');
+    const rows=lines.map((l,i)=>`<div class="val-line ${el.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="val-ln">${i+1}</div><div class="val-lc">${(window.hlJSON?window.hlJSON(l):esc(l))}</div></div>`).join('');
     const marks=lines.map((_,i)=>{ const top=lines.length<=1?0:(i/(lines.length-1))*100; return `<span class="val-minimap-line ${el.has(i+1)?'is-error':''}" style="top:${top}%; height:${mh}px"></span>`; }).join('');
     cont.innerHTML=`<div class="val-code-panel"><div class="val-code-header"><span>📄 JSON validado</span>
       <small>${errs.length?'Las líneas con errores se resaltan en rojo.':''}</small></div>

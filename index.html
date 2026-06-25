@@ -525,6 +525,52 @@
     .fields-table th:nth-child(3){ display:none; }
     .fields-table td:nth-child(3){ display:none; }
   }
+
+    /* ── VALIDADOR ── */
+  .val-section { max-width:1240px; margin:0 auto; padding:48px 32px; }
+  .val-controls { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; margin-bottom:24px; }
+  .val-field { display:flex; flex-direction:column; gap:6px; }
+  .val-field label { font-size:.78rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.5px; }
+  .val-select { padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:.92rem; color:var(--generix-dark); background:#fff; min-width:280px; font-family:inherit; cursor:pointer; }
+  .val-select:focus { outline:none; border-color:var(--generix-orange); }
+  #dropzone { border:2px dashed var(--gray-300); padding:42px 28px; border-radius:14px;
+    background:linear-gradient(180deg,#fcfcfd 0%,#f7f9fb 100%); text-align:center; cursor:pointer;
+    transition:all .25s ease; margin-bottom:24px; color:var(--gray-500); font-weight:500; }
+  #dropzone:hover { background:#f3f6f9; border-color:var(--generix-orange); transform:translateY(-1px); }
+  #dropzone.dragover { background:var(--generix-orange-soft); border-color:var(--generix-orange); }
+  #dropzone.disabled { opacity:.5; pointer-events:none; }
+  .val-layout { display:grid; gap:24px; margin-top:8px; }
+  .val-status-card { border-radius:14px; padding:18px 20px; border:1px solid transparent; box-shadow:0 6px 16px rgba(15,27,36,.05); }
+  .val-status-card.success { background:#ecfdf3; border-color:rgba(18,183,106,.25); }
+  .val-status-card.error   { background:#fef3f2; border-color:rgba(240,68,56,.22); }
+  .val-status-card.warning { background:#fffaeb; border-color:rgba(247,144,9,.22); }
+  .val-status-card.info    { background:#eff8ff; border-color:rgba(46,144,250,.22); }
+  .val-status-head { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:8px; }
+  .val-status-title { font-weight:700; font-size:1rem; color:var(--generix-dark); }
+  .val-status-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+    font-size:.78rem; font-weight:700; letter-spacing:.02em; text-transform:uppercase; background:rgba(255,255,255,.75); color:var(--generix-dark); }
+  .val-status-text { color:var(--gray-700); font-size:.95rem; line-height:1.7; margin:0; }
+  .val-empty { display:none; }
+  .val-err-tbl { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--gray-200); border-radius:8px; overflow:hidden; font-size:.88rem; }
+  .val-err-tbl thead { background:var(--generix-dark); color:#fff; }
+  .val-err-tbl th { padding:9px 12px; text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.3px; }
+  .val-err-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); color:var(--gray-700); vertical-align:top; }
+  .val-err-tbl tbody tr:last-child td { border-bottom:none; }
+  .val-err-tbl code { background:var(--gray-100); padding:1px 6px; border-radius:4px; font-size:.82rem; }
+  .val-code-panel { background:var(--gray-900); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,35,51,.16); }
+  .val-code-header { padding:14px 20px; background:var(--generix-dark); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .val-code-header small { color:rgba(255,255,255,.72); font-weight:500; font-size:.8rem; }
+  .val-code-body { max-height:620px; overflow:auto; scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent; }
+  .val-code-body::-webkit-scrollbar { width:8px; height:8px; }
+  .val-code-body::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:4px; }
+  .val-code-body::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
+  .val-code-tbl { width:100%; border-collapse:collapse; }
+  .val-code-tbl td { padding:0; border:none; vertical-align:top; }
+  .val-ln { width:60px; min-width:60px; text-align:right; padding:.3rem .6rem !important; color:#8ca0af;
+    border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; user-select:none; background:rgba(255,255,255,.02); }
+  .val-lc { padding:.3rem .8rem !important; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.45; font-family:'Courier New',monospace; }
+  .val-line-err .val-ln, .val-line-err .val-lc { background:rgba(240,68,56,.12); }
+  .val-line-err .val-lc { border-left:3px solid #f04438; padding-left:calc(.8rem - 3px) !important; }
 </style>
 </head>
 <body>
@@ -598,6 +644,13 @@
         <h3>Respuestas</h3>
         <p>Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.</p>
         <span class="card-link">Ver respuestas</span>
+      </div>
+      <div class="card" onclick="showValidacion()">
+        <div class="card-icon">✓</div>
+        <div class="card-meta"><span class="badge badge-cat">Herramienta</span></div>
+        <h3>Validaciones</h3>
+        <p>Valida tu fichero JSON contra el esquema de cualquier mensaje del WMS.</p>
+        <span class="card-link">Abrir validador</span>
       </div>
     </div>
   </section>
@@ -694,6 +747,40 @@
   </div>
 </div>
 
+
+<!-- ═══ VALIDACION VIEW ═══ -->
+<div id="view-validacion" style="display:none">
+  <section class="dh">
+    <div class="dhi">
+      <div class="d-breadcrumb">
+        <a href="#" onclick="showIndex();return false;">Documentación</a>
+        <span>/</span><span class="cur">Validaciones</span>
+      </div>
+      <h1>Validador de mensajes</h1>
+      <p class="ddesc">Selecciona el tipo de mensaje, sube tu fichero JSON y valídalo contra el esquema oficial del WMS.</p>
+    </div>
+  </section>
+  <div class="val-section">
+    <div class="val-controls">
+      <div class="val-field">
+        <label for="valSchema">Mensaje a validar</label>
+        <select id="valSchema" class="val-select"><option value="">Cargando…</option></select>
+      </div>
+    </div>
+    <div id="dropzone" class="disabled">
+      Selecciona primero un mensaje, luego arrastra tu JSON o haz click
+      <input type="file" id="fileInput" accept=".json,application/json" hidden />
+    </div>
+    <div class="val-layout">
+      <div id="validationSummary" class="val-empty"></div>
+      <div id="jsonViewerContainer"></div>
+    </div>
+    <div style="display:none">
+      <div id="result"></div><div id="errorList"></div><div id="jsonViewer"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ FOOTER ══════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
@@ -731,6 +818,7 @@ const CONFIG = {
   responsesPath:  'Responses', // carpeta con las respuestas
   token:          ''
 };
+window.CONFIG = CONFIG;
 
 /* ── GitHub helpers ──────────────────────────────────────── */
 function ghHeaders() {
@@ -759,10 +847,13 @@ function showIndex() {
   document.getElementById('view-index').style.display = '';
   document.getElementById('view-detail').style.display = 'none';
   document.getElementById('view-versions').style.display = 'none';
+  document.getElementById('view-validacion').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function showDetail() {
   document.getElementById('view-index').style.display = 'none';
+  document.getElementById('view-versions').style.display = 'none';
+  document.getElementById('view-validacion').style.display = 'none';
   document.getElementById('view-detail').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1664,6 +1755,7 @@ function _slug(s){ return s.replace(/[^A-Za-z0-9_-]/g,'-'); }
 async function showVersions() {
   document.getElementById('view-index').style.display = 'none';
   document.getElementById('view-detail').style.display = 'none';
+  document.getElementById('view-validacion').style.display = 'none';
   document.getElementById('view-versions').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
   await renderVersions();
@@ -1753,9 +1845,153 @@ async function toggleVersPreview(path, pid, btn) {
   } catch (e) { pre.textContent = 'No se pudo cargar: ' + e.message; }
 }
 
+/* ═══ VALIDADOR ═══ */
+try { window.discoverFilesAt = discoverFilesAt; window.rawFetch = rawFetch; } catch(e){}
+
+async function showValidacion() {
+  document.getElementById('view-index').style.display = 'none';
+  document.getElementById('view-detail').style.display = 'none';
+  document.getElementById('view-versions').style.display = 'none';
+  document.getElementById('view-validacion').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const sel = document.getElementById('valSchema');
+  if (sel.dataset.loaded) return;
+  try {
+    const tree = await loadRepoTree();
+    const folders = buildCacheFromTree(tree)
+      .filter(f => f !== CONFIG.responsesPath)
+      .sort((a,b) => {
+        const na=(a.match(/(\d+)/)||[])[1], nb=(b.match(/(\d+)/)||[])[1];
+        return (na&&nb) ? (+na - +nb) : a.localeCompare(b);
+      });
+    let html = '<option value="">— Selecciona un mensaje —</option>'
+      + folders.map(f => `<option value="${f}">${f}</option>`).join('');
+    const hasResp = tree.some(it => it.type==='blob' && it.path.startsWith(CONFIG.responsesPath + '/'));
+    if (hasResp) html += `<option value="__resp__">Responses</option>`;
+    sel.innerHTML = html;
+    sel.dataset.loaded = '1';
+  } catch (e) {
+    sel.innerHTML = '<option value="">Error cargando mensajes</option>';
+  }
+}
+
 
 /* ── Start ───────────────────────────────────────────────── */
 init();
+</script>
+<!-- ═══ VALIDADOR (AJV) ═══ -->
+<script type="module">
+  import Ajv from "https://cdn.jsdelivr.net/npm/ajv@8/dist/2020/+esm";
+  import addFormats from "https://cdn.jsdelivr.net/npm/ajv-formats@2/+esm";
+
+  const sel      = document.getElementById("valSchema");
+  const dropzone = document.getElementById("dropzone");
+  const input    = document.getElementById("fileInput");
+  const result   = document.getElementById("result");
+  const errorList= document.getElementById("errorList");
+  const viewer   = document.getElementById("jsonViewer");
+
+  let _schemaCache = {};
+  let _lastFileText = null;
+
+  function schemaDir(value) {
+    return value === "__resp__" ? window.CONFIG.responsesPath : `${window.CONFIG.contentPath}/${value}`;
+  }
+  async function fetchSchema(value) {
+    if (_schemaCache[value]) return _schemaCache[value];
+    const dir = schemaDir(value);
+    const files = await window.discoverFilesAt(dir);
+    if (!files.schemaFile) throw new Error("No se encontró schema en " + dir);
+    const txt = await window.rawFetch(`${dir}/${files.schemaFile.name}`);
+    const schema = JSON.parse(txt);
+    _schemaCache[value] = schema;
+    return schema;
+  }
+
+  sel.addEventListener("change", () => {
+    const on = !!sel.value;
+    dropzone.classList.toggle("disabled", !on);
+    dropzone.childNodes[0].nodeValue = on
+      ? " Arrastra tu JSON o haz click "
+      : " Selecciona primero un mensaje, luego arrastra tu JSON o haz click ";
+    if (on && _lastFileText) processJSON(_lastFileText);
+  });
+
+  dropzone.onclick = () => { if (sel.value) input.click(); };
+  dropzone.ondragover = e => { e.preventDefault(); if (sel.value) dropzone.classList.add("dragover"); };
+  dropzone.ondragleave = () => dropzone.classList.remove("dragover");
+  dropzone.ondrop = e => {
+    e.preventDefault(); dropzone.classList.remove("dragover");
+    if (sel.value && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  };
+  input.onchange = () => input.files[0] && handleFile(input.files[0]);
+
+  async function handleFile(file) { _lastFileText = await file.text(); processJSON(_lastFileText); }
+
+  async function processJSON(text) {
+    let data;
+    try { data = JSON.parse(text); }
+    catch { result.textContent = "❌ JSON inválido (error de sintaxis)"; errorList.textContent=""; viewer.textContent=""; return; }
+    let schema;
+    try { schema = await fetchSchema(sel.value); }
+    catch (e) { result.textContent = "⚠️ No se pudo cargar el esquema"; errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
+    let validate;
+    try { const ajv = new Ajv({ allErrors:true, strict:false }); addFormats(ajv); validate = ajv.compile(schema); }
+    catch (e) { result.textContent = "⚠️ El esquema no se pudo compilar"; errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
+    const valid = validate(data);
+    viewer.textContent = JSON.stringify(data, null, 2);
+    if (valid) { result.textContent = "✅ JSON válido"; errorList.textContent = ""; }
+    else { result.textContent = "❌ JSON inválido";
+      errorList.textContent = validate.errors.map(e => `➡ ${e.instancePath || "(raíz)"} → ${e.message}`).join(""); }
+  }
+
+  /* ── Capa visual ── */
+  function esc(t){ return String(t==null?"":t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
+  function statusMeta(msg){
+    if(!msg.trim()) return {kind:'info',badge:'Sin estado',title:'Esperando validación',text:'Sube un fichero para lanzar la validación.'};
+    if(msg.includes('✅')) return {kind:'success',badge:'Válido',title:'Validación completada',text:msg.replace('✅','').trim()||'El fichero cumple con el esquema.'};
+    if(msg.includes('❌')) return {kind:'error',badge:'Inválido',title:'Se detectaron errores',text:msg.replace('❌','').trim()||'El fichero no cumple con el esquema.'};
+    if(msg.includes('⚠️')) return {kind:'warning',badge:'Atención',title:'No se pudo validar',text:msg.replace('⚠️','').trim()};
+    return {kind:'info',badge:'Info',title:'Estado',text:msg};
+  }
+  function parseErrors(raw){
+    return (raw||'').replace(/\u00a0/g,' ').split('➡').map(s=>s.trim()).filter(Boolean).map((it,i)=>{
+      const p=it.split('→'); return {index:i+1, path:(p[0]||'(raíz)').trim(), message:(p.slice(1).join('→')||'Error').trim()};
+    });
+  }
+  function renderSummary(msg, raw){
+    const t=document.getElementById('validationSummary'), errs=parseErrors(raw), m=statusMeta(msg);
+    let tbl='';
+    if(errs.length){
+      tbl=`<table class="val-err-tbl"><thead><tr><th>#</th><th>Campo</th><th>Error</th></tr></thead><tbody>${
+        errs.map(e=>`<tr><td>${e.index}</td><td><code>${esc(e.path)}</code></td><td>${esc(e.message)}</td></tr>`).join('')}</tbody></table>`;
+    }
+    t.classList.remove('val-empty');
+    t.innerHTML=`<div class="val-status-card ${m.kind}"><div class="val-status-head">
+      <div class="val-status-title">${esc(m.title)}</div><div class="val-status-badge">${esc(m.badge)}</div></div>
+      <p class="val-status-text">${esc(m.text)}</p></div>${tbl}`;
+  }
+  function errorLines(lines, errs){
+    const set=new Set();
+    errs.forEach(e=>{ const key=(e.path||'').replace(/^\//,'').split('/').filter(Boolean).pop();
+      if(!key||key==='(raíz)') return;
+      const i=lines.findIndex(l=>l.includes(`"${key}"`)); if(i>=0) set.add(i+1); });
+    return set;
+  }
+  function renderViewer(raw, rawErr){
+    const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').trim();
+    if(!text){ cont.innerHTML=''; return; }
+    let fmt; try{ fmt=JSON.stringify(JSON.parse(text),null,2); }catch{ fmt=text; }
+    const lines=fmt.split('\n'), errs=parseErrors(rawErr), el=errorLines(lines,errs);
+    const rows=lines.map((l,i)=>`<tr class="${el.has(i+1)?'val-line-err':''}"><td class="val-ln">${i+1}</td><td class="val-lc">${esc(l)}</td></tr>`).join('');
+    cont.innerHTML=`<div class="val-code-panel"><div class="val-code-header"><span>📄 JSON validado</span>
+      <small>${errs.length?'Las líneas con errores se resaltan en rojo.':''}</small></div>
+      <div class="val-code-body"><table class="val-code-tbl"><tbody>${rows}</tbody></table></div></div>`;
+  }
+  function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||'', errorList.textContent||''); }
+  const obs=new MutationObserver(sync);
+  [result,errorList,viewer].forEach(n=>obs.observe(n,{childList:true,subtree:true,characterData:true}));
 </script>
 </body>
 </html>

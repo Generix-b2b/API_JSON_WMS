@@ -1934,6 +1934,64 @@ init();
   input.onchange = () => input.files[0] && handleFile(input.files[0]);
 
   async function handleFile(file) { _lastFileText = await file.text(); processJSON(_lastFileText); }
+    function serializeWithMap(data) {
+    const lines = [], map = {};
+    const escKey = k => String(k).replace(/~/g,'~0').replace(/\//g,'~1');
+    function rec(value, ptr, indent, keyPrefix, comma) {
+      const pad = '  '.repeat(indent);
+      if (value !== null && typeof value === 'object') {
+        const isArr = Array.isArray(value);
+        const entries = isArr ? value.map((v,i)=>[i,v]) : Object.entries(value);
+        if (entries.length === 0) {
+          lines.push(pad + keyPrefix + (isArr?'[]':'{}') + (comma?',':''));
+          if (ptr !== undefined) map[ptr] = lines.length;
+          return;
+        }
+        lines.push(pad + keyPrefix + (isArr?'[':'{'));
+        if (ptr !== undefined) map[ptr] = lines.length;
+        entries.forEach(([k,v],i) => {
+          const childPtr = ptr + '/' + (isArr ? k : escKey(k));
+          const kp = isArr ? '' : (JSON.stringify(String(k)) + ': ');
+          rec(v, childPtr, indent+1, kp, i < entries.length-1);
+        });
+        lines.push(pad + (isArr?']':'}') + (comma?',':''));
+      } else {
+        lines.push(pad + keyPrefix + JSON.stringify(value) + (comma?',':''));
+        if (ptr !== undefined) map[ptr] = lines.length;
+      }
+    }
+    rec(data, '', 0, '', false);
+    return { lines, map };
+  }
+  function describeError(e){
+    const p = e.params || {};
+    switch(e.keyword){
+      case 'enum':            return `Valor no permitido. Valores admitidos: ${(p.allowedValues||[]).join(', ')}`;
+      case 'const':           return `Valor obligatorio: ${JSON.stringify(p.allowedValue)}`;
+      case 'maxLength':       return `Longitud máxima permitida: ${p.limit} caracteres`;
+      case 'minLength':       return `Longitud mínima requerida: ${p.limit} caracteres`;
+      case 'pattern':         return `No cumple el patrón requerido: ${p.pattern}`;
+      case 'format':          return `Formato inválido, se esperaba: ${p.format}`;
+      case 'type':            return `Tipo incorrecto, se esperaba: ${p.type}`;
+      case 'maximum':         return `Valor máximo permitido: ${p.limit}`;
+      case 'minimum':         return `Valor mínimo permitido: ${p.limit}`;
+      case 'exclusiveMaximum':return `Debe ser menor que: ${p.limit}`;
+      case 'exclusiveMinimum':return `Debe ser mayor que: ${p.limit}`;
+      case 'multipleOf':      return `Debe ser múltiplo de: ${p.multipleOf}`;
+      case 'maxItems':        return `Máximo de elementos permitido: ${p.limit}`;
+      case 'minItems':        return `Mínimo de elementos requerido: ${p.limit}`;
+      case 'required':        return `Falta el campo obligatorio: ${p.missingProperty}`;
+      case 'additionalProperties': return `Propiedad no permitida: ${p.additionalProperty}`;
+      case 'oneOf':           return `Debe cumplir exactamente uno de los esquemas permitidos`;
+      default:                return e.message || 'Error de validación';
+    }
+  }
+  function errorPath(e){
+    let path = e.instancePath || '';
+    if (e.keyword === 'required') path += '/' + e.params.missingProperty;
+    else if (e.keyword === 'additionalProperties') path += '/' + e.params.additionalProperty;
+    return path || '(raíz)';
+  }
 
   async function processJSON(text) {
     let data;
@@ -1946,10 +2004,17 @@ init();
     try { const ajv = new Ajv({ allErrors:true, strict:false }); addFormats(ajv); validate = ajv.compile(schema); }
     catch (e) { result.textContent = "⚠️ El esquema no se pudo compilar"; errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
     const valid = validate(data);
-    viewer.textContent = JSON.stringify(data, null, 2);
-    if (valid) { result.textContent = "✅ JSON válido"; errorList.textContent = ""; }
-    else { result.textContent = "❌ JSON inválido";
-      errorList.textContent = validate.errors.map(e => `➡ ${e.instancePath || "(raíz)"} → ${e.message}`).join(""); }
+    if (valid) {
+      window._valErrorLines = [];
+      viewer.textContent = JSON.stringify(data, null, 2);
+      result.textContent = "✅ JSON válido"; errorList.textContent = "";
+    } else {
+      const { lines, map } = serializeWithMap(data);
+      window._valErrorLines = validate.errors.map(e => map[e.instancePath]).filter(Boolean);
+      viewer.textContent = lines.join("\n");
+      result.textContent = "❌ JSON inválido";
+      errorList.textContent = validate.errors.map(e => `➡ ${errorPath(e)} → ${describeError(e)}`).join("\n");
+    }
   }
 
   /* ── Capa visual ── */
@@ -1989,7 +2054,8 @@ init();
     const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').replace(/\u00a0/g,' ').trim();
     if(!text){ cont.innerHTML=''; return; }
     let fmt; try{ fmt=JSON.stringify(JSON.parse(text),null,2); }catch{ fmt=text; }
-    const lines=fmt.split('\n'), errs=parseErrors(rawErr), el=errorLines(lines,errs);
+    const lines=fmt.split('\n'), errs=parseErrors(rawErr);
+    const el = Array.isArray(window._valErrorLines) ? new Set(window._valErrorLines) : errorLines(lines,errs);
     const mh=Math.max(2, Math.min(6, 100/Math.max(lines.length,1)));
     const rows=lines.map((l,i)=>`<div class="val-line ${el.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="val-ln">${i+1}</div><div class="val-lc">${(window.hlJSON?window.hlJSON(l):esc(l))}</div></div>`).join('');
     const marks=lines.map((_,i)=>{ const top=lines.length<=1?0:(i/(lines.length-1))*100; return `<span class="val-minimap-line ${el.has(i+1)?'is-error':''}" style="top:${top}%; height:${mh}px"></span>`; }).join('');

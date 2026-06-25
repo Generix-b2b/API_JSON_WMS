@@ -557,20 +557,26 @@
   .val-err-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); color:var(--gray-700); vertical-align:top; }
   .val-err-tbl tbody tr:last-child td { border-bottom:none; }
   .val-err-tbl code { background:var(--gray-100); padding:1px 6px; border-radius:4px; font-size:.82rem; }
-  .val-code-panel { background:var(--gray-900); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,35,51,.16); }
+    .val-code-panel { background:var(--gray-900); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,35,51,.16); }
   .val-code-header { padding:14px 20px; background:var(--generix-dark); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .val-code-header small { color:rgba(255,255,255,.72); font-weight:500; font-size:.8rem; }
-  .val-code-body { max-height:620px; overflow:auto; scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent; }
-  .val-code-body::-webkit-scrollbar { width:8px; height:8px; }
-  .val-code-body::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:4px; }
-  .val-code-body::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
-  .val-code-tbl { width:100%; border-collapse:collapse; }
-  .val-code-tbl td { padding:0; border:none; vertical-align:top; }
-  .val-ln { width:60px; min-width:60px; text-align:right; padding:.3rem .6rem !important; color:#8ca0af;
-    border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; user-select:none; background:rgba(255,255,255,.02); }
-  .val-lc { padding:.3rem .8rem !important; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.45; font-family:'Courier New',monospace; }
-  .val-line-err .val-ln, .val-line-err .val-lc { background:rgba(240,68,56,.12); }
-  .val-line-err .val-lc { border-left:3px solid #f04438; padding-left:calc(.8rem - 3px) !important; }
+  .val-code-body { display:grid; grid-template-columns:minmax(0,1fr) 18px; max-height:620px; overflow:hidden; }
+  .val-code-scroll { max-height:620px; overflow:auto; min-width:0; scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent; }
+  .val-code-scroll::-webkit-scrollbar { width:8px; height:8px; }
+  .val-code-scroll::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:4px; }
+  .val-code-scroll::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
+  .val-code-content { min-width:max-content; }
+  .val-line { display:grid; grid-template-columns:60px 1fr; align-items:stretch; min-height:22px; }
+  .val-line:hover { background:rgba(255,255,255,.02); }
+  .val-ln { display:flex; align-items:center; justify-content:flex-end; width:60px; min-width:60px; padding:0 .6rem 0 .5rem; color:#8ca0af;
+    border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; font-size:.84rem; user-select:none; background:rgba(255,255,255,.02); }
+  .val-lc { display:flex; align-items:center; min-width:max-content; padding:0 .6rem; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.4; font-family:'Courier New',monospace; }
+  .val-line.is-error .val-ln, .val-line.is-error .val-lc { background:rgba(240,68,56,.12); }
+  .val-line.is-error .val-lc { border-left:3px solid #f04438; padding-left:calc(.6rem - 3px); }
+  .val-minimap { position:relative; min-height:100%; background:rgba(255,255,255,.035); border-left:1px solid rgba(255,255,255,.07); cursor:pointer; user-select:none; overflow:hidden; }
+  .val-minimap-line { position:absolute; left:4px; right:4px; height:2px; border-radius:999px; background:rgba(140,160,175,.45); }
+  .val-minimap-line.is-error { left:3px; right:3px; height:3px; background:#f04438; box-shadow:0 0 8px rgba(240,68,56,.55); }
+  .val-minimap-viewport { position:absolute; left:2px; right:2px; top:0; min-height:20px; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); border-radius:4px; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -1979,15 +1985,26 @@ init();
       const i=lines.findIndex(l=>l.includes(`"${key}"`)); if(i>=0) set.add(i+1); });
     return set;
   }
-  function renderViewer(raw, rawErr){
-    const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').trim();
+    function renderViewer(raw, rawErr){
+    const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').replace(/\u00a0/g,' ').trim();
     if(!text){ cont.innerHTML=''; return; }
     let fmt; try{ fmt=JSON.stringify(JSON.parse(text),null,2); }catch{ fmt=text; }
     const lines=fmt.split('\n'), errs=parseErrors(rawErr), el=errorLines(lines,errs);
-    const rows=lines.map((l,i)=>`<tr class="${el.has(i+1)?'val-line-err':''}"><td class="val-ln">${i+1}</td><td class="val-lc">${esc(l)}</td></tr>`).join('');
+    const mh=Math.max(2, Math.min(6, 100/Math.max(lines.length,1)));
+    const rows=lines.map((l,i)=>`<div class="val-line ${el.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="val-ln">${i+1}</div><div class="val-lc">${esc(l)}</div></div>`).join('');
+    const marks=lines.map((_,i)=>{ const top=lines.length<=1?0:(i/(lines.length-1))*100; return `<span class="val-minimap-line ${el.has(i+1)?'is-error':''}" style="top:${top}%; height:${mh}px"></span>`; }).join('');
     cont.innerHTML=`<div class="val-code-panel"><div class="val-code-header"><span>📄 JSON validado</span>
       <small>${errs.length?'Las líneas con errores se resaltan en rojo.':''}</small></div>
-      <div class="val-code-body"><table class="val-code-tbl"><tbody>${rows}</tbody></table></div></div>`;
+      <div class="val-code-body">
+        <div class="val-code-scroll"><div class="val-code-content">${rows}</div></div>
+        <div class="val-minimap" aria-label="Minimapa">${marks}<div class="val-minimap-viewport"></div></div>
+      </div></div>`;
+    const scroll=cont.querySelector('.val-code-scroll'), mm=cont.querySelector('.val-minimap'), vp=cont.querySelector('.val-minimap-viewport');
+    function syncVP(){ const sh=scroll.scrollHeight, ch=scroll.clientHeight, ms=Math.max(sh-ch,1), vh=Math.max((ch/sh)*100,8), vt=(scroll.scrollTop/ms)*(100-vh); vp.style.height=Math.min(vh,100)+'%'; vp.style.top=Math.max(0,vt)+'%'; }
+    function jump(e){ const r=mm.getBoundingClientRect(), ratio=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)); scroll.scrollTop=ratio*(scroll.scrollHeight-scroll.clientHeight); }
+    scroll.addEventListener('scroll', syncVP, {passive:true});
+    mm.addEventListener('click', jump);
+    requestAnimationFrame(syncVP);
   }
   function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||'', errorList.textContent||''); }
   const obs=new MutationObserver(sync);

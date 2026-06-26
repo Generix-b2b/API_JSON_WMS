@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom30_20/SchemaGECOM3020.json",
-  "title": "GECOM3020 - EAN Master Data",
+  "title": "GECOM30 - Product Master Data (EAN)",
   "x-wms-icon": "GECOM30",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {

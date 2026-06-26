@@ -1,0 +1,164 @@
+{
+  "confirmationReceptionOrders": [
+    {
+      "NUMREC": "26000105",
+      "SNUREC": "000",
+      "REFREC": "testpocVTL1",
+      "CODLDR": "093",
+      "CODTRE": "STD",
+      "ORICDE": "2",
+      "CODACT": "001",
+      "CODFOU": "10068",
+      "CODTRA": "DHL",
+      "DTIREC": "20260520",
+      "HEIREC": "0000",
+      "DTMREC": "20260520",
+      "HEMREC": "1200",
+      "DTRREC": "20260625",
+      "HERREC": "0824",
+      "KAIREC": "001",
+      "NATREC": "1",
+      "EDIFOU": "10068",
+      "GEEX4105": [
+        {
+          "CODRUB": "DESC",
+          "VALRUB": "CHOFER"
+        },
+        {
+          "CODRUB": "REM1",
+          "VALRUB": "1234"
+        },
+        {
+          "CODRUB": "REM2",
+          "VALRUB": "54765476"
+        },
+        {
+          "CODRUB": "0001",
+          "VALRUB": "1234"
+        },
+        {
+          "CODRUB": "0002",
+          "VALRUB": "KO"
+        }
+      ],
+      "GEEX4120": [
+        {
+          "NLIREC": "00001",
+          "CODPRO": "165181",
+          "VALPRO": "01",
+          "UVCREA": 3168,
+          "UNICDE": "PAL",
+          "NUMOPE": "000000",
+          "UVCREC": 3168,
+          "UVCGRA": 0,
+          "UVCIMM": 0,
+          "UVCRFU": 0,
+          "UVCRLQ": 0,
+          "MESPRO": "1",
+          "PDNREC": 0,
+          "RECSOL": false,
+          "PCBPRO": 24,
+          "GEEX4121": {
+            "EDIPRO": "7891167831131"
+          },
+          "GEEX4130": [
+            {
+              "CODLOT": "L1",
+              "NUMLOT": "260000038",
+              "DATFAB": "20260608",
+              "DATFVI": "20270203",
+              "CODPAL": "123545",
+              "UVCMVT": 3168,
+              "CODSIT": "000",
+              "ZONSTS": "Y",
+              "ALLSTS": "001",
+              "DPLSTS": "0000",
+              "NIVSTS": "00",
+              "PDBPAL": 396.0
+            }
+          ]
+        },
+        {
+          "NLIREC": "00002",
+          "CODPRO": "41127",
+          "VALPRO": "00",
+          "UVCREA": 1,
+          "UNICDE": "PAL",
+          "NUMOPE": "000000",
+          "UVCREC": 1,
+          "UVCGRA": 0,
+          "UVCIMM": 0,
+          "UVCRFU": 0,
+          "UVCRLQ": 0,
+          "MESPRO": "2",
+          "PDNREC": 0.001,
+          "RECSOL": false,
+          "PCBPRO": 1,
+          "GEEX4121": {
+            "EDIPRO": "2004112700009",
+            "UNIREC": "PAL"
+          },
+          "GEEX4130": [
+            {
+              "DATFAB": "20260625",
+              "DATFVI": "20261023",
+              "CODPAL": "001100000000001898",
+              "UVCMVT": 1,
+              "CODSIT": "000",
+              "ZONSTS": "Y",
+              "ALLSTS": "001",
+              "DPLSTS": "0000",
+              "NIVSTS": "00",
+              "PDBPAL": 25.001,
+              "PDNREC": 0.001
+            }
+          ]
+        }
+      ],
+      "GEEX4180": [
+        {
+          "CODEMB": "CNC",
+          "QTBSOR": 0,
+          "QTBENT": 132,
+          "PRXEMB": "0.20",
+          "PROEMB": "BAC",
+          "DATEMB": "20260625",
+          "TYPTIE": "1"
+        },
+        {
+          "CODEMB": "ENC",
+          "QTBSOR": 0,
+          "QTBENT": 3168,
+          "PRXEMB": "0.20",
+          "PROEMB": "BAC",
+          "DATEMB": "20260625",
+          "TYPTIE": "1"
+        },
+        {
+          "CODEMB": "SA1",
+          "QTBSOR": 0,
+          "QTBENT": 1,
+          "PRXEMB": "0.01",
+          "PROEMB": "SA1",
+          "DATEMB": "20260625",
+          "TYPTIE": "1"
+        },
+        {
+          "CODEMB": "100",
+          "QTBSOR": 0,
+          "QTBENT": 1,
+          "PRXEMB": "10.00",
+          "PROEMB": "100",
+          "DATEMB": "20260625",
+          "TYPTIE": "1"
+        }
+      ],
+      "GEEX4199": {
+        "CUMLIG": "0002",
+        "CUMPAL": "00002",
+        "COLTOT": "133.00",
+        "TOTPRO": "00002"
+      }
+    }
+  ]
+}

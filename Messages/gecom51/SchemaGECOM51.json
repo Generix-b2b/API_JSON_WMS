@@ -8,8 +8,8 @@
     "method": "POST",
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.1-Beta",
-    "releaseDate": "2026-06-23"
+    "version": "v1.1",
+    "releaseDate": "2026-06-26"
   },
   "description": "JSON for delivery order confirmation feedback from the WMS",
   "type": "object",
@@ -391,11 +391,6 @@
           "type": "string",
           "maxLength": 30
         },
-        "DISEXC": {
-          "description": "Area available for future use",
-          "type": "string",
-          "maxLength": 6
-        },
         "NUMSHP": {
           "description": "Shipment number",
           "type": "string",
@@ -764,9 +759,8 @@
           "maxLength": 35
         },
         "SIGMIN": {
-          "description": "Minimum value sign / false = Positive value, true = Negative value",
-          "type": "boolean",
-          "default": false
+          "description": "Value sign - see EnumSIG",
+          "$ref": "#/$defs/Enums/EnumSIG"
         },
         "VALMIN": {
           "description": "Minimum value of the imposed section",
@@ -777,9 +771,8 @@
           ]
         },
         "SIGMAX": {
-          "description": "Maximum value sign / false = Positive value, true = Negative value",
-          "type": "boolean",
-          "default": false
+          "description": "Value sign - see EnumSIG",
+          "$ref": "#/$defs/Enums/EnumSIG"
         },
         "VALMAX": {
           "description": "Maximum value of the imposed section",
@@ -791,6 +784,7 @@
         }
       },
       "required": [
+        "TYPRUB",
         "CODRUB",
         "VALRUB"
       ],
@@ -800,24 +794,6 @@
       "description": "Support detail",
       "type": "object",
       "properties": {
-        "UVCLIV": {
-          "description": "Number of CSUs delivered on the support",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 999999999
-        },
-        "PDNLIV": {
-          "description": "Net weight delivered",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 99999999.999,
-          "multipleOf": 0.001
-        },
-        "MOTMVT": {
-          "description": "Delivery discrepancy reason",
-          "type": "string",
-          "maxLength": 3
-        },
         "CODLOT": {
           "description": "Stored batch code",
           "type": "string",
@@ -850,6 +826,24 @@
           "description": "Sub-number of the support to prepare",
           "type": "string",
           "pattern": "^[0-9]{1,3}$"
+        },
+        "UVCLIV": {
+          "description": "Number of CSUs delivered on the support",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "PDNLIV": {
+          "description": "Net weight delivered",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99999999.999,
+          "multipleOf": 0.001
+        },
+        "MOTMVT": {
+          "description": "Delivery discrepancy reason",
+          "type": "string",
+          "maxLength": 3
         },
         "CODPRP": {
           "description": "Order preparer code",
@@ -932,7 +926,9 @@
       "required": [
         "UVCLIV",
         "PDNLIV",
-        "CODLOT"
+        "CODLOT",
+        "DATFVI",
+        "UVCSRV"
       ],
       "additionalProperties": false
     },
@@ -1233,10 +1229,11 @@
     },
     "Enums": {
       "EnumTRTEXC": {
-        "description": "Movement processing code / Empty",
+        "description": "Movement processing code /  (blank) = Empty, 2 = Modification",
         "type": "string",
         "enum": [
-          ""
+          "",
+          "2"
         ],
         "default": ""
       },
@@ -1305,6 +1302,14 @@
           "2"
         ],
         "default": "2"
+      },
+      "EnumSIG": {
+        "description": "Value sign / + = Positive value, - = Negative value",
+        "type": "string",
+        "enum": [
+          "+",
+          "-"
+        ]
       },
       "EnumPRPPIC": {
         "description": "Picking preparation type / 1 = Full pallet, 2 = Layers, 3 = Package, 4 = Sub-packaging, 5 = CSU",

@@ -721,9 +721,8 @@
           "maxLength": 35
         },
         "SIGMIN": {
-          "description": "Minimum value sign / false = Positive value, true = Negative value",
-          "type": "boolean",
-          "default": false
+          "description": "Value sign - see EnumSIG",
+          "$ref": "#/$defs/Enums/EnumSIG"
         },
         "VALMIN": {
           "description": "Minimum value of the imposed item",
@@ -732,9 +731,8 @@
           "examples": ["12.78087"]
         },
         "SIGMAX": {
-          "description": "Maximum value sign / false = Positive value, true = Negative value",
-          "type": "boolean",
-          "default": false
+          "description": "Value sign - see EnumSIG",
+          "$ref": "#/$defs/Enums/EnumSIG"
         },
         "VALMAX": {
           "description": "Maximum value of the imposed section",
@@ -811,6 +809,14 @@
         "type": "string",
         "enum": ["1","2"],
         "default": "2"
+      },
+      "EnumSIG": {
+        "description": "Value sign / + = Positive value, - = Negative value",
+        "type": "string",
+        "enum": [
+          "+",
+          "-"
+        ]
       }
     }
   }

@@ -8,8 +8,8 @@
     "method": "POST",
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.1-BETA",
-    "releaseDate": "2026-06-23"
+    "version": "v1.1",
+    "releaseDate": "2026-06-26"
   },
   "description": "JSON for reception order confirmation feedback from the WMS",
   "type": "object",
@@ -546,7 +546,9 @@
       },
       "required": [
         "NLIREC",
-        "CODPRO"
+        "CODPRO",
+        "UVCREA",
+        "UVCREC"
       ],
       "additionalProperties": false
     },
@@ -644,6 +646,7 @@
         }
       },
       "required": [
+        "TYPRUB",
         "CODRUB",
         "VALRUB"
       ],
@@ -653,18 +656,6 @@
       "description": "Support detail",
       "type": "object",
       "properties": {
-        "UVCMVT": {
-          "description": "Number of CSUs received on the pallet",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 999999999
-        },
-        "SPCPRO": {
-          "description": "Product sub-pack quantity",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 9999
-        },
         "CODLOT": {
           "description": "Stored batch code",
           "type": "string",
@@ -674,11 +665,6 @@
           "description": "Internal goods batch number",
           "type": "string",
           "pattern": "^[0-9]{1,9}$"
-        },
-        "CODNDS": {
-          "description": "Serial number codification",
-          "type": "string",
-          "maxLength": 20
         },
         "DATFAB": {
           "description": "Manufacturing date (format YYYYMMDD)",
@@ -731,6 +717,23 @@
               "093000"
             ]
           }
+        },
+        "UVCMVT": {
+          "description": "Number of CSUs received on the pallet",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "SPCPRO": {
+          "description": "Product sub-pack quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999
+        },
+        "CODNDS": {
+          "description": "Serial number codification",
+          "type": "string",
+          "maxLength": 20
         },
         "CODSIT": {
           "description": "Storage site code",
@@ -982,10 +985,11 @@
     },
     "Enums": {
       "EnumTRTEXC": {
-        "description": "Movement processing code / Empty",
+        "description": "Movement processing code / (blank) = Empty, 2 = Modification",
         "type": "string",
         "enum": [
-          ""
+          "",
+          "2"
         ]
       },
       "EnumORICDE": {

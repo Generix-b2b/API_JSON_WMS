@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom30_ean/SchemaGECOM30_ean.json",
-  "title": "GECOM30 - EAN Master Data",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom30_20/SchemaGECOM3020.json",
+  "title": "GECOM3020 - EAN Master Data",
   "x-wms-icon": "GECOM30",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
@@ -82,7 +82,7 @@
           "default": false
         }
       },
-      "required": ["EDIPRO", "EDIPRM", "EDIQLF"],
+      "required": ["TRTEXC", "CODACT", "CODPRO", "EDIPRO", "EDIPRM", "EDIQLF"],
       "additionalProperties": false
     },
     "Enums": {

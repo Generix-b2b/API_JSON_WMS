@@ -1027,8 +1027,7 @@
           "0",
           "1",
           "2"
-        ],
-        "default": "0"
+        ]
       },
       "EnumMESPRO": {
         "description": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
@@ -1037,8 +1036,7 @@
           "1",
           "2",
           "3"
-        ],
-        "default": "1"
+        ]
       },
       "EnumTYPRUB": {
         "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",

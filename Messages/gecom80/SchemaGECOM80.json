@@ -8,7 +8,7 @@
     "method": "POST",
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.1-Beta",
+    "version": "v1.1",
     "releaseDate": "2026-06-25"
   },
   "description": "JSON for stock movement feedback from the WMS",
@@ -102,7 +102,7 @@
         "CODACT": {
           "description": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "CODCLI": {
@@ -233,9 +233,12 @@
         }
       },
       "required": [
+        "DATMVT",
+        "CODMVT",
+        "SENMVT",
+        "MOTMVT",
         "CODACT",
-        "CODPRO",
-        "CODMVT"
+        "CODPRO"
       ],
       "additionalProperties": false
     },
@@ -248,35 +251,7 @@
           "type": "string",
           "maxLength": 15
         },
-        "PDBPAL": {
-          "description": "Gross weight of the pallet in Kg",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 9999.999,
-          "multipleOf": 0.001
-        },
-        "PDBMVT": {
-          "description": "Gross weight moved",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 9999.999,
-          "multipleOf": 0.001
-        },
-        "FAMPRO": {
-          "description": "Product classification family",
-          "type": "string",
-          "maxLength": 10
-        },
-        "INDPRO": {
-          "description": "Configurable product indicators",
-          "type": "array",
-          "maxItems": 10,
-          "items": {
-            "description": "Configurable product indicators",
-            "type": "string",
-            "maxLength": 1
-          }
-        },
+        
         "NLILIV": {
           "description": "Line number for the delivery interface",
           "type": "string",
@@ -338,6 +313,35 @@
           "description": "Group identification number",
           "type": "string",
           "pattern": "^[0-9]{1,10}$"
+        },
+        "PDBPAL": {
+          "description": "Gross weight of the pallet in Kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "PDBMVT": {
+          "description": "Gross weight moved",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "FAMPRO": {
+          "description": "Product classification family",
+          "type": "string",
+          "maxLength": 10
+        },
+        "INDPRO": {
+          "description": "Configurable product indicators",
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "description": "Configurable product indicators",
+            "type": "string",
+            "maxLength": 1
+          }
         }
       },
       "additionalProperties": false
@@ -546,10 +550,11 @@
     },
     "Enums": {
       "EnumTRTEXC": {
-        "description": "Movement processing code / Empty",
+        "description": "Movement processing code / (blank) = Empty, 2 = Modification",
         "type": "string",
         "enum": [
-          ""
+          "",
+          "2"
         ]
       },
       "EnumCODMVT": {
@@ -565,7 +570,7 @@
         ]
       },
       "EnumSENMVT": {
-        "description": "Physical movement direction / + = Storage / De-immobilization, - = Destocking / Immobilization",
+        "description": "Physical movement direction / + = Storage or De-immobilization, - = Destocking or Immobilization",
         "type": "string",
         "enum": [
           "+",

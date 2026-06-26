@@ -216,15 +216,28 @@
           }
         }
       },
-      "required": ["TRTEXC", "REFLIV", "CODTLI", "CODACT", "CODCLI", "DTILIV", "HEILIV", "CUMLIG"],
+      "required": [
+        "TRTEXC", 
+        "REFLIV", 
+        "CODTLI", 
+        "CODACT", 
+        "CODCLI", 
+        "DTILIV", 
+        "HEILIV", 
+        "CUMLIG"
+      ],
       "if": {
         "properties": {
           "TRTEXC": { "enum": ["1", "2"] }
         },
-        "required": ["TRTEXC"]
+        "required": [
+          "TRTEXC"
+        ]
       },
       "then": {
-        "required": ["GEEX5020"]
+        "required": [
+          "GEEX5020"
+        ]
       },
       "additionalProperties": false
     },
@@ -442,7 +455,10 @@
           "maxLength": 35
         }
       },
-      "required": ["CODRUB", "VALRUB"],
+      "required": [
+        "CODRUB", 
+        "VALRUB"
+      ],
       "additionalProperties": false
     },
     "GEEX5010Wrapper": {
@@ -507,7 +523,13 @@
           "format": "email"
         }
       },
-      "required": ["NOMCLI", "AD1CLI", "CPICLI", "VILCLI", "PAYCLI"],
+      "required": [
+        "NOMCLI", 
+        "AD1CLI", 
+        "CPICLI", 
+        "VILCLI", 
+        "PAYCLI"
+      ],
       "additionalProperties": false
     },
     "GEEX5020Wrapper": {
@@ -640,7 +662,11 @@
           }
         }
       },
-      "required": ["NLILIV", "CODPRO", "UVCCDE"],
+      "required": [
+        "NLILIV", 
+        "CODPRO", 
+        "UVCCDE"
+      ],
       "additionalProperties": false
     },
     "GEEX5021Wrapper": {
@@ -746,7 +772,11 @@
           "maxLength": 18
         }
       },
-      "required": ["TYPRUB","CODRUB","VALRUB"],
+      "required": [
+        "TYPRUB",
+        "CODRUB",
+        "VALRUB"
+      ],
       "additionalProperties": false
     },
     "GEEX5080Wrapper": {
@@ -765,49 +795,76 @@
           "maxLength": 120
         }
       },
-      "required": ["SEQTXL", "LIBTXL"],
+      "required": [
+        "SEQTXL", 
+        "LIBTXL"
+      ],
       "additionalProperties": false
     },
     "Enums": {
       "EnumTRTEXC": {
         "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 7 = Header Modification, 9 = Cancellation",
         "type": "string",
-        "enum": ["1", "2", "7", "9"],
+        "enum": [
+          "1", 
+          "2", 
+          "7", 
+          "9"
+        ],
         "default": "2"
       },
       "EnumTYPLIV": {
           "description": "Delivery type (notion of collected/delivered) / 1 = Delivered, 2 = Collected",
           "type": "string",
-          "enum": ["1", "2"],
-          "default": "1"
+          "enum": [
+            "1", 
+            "2"
+          ]
       },
       "EnumGSTALC": {
         "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",
         "type": "string",
-        "enum": ["0", "1", "2", "3"]
+        "enum": [
+          "0", 
+          "1", 
+          "2", 
+          "3"
+        ]
       },
       "EnumMETRPL": {
         "description": "Product replacement method / 0 = No replacement, 1 = Replaced by, 2 = Substituted by",
         "type": "string",
-        "enum": ["0", "1", "2"],
-        "default": "0"
+        "enum": [
+          "0", 
+          "1", 
+          "2"
+        ]
       },
       "EnumTYPSTK": {
         "description": "Stock type (tool or retention) / 1 = Tool stock, 2 = Retention stock",
         "type": "string",
-        "enum": ["1", "2"],
-        "default": "1"
+        "enum": [
+          "1", 
+          "2"
+        ]
       },
       "EnumTYPOPE": {
         "description": "Operation type (e.g.: Promotion, reservation) / 0 = Normal, 1 = Promotion, 2 = Reservation, 4 = Promo Circuit",
         "type": "string",
-        "enum": ["0", "1", "2", "4"],
-        "default": "0"
+        "enum": [
+          "0", 
+          "1", 
+          "2", 
+          "4"
+        ]
       },
       "EnumTYPRUB": {
         "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
         "type": "string",
-        "enum": ["1","2"],
+        "enum": [
+          "1",
+          "2"
+        ],
         "default": "2"
       },
       "EnumSIG": {

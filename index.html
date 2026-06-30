@@ -1196,7 +1196,7 @@ function renderDescripcion(schema, readmeText, examplesData) {
     });
     if (specs.length) {
       html += `<div class="spec-card">${specs.map(s =>
-        `<div class="spec-item">
+        `${s.dlIdx === 0 ? '<div style="flex-basis:100%;height:0;margin:0"></div>' : ''}<div class="spec-item">
           <span class="spec-label">${esc(s.label)}</span>
           ${s.dlIdx !== undefined
             ? `<span class="spec-value"><a href="#" onclick="downloadExample(${s.dlIdx},'${esc(s.value)}');return false;" class="download-link" style="font-family:monospace;font-size:.85rem">${esc(s.value)}</a></span>`

@@ -851,6 +851,7 @@
       <p class="ddesc">La API es asíncrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validación, envía un callback al endpoint que el cliente expone.</p>
     </div>
   </section>
+  <div id="respuestas-nav"></div>
   <div class="resp-section">
     <div id="respuestas-body"><p style="color:var(--gray-500)">Cargando…</p></div>
   </div>
@@ -2093,7 +2094,25 @@ function renderRespuestaSection(schema, exRaw, exName, mid) {
 
   const exId = `resp-ex-${mid}`;
   h += `<div class="resp-sub">Ejemplo</div><div id="${exId}"></div></div>`;
-  return { html: h, exId, exRaw, exName };
+  return { html: h, exId, exRaw, exName, mid };
+}
+let _respSections = {};
+function renderRespExample(mid) {
+  const s = _respSections[mid]; if (!s) return;
+  const el = document.getElementById(s.exId); if (!el || el.dataset.rendered) return;
+  el.dataset.rendered = '1';
+  if (!s.exRaw) { el.innerHTML = '<p style="color:var(--gray-500)">Sin ejemplo en la carpeta.</p>'; return; }
+  if (typeof renderJsonMinimap === 'function') {
+    renderJsonMinimap(el, s.exRaw, [], `<span>${esc(s.exName || 'JSON')}</span>`);
+  } else {
+    el.innerHTML = `<div style="background:var(--gray-900);border-radius:10px;padding:18px;overflow:auto"><pre style="margin:0;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.84rem">${hlJSON(fmtJSON(s.exRaw))}</pre></div>`;
+  }
+}
+function showRespTab(mid, btn) {
+  const view = document.getElementById('view-respuestas');
+  view.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+  view.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'resp-panel-' + mid));
+  renderRespExample(mid);
 }
 async function showRespuestas() {
   ['view-index','view-detail','view-versions','view-validacion'].forEach(id => {
@@ -2125,21 +2144,27 @@ async function showRespuestas() {
     const getRaw  = async n => n ? await rawFetch(`${dir}/${n}`) : null;
     const [schemaIni, schemaCb, rawIni, rawCb] = await Promise.all([getJson(sIni), getJson(sCb), getRaw(eIni), getRaw(eCb)]);
 
+    const labels = { ini: 'Respuesta API', cb: 'Callback de errores' };
     const sections = [];
     if (schemaIni) sections.push(renderRespuestaSection(schemaIni, rawIni, eIni, 'ini'));
     if (schemaCb)  sections.push(renderRespuestaSection(schemaCb,  rawCb,  eCb,  'cb'));
-    body.innerHTML = sections.map(s => s.html).join('');
 
-    sections.forEach(s => {
-      const el = document.getElementById(s.exId);
-      if (!el) return;
-      if (!s.exRaw) { el.innerHTML = '<p style="color:var(--gray-500)">Sin ejemplo en la carpeta.</p>'; return; }
-      if (typeof renderJsonMinimap === 'function') {
-        renderJsonMinimap(el, s.exRaw, [], `<span>${esc(s.exName || 'JSON')}</span>`);
-      } else {
-        el.innerHTML = `<div style="background:var(--gray-900);border-radius:10px;padding:18px;overflow:auto"><pre style="margin:0;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.84rem">${hlJSON(fmtJSON(s.exRaw))}</pre></div>`;
-      }
-    });
+    _respSections = {};
+    sections.forEach(s => { _respSections[s.mid] = s; });
+
+    const navEl = document.getElementById('respuestas-nav');
+    const nav = sections.map((s, i) =>
+      `<button class="tab-btn ${i===0?'active':''}" onclick="showRespTab('${s.mid}', this)">${esc(labels[s.mid] || s.mid)}</button>`).join('');
+    const panels = sections.map((s, i) =>
+      `<div class="tab-panel ${i===0?'active':''}" id="resp-panel-${s.mid}">${s.html}</div>`).join('');
+
+    navEl.innerHTML = sections.length > 1
+      ? `<div class="tab-nav-inner"><div class="tab-nav">${nav}</div></div>`
+      : '';
+    navEl.className = sections.length > 1 ? 'tab-nav-outer' : '';
+    body.innerHTML = panels;
+
+    if (sections.length) renderRespExample(sections[0].mid);
   } catch (e) {
     body.innerHTML = `<div class="highlight-box" style="border-left-color:#cf1322"><strong>Error al cargar</strong><br>${esc(e.message)}</div>`;
   }

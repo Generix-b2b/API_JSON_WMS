@@ -76,8 +76,7 @@
         },
         "success": {
           "description": "Indicador de recepción / 1 = recibido por la API.",
-          "type": "string",
-          "enum": ["1"]
+          "type": "string"
         }
       },
       "required": ["uuid", "endpoint", "timestamp", "label", "success"]

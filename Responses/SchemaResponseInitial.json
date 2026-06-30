@@ -11,9 +11,21 @@
   },
   "description": "Respuesta HTTP que devuelve la API de forma inmediata al recibir un mensaje. El código de estado indica el resultado del envío. Cuando es 200, el cuerpo contiene un acuse de recibo (receptionAck).",
   "x-wms-status-codes": [
-    { "code": "200", "label": "OK",                   "meaning": "Mensaje recibido correctamente por la API. El cuerpo incluye el objeto receptionAck." },
-    { "code": "400", "label": "Bad Request",          "meaning": "Petición mal formada (JSON inválido, cabeceras incorrectas o estructura no reconocida). No se procesa." },
-    { "code": "500", "label": "Internal Server Error","meaning": "Error interno del WMS al recibir el mensaje. Reintentar más tarde o contactar con soporte." }
+    { 
+      "code": "200", 
+      "label": "OK",                   
+      "meaning": "Mensaje recibido correctamente por la API. El cuerpo incluye el objeto receptionAck." 
+    },
+    { 
+      "code": "400", 
+      "label": "Bad Request",          
+      "meaning": "Petición mal formada (JSON inválido, cabeceras incorrectas o estructura no reconocida). No se procesa." 
+    },
+    { 
+      "code": "500", 
+      "label": "Internal Server Error",
+      "meaning": "Error interno del WMS al recibir el mensaje. Reintentar más tarde o contactar con soporte." 
+    }
   ],
   "type": "object",
   "properties": {
@@ -64,17 +76,11 @@
         },
         "success": {
           "description": "Indicador de recepción / 1 = recibido por la API.",
-          "$ref": "#/$defs/Enums/EnumSuccess"
+          "type": "string",
+          "enum": ["1"]
         }
       },
       "required": ["uuid", "endpoint", "timestamp", "label", "success"]
-    },
-    "Enums": {
-      "EnumSuccess": {
-        "description": "Indicador de recepción / 1 = mensaje recibido por la API",
-        "type": "string",
-        "enum": ["1"]
-      }
     }
   }
 }

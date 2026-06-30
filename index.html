@@ -557,27 +557,42 @@
   .val-err-tbl td { padding:9px 12px; border-bottom:1px solid var(--gray-200); color:var(--gray-700); vertical-align:top; }
   .val-err-tbl tbody tr:last-child td { border-bottom:none; }
   .val-err-tbl code { background:var(--gray-100); padding:1px 6px; border-radius:4px; font-size:.82rem; }
-    .val-code-panel { background:var(--gray-900); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,35,51,.16); }
-  .val-code-header { padding:14px 20px; background:var(--generix-dark); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .val-code-header small { color:rgba(255,255,255,.72); font-weight:500; font-size:.8rem; }
-  .val-code-body { display:grid; grid-template-columns:minmax(0,1fr) 18px; max-height:620px; overflow:hidden; }
-  .val-code-scroll { max-height:620px; overflow:auto; min-width:0; scrollbar-width:thin; scrollbar-color:var(--gray-300) transparent; }
-  .val-code-scroll::-webkit-scrollbar { width:8px; height:8px; }
-  .val-code-scroll::-webkit-scrollbar-thumb { background:var(--gray-300); border-radius:4px; }
-  .val-code-scroll::-webkit-scrollbar-thumb:hover { background:var(--generix-orange); }
-  .val-code-content { min-width:max-content; }
-  .val-line { display:grid; grid-template-columns:60px 1fr; align-items:center; min-height:22px; }
-  .val-line:hover { background:rgba(255,255,255,.02); }
-  .val-ln { display:flex; align-items:center; justify-content:flex-end; align-self:stretch; width:60px; min-width:60px; padding:0 .6rem 0 .5rem; color:#8ca0af;
-    border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; font-size:.84rem; user-select:none; background:rgba(255,255,255,.02); }
-  .val-lc { min-width:max-content; padding:.15rem .6rem; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:1.5; font-family:'Courier New',monospace; }
-  .val-line.is-error .val-ln, .val-line.is-error .val-lc { background:rgba(240,68,56,.12); }
-  .val-line.is-error .val-lc { border-left:3px solid #f04438; padding-left:calc(.6rem - 3px); }
-  .val-minimap { position:relative; min-height:100%; background:rgba(255,255,255,.035); border-left:1px solid rgba(255,255,255,.07); cursor:pointer; user-select:none; overflow:hidden; }
-  .val-minimap-line { position:absolute; left:4px; right:4px; height:2px; border-radius:999px; background:rgba(140,160,175,.45); }
-  .val-minimap-line.is-error { left:3px; right:3px; height:3px; background:#f04438; box-shadow:0 0 8px rgba(240,68,56,.55); }
-  .val-minimap-viewport { position:absolute; left:2px; right:2px; top:0; min-height:20px; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); border-radius:4px; pointer-events:none; }
-</style>
+  /* ── VISOR JSON + MINIMAPA (IDE) ── */
+  .validator-code-shell { margin-top:0; }
+  .validator-code-panel { background:var(--gray-900); border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,35,51,.16); border:1px solid rgba(255,255,255,.04); }
+  .validator-code-header { padding:14px 20px; background:var(--generix-dark); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .validator-code-header small { color:rgba(255,255,255,.72); font-weight:500; font-size:.82rem; }
+  .validator-code-body { display:grid; grid-template-columns:minmax(0,1fr) 132px; max-height:620px; overflow:hidden; }
+  .validator-code-scroll { max-height:620px; overflow:auto; min-width:0; scrollbar-width:none; -ms-overflow-style:none; }
+  .validator-code-scroll::-webkit-scrollbar { display:none; }
+  .validator-code-content { min-width:max-content; }
+  .validator-line { display:grid; grid-template-columns:60px 1fr; align-items:center; min-height:24px; }
+  .validator-line:hover { background:rgba(255,255,255,.02); }
+  .validator-line-number { display:flex; align-items:center; justify-content:flex-end; width:60px; min-width:60px; min-height:24px; padding:0 .6rem 0 .5rem; color:#8ca0af; border-right:1px solid rgba(255,255,255,.07); font-family:'Courier New',monospace; font-size:.84rem; line-height:1; user-select:none; background:rgba(255,255,255,.02); }
+  .validator-line-code { display:block; min-width:max-content; min-height:24px; padding:0 .6rem; color:#e6edf3; white-space:pre; font-size:.84rem; line-height:24px; font-family:'Courier New',monospace; }
+  .validator-json-key { color:#93c5fd; }
+  .validator-json-string { color:#86efac; }
+  .validator-json-number, .validator-json-boolean, .validator-json-null { color:#fcd34d; }
+  .validator-json-punctuation { color:#d4d4d4; }
+  .validator-line.is-error .validator-line-number, .validator-line.is-error .validator-line-code { background:rgba(240,68,56,.12); }
+  .validator-line.is-error .validator-line-code { border-left:3px solid #f04438; padding-left:calc(.6rem - 3px); }
+  .validator-line.is-focused { animation:validatorLinePulse 1.3s ease-out 1; }
+  .validator-line.is-focused .validator-line-code { box-shadow:inset 0 0 0 1px rgba(242,138,72,.85); background:rgba(242,138,72,.16); }
+  @keyframes validatorLinePulse { 0%{background:rgba(242,138,72,.34)} 100%{background:transparent} }
+  .validator-code-minimap { position:relative; min-height:100%; background:#2b3036; border-left:1px solid rgba(255,255,255,.1); box-shadow:inset 8px 0 14px rgba(0,0,0,.18); cursor:pointer; user-select:none; overflow:hidden; }
+  .validator-code-minimap-content { position:absolute; left:0; right:0; top:0; will-change:transform; pointer-events:none; }
+  .validator-code-minimap::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,.075)); pointer-events:none; }
+  .validator-minimap-code-line { position:absolute; left:8px; right:8px; height:3px; display:flex; align-items:center; gap:2px; opacity:.82; }
+  .validator-minimap-code-line.is-error { opacity:1; background:rgba(240,68,56,.13); box-shadow:0 0 0 1px rgba(240,68,56,.16); }
+  .validator-minimap-token { display:inline-block; height:2px; min-width:3px; border-radius:999px; background:rgba(160,174,187,.65); }
+  .validator-minimap-token--key { background:rgba(147,197,253,.95); }
+  .validator-minimap-token--string { background:rgba(134,239,172,.9); }
+  .validator-minimap-token--number, .validator-minimap-token--boolean, .validator-minimap-token--null { background:rgba(252,211,77,.9); }
+  .validator-minimap-token--punctuation { background:rgba(212,212,212,.55); }
+  .validator-minimap-token--error { background:#f04438; box-shadow:0 0 6px rgba(240,68,56,.75); }
+  .validator-minimap-viewport { position:absolute; left:0; right:0; top:0; min-height:28px; border-top:1px solid rgba(255,255,255,.8); border-bottom:1px solid rgba(255,255,255,.8); background:rgba(255,255,255,.26); box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 18px rgba(255,255,255,.1); cursor:grab; pointer-events:auto; z-index:2; }
+  .validator-minimap-viewport:hover { background:rgba(255,255,255,.38); border-top:1px solid #fff; border-bottom:1px solid #fff; }
+  </style>
 </head>
 <body>
 
@@ -1648,11 +1663,7 @@ function renderEjemplo(examples, folder) {
           <button class="file-btn" onclick="toggleExampleCode('${pid}', this)">Ver contenido</button>
         </div>
         <div class="ejemplo-cp" id="${pid}" style="display:none;margin-top:6px">
-          <div class="ejemplo-cp-header">
-            <span class="ejemplo-cp-label">${esc(ex.name)}</span>
-            <button class="copy-btn" onclick="copyExample(${i}, this)">Copiar</button>
-          </div>
-          <pre class="ejemplo-pre">${hlJSON(formatted)}</pre>
+          <div class="ejemplo-mini" data-idx="${i}" data-name="${esc(ex.name)}"></div>
         </div>
       </div>`;
   });
@@ -1717,6 +1728,15 @@ function toggleExampleCode(pid, btn) {
   btn.textContent = open ? 'Ver contenido' : 'Ocultar';
   const card = el.closest('.file-card');
   if (card) card.classList.toggle('expanded', !open);
+  if (!open) {
+    const mini = el.querySelector('.ejemplo-mini');
+    if (mini && !mini.dataset.rendered) {
+      const idx = +mini.dataset.idx, name = mini.dataset.name || 'JSON';
+      const header = `<span>${esc(name)}</span><button class="copy-btn" onclick="copyExample(${idx}, this)">Copiar</button>`;
+      renderJsonMinimap(mini, _examples[idx], [], header);
+      mini.dataset.rendered = '1';
+    }
+  }
 }
 function copyExample(i, btn) {
   const text = _examples[i !== undefined ? i : 0];
@@ -1853,7 +1873,12 @@ async function toggleVersPreview(path, pid, btn) {
 }
 
 /* ═══ VALIDADOR ═══ */
-try { window.discoverFilesAt = discoverFilesAt; window.rawFetch = rawFetch; window.hlJSON = hlJSON; } catch(e){}
+try { 
+  window.discoverFilesAt = discoverFilesAt; 
+  window.rawFetch = rawFetch; 
+  window.hlJSON = hlJSON; 
+  window.renderJsonMinimap = renderJsonMinimap; 
+} catch(e){}
 
 async function showValidacion() {
   document.getElementById('view-index').style.display = 'none';
@@ -1883,6 +1908,74 @@ async function showValidacion() {
   }
 }
 
+function renderJsonMinimap(container, jsonText, errorLineNumbers, headerHtml) {
+  const text = (jsonText || '').replace(/\u00a0/g,' ').trim();
+  if (!text) { container.innerHTML = ''; return; }
+  let formatted; try { formatted = JSON.stringify(JSON.parse(text), null, 2); } catch { formatted = text; }
+  const lines = formatted.split('\n');
+  const errorLines = new Set(Array.isArray(errorLineNumbers) ? errorLineNumbers : []);
+
+  function jtype(tok, next){
+    if (/^".*"$/.test(tok) && next === ':') return 'key';
+    if (/^".*"$/.test(tok)) return 'string';
+    if (/^-?\d+(\.\d+)?([eE][+-]?\d+)?$/.test(tok)) return 'number';
+    if (/^(true|false)$/.test(tok)) return 'boolean';
+    if (/^null$/.test(tok)) return 'null';
+    if (/^[{}\[\],:]$/.test(tok)) return 'punctuation';
+    return 'default';
+  }
+  function codeLine(line){
+    const re=/"(?:\\.|[^"\\])*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null|[{}\[\],:]/g;
+    const ms=[...line.matchAll(re)]; if(!ms.length) return esc(line);
+    let html='', cur=0;
+    ms.forEach((m,i)=>{ const t=m[0], s=m.index, e=s+t.length, n=ms[i+1]&&ms[i+1][0], ty=jtype(t,n);
+      html+=esc(line.slice(cur,s))+`<span class="validator-json-${ty}">${esc(t)}</span>`; cur=e; });
+    html+=esc(line.slice(cur)); return html;
+  }
+  function miniLine(line, isErr){
+    const lead=(line.match(/^\s*/)||[''])[0].length, indent=Math.min(34, lead*2.3);
+    const toks=line.trim().match(/"(?:\\.|[^"\\])*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null|[{}\[\],:]/g)||[];
+    if(!toks.length) return `<span class="validator-minimap-token" style="margin-left:${indent}px;width:8px"></span>`;
+    return toks.slice(0,14).map((t,i)=>{ const ty=isErr?'error':jtype(t,toks[i+1]); const w=Math.max(4,Math.min(32,t.length*2.1)); const ml=i===0?indent:0;
+      return `<span class="validator-minimap-token validator-minimap-token--${ty}" style="margin-left:${ml}px;width:${w}px"></span>`; }).join('');
+  }
+  const rows=lines.map((l,i)=>`<div class="validator-line ${errorLines.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="validator-line-number">${i+1}</div><div class="validator-line-code">${codeLine(l)}</div></div>`).join('');
+  const mh=3, ch=Math.max(lines.length*mh, mh);
+  const marks=lines.map((l,i)=>`<div class="validator-minimap-code-line ${errorLines.has(i+1)?'is-error':''}" data-line="${i+1}" style="top:${i*mh}px;height:${mh}px">${miniLine(l, errorLines.has(i+1))}</div>`).join('');
+
+  container.innerHTML = `<div class="validator-code-shell"><div class="validator-code-panel">
+    ${headerHtml ? `<div class="validator-code-header">${headerHtml}</div>` : ''}
+    <div class="validator-code-body">
+      <div class="validator-code-scroll"><div class="validator-code-content">${rows}</div></div>
+      <div class="validator-code-minimap" aria-label="Minimapa del JSON">
+        <div class="validator-code-minimap-content" style="height:${ch}px">${marks}</div>
+        <div class="validator-minimap-viewport"></div>
+      </div>
+    </div></div></div>`;
+
+  const scroll=container.querySelector('.validator-code-scroll'), minimap=container.querySelector('.validator-code-minimap'),
+        mc=container.querySelector('.validator-code-minimap-content'), vp=container.querySelector('.validator-minimap-viewport');
+  let drag=false, off=0;
+  function syncVP(){
+    const sh=scroll.scrollHeight, cl=scroll.clientHeight, ms=Math.max(sh-cl,1), ratio=scroll.scrollTop/ms,
+          mmH=minimap.clientHeight, cH=mc.offsetHeight, maxOff=Math.max(cH-mmH,0), cOff=ratio*maxOff,
+          vH=Math.min(mmH, Math.max((cl/sh)*mmH, 28)), maxT=Math.max(mmH-vH,0), vT=ratio*maxT;
+    mc.style.transform=`translateY(${-cOff}px)`; vp.style.height=vH+'px'; vp.style.top=vT+'px';
+  }
+  function setScroll(cy, o){
+    const r=minimap.getBoundingClientRect(), vH=vp.getBoundingClientRect().height, maxT=Math.max(r.height-vH,1),
+          vT=Math.max(0, Math.min(maxT, cy-r.top-(o||0))), ratio=vT/maxT;
+    scroll.scrollTop=ratio*(scroll.scrollHeight-scroll.clientHeight);
+  }
+  minimap.addEventListener('wheel', e=>{ e.preventDefault(); scroll.scrollTop += e.deltaY*1.2; }, {passive:false});
+  minimap.addEventListener('pointerdown', e=>{ const vr=vp.getBoundingClientRect(), inside=e.clientY>=vr.top&&e.clientY<=vr.bottom;
+    drag=true; off=inside?e.clientY-vr.top:vr.height/2; setScroll(e.clientY,off); minimap.setPointerCapture(e.pointerId); e.preventDefault(); });
+  minimap.addEventListener('pointermove', e=>{ if(drag) setScroll(e.clientY,off); });
+  function stop(e){ if(!drag) return; drag=false; try{minimap.releasePointerCapture(e.pointerId);}catch{} }
+  minimap.addEventListener('pointerup', stop); minimap.addEventListener('pointercancel', stop);
+  scroll.addEventListener('scroll', syncVP, {passive:true});
+  requestAnimationFrame(syncVP);
+}
 
 /* ── Start ───────────────────────────────────────────────── */
 init();
@@ -2051,27 +2144,11 @@ init();
       const i=lines.findIndex(l=>l.includes(`"${key}"`)); if(i>=0) set.add(i+1); });
     return set;
   }
-    function renderViewer(raw, rawErr){
-    const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').replace(/\u00a0/g,' ').trim();
+  function renderViewer(raw, rawErr){
+    const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').trim();
     if(!text){ cont.innerHTML=''; return; }
-    let fmt; try{ fmt=JSON.stringify(JSON.parse(text),null,2); }catch{ fmt=text; }
-    const lines=fmt.split('\n'), errs=parseErrors(rawErr);
-    const el = Array.isArray(window._valErrorLines) ? new Set(window._valErrorLines) : errorLines(lines,errs);
-    const mh=Math.max(2, Math.min(6, 100/Math.max(lines.length,1)));
-    const rows=lines.map((l,i)=>`<div class="val-line ${el.has(i+1)?'is-error':''}" data-line="${i+1}"><div class="val-ln">${i+1}</div><div class="val-lc">${(window.hlJSON?window.hlJSON(l):esc(l))}</div></div>`).join('');
-    const marks=lines.map((_,i)=>{ const top=lines.length<=1?0:(i/(lines.length-1))*100; return `<span class="val-minimap-line ${el.has(i+1)?'is-error':''}" style="top:${top}%; height:${mh}px"></span>`; }).join('');
-    cont.innerHTML=`<div class="val-code-panel"><div class="val-code-header"><span>📄 JSON validado</span>
-      <small>${errs.length?'Las líneas con errores se resaltan en rojo.':''}</small></div>
-      <div class="val-code-body">
-        <div class="val-code-scroll"><div class="val-code-content">${rows}</div></div>
-        <div class="val-minimap" aria-label="Minimapa">${marks}<div class="val-minimap-viewport"></div></div>
-      </div></div>`;
-    const scroll=cont.querySelector('.val-code-scroll'), mm=cont.querySelector('.val-minimap'), vp=cont.querySelector('.val-minimap-viewport');
-    function syncVP(){ const sh=scroll.scrollHeight, ch=scroll.clientHeight, ms=Math.max(sh-ch,1), vh=Math.max((ch/sh)*100,8), vt=(scroll.scrollTop/ms)*(100-vh); vp.style.height=Math.min(vh,100)+'%'; vp.style.top=Math.max(0,vt)+'%'; }
-    function jump(e){ const r=mm.getBoundingClientRect(), ratio=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)); scroll.scrollTop=ratio*(scroll.scrollHeight-scroll.clientHeight); }
-    scroll.addEventListener('scroll', syncVP, {passive:true});
-    mm.addEventListener('click', jump);
-    requestAnimationFrame(syncVP);
+    const el = Array.isArray(window._valErrorLines) ? window._valErrorLines : [];
+    window.renderJsonMinimap(cont, text, el, '<span>📄 JSON validado</span>');
   }
   function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||'', errorList.textContent||''); }
   const obs=new MutationObserver(sync);

@@ -469,14 +469,6 @@
     font-size:.78rem; line-height:1.55; overflow:auto; max-height:420px; }
 
   /* ── EJEMPLO file-cards ── */
-  .file-card { background:#fff; border:1px solid var(--gray-200); border-radius:10px; padding:18px;
-    transition:all .25s; display:flex; flex-direction:column; gap:10px; }
-  .file-card:hover { border-color:var(--generix-orange); box-shadow:0 6px 18px rgba(0,35,51,.08); }
-  .file-card__head { display:flex; align-items:flex-start; gap:12px; }
-  .file-card__icon { font-size:1.6rem; line-height:1; }
-  .file-card__name { font-weight:700; color:var(--generix-dark); word-break:break-word; }
-  .file-card__meta { color:var(--gray-500); font-size:.8rem; margin-top:2px; }
-  .file-card__actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
   .file-btn { font-size:.82rem; font-weight:600; text-decoration:none; cursor:pointer; padding:6px 12px;
     border-radius:6px; border:1px solid var(--gray-300); color:var(--generix-dark); background:var(--gray-50);
     transition:all .2s; font-family:inherit; }
@@ -628,6 +620,12 @@
   .status-2xx { background:#dcfce7; color:#15803d; }
   .status-4xx { background:#fef3c7; color:#92400e; }
   .status-5xx { background:#fee2e2; color:#dc2626; }
+  .resp-block-top { display:grid; grid-template-columns:1fr minmax(340px, 440px); gap:28px; align-items:start; margin-bottom:20px; }
+  .resp-block-top .resp-block-head { margin-bottom:0; }
+  /* Al pulsar "Ver contenido", la tarjeta salta de línea y ocupa todo el ancho */
+  .resp-block-top.has-expanded { grid-template-columns:1fr; }
+  .resp-block-top .file-card.expanded { grid-column:1 / -1; }
+  @media (max-width:860px){ .resp-block-top { grid-template-columns:1fr; } }
 
 </style>
 </head>
@@ -987,30 +985,6 @@ async function init() {
 }
 
 /* ── Descubre los ficheros JSON (+ readme) dentro de una carpeta ── */
-function buildDirResult(files) {
-  const jsons = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.json'));
-  const mds   = files.filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.md'));
-
-  const schemaFile =
-    jsons.find(f => f.name.toLowerCase() === 'schema.json') ||
-    jsons.find(f => f.name.toLowerCase().startsWith('schema')) ||
-    jsons[0] || null;
-
-  const exampleFiles = jsons.filter(f =>
-    f !== schemaFile &&
-    (f.name.toLowerCase().startsWith('example') || f.name.toLowerCase().startsWith('ejemplo'))
-  );
-  const filesToUse = exampleFiles.length
-    ? exampleFiles
-    : jsons.filter(f => f !== schemaFile);
-
-  const readmeFile =
-    mds.find(f => f.name.toLowerCase() === 'readme.md') ||
-    mds[0] || null;
-
-  return { schemaFile, exampleFiles: filesToUse, readmeFile };
-}
-
 const _dirCache = {};
 const _LS_KEY   = `wms_tree_${CONFIG.repo}_${CONFIG.contentPath}`;
 const _LS_TTL   = 60 * 60 * 1000; // 1 hora
@@ -1790,21 +1764,26 @@ function downloadExample(i, fileName) {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
-function toggleExampleCode(pid, btn) {
-  const el = document.getElementById(pid);
+function toggleRespSchema(mid, btn) {
+  const el = document.getElementById('resp-schema-' + mid);
   if (!el) return;
   const open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
   btn.textContent = open ? 'Ver contenido' : 'Ocultar';
+
+  // Al abrir, la tarjeta salta de línea y ocupa todo el ancho; al cerrar vuelve a su columna
   const card = el.closest('.file-card');
+  const top  = el.closest('.resp-block-top');
   if (card) card.classList.toggle('expanded', !open);
-  if (!open) {
-    const mini = el.querySelector('.ejemplo-mini');
-    if (mini && !mini.dataset.rendered) {
-      const idx = +mini.dataset.idx, name = mini.dataset.name || 'JSON';
-      const header = `<span>${esc(name)}</span><button class="copy-btn" onclick="copyExample(${idx}, this)">Copiar</button>`;
-      renderJsonMinimap(mini, _examples[idx], [], header);
-      mini.dataset.rendered = '1';
+  if (top)  top.classList.toggle('has-expanded', !open);
+
+  if (!open && !el.dataset.rendered) {
+    const s = _respSchemas[mid];
+    if (s && s.raw) {
+      const header = `<span>${esc(s.name || 'JSON')}</span>` +
+                    `<button class="copy-btn" onclick="copyRespSchema('${mid}', this)">Copiar</button>`;
+      renderJsonMinimap(el, s.raw, [], header);
+      el.dataset.rendered = '1';
     }
   }
 }
@@ -2106,15 +2085,39 @@ function buildResponseFieldTable(schema) {
     </table></div>`;
 }
 
-function renderRespuestaSection(schema, exRaw, exName, mid) {
+function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
   const defs = schema.$defs || schema.definitions || {};
   const r = schema['x-wms-response'] || {};
-  let h = `<div class="resp-block">
-    <div class="resp-block-head">
+    const headHtml = `<div class="resp-block-head">
       <h2>${esc(schema.title || 'Respuesta')}</h2>
       <p>${esc(schema.description || '')}</p>
       ${r.transport ? `<div class="resp-transport">${esc(r.transport)}</div>` : ''}
     </div>`;
+
+  let cardHtml = '';
+  if (schemaLink && schemaLink.name) {
+    const ghUrl = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/blob/${CONFIG.branch}/${schemaLink.dir}/${schemaLink.name.split('/').map(encodeURIComponent).join('/')}`;
+    cardHtml = `<div class="file-card" style="margin:0">
+      <div class="file-card__head">
+        <div class="file-card__icon">🟨</div>
+        <div>
+          <div class="file-card__name">${esc(schemaLink.name)}</div>
+          <div class="file-card__meta">JSON · Schema</div>
+        </div>
+      </div>
+      <div class="file-card__actions">
+        <a class="file-btn file-btn--primary" href="#" onclick="downloadRespSchema('${mid}');return false;">Descargar</a>
+        <a class="file-btn" target="_blank" href="${ghUrl}">Ver en GitHub</a>
+        <button class="file-btn" onclick="toggleRespSchema('${mid}', this)">Ver contenido</button>
+      </div>
+      <div class="resp-schema-cp" id="resp-schema-${mid}" style="display:none;margin-top:6px"></div>
+    </div>`;
+  }
+
+  let h = `<div class="resp-block">`;
+  h += cardHtml
+    ? `<div class="resp-block-top">${headHtml}${cardHtml}</div>`
+    : headHtml;
 
   const codes = schema['x-wms-status-codes'];
   if (Array.isArray(codes) && codes.length) {
@@ -2159,7 +2162,12 @@ function renderRespExample(mid) {
   if (typeof renderJsonMinimap === 'function') {
     renderJsonMinimap(el, s.exRaw, [], `<span>${esc(s.exName || 'JSON')}</span>`);
   } else {
-    el.innerHTML = `<div style="background:var(--gray-900);border-radius:10px;padding:18px;overflow:auto"><pre style="margin:0;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.84rem">${hlJSON(fmtJSON(s.exRaw))}</pre></div>`;
+    el.innerHTML = 
+    `<div style="background:var(--gray-900);border-radius:10px;padding:18px;overflow:auto">
+      <pre style="margin:0;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.84rem">
+        ${hlJSON(fmtJSON(s.exRaw))}
+      </pre>
+    </div>`;
   }
 }
 function showRespTab(mid, btn) {
@@ -2167,6 +2175,28 @@ function showRespTab(mid, btn) {
   view.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
   view.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'resp-panel-' + mid));
   renderRespExample(mid);
+}
+let _respSchemas = {};
+function downloadRespSchema(mid) {
+  const s = _respSchemas[mid];
+  if (!s || !s.raw) return;
+  const blob = new Blob([s.raw], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = s.name;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function copyRespSchema(mid, btn) {
+  const s = _respSchemas[mid];
+  if (!s || !s.raw) return;
+  navigator.clipboard.writeText(fmtJSON(s.raw)).then(() => {
+    btn.textContent = '✓ Copiado'; btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+  });
 }
 async function showRespuestas() {
   ['view-index','view-detail','view-versions','view-validacion'].forEach(id => {
@@ -2194,14 +2224,17 @@ async function showRespuestas() {
       return;
     }
 
-    const getJson = async n => n ? JSON.parse(await rawFetch(`${dir}/${n}`)) : null;
     const getRaw  = async n => n ? await rawFetch(`${dir}/${n}`) : null;
-    const [schemaIni, schemaCb, rawIni, rawCb] = await Promise.all([getJson(sIni), getJson(sCb), getRaw(eIni), getRaw(eCb)]);
+    const [sIniRaw, sCbRaw, rawIni, rawCb] = await Promise.all([getRaw(sIni), getRaw(sCb), getRaw(eIni), getRaw(eCb)]);
+    const schemaIni = sIniRaw ? JSON.parse(sIniRaw) : null;
+    const schemaCb = sCbRaw ? JSON.parse(sCbRaw) : null;
+    _respSchemas = {};
+    if (sCb) _respSchemas.cb = { name: sCb, raw: sCbRaw, dir };
 
     const labels = { ini: 'Respuesta API', cb: 'Callback de errores' };
     const sections = [];
-    if (schemaIni) sections.push(renderRespuestaSection(schemaIni, rawIni, eIni, 'ini'));
-    if (schemaCb)  sections.push(renderRespuestaSection(schemaCb,  rawCb,  eCb,  'cb'));
+    if (schemaIni) sections.push(renderRespuestaSection(schemaIni, rawIni, eIni, 'ini', null));
+    if (schemaCb)  sections.push(renderRespuestaSection(schemaCb,  rawCb,  eCb,  'cb', { name: sCb, raw: sCbRaw, dir }));
 
     _respSections = {};
     sections.forEach(s => { _respSections[s.mid] = s; });

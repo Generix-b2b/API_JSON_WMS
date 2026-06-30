@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Responses/SchemaResponseInitial.json",
+  "title": "Respuesta inmediata de la API",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-response": {
+    "kind": "initial",
+    "transport": "HTTP (síncrono)",
+    "version": "v1.0",
+    "releaseDate": "2026-06-25"
+  },
+  "description": "Respuesta HTTP que devuelve la API de forma inmediata al recibir un mensaje. El código de estado indica el resultado del envío. Cuando es 200, el cuerpo contiene un acuse de recibo (receptionAck).",
+  "x-wms-status-codes": [
+    { "code": "200", "label": "OK",                   "meaning": "Mensaje recibido correctamente por la API. El cuerpo incluye el objeto receptionAck." },
+    { "code": "400", "label": "Bad Request",          "meaning": "Petición mal formada (JSON inválido, cabeceras incorrectas o estructura no reconocida). No se procesa." },
+    { "code": "500", "label": "Internal Server Error","meaning": "Error interno del WMS al recibir el mensaje. Reintentar más tarde o contactar con soporte." }
+  ],
+  "type": "object",
+  "properties": {
+    "response": {
+      "description": "Envoltorio raíz de la respuesta inmediata.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "receptionAck": {
+          "description": "Acuse de recibo devuelto cuando el código HTTP es 200. Confirma la recepción del mensaje, no su validación ni procesamiento.",
+          "$ref": "#/$defs/ReceptionAck"
+        }
+      },
+      "required": ["receptionAck"]
+    }
+  },
+  "required": ["response"],
+
+  "$defs": {
+    "ReceptionAck": {
+      "description": "Acuse de recibo de la API (HTTP 200).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uuid": {
+          "description": "Identificador único de la transacción generado por la API.",
+          "type": "string",
+          "format": "uuid",
+          "examples": ["550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "endpoint": {
+          "description": "Endpoint del WMS que ha recibido el mensaje.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "examples": ["m20_supplier"]
+        },
+        "timestamp": {
+          "description": "Fecha y hora de recepción / formato YYYYMMDDHHmmss.",
+          "type": "string",
+          "pattern": "^[0-9]{14}$",
+          "examples": ["20250125125912"]
+        },
+        "label": {
+          "description": "Texto descriptivo confirmando la recepción del mensaje.",
+          "type": "string",
+          "examples": ["Message has been received. This is not a guarantee that the message has been read or understood."]
+        },
+        "success": {
+          "description": "Indicador de recepción / 1 = recibido por la API.",
+          "$ref": "#/$defs/Enums/EnumSuccess"
+        }
+      },
+      "required": ["uuid", "endpoint", "timestamp", "label", "success"]
+    },
+    "Enums": {
+      "EnumSuccess": {
+        "description": "Indicador de recepción / 1 = mensaje recibido por la API",
+        "type": "string",
+        "enum": ["1"]
+      }
+    }
+  }
+}

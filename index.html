@@ -608,6 +608,25 @@
   .go-top:hover { background: var(--generix-orange-hover); transform: translateY(-3px); }
   @media (max-width: 768px) { .go-top { right: 16px; bottom: 16px; width: 44px; height: 44px; } }
 
+  /* ── VISTA RESPUESTAS ── */
+  .resp-section { max-width:1240px; margin:0 auto; padding:48px 32px; }
+  .resp-block { margin-bottom:64px; }
+  .resp-block-head { border-left:4px solid var(--generix-orange); padding-left:16px; margin-bottom:20px; }
+  .resp-block-head h2 { font-size:1.6rem; color:var(--generix-dark); margin-bottom:6px; }
+  .resp-block-head p { color:var(--gray-700); font-size:.98rem; line-height:1.7; max-width:780px; }
+  .resp-transport { display:inline-block; margin-top:10px; background:var(--gray-100); color:var(--gray-700); padding:4px 12px; border-radius:20px; font-size:.78rem; font-weight:600; }
+  .resp-sub { font-size:1.05rem; font-weight:700; color:var(--generix-dark); margin:28px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--generix-orange-soft); }
+  .resp-blocklabel { font-family:'Courier New',monospace; font-weight:700; color:var(--generix-dark); margin-bottom:8px; }
+  .status-tbl { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--gray-200); border-radius:8px; overflow:hidden; font-size:.9rem; }
+  .status-tbl thead { background:var(--generix-dark); color:#fff; }
+  .status-tbl th { padding:9px 12px; text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.3px; }
+  .status-tbl td { padding:10px 12px; border-bottom:1px solid var(--gray-200); color:var(--gray-700); vertical-align:top; }
+  .status-tbl tbody tr:last-child td { border-bottom:none; }
+  .status-code { font-family:'Courier New',monospace; font-weight:700; padding:2px 9px; border-radius:4px; }
+  .status-2xx { background:#dcfce7; color:#15803d; }
+  .status-4xx { background:#fef3c7; color:#92400e; }
+  .status-5xx { background:#fee2e2; color:#dc2626; }
+
 </style>
 </head>
 <body>
@@ -677,7 +696,7 @@
         <p>Consulta y descarga las distintas versiones publicadas de los esquemas JSON.</p>
         <span class="card-link">Ver versiones</span>
       </div>
-      <div class="card" id="resp-card" style="display:none" onclick="openEndpoint(CONFIG.responsesPath, CONFIG.responsesPath)">
+      <div class="card" id="resp-card" style="display:none" onclick="showRespuestas()">
         <div class="card-icon">↩</div>
         <div class="card-meta"><span class="badge badge-cat">Schema</span></div>
         <h3>Respuestas</h3>
@@ -820,6 +839,23 @@
   </div>
 </div>
 
+<!-- ═══ RESPUESTAS VIEW ═══ -->
+<div id="view-respuestas" style="display:none">
+  <section class="dh">
+    <div class="dhi">
+      <div class="d-breadcrumb">
+        <a href="#" onclick="showIndex();return false;">Documentación</a>
+        <span>/</span><span class="cur">Respuestas</span>
+      </div>
+      <h1>Respuestas de la API</h1>
+      <p class="ddesc">La API es asíncrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validación, envía un callback al endpoint que el cliente expone.</p>
+    </div>
+  </section>
+  <div class="resp-section">
+    <div id="respuestas-body"><p style="color:var(--gray-500)">Cargando…</p></div>
+  </div>
+</div>
+
 <!-- ═══ FOOTER ══════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
@@ -899,12 +935,14 @@ function showIndex() {
   document.getElementById('view-detail').style.display = 'none';
   document.getElementById('view-versions').style.display = 'none';
   document.getElementById('view-validacion').style.display = 'none';
+  document.getElementById('view-respuestas').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function showDetail() {
   document.getElementById('view-index').style.display = 'none';
   document.getElementById('view-versions').style.display = 'none';
   document.getElementById('view-validacion').style.display = 'none';
+  document.getElementById('view-respuestas').style.display = 'none';
   document.getElementById('view-detail').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1812,6 +1850,7 @@ async function showVersions() {
   document.getElementById('view-index').style.display = 'none';
   document.getElementById('view-detail').style.display = 'none';
   document.getElementById('view-validacion').style.display = 'none';
+  document.getElementById('view-respuestas').style.display = 'none';
   document.getElementById('view-versions').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
   await renderVersions();
@@ -1913,6 +1952,7 @@ async function showValidacion() {
   document.getElementById('view-index').style.display = 'none';
   document.getElementById('view-detail').style.display = 'none';
   document.getElementById('view-versions').style.display = 'none';
+  document.getElementById('view-respuestas').style.display = 'none';
   document.getElementById('view-validacion').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -2004,6 +2044,105 @@ function renderJsonMinimap(container, jsonText, errorLineNumbers, headerHtml) {
   minimap.addEventListener('pointerup', stop); minimap.addEventListener('pointercancel', stop);
   scroll.addEventListener('scroll', syncVP, {passive:true});
   requestAnimationFrame(syncVP);
+}
+
+/* ═══ VISTA RESPUESTAS (dos secciones) ═══ */
+function renderRespuestaSection(schema, exRaw, exName, mid) {
+  const defs = schema.$defs || schema.definitions || {};
+  const r = schema['x-wms-response'] || {};
+  let h = `<div class="resp-block">
+    <div class="resp-block-head">
+      <h2>${esc(schema.title || 'Respuesta')}</h2>
+      <p>${esc(schema.description || '')}</p>
+      ${r.transport ? `<div class="resp-transport">${esc(r.transport)}</div>` : ''}
+    </div>`;
+
+  const codes = schema['x-wms-status-codes'];
+  if (Array.isArray(codes) && codes.length) {
+    h += `<div class="resp-sub">Códigos de estado HTTP</div>
+      <table class="status-tbl"><thead><tr><th style="width:90px">Código</th><th style="width:150px">Estado</th><th>Significado</th></tr></thead><tbody>`;
+    h += codes.map(cc => {
+      const cls = String(cc.code)[0]==='2' ? 'status-2xx' : String(cc.code)[0]==='4' ? 'status-4xx' : 'status-5xx';
+      return `<tr><td><span class="status-code ${cls}">${esc(cc.code)}</span></td><td>${esc(cc.label||'')}</td><td>${esc(cc.meaning||'')}</td></tr>`;
+    }).join('');
+    h += `</tbody></table>`;
+  }
+
+  const blocks = extractBlocks(schema, defs);
+  if (blocks.length) {
+    h += `<div class="resp-sub">Estructura del mensaje</div>`;
+    blocks.forEach(b => {
+      const tbl = buildFieldTable(b.properties, b.required);
+      if (tbl) h += `<div style="margin-bottom:18px"><div class="resp-blocklabel">${esc(b.label)}</div>${tbl}</div>`;
+    });
+  }
+
+  const enums = extractEnums(schema);
+  if (enums.length) {
+    h += `<div class="resp-sub">Enumeraciones</div>`;
+    enums.forEach(en => {
+      const parsed = parseEnumMeanings(en.description, en.values);
+      const body = parsed.rows.length
+        ? `<table class="field-tbl" style="margin-top:6px"><thead><tr><th style="width:120px">Código</th><th>Significado</th></tr></thead><tbody>${
+            parsed.rows.map(rr => `<tr><td><span class="tag-req">${esc(rr.code)}</span></td><td>${esc(rr.meaning)}</td></tr>`).join('')}</tbody></table>`
+        : en.values.map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join(' ');
+      h += `<div style="margin-bottom:16px"><div style="font-weight:600;margin-bottom:4px">${esc(en.field)}</div>
+        ${parsed.general ? `<div style="color:var(--gray-500);font-size:.9rem;margin-bottom:6px">${esc(parsed.general)}</div>` : ''}${body}</div>`;
+    });
+  }
+
+  const exId = `resp-ex-${mid}`;
+  h += `<div class="resp-sub">Ejemplo</div><div id="${exId}"></div></div>`;
+  return { html: h, exId, exRaw, exName };
+}
+async function showRespuestas() {
+  ['view-index','view-detail','view-versions','view-validacion'].forEach(id => {
+    const e = document.getElementById(id); if (e) e.style.display = 'none';
+  });
+  document.getElementById('view-respuestas').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const body = document.getElementById('respuestas-body');
+  body.innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
+  try {
+    const dir = CONFIG.responsesPath;
+    const tree = await loadRepoTree();
+    const prefix = dir + '/';
+    const names = tree
+      .filter(it => it.type === 'blob' && it.path.startsWith(prefix) && !it.path.slice(prefix.length).includes('/'))
+      .map(it => it.path.slice(prefix.length));
+    const pick = re => names.find(n => re.test(n));
+    const sIni = pick(/schema.*initial/i), eIni = pick(/example.*initial/i);
+    const sCb  = pick(/schema.*callback/i), eCb  = pick(/example.*callback/i);
+
+    if (!sIni && !sCb) {
+      body.innerHTML = `<div class="highlight-box"><strong>No se encontraron los schemas de respuesta</strong><br>
+        Sube a <code>${esc(dir)}/</code> los ficheros <code>SchemaResponseInitial.json</code> y <code>SchemaResponseCallback.json</code> (con sus ejemplos).</div>`;
+      return;
+    }
+
+    const getJson = async n => n ? JSON.parse(await rawFetch(`${dir}/${n}`)) : null;
+    const getRaw  = async n => n ? await rawFetch(`${dir}/${n}`) : null;
+    const [schemaIni, schemaCb, rawIni, rawCb] = await Promise.all([getJson(sIni), getJson(sCb), getRaw(eIni), getRaw(eCb)]);
+
+    const sections = [];
+    if (schemaIni) sections.push(renderRespuestaSection(schemaIni, rawIni, eIni, 'ini'));
+    if (schemaCb)  sections.push(renderRespuestaSection(schemaCb,  rawCb,  eCb,  'cb'));
+    body.innerHTML = sections.map(s => s.html).join('');
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.exId);
+      if (!el) return;
+      if (!s.exRaw) { el.innerHTML = '<p style="color:var(--gray-500)">Sin ejemplo en la carpeta.</p>'; return; }
+      if (typeof renderJsonMinimap === 'function') {
+        renderJsonMinimap(el, s.exRaw, [], `<span>${esc(s.exName || 'JSON')}</span>`);
+      } else {
+        el.innerHTML = `<div style="background:var(--gray-900);border-radius:10px;padding:18px;overflow:auto"><pre style="margin:0;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.84rem">${hlJSON(fmtJSON(s.exRaw))}</pre></div>`;
+      }
+    });
+  } catch (e) {
+    body.innerHTML = `<div class="highlight-box" style="border-left-color:#cf1322"><strong>Error al cargar</strong><br>${esc(e.message)}</div>`;
+  }
 }
 
 /* ── Start ───────────────────────────────────────────────── */

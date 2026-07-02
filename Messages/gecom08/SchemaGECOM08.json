@@ -2,6 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom08/SchemaGECOM08.json",
   "title": "GECOM08 - Table Load",
+  "title_es": "GECOM08 - Carga de tablas",
+  "title_en": "GECOM08 - Table Load",
   "x-wms-icon": "GECOM08",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
@@ -12,6 +14,8 @@
     "releaseDate": "2026-06-22"
   },
   "description": "JSON for table load declaration",
+  "description_es": "JSON para la declaración de carga de tablas",
+  "description_en": "JSON for table load declaration",
   "type": "object",
   "properties": {
     "InitialTableLoad": {
@@ -31,6 +35,8 @@
       "properties": {
         "TRTEXC": {
           "description": "Movement processing code - see EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento de movimientos - ver EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "FAMPAR": {

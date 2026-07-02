@@ -1,6 +1,7 @@
 {
   "supplierMasterData": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "FOU0001",
       "TYPFOU": "1",
@@ -11,6 +12,7 @@
       "CPOFOU": "28001"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODACT": "WMS",
       "CODFOU": "FOU0002",
@@ -58,6 +60,7 @@
       }
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "FOU0003",
       "TYPFOU": "3",
@@ -71,6 +74,7 @@
       "GSTRCP": "2"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "BOD0001",
       "TYPFOU": "1",
@@ -91,6 +95,7 @@
       }
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "FOUGER01",
       "TYPFOU": "1",

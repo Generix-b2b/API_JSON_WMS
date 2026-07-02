@@ -2,6 +2,7 @@
   "status": {
     "statusReceptionOrders": [
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260617",
         "HEUEXC": "080015",
@@ -12,6 +13,7 @@
         "CODTRE": "STD"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "EMTEXC": "SITE-WMS-01",
         "RCTEXC": "ERP-CLIENT",
@@ -26,6 +28,7 @@
         "CODFOU": "FOU0001"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260618",
         "HEUEXC": "113000",
@@ -39,6 +42,7 @@
         "VALRUB": "CONFIRMADO"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260618",
         "HEUEXC": "150000",
@@ -49,6 +53,7 @@
         "CODFOU": "FOU0002"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260619",
         "HEUEXC": "080000",

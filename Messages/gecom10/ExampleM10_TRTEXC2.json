@@ -1,6 +1,7 @@
 {
   "supplierMasterData": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODFOU": "FOU0001",
       "NOMFOU": "Industrias Generix S.A.",
@@ -16,6 +17,7 @@
       }
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODFOU": "FOU0010",
       "TYPFOU": "1",

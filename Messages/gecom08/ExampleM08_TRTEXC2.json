@@ -1,18 +1,21 @@
 {
   "InitialTableLoad": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "FAMPAR": "MOP",
       "CLEPAR": "MA1",
       "LIBPAR": "Preparación manual unitaria actualizada"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "FAMPAR": "MOP",
       "CLEPAR": "MA2",
       "LIBPAR": "Preparación manual por caja"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "FAMPAR": "RGT",
       "CLEPAR": "Z03",

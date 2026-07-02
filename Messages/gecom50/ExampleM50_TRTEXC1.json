@@ -1,6 +1,7 @@
 {
   "deliveryOrders": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "REFLIV": "DEL-2026-000001",
       "CODTLI": "STD",
@@ -18,6 +19,7 @@
       ]
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "NUMLIV": "20000002",
       "SNULIV": "001",

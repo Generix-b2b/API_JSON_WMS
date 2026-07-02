@@ -1,6 +1,7 @@
 {
   "stockMovements": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "DATMVT": "20260625",
       "HEUMVT": "114621",
       "DATRGL": "20260625",
@@ -36,6 +37,7 @@
       }
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "DATMVT": "20260625",
       "HEUMVT": "114621",
       "DATRGL": "20260625",

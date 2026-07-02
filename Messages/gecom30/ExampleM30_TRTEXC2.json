@@ -1,6 +1,7 @@
 {
   "productMasterData": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODACT": "WMS",
       "CODPRO": "PROD000060",
@@ -20,6 +21,7 @@
       ]
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODACT": "WMS",
       "CODPRO": "PROD000010",

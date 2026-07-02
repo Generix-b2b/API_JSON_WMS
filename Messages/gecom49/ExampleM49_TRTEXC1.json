@@ -1,6 +1,7 @@
 {
   "dispatchAdvices": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "FOU0001",
       "AVIREF": "AVI-2026-000001",
@@ -19,6 +20,7 @@
       ]
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "CODFOU": "FOU0002",
       "AVIREF": "AVI-2026-000002",

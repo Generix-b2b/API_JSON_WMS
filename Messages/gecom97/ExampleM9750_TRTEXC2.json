@@ -2,6 +2,7 @@
   "status": {
     "statusDeliveryOrders": [
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260617",
         "HEUEXC": "090000",
@@ -15,9 +16,9 @@
         "CODTLI": "STD"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "EMTEXC": "SITE-WMS-01",
-        "RCTEXC": "ERP-CLIENT",
         "DATEXC": "20260618",
         "HEUEXC": "100000",
         "CODACT": "WMS",
@@ -32,6 +33,7 @@
         "CRILIV": "CRITERIO-A"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260618",
         "HEUEXC": "143023",
@@ -44,6 +46,7 @@
         "ACCRCP": "RECEP001"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260618",
         "HEUEXC": "160000",
@@ -55,6 +58,7 @@
         "VALRUB": "DESPACHADO-OK"
       },
       {
+        "RCTEXC": "FGE50XX0XX",
         "TRTEXC": "2",
         "DATEXC": "20260619",
         "HEUEXC": "090000",

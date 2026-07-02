@@ -1,24 +1,28 @@
 {
   "InitialTableLoad": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "FAMPAR": "TRE",
       "CLEPAR": "STD",
       "LIBPAR": "Recepción estándar"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "FAMPAR": "TRE",
       "CLEPAR": "AUT",
       "LIBPAR": "Recepción automática"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "FAMPAR": "TRE",
       "CLEPAR": "RET",
       "LIBPAR": "Recepción en retención"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "FAMPAR": "TRA",
       "CLEPAR": "TRANSP01",
@@ -27,6 +31,7 @@
       "CLEPAR2": "EDIIBERIC"
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "FAMPAR": "TRA",
       "CLEPAR": "TRANSP02",

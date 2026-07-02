@@ -1,6 +1,7 @@
 {
   "receptionOrders": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "REFREC": "REC-2026-000001",
       "CODTRE": "STD",
@@ -18,6 +19,7 @@
       ]
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "1",
       "NUMREC": "10000001",
       "SNUREC": "001",

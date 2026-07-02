@@ -1,6 +1,7 @@
 {
   "customerMasterData": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODACT": "WMS",
       "CODCLI": "CLI0001",
@@ -17,6 +18,7 @@
       }
     },
     {
+      "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
       "CODACT": "WMS",
       "CODCLI": "CLIFR01",

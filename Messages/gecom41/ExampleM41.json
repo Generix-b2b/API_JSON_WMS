@@ -1,6 +1,7 @@
 {
   "confirmationReceptionOrders": [
     {
+      "RCTEXC": "FGE50XX0XX",
       "NUMREC": "26000105",
       "SNUREC": "000",
       "REFREC": "testpocVTL1",

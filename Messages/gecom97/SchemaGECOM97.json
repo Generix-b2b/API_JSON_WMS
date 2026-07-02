@@ -52,7 +52,8 @@
         {
           "required": ["statusDeliveryOrders"]
         }
-      ]
+      ],
+      "additionalProperties": false
     }
   },
   "required": ["status"],
@@ -374,11 +375,11 @@
     },
     "Enums": {
       "EnumTRTEXC": {
-        "description": "Movement processing code / Empty",
-        "description_es": "Código de procesamiento del movimiento / Vacío",
-        "description_en": "Movement processing code / Empty",
+        "description": "Movement processing code / (blank) = Empty, 2 = Modification",
+        "description_es": "Código de procesamiento del movimiento / (en blanco) = Vacío, 2 = Modificación",
+        "description_en": "Movement processing code / (blank) = Empty, 2 = Modification",
         "type": "string",
-        "enum": [""]
+        "enum": ["", "2"]
       },
       "EnumETAREC": {
         "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",

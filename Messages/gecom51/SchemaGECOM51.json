@@ -39,6 +39,14 @@
       "description_en": "Delivery order confirmation header",
       "type": "object",
       "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
         "TRTEXC": {
           "description": "Movement processing code - see EnumTRTEXC",
           "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
@@ -322,7 +330,7 @@
           "$ref": "#/$defs/GEEX5199Wrapper"
         }
       },
-      "required": ["CODACT", "CODCLI", "REFLIV", "CODTLI", "DATLIV", "LIVSOL"],
+      "required": ["RCTEXC", "CODACT", "CODCLI", "REFLIV", "CODTLI", "DATLIV", "LIVSOL"],
       "additionalProperties": false
     },
     "GEEX5101Wrapper": {
@@ -1612,9 +1620,9 @@
         "enum": ["0", "1", "2", "3"]
       },
       "EnumMESPRO": {
-        "description": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
-        "description_es": "Método de medición del producto / 1 = Medición unitaria, 2 = Medición variable, 3 = Medición regulada",
-        "description_en": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
+        "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+        "description_es": "Método de medición del producto / 1 = Peso fijo, 2 = Peso variable, 3 = Medición regulada",
+        "description_en": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
         "type": "string",
         "enum": ["1", "2", "3"]
       },

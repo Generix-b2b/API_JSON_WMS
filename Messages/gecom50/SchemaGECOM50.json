@@ -287,6 +287,7 @@
           "description_es": "Líneas de la orden de entrega",
           "description_en": "Delivery Order Lines",
           "type": "array",
+          "minItems": 1,
           "maxItems": 99,
           "items": {
             "$ref": "#/$defs/GEEX5020Wrapper"

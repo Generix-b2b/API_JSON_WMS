@@ -104,10 +104,12 @@
         {
           "required": ["stockBySSCC"]
         }
-      ]
+      ],
+      "additionalProperties": false
     }
   },
   "required": ["stockPhoto"],
+  "additionalProperties": false,
   "$defs": {
     "GEEX9000": {
       "description": "Stock feedback by product and lot",

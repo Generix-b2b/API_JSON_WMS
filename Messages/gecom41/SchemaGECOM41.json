@@ -1286,9 +1286,9 @@
         "enum": ["0", "1", "2"]
       },
       "EnumMESPRO": {
-        "description": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
-        "description_es": "Método de medición del producto / 1 = Medición unitaria, 2 = Medición variable, 3 = Medición regulada",
-        "description_en": "Product measurement method / 1 = Unit measurement, 2 = Variable measurement, 3 = Regulated measurement",
+        "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+        "description_es": "Método de medición del producto / 1 = Peso fijo, 2 = Peso variable, 3 = Medición regulada",
+        "description_en": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
         "type": "string",
         "enum": ["1", "2", "3"]
       },

@@ -615,6 +615,12 @@
   .resp-block-top .file-card.expanded { grid-column:1 / -1; }
   @media (max-width:860px){ .resp-block-top { grid-template-columns:1fr; } }
 
+  /* ── SELECTOR DE IDIOMA ── */
+  .lang-select { background:var(--generix-dark-soft); color:var(--white);
+    border:1px solid rgba(255,255,255,.18); border-radius:6px; padding:7px 12px;
+    font-size:.85rem; font-weight:600; font-family:inherit; cursor:pointer; }
+  .lang-select:hover { border-color:var(--generix-orange); }
+  .lang-select:focus { outline:none; border-color:var(--generix-orange); }
 </style>
 </head>
 <body>
@@ -625,6 +631,7 @@
     <a class="logo" onclick="showIndex()" aria-label="Generix">
       <img src="Assets/generix.svg" alt="Generix">
     </a>
+    <select id="langSelect" class="lang-select" aria-label="Idioma / Language"></select>
   </div>
 </header>
 
@@ -634,16 +641,16 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-tagline">Developer Documentation Portal</div>
+        <div class="hero-tagline" data-i18n="hero.tagline">Developer Documentation Portal</div>
         <h1>WMS API<br><span class="accent">Generix Spain</span></h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle" data-i18n="hero.subtitle">
           Especificaciones técnicas, esquemas de mensajes y guías de integración para la API del sistema de gestión de almacenes (WMS) de Generix Spain.
         </p>
         <div class="cta-row">
-          <button class="btn btn-primary" onclick="document.getElementById('ep-section').scrollIntoView({behavior:'smooth'})">
+          <button class="btn btn-primary" data-i18n="hero.cta.explore" onclick="document.getElementById('ep-section').scrollIntoView({behavior:'smooth'})">
             Explorar endpoints
           </button>
-          <button class="btn btn-secondary" onclick="document.getElementById('recursos-section').scrollIntoView({behavior:'smooth'})">
+          <button class="btn btn-secondary" data-i18n="hero.cta.resources" onclick="document.getElementById('recursos-section').scrollIntoView({behavior:'smooth'})">
             Recursos
           </button>
         </div>
@@ -656,19 +663,19 @@
 
   <div class="stats">
     <div class="stats-inner">
-      <div><div class="stat-number" id="stat-count">—</div><div class="stat-label">Endpoints documentados</div></div>
-      <div><div class="stat-number">ASYNC</div><div class="stat-label">Comunicación</div></div>
-      <div><div class="stat-number">REST</div><div class="stat-label">Protocolo</div></div>
-      <div><div class="stat-number">JSON</div><div class="stat-label">Formato de integración</div></div>
-      <div><div class="stat-number">WMS</div><div class="stat-label">Generix Spain</div></div>
+      <div><div class="stat-number" id="stat-count">—</div><div class="stat-label" data-i18n="stats.endpoints">Endpoints documentados</div></div>
+      <div><div class="stat-number">ASYNC</div><div class="stat-label" data-i18n="stats.comm">Comunicación</div></div>
+      <div><div class="stat-number">REST</div><div class="stat-label" data-i18n="stats.protocol">Protocolo</div></div>
+      <div><div class="stat-number">JSON</div><div class="stat-label" data-i18n="stats.format">Formato de integración</div></div>
+      <div><div class="stat-number">WMS</div><div class="stat-label" data-i18n="stats.generix">Generix Spain</div></div>
     </div>
   </div>
 
   <section class="section" id="ep-section">
     <div class="section-header">
-      <span class="section-eyebrow">Centro de documentación · WMS API</span>
-      <h2>Endpoints y mensajes de integración</h2>
-      <p>Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.</p>
+      <span class="section-eyebrow" data-i18n="sec.eyebrow">Centro de documentación · WMS API</span>
+      <h2 data-i18n="sec.title">Endpoints y mensajes de integración</h2>
+      <p data-i18n="sec.subtitle">Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.</p>
     </div>
     <div class="grid" id="endpoints-grid">
       <!-- filled by JS -->
@@ -679,24 +686,24 @@
     <div class="grid">
       <div class="card" onclick="showVersions()">
         <div class="card-icon">⎘</div>
-        <div class="card-meta"><span class="badge badge-cat">Historial</span></div>
-        <h3>Versiones de esquemas</h3>
-        <p>Consulta y descarga las distintas versiones publicadas de los esquemas JSON.</p>
-        <span class="card-link">Ver versiones</span>
+        <div class="card-meta"><span class="badge badge-cat" data-i18n="res.history.badge">Historial</span></div>
+        <h3 data-i18n="res.history.title">Versiones de esquemas</h3>
+        <p data-i18n="res.history.desc">Consulta y descarga las distintas versiones publicadas de los esquemas JSON.</p>
+        <span class="card-link" data-i18n="res.history.link">Ver versiones</span>
       </div>
       <div class="card" id="resp-card" style="display:none" onclick="showRespuestas()">
         <div class="card-icon">↩</div>
-        <div class="card-meta"><span class="badge badge-cat">Schema</span></div>
-        <h3>Respuestas</h3>
-        <p>Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.</p>
-        <span class="card-link">Ver respuestas</span>
+        <div class="card-meta"><span class="badge badge-cat" data-i18n="res.resp.badge">Schema</span></div>
+        <h3 data-i18n="res.resp.title">Respuestas</h3>
+        <p data-i18n="res.resp.desc">Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.</p>
+        <span class="card-link" data-i18n="res.resp.link">Ver respuestas</span>
       </div>
       <div class="card" onclick="showValidacion()">
         <div class="card-icon">✓</div>
-        <div class="card-meta"><span class="badge badge-cat">Herramienta</span></div>
-        <h3>Validaciones</h3>
-        <p>Valida tu fichero JSON contra el esquema de cualquier mensaje del WMS.</p>
-        <span class="card-link">Abrir validador</span>
+        <div class="card-meta"><span class="badge badge-cat" data-i18n="res.val.badge">Herramienta</span></div>
+        <h3 data-i18n="res.val.title">Validaciones</h3>
+        <p data-i18n="res.val.desc">Valida tu fichero JSON contra el esquema de cualquier mensaje del WMS.</p>
+        <span class="card-link" data-i18n="res.val.link">Abrir validador</span>
       </div>
     </div>
   </section>
@@ -710,7 +717,7 @@
   <section class="dh">
     <div class="dhi">
       <div class="d-breadcrumb">
-        <a href="#" onclick="showIndex();return false;">Documentación</a>
+        <a href="#" onclick="showIndex();return false;" data-i18n="crumb.docs">Documentación</a>
         <span>/</span>
         <span class="cur" id="d-breadcrumb-name">—</span>
       </div>
@@ -724,10 +731,10 @@
   <div class="tab-nav-outer">
     <div class="tab-nav-inner">
       <div class="tab-nav">
-        <button class="tab-btn active" data-tab="descripcion">Descripción General</button>
-        <button class="tab-btn" data-tab="estructura">Estructura</button>
-        <button class="tab-btn" data-tab="enumeraciones">Enumeraciones</button>
-        <button class="tab-btn" data-tab="ejemplo">Ejemplo</button>
+        <button class="tab-btn active" data-tab="descripcion" data-i18n="tabs.desc">Descripción General</button>
+        <button class="tab-btn" data-tab="estructura" data-i18n="tabs.struct">Estructura</button>
+        <button class="tab-btn" data-tab="enumeraciones" data-i18n="tabs.enums">Enumeraciones</button>
+        <button class="tab-btn" data-tab="ejemplo" data-i18n="tabs.example">Ejemplo</button>
       </div>
     </div>
   </div>
@@ -743,7 +750,7 @@
   <div id="tab-estructura" class="tab-panel">
     <div class="three-col">
       <div class="sidebar-nav" id="snav-estructura">
-        <div class="snav-title">Ir a</div>
+        <div class="snav-title" data-i18n="sidebar.goto">Ir a</div>
         <div class="snav-btns" id="snav-btns-estructura"></div>
       </div>
       <div id="estructura-body"><p style="color:var(--gray-500)">Cargando…</p></div>
@@ -754,7 +761,7 @@
   <div id="tab-enumeraciones" class="tab-panel">
     <div class="three-col">
       <div class="sidebar-nav" id="snav-enumeraciones">
-        <div class="snav-title">Ir a</div>
+        <div class="snav-title" data-i18n="sidebar.goto">Ir a</div>
         <div class="snav-btns" id="snav-btns-enumeraciones"></div>
       </div>
       <div id="enumeraciones-body"><p style="color:var(--gray-500)">Cargando…</p></div>
@@ -764,8 +771,8 @@
   <!-- Tab: Ejemplo -->
   <div id="tab-ejemplo" class="tab-panel">
     <div class="ejemplo-wrap">
-      <h2>Ejemplos</h2>
-      <div class="highlight-box" style="margin-bottom:24px">
+      <h2 data-i18n="example.title">Ejemplos</h2>
+      <div class="highlight-box" style="margin-bottom:24px" data-i18n-html="example.notice">
         <strong>⚠️ Aviso:</strong> Los datos utilizados en estos ejemplos no tienen relación con datos reales. Confirma con tu consultor WMS que los valores sean correctos.
       </div>
       <div id="ejemplo-inner"><p style="color:var(--gray-500)">Cargando…</p></div>
@@ -779,11 +786,11 @@
   <section class="dh">
     <div class="dhi">
       <div class="d-breadcrumb">
-        <a href="#" onclick="showIndex();return false;">Documentación</a>
-        <span>/</span><span class="cur">Versiones de esquemas</span>
+        <a href="#" onclick="showIndex();return false;" data-i18n="crumb.docs">Documentación</a>
+        <span>/</span><span class="cur" data-i18n="crumb.versions">Versiones de esquemas</span>
       </div>
-      <h1>Versiones de esquemas</h1>
-      <p class="ddesc">Listado en vivo desde el repositorio. Cualquier carpeta o fichero que se añada aparece aquí automáticamente.</p>
+      <h1 data-i18n="versions.h1">Versiones de esquemas</h1>
+      <p class="ddesc" data-i18n="versions.desc">Listado en vivo desde el repositorio. Cualquier carpeta o fichero que se añada aparece aquí automáticamente.</p>
     </div>
   </section>
   <div class="vers-section">
@@ -799,17 +806,17 @@
   <section class="dh">
     <div class="dhi">
       <div class="d-breadcrumb">
-        <a href="#" onclick="showIndex();return false;">Documentación</a>
-        <span>/</span><span class="cur">Validaciones</span>
+        <a href="#" onclick="showIndex();return false;" data-i18n="crumb.docs">Documentación</a>
+        <span>/</span><span class="cur" data-i18n="crumb.validation">Validaciones</span>
       </div>
-      <h1>Validador de mensajes</h1>
-      <p class="ddesc">Selecciona el tipo de mensaje, sube tu fichero JSON y valídalo contra el esquema oficial del WMS.</p>
+      <h1 data-i18n="val.h1">Validador de mensajes</h1>
+      <p class="ddesc" data-i18n="val.desc">Selecciona el tipo de mensaje, sube tu fichero JSON y valídalo contra el esquema oficial del WMS.</p>
     </div>
   </section>
   <div class="val-section">
     <div class="val-controls">
       <div class="val-field">
-        <label for="valSchema">Mensaje a validar</label>
+        <label for="valSchema" data-i18n="val.label">Mensaje a validar</label>
         <select id="valSchema" class="val-select"><option value="">Cargando…</option></select>
       </div>
     </div>
@@ -832,11 +839,11 @@
   <section class="dh">
     <div class="dhi">
       <div class="d-breadcrumb">
-        <a href="#" onclick="showIndex();return false;">Documentación</a>
-        <span>/</span><span class="cur">Respuestas</span>
+        <a href="#" onclick="showIndex();return false;" data-i18n="crumb.docs">Documentación</a>
+        <span>/</span><span class="cur" data-i18n="crumb.responses">Respuestas</span>
       </div>
-      <h1>Respuestas de la API</h1>
-      <p class="ddesc">La API es asíncrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validación, envía un callback al endpoint que el cliente expone.</p>
+      <h1 data-i18n="resp.h1">Respuestas de la API</h1>
+      <p class="ddesc" data-i18n="resp.desc">La API es asíncrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validación, envía un callback al endpoint que el cliente expone.</p>
     </div>
   </section>
   <div id="respuestas-nav"></div>
@@ -852,7 +859,7 @@
       <div>
         <div class="footer-logo"><img src="Assets/generix.svg" alt="Generix"></div>
         <div class="footer-tagline">Connecting Businesses Together</div>
-        <p class="footer-desc">Documentación técnica de la API WMS · Generix Spain · Especificaciones de mensajes e integración.</p>
+        <p class="footer-desc" data-i18n="footer.desc">Documentación técnica de la API WMS · Generix Spain · Especificaciones de mensajes e integración.</p>
       </div>
       <div>
         <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;line-height:1.9">
@@ -864,13 +871,13 @@
     </div>
     <div class="footer-bottom">
       <p>© <span class="accent">Generix</span> · Developer Documentation Portal · WMS API Spain</p>
-      <p>Especificaciones técnicas e integración WMS</p>
+      <p data-i18n="footer.bottom2">Especificaciones técnicas e integración WMS</p>
     </div>
   </div>
 </footer>
 
 <!-- Botón volver arriba -->
-<button id="goTop" class="go-top" aria-label="Volver arriba" title="Volver arriba"
+<button id="goTop" class="go-top" data-i18n-attr="aria-label:aria.top;title:aria.top" aria-label="Volver arriba" title="Volver arriba"
   onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
   (function(){
@@ -879,6 +886,149 @@
     window.addEventListener('scroll', toggle, { passive: true });
     toggle();
   })();
+</script>
+
+<!-- Idiomas -->
+<script>
+/* ══ NUCLEO i18n — idiomas ES/EN, deteccion por navegador ══ */
+const I18N_LANGS   = ['es','en'];      // anade aqui nuevos idiomas
+const I18N_DEFAULT = 'es';
+const I18N_LABELS  = { es:'Espanol', en:'English' };
+const I18N = {
+ es: {
+  'hero.tagline':'Portal de Documentacion para Desarrolladores',
+  'hero.subtitle':'Especificaciones tecnicas, esquemas de mensajes y guias de integracion para la API del sistema de gestion de almacenes (WMS) de Generix Spain.',
+  'hero.cta.explore':'Explorar endpoints','hero.cta.resources':'Recursos',
+  'stats.endpoints':'Endpoints documentados','stats.comm':'Comunicacion','stats.protocol':'Protocolo','stats.format':'Formato de integracion','stats.generix':'Generix Spain',
+  'sec.eyebrow':'Centro de documentacion · WMS API','sec.title':'Endpoints y mensajes de integracion',
+  'sec.subtitle':'Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.',
+  'res.history.badge':'Historial','res.history.title':'Versiones de esquemas','res.history.desc':'Consulta y descarga las distintas versiones publicadas de los esquemas JSON.','res.history.link':'Ver versiones',
+  'res.resp.badge':'Schema','res.resp.title':'Respuestas','res.resp.desc':'Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.','res.resp.link':'Ver respuestas',
+  'res.val.badge':'Herramienta','res.val.title':'Validaciones','res.val.desc':'Valida tu fichero JSON contra el esquema de cualquier mensaje del WMS.','res.val.link':'Abrir validador',
+  'crumb.docs':'Documentacion','crumb.versions':'Versiones de esquemas','crumb.validation':'Validaciones','crumb.responses':'Respuestas',
+  'tabs.desc':'Descripcion General','tabs.struct':'Estructura','tabs.enums':'Enumeraciones','tabs.example':'Ejemplo',
+  'sidebar.goto':'Ir a','example.title':'Ejemplos',
+  'example.notice':'<strong>⚠️ Aviso:</strong> Los datos utilizados en estos ejemplos no tienen relacion con datos reales. Confirma con tu consultor WMS que los valores sean correctos.',
+  'versions.h1':'Versiones de esquemas','versions.desc':'Listado en vivo desde el repositorio. Cualquier carpeta o fichero que se anada aparece aqui automaticamente.',
+  'val.h1':'Validador de mensajes','val.desc':'Selecciona el tipo de mensaje, sube tu fichero JSON y validalo contra el esquema oficial del WMS.','val.label':'Mensaje a validar',
+  'val.dropzone.disabled':'Selecciona primero un mensaje, luego arrastra tu JSON o haz click','val.dropzone.enabled':'Arrastra tu JSON o haz click',
+  'resp.h1':'Respuestas de la API','resp.desc':'La API es asincrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validacion, envia un callback al endpoint que el cliente expone.',
+  'footer.desc':'Documentacion tecnica de la API WMS · Generix Spain · Especificaciones de mensajes e integracion.','footer.bottom2':'Especificaciones tecnicas e integracion WMS',
+  'aria.top':'Volver arriba',
+  'loading':'Cargando…','empty.none':'No hay endpoints publicados todavia.',
+  'err.repo.title':'No se pudo conectar con el repositorio','err.repo.body':'Revisa los valores de CONFIG (owner, repo, branch).',
+  'empty.title':'Sin endpoints publicados','empty.hint':'Crea una carpeta en <code>{path}/</code> con un <code>schema.json</code>.',
+  'card.fields_sg':'campo','card.fields_pl':'campos','card.viewDoc':'Ver documentacion','detail.errorLoad':'Error al cargar',
+  'spec.method':'Metodo','spec.endpoint':'Endpoint','spec.category':'Categoria','spec.version':'Version','spec.releaseDate':'Fecha de Lanzamiento','spec.example':'Ejemplo','spec.exampleN':'Ejemplo {n}',
+  'desc.overview':'Descripcion General','desc.thisEndpoint':'este endpoint',
+  'desc.noCustom.title':'📝 Sin descripcion personalizada','desc.noCustom.body':'Descripcion personalizada pendiente de creacion en <code>{name}</code>.',
+  'struct.download':'📥 Descargar {file} completo','struct.view':'👁️ Ver {file} completo','struct.none':'No se encontraron bloques.',
+  'tech.title':'Detalles Tecnicos','tech.type':'Tipo:','tech.required':'Obligatorios:','tech.constraints':'Restricciones:',
+  'oneOf.title':'⚠️ Exclusivo (oneOf):','oneOf.body':'se debe incluir <u>solo uno</u> de:','word.or':'o','word.and':'y',
+  'ifthen.title':'🔀 Condicional (if/then):','ifthen.if':'si','ifthen.then':'entonces','ifthen.reqPl':'son obligatorios','ifthen.reqSg':'es obligatorio',
+  'table.field':'Campo','table.desc':'Descripcion','table.type':'Tipo','table.req':'Req.','table.constraints':'Restricciones','table.fieldsTitle':'📝 Descripcion de campos',
+  'yes':'Si','no':'No','noDesc':'Sin descripcion.',
+  'enums.none':'No se encontraron campos enum en este schema.','enums.code':'Codigo','enums.meaning':'Significado','enums.usedIn':'Usado en:','enums.allowed':'Valores admitidos ({n})','enums.default':'por defecto','enums.more':'+{n} valores mas',
+  'example.none':'No hay fichero de ejemplo en esta carpeta.',
+  'btn.download':'Descargar','btn.viewGithub':'Ver en GitHub','btn.viewContent':'Ver contenido','btn.hide':'Ocultar','btn.copy':'Copiar','btn.copied':'✓ Copiado',
+  'versions.count':'{n} fichero(s) en {m} carpeta(s)','versions.emptyTitle':'Carpeta vacia o aun no creada','versions.emptyBody':'No se han encontrado ficheros en <code>{path}</code>.','versions.viewFolder':'Ver carpeta en GitHub','versions.general':'General','versions.loadFail':'No se pudo cargar','versions.loadFailMsg':'No se pudo cargar: ','versions.truncated':'… (truncado)',
+  'val.selectPlaceholder':'— Selecciona un mensaje —','val.loadError':'Error cargando mensajes',
+  'resp.httpCodes':'Codigos de estado HTTP','resp.state':'Estado','resp.msgStruct':'Estructura del mensaje','resp.enums':'Enumeraciones','resp.response':'Respuesta','resp.labelIni':'Respuesta API','resp.labelCb':'Callback de errores','resp.example':'Ejemplo','resp.noExample':'Sin ejemplo en la carpeta.',
+  'resp.noSchemas.title':'No se encontraron los schemas de respuesta','resp.noSchemas.body':'Sube a <code>{dir}/</code> los ficheros <code>SchemaResponseInitial.json</code> y <code>SchemaResponseCallback.json</code> (con sus ejemplos).',
+  'verr.enum':'Valor no permitido. Valores admitidos: {v}','verr.const':'Valor obligatorio: {v}','verr.maxLength':'Longitud maxima permitida: {v} caracteres','verr.minLength':'Longitud minima requerida: {v} caracteres','verr.pattern':'No cumple el patron requerido: {v}','verr.format':'Formato invalido, se esperaba: {v}','verr.type':'Tipo incorrecto, se esperaba: {v}','verr.maximum':'Valor maximo permitido: {v}','verr.minimum':'Valor minimo permitido: {v}','verr.exclusiveMaximum':'Debe ser menor que: {v}','verr.exclusiveMinimum':'Debe ser mayor que: {v}','verr.multipleOf':'Debe ser multiplo de: {v}','verr.maxItems':'Maximo de elementos permitido: {v}','verr.minItems':'Minimo de elementos requerido: {v}','verr.required':'Falta el campo obligatorio: {v}','verr.additionalProperties':'Propiedad no permitida: {v}','verr.oneOf':'Debe cumplir exactamente uno de los esquemas permitidos','verr.default':'Error de validacion',
+  'vstatus.syntaxInvalid':'❌ JSON invalido (error de sintaxis)','vstatus.schemaLoadFail':'⚠️ No se pudo cargar el esquema','vstatus.schemaCompileFail':'⚠️ El esquema no se pudo compilar','vstatus.valid':'✅ JSON valido','vstatus.invalid':'❌ JSON invalido',
+  'vmeta.noStatus.badge':'Sin estado','vmeta.noStatus.title':'Esperando validacion','vmeta.noStatus.text':'Sube un fichero para lanzar la validacion.','vmeta.ok.badge':'Valido','vmeta.ok.title':'Validacion completada','vmeta.ok.text':'El fichero cumple con el esquema.','vmeta.err.badge':'Invalido','vmeta.err.title':'Se detectaron errores','vmeta.err.text':'El fichero no cumple con el esquema.','vmeta.warn.badge':'Atencion','vmeta.warn.title':'No se pudo validar','vmeta.info.badge':'Info','vmeta.info.title':'Estado',
+  'vtable.num':'#','vtable.field':'Campo','vtable.error':'Error','vviewer.title':'📄 JSON validado'
+ },
+ en: {
+  'hero.tagline':'Developer Documentation Portal',
+  'hero.subtitle':'Technical specifications, message schemas and integration guides for the Generix Spain Warehouse Management System (WMS) API.',
+  'hero.cta.explore':'Explore endpoints','hero.cta.resources':'Resources',
+  'stats.endpoints':'Documented endpoints','stats.comm':'Communication','stats.protocol':'Protocol','stats.format':'Integration format','stats.generix':'Generix Spain',
+  'sec.eyebrow':'Documentation center · WMS API','sec.title':'Endpoints and integration messages',
+  'sec.subtitle':'Select a message to explore its full schema: fields, types, validations and payload examples.',
+  'res.history.badge':'History','res.history.title':'Schema versions','res.history.desc':'Browse and download the different published versions of the JSON schemas.','res.history.link':'View versions',
+  'res.resp.badge':'Schema','res.resp.title':'Responses','res.resp.desc':'JSON structure of WMS responses: fields, validations and example.','res.resp.link':'View responses',
+  'res.val.badge':'Tool','res.val.title':'Validation','res.val.desc':'Validate your JSON file against the schema of any WMS message.','res.val.link':'Open validator',
+  'crumb.docs':'Documentation','crumb.versions':'Schema versions','crumb.validation':'Validation','crumb.responses':'Responses',
+  'tabs.desc':'Overview','tabs.struct':'Structure','tabs.enums':'Enumerations','tabs.example':'Example',
+  'sidebar.goto':'Go to','example.title':'Examples',
+  'example.notice':'<strong>⚠️ Notice:</strong> The data used in these examples is not related to real data. Confirm with your WMS consultant that the values are correct.',
+  'versions.h1':'Schema versions','versions.desc':'Live listing from the repository. Any folder or file added appears here automatically.',
+  'val.h1':'Message validator','val.desc':'Select the message type, upload your JSON file and validate it against the official WMS schema.','val.label':'Message to validate',
+  'val.dropzone.disabled':'First select a message, then drag your JSON or click','val.dropzone.enabled':'Drag your JSON or click',
+  'resp.h1':'API responses','resp.desc':'The API is asynchronous: it returns an immediate response (HTTP) and, if it detects validation errors, sends a callback to the endpoint the client exposes.',
+  'footer.desc':'WMS API technical documentation · Generix Spain · Message and integration specifications.','footer.bottom2':'WMS technical specifications and integration',
+  'aria.top':'Back to top',
+  'loading':'Loading…','empty.none':'No endpoints published yet.',
+  'err.repo.title':'Could not connect to the repository','err.repo.body':'Check the CONFIG values (owner, repo, branch).',
+  'empty.title':'No endpoints published','empty.hint':'Create a folder in <code>{path}/</code> with a <code>schema.json</code>.',
+  'card.fields_sg':'field','card.fields_pl':'fields','card.viewDoc':'View documentation','detail.errorLoad':'Failed to load',
+  'spec.method':'Method','spec.endpoint':'Endpoint','spec.category':'Category','spec.version':'Version','spec.releaseDate':'Release date','spec.example':'Example','spec.exampleN':'Example {n}',
+  'desc.overview':'Overview','desc.thisEndpoint':'this endpoint',
+  'desc.noCustom.title':'📝 No custom description','desc.noCustom.body':'Custom description pending creation in <code>{name}</code>.',
+  'struct.download':'📥 Download full {file}','struct.view':'👁️ View full {file}','struct.none':'No blocks found.',
+  'tech.title':'Technical details','tech.type':'Type:','tech.required':'Required:','tech.constraints':'Constraints:',
+  'oneOf.title':'⚠️ Exclusive (oneOf):','oneOf.body':'only <u>one</u> of these must be included:','word.or':'or','word.and':'and',
+  'ifthen.title':'🔀 Conditional (if/then):','ifthen.if':'if','ifthen.then':'then','ifthen.reqPl':'are required','ifthen.reqSg':'is required',
+  'table.field':'Field','table.desc':'Description','table.type':'Type','table.req':'Req.','table.constraints':'Constraints','table.fieldsTitle':'📝 Field descriptions',
+  'yes':'Yes','no':'No','noDesc':'No description.',
+  'enums.none':'No enum fields found in this schema.','enums.code':'Code','enums.meaning':'Meaning','enums.usedIn':'Used in:','enums.allowed':'Allowed values ({n})','enums.default':'default','enums.more':'+{n} more values',
+  'example.none':'No example file in this folder.',
+  'btn.download':'Download','btn.viewGithub':'View on GitHub','btn.viewContent':'View content','btn.hide':'Hide','btn.copy':'Copy','btn.copied':'✓ Copied',
+  'versions.count':'{n} file(s) in {m} folder(s)','versions.emptyTitle':'Empty or not yet created folder','versions.emptyBody':'No files found in <code>{path}</code>.','versions.viewFolder':'View folder on GitHub','versions.general':'General','versions.loadFail':'Could not load','versions.loadFailMsg':'Could not load: ','versions.truncated':'… (truncated)',
+  'val.selectPlaceholder':'— Select a message —','val.loadError':'Error loading messages',
+  'resp.httpCodes':'HTTP status codes','resp.state':'Status','resp.msgStruct':'Message structure','resp.enums':'Enumerations','resp.response':'Response','resp.labelIni':'API response','resp.labelCb':'Error callback','resp.example':'Example','resp.noExample':'No example in the folder.',
+  'resp.noSchemas.title':'Response schemas not found','resp.noSchemas.body':'Upload to <code>{dir}/</code> the files <code>SchemaResponseInitial.json</code> and <code>SchemaResponseCallback.json</code> (with their examples).',
+  'verr.enum':'Value not allowed. Allowed values: {v}','verr.const':'Required value: {v}','verr.maxLength':'Maximum allowed length: {v} characters','verr.minLength':'Minimum required length: {v} characters','verr.pattern':'Does not match required pattern: {v}','verr.format':'Invalid format, expected: {v}','verr.type':'Incorrect type, expected: {v}','verr.maximum':'Maximum allowed value: {v}','verr.minimum':'Minimum allowed value: {v}','verr.exclusiveMaximum':'Must be less than: {v}','verr.exclusiveMinimum':'Must be greater than: {v}','verr.multipleOf':'Must be a multiple of: {v}','verr.maxItems':'Maximum allowed items: {v}','verr.minItems':'Minimum required items: {v}','verr.required':'Missing required field: {v}','verr.additionalProperties':'Property not allowed: {v}','verr.oneOf':'Must match exactly one of the allowed schemas','verr.default':'Validation error',
+  'vstatus.syntaxInvalid':'❌ Invalid JSON (syntax error)','vstatus.schemaLoadFail':'⚠️ Could not load the schema','vstatus.schemaCompileFail':'⚠️ The schema could not be compiled','vstatus.valid':'✅ Valid JSON','vstatus.invalid':'❌ Invalid JSON',
+  'vmeta.noStatus.badge':'No status','vmeta.noStatus.title':'Waiting for validation','vmeta.noStatus.text':'Upload a file to run validation.','vmeta.ok.badge':'Valid','vmeta.ok.title':'Validation completed','vmeta.ok.text':'The file complies with the schema.','vmeta.err.badge':'Invalid','vmeta.err.title':'Errors detected','vmeta.err.text':'The file does not comply with the schema.','vmeta.warn.badge':'Warning','vmeta.warn.title':'Could not validate','vmeta.info.badge':'Info','vmeta.info.title':'Status',
+  'vtable.num':'#','vtable.field':'Field','vtable.error':'Error','vviewer.title':'📄 Validated JSON'
+ }
+};
+function _detectLang(){
+  try { const s = localStorage.getItem('wms_lang'); if (s && I18N_LANGS.includes(s)) return s; } catch(e){}
+  const n = (navigator.language || I18N_DEFAULT).slice(0,2).toLowerCase();
+  return I18N_LANGS.includes(n) ? n : I18N_DEFAULT;
+}
+let LANG = _detectLang();
+function t(key, vars){
+  const d = I18N[LANG] || {}, f = I18N[I18N_DEFAULT] || {};
+  let s = (key in d) ? d[key] : ((key in f) ? f[key] : key);
+  if (vars) for (const k in vars) s = s.split('{'+k+'}').join(vars[k]);
+  return s;
+}
+function setLang(l){ if(!I18N_LANGS.includes(l)) return; try{ localStorage.setItem('wms_lang', l); }catch(e){} location.reload(); }
+function localizeNode(node){
+  if (Array.isArray(node)) { node.forEach(localizeNode); return node; }
+  if (node && typeof node === 'object') {
+      ['title','description','label','meaning','transport'].forEach(b => {
+      const k = b + '_' + LANG;
+      if (node[k] != null) node[b] = node[k];               // usa el idioma activo (campo base = reserva)
+      I18N_LANGS.forEach(l => { delete node[b + '_' + l]; }); // oculta las variantes en el JSON mostrado
+      });
+    Object.values(node).forEach(localizeNode);
+  }
+  return node;
+}
+function applyStaticI18n(){
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = t(el.getAttribute('data-i18n')); if (v != null) el.textContent = v; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = t(el.getAttribute('data-i18n-html')); if (v != null) el.innerHTML = v; });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    el.getAttribute('data-i18n-attr').split(';').forEach(p => { const i = p.indexOf(':'); if (i < 0) return; el.setAttribute(p.slice(0,i).trim(), t(p.slice(i+1).trim())); });
+  });
+  const dz = document.getElementById('dropzone');
+  if (dz && dz.childNodes[0]) dz.childNodes[0].nodeValue = ' ' + t('val.dropzone.disabled') + ' ';
+  const sel = document.getElementById('langSelect');
+  if (sel) {
+    sel.innerHTML = I18N_LANGS.map(l => `<option value='${l}'>${l.toUpperCase()} · ${I18N_LABELS[l]||l}</option>`).join('');
+    sel.value = LANG;
+    sel.onchange = () => setLang(sel.value);
+  }
+}
+window.t = t; window.LANG = LANG; window.I18N = I18N; window.setLang = setLang;
+document.addEventListener('DOMContentLoaded', applyStaticI18n);
 </script>
 
 <script>
@@ -937,7 +1087,7 @@ async function init() {
     const tree    = await loadRepoTree();
     const folders = buildCacheFromTree(tree);
 
-    if (!folders.length) { showEmpty('No hay endpoints publicados todavía.'); return; }
+    if (!folders.length) { showEmpty(t('empty.none')); return; }
 
     const hasResp = tree.some(it => it.type === 'blob' && it.path.startsWith(CONFIG.responsesPath + '/'));
     const respCard = document.getElementById('resp-card');
@@ -959,8 +1109,8 @@ async function init() {
   } catch (err) {
     document.getElementById('endpoints-grid').innerHTML =
       `<div class="error-banner">
-        <strong>No se pudo conectar con el repositorio</strong>
-        Revisa los valores de CONFIG (owner, repo, branch).<br>
+        <strong>${t('err.repo.title')}</strong>
+        ${t('err.repo.body')}<br>
         <small style="opacity:.7">${err.message}</small>
       </div>`;
   }
@@ -1009,6 +1159,7 @@ function buildDirResult(files) {
   );
 
   const readmeFile =
+    mds.find(f => f.name.toLowerCase() === `readme.${LANG}.md`) ||
     mds.find(f => f.name.toLowerCase() === 'readme.md') ||
     mds[0] || null;
 
@@ -1064,7 +1215,7 @@ async function loadCard(folder) {
   const { schemaFile } = await discoverFiles(folder);
   if (!schemaFile) throw new Error(`No se encontró ningún JSON en "${folder}"`);
   const text = await rawFetch(`${CONFIG.contentPath}/${folder}/${schemaFile.name}`);
-  return { folder, schema: JSON.parse(text) };
+  return { folder, schema: localizeNode(JSON.parse(text)) };
 }
 
 /* ── Index: render card grid ─────────────────────────────── */
@@ -1111,7 +1262,7 @@ function renderGrid(eps) {
       </div>
       <h3>${esc(title)}</h3>
       <p>${esc(desc)}</p>
-      <span class="card-link">${nf} campo${nf !== 1 ? 's' : ''} · Ver documentación</span>
+      <span class="card-link">${nf} ${nf !== 1 ? t('card.fields_pl') : t('card.fields_sg')} · ${t('card.viewDoc')}</span>
     </div>`;
   }).join('');
 }
@@ -1132,8 +1283,8 @@ function showEmpty(msg) {
   document.getElementById('endpoints-grid').innerHTML =
     `<div class="empty-state">
       <div class="ei">📂</div>
-      <h3>Sin endpoints publicados</h3>
-      <p>${msg}<br>Crea una carpeta en <code>${CONFIG.contentPath}/</code> con un <code>schema.json</code>.</p>
+      <h3>${t('empty.title')}</h3>
+      <p>${msg}<br>${t('empty.hint', { path: CONFIG.contentPath })}</p>
     </div>`;
 }
 
@@ -1148,14 +1299,14 @@ async function openEndpoint(folder, dir) {
   showDetail();
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'descripcion'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-descripcion'));
-  document.getElementById('d-title').textContent = 'Cargando...';
+  document.getElementById('d-title').textContent = t('loading');
   document.getElementById('d-breadcrumb-name').textContent = folder;
   document.getElementById('d-desc').textContent  = '';
   document.getElementById('ep-badges').innerHTML = '';
-  document.getElementById('desc-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
-  document.getElementById('estructura-body').innerHTML    = '<p style="color:var(--gray-500)">Cargando…</p>';
-  document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
-  document.getElementById('ejemplo-inner').innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
+  document.getElementById('desc-body').innerHTML = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
+  document.getElementById('estructura-body').innerHTML    = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
+  document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
+  document.getElementById('ejemplo-inner').innerHTML = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
   document.getElementById('snav-btns-estructura').innerHTML    = '';
   document.getElementById('snav-btns-enumeraciones').innerHTML = '';
   _examples = [];
@@ -1168,7 +1319,7 @@ async function openEndpoint(folder, dir) {
     ]);
 
     _schemaRaw      = sRes.status === 'fulfilled' ? sRes.value : '';
-    const schema    = _schemaRaw ? JSON.parse(_schemaRaw) : {};
+    const schema    = _schemaRaw ? localizeNode(JSON.parse(_schemaRaw)) : {};
     const readmeRaw = rRes.status === 'fulfilled' ? rRes.value : null;
 
     const exResults = await Promise.allSettled(
@@ -1198,7 +1349,7 @@ async function openEndpoint(folder, dir) {
     renderEjemplo(examplesData, folder);
 
   } catch (err) {
-    document.getElementById('d-title').textContent = 'Error al cargar';
+    document.getElementById('d-title').textContent = t('detail.errorLoad');
     document.getElementById('d-desc').textContent  = err.message;
     document.getElementById('desc-body').innerHTML = `<p style="color:#cf1322">${esc(err.message)}</p>`;
   }
@@ -1209,17 +1360,17 @@ function renderDescripcion(schema, readmeText, examplesData) {
   const ep = schema['x-wms-endpoint'] || {};
   let html = '';
   
-  html += `<h2>${esc(schema.title || 'Descripción General')}</h2>`;
+  html += `<h2>${esc(schema.title || t('desc.overview'))}</h2>`;
   if (schema.description) html += `<p>${esc(schema.description)}</p>`;
 
   const specs = [];
-    if (ep.method)      specs.push({ label:'Método',    value: ep.method.toUpperCase() });
-    if (ep.path)        specs.push({ label:'Endpoint',  value: ep.path });
-    if (ep.category)    specs.push({ label:'Categoría', value: ep.category });
-    if (ep.version)     specs.push({ label:'Versión',   value: ep.version });
-    if (ep.releaseDate) specs.push({ label:'Fecha de Lanzamiento', value: ep.releaseDate });
+    if (ep.method)      specs.push({ label:t('spec.method'),    value: ep.method.toUpperCase() });
+    if (ep.path)        specs.push({ label:t('spec.endpoint'),  value: ep.path });
+    if (ep.category)    specs.push({ label:t('spec.category'), value: ep.category });
+    if (ep.version)     specs.push({ label:t('spec.version'),   value: ep.version });
+    if (ep.releaseDate) specs.push({ label:t('spec.releaseDate'), value: ep.releaseDate });
     (examplesData || []).forEach((ex, i) => {
-      specs.push({ label: examplesData.length > 1 ? `Ejemplo ${i+1}` : 'Ejemplo', value: ex.name, dlIdx: i });
+      specs.push({ label: examplesData.length > 1 ? t('spec.exampleN',{n:i+1}) : t('spec.example'), value: ex.name, dlIdx: i });
     });
     if (specs.length) {
       html += `<div class="spec-card">${specs.map(s =>
@@ -1241,8 +1392,8 @@ function renderDescripcion(schema, readmeText, examplesData) {
   
 
     html += `<div class="info-box">
-      <strong>📝 Sin descripción personalizada</strong>
-      Descripcion personalizada pendiente de creación en <code>${esc(schema.title || 'este endpoint')}</code>.
+      <strong>${t('desc.noCustom.title')}</strong>
+      ${t('desc.noCustom.body', { name: esc(schema.title || t('desc.thisEndpoint')) })}
     </div>`;
   }
 
@@ -1294,7 +1445,7 @@ function renderEstructura(schema, folder, schemaFileName) {
   const defs   = schema.$defs || schema.definitions || {};
   const blocks = extractBlocks(schema, defs);
   if (!blocks.length) {
-    document.getElementById('estructura-body').innerHTML = '<p style="color:var(--gray-500)">No se encontraron bloques.</p>';
+    document.getElementById('estructura-body').innerHTML = '<p style="color:var(--gray-500)">' + t('struct.none') + '</p>';
     return;
   }
   const rawLink = folder && schemaFileName
@@ -1303,9 +1454,9 @@ function renderEstructura(schema, folder, schemaFileName) {
 
     let bodyHtml = schemaFileName
     ? `<p style="margin-bottom:28px">
-        <a href="#" onclick="downloadSchema('${schemaFileName}'); return false;" class="download-link">📥 Descargar ${schemaFileName} completo</a>
+        <a href="#" onclick="downloadSchema('${schemaFileName}'); return false;" class="download-link">${t('struct.download',{file:schemaFileName})}</a>
         <br/>
-        <a href="${rawLink}" target="_blank" class="download-link">👁️ Ver ${schemaFileName} completo</a>
+        <a href="${rawLink}" target="_blank" class="download-link">${t('struct.view',{file:schemaFileName})}</a>
       </p>`
     : '';
   let navHtml = '';
@@ -1322,21 +1473,21 @@ function renderEstructura(schema, folder, schemaFileName) {
             <pre class="cp-pre">${esc(snippet)}</pre>
           </div>
           <div>
-            <div class="explanation-box"><p>${esc(blk.description || 'Sin descripción.')}</p></div>
+            <div class="explanation-box"><p>${esc(blk.description || t('noDesc'))}</p></div>
             <div class="tech-details">
-              <h4>Detalles Técnicos</h4>
-              <p><strong>Tipo:</strong> <span class="tag-type">${esc(blk.type || 'object')}</span></p>
-              ${blk.required && blk.required.length ? `<p><strong>Obligatorios:</strong> <span class="tag-req">${esc(blk.required.join(', '))}</span></p>` : ''}
-              ${blk.constraints ? `<p><strong>Restricciones:</strong> ${esc(blk.constraints)}</p>` : ''}
+              <h4>${t('tech.title')}</h4>
+              <p><strong>${t('tech.type')}</strong> <span class="tag-type">${esc(blk.type || 'object')}</span></p>
+              ${blk.required && blk.required.length ? `<p><strong>${t('tech.required')}</strong> <span class="tag-req">${esc(blk.required.join(', '))}</span></p>` : ''}
+              ${blk.constraints ? `<p><strong>${t('tech.constraints')}</strong> ${esc(blk.constraints)}</p>` : ''}
               ${(() => {
                 if (!blk.oneOf || !blk.oneOf.length) return '';
                 const opts = blk.oneOf.map(o => (o.required || []).join(' + ')).filter(Boolean);
                 if (!opts.length) return '';
                 return `<div style="margin-top:10px;background:#fff7ed;border-left:3px solid var(--generix-orange);
                           padding:10px 12px;border-radius:4px">
-                  <strong style="color:var(--generix-orange-hover)">⚠️ Exclusivo (oneOf):</strong>
-                  se debe incluir <u>solo uno</u> de:
-                  ${opts.map(o => `<span class="tag-req" style="margin:2px">${esc(o)}</span>`).join(' o ')}
+                  <strong style="color:var(--generix-orange-hover)">${t('oneOf.title')}</strong>
+                  ${t('oneOf.body')}
+                  ${opts.map(o => `<span class="tag-req" style="margin:2px">${esc(o)}</span>`).join(' ' + t('word.or') + ' ')}
                 </div>`;
               })()}
               ${(() => {
@@ -1353,10 +1504,10 @@ function renderEstructura(schema, folder, schemaFileName) {
                 if (!condParts.length || !thenReq.length) return '';
                 return `<div style="margin-top:10px;background:#eff6ff;border-left:3px solid #3b82f6;
                           padding:10px 12px;border-radius:4px">
-                  <strong style="color:#1d4ed8">🔀 Condicional (if/then):</strong>
-                  si ${condParts.map(c => `<span class="tag-type">${esc(c)}</span>`).join(' y ')},
-                  entonces ${thenReq.map(r => `<span class="tag-req" style="margin:2px">${esc(r)}</span>`).join(', ')}
-                  ${thenReq.length > 1 ? 'son obligatorios' : 'es obligatorio'}.
+                  <strong style="color:#1d4ed8">${t('ifthen.title')}</strong>
+                  ${t('ifthen.if')} ${condParts.map(c => `<span class="tag-type">${esc(c)}</span>`).join(' ' + t('word.and') + ' ')},
+                  ${t('ifthen.then')} ${thenReq.map(r => `<span class="tag-req" style="margin:2px">${esc(r)}</span>`).join(', ')}
+                  ${thenReq.length > 1 ? t('ifthen.reqPl') : t('ifthen.reqSg')}.
                 </div>`;
               })()}
             </div>
@@ -1483,14 +1634,14 @@ function buildFieldTable(props, req) {
       <td><span class="tag-req">${esc(field)}</span></td>
       <td>${def && def.description ? esc(def.description) : dash}</td>
       <td>${type ? `<span class="tag-type">${esc(type)}</span>` : dash}</td>
-      <td>${isReq ? '<span class="tag-req">Sí</span>' : '<span style="color:var(--gray-500)">No</span>'}</td>
+      <td>${isReq ? `<span class="tag-req">${t('yes')}</span>` : `<span style="color:var(--gray-500)">${t('no')}</span>`}</td>
       <td>${restrHtml}</td>
     </tr>`;
   }
   return `<div class="field-tbl-wrap">
-    <p class="field-tbl-title">📝 Descripción de campos</p>
+    <p class="field-tbl-title">${t('table.fieldsTitle')}</p>
     <table class="field-tbl">
-      <thead><tr><th>Campo</th><th>Descripción</th><th>Tipo</th><th>Req.</th><th>Restricciones</th></tr></thead>
+      <thead><tr><th>${t('table.field')}</th><th>${t('table.desc')}</th><th>${t('table.type')}</th><th>${t('table.req')}</th><th>${t('table.constraints')}</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>`;
 }
@@ -1569,7 +1720,7 @@ function parseEnumMeanings(desc, values) {
 function renderEnumeraciones(schema) {
   const enums = extractEnums(schema);
   if (!enums.length) {
-    document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">No se encontraron campos enum en este schema.</p>';
+    document.getElementById('enumeraciones-body').innerHTML = '<p style="color:var(--gray-500)">' + t('enums.none') + '</p>';
     return;
   }
   let bodyHtml = '', navHtml = '';
@@ -1580,7 +1731,7 @@ function renderEnumeraciones(schema) {
     if (en.values.length <= 20) {
       pillsHtml = en.values.map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('');
     } else {
-      pillsHtml = en.values.slice(0,12).map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('') + `<span class="ev-more">+${en.values.length-12} valores más</span>`;
+      pillsHtml = en.values.slice(0,12).map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join('') + `<span class="ev-more">${t('enums.more',{n:en.values.length-12})}</span>`;
     }
     navHtml += `<button class="snav-btn" onclick="scrollToBlock('${id}',this)">${esc(en.field)}</button>`;
     bodyHtml += `
@@ -1594,21 +1745,21 @@ function renderEnumeraciones(schema) {
             const parsed = parseEnumMeanings(en.description, en.values);
             const valBlock = parsed.rows.length
               ? `<table class="field-tbl" style="margin-top:6px">
-                  <thead><tr><th style="width:90px">Código</th><th>Significado</th></tr></thead>
+                  <thead><tr><th style="width:90px">${t('enums.code')}</th><th>${t('enums.meaning')}</th></tr></thead>
                   <tbody>${parsed.rows.map(r => {
                     const isDef = en.default !== undefined && String(en.default) === String(r.code);
                     return `<tr${isDef ? ' style="background:var(--generix-orange-soft)"' : ''}>
                       <td><span class="tag-req">${esc(r.code)}</span></td>
-                      <td>${esc(r.meaning)}${isDef ? ' <span class="badge badge-cat" style="margin-left:6px">por defecto</span>' : ''}</td>
+                      <td>${esc(r.meaning)}${isDef ? ' <span class="badge badge-cat" style="margin-left:6px">' + t('enums.default') + '</span>' : ''}</td>
                     </tr>`;
                   }).join('')}</tbody>
                 </table>`
               : `<div class="enum-val-wrap">${pillsHtml}</div>`;
             return `<div>
-              <div class="explanation-box"><p>${esc(parsed.general || 'Sin descripción.')}</p></div>
+              <div class="explanation-box"><p>${esc(parsed.general || t('noDesc'))}</p></div>
               <div class="tech-details">
-                <p style="margin-top:10px"><strong>Usado en:</strong> <code style="font-size:.8rem">${esc(en.path)}</code></p>
-                <h4>Valores admitidos (${en.values.length})</h4>
+                <p style="margin-top:10px"><strong>${t('enums.usedIn')}</strong> <code style="font-size:.8rem">${esc(en.path)}</code></p>
+                <h4>${t('enums.allowed',{n:en.values.length})}</h4>
                 ${valBlock}
               </div>
             </div>`;
@@ -1665,7 +1816,7 @@ function renderEjemplo(examples, folder) {
   const inner = document.getElementById('ejemplo-inner');
 
   if (!examples || !examples.length) {
-    inner.innerHTML = `<p style="color:var(--gray-500)">No hay fichero de ejemplo en esta carpeta.</p>`;
+    inner.innerHTML = `<p style="color:var(--gray-500)">${t('example.none')}</p>`;
     return;
   }
 
@@ -1685,9 +1836,9 @@ function renderEjemplo(examples, folder) {
           </div>
         </div>
         <div class="file-card__actions">
-          <a class="file-btn file-btn--primary" href="#" onclick="downloadExample(${i},'${esc(ex.name)}');return false;">Descargar</a>
-          <a class="file-btn" target="_blank" href="${ghUrl}">Ver en GitHub</a>
-          <button class="file-btn" onclick="toggleExampleCode('${pid}', this)">Ver contenido</button>
+          <a class="file-btn file-btn--primary" href="#" onclick="downloadExample(${i},'${esc(ex.name)}');return false;">${t('btn.download')}</a>
+          <a class="file-btn" target="_blank" href="${ghUrl}">${t('btn.viewGithub')}</a>
+          <button class="file-btn" onclick="toggleExampleCode('${pid}', this)">${t('btn.viewContent')}</button>
         </div>
         <div class="ejemplo-cp" id="${pid}" style="display:none;margin-top:6px">
           <div class="ejemplo-mini" data-idx="${i}" data-name="${esc(ex.name)}"></div>
@@ -1703,7 +1854,7 @@ function toggleExampleCode(pid, btn) {
   if (!el) return;
   const open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
-  btn.textContent  = open ? 'Ver contenido' : 'Ocultar';
+  btn.textContent  = open ? t('btn.viewContent') : t('btn.hide');
 
   // Al abrir, la tarjeta salta de línea y ocupa todo el ancho
   const card = el.closest('.file-card');
@@ -1717,7 +1868,7 @@ function toggleExampleCode(pid, btn) {
     const raw  = _examples[idx];
     if (raw != null) {
       const header = `<span>${esc(name || 'JSON')}</span>` +
-                    `<button class="copy-btn" onclick="copyExample(${idx}, this)">Copiar</button>`;
+                    `<button class="copy-btn" onclick="copyExample(${idx}, this)">${t('btn.copy')}</button>`;
       renderJsonMinimap(el, raw, [], header);
       el.dataset.rendered = '1';
     }
@@ -1767,7 +1918,7 @@ function toggleRespSchema(mid, btn) {
   if (!el) return;
   const open = el.style.display !== 'none';
   el.style.display = open ? 'none' : 'block';
-  btn.textContent = open ? 'Ver contenido' : 'Ocultar';
+  btn.textContent = open ? t('btn.viewContent') : t('btn.hide');
 
   // Al abrir, la tarjeta salta de línea y ocupa todo el ancho; al cerrar vuelve a su columna
   const card = el.closest('.file-card');
@@ -1779,7 +1930,7 @@ function toggleRespSchema(mid, btn) {
     const s = _respSchemas[mid];
     if (s && s.raw) {
       const header = `<span>${esc(s.name || 'JSON')}</span>` +
-                    `<button class="copy-btn" onclick="copyRespSchema('${mid}', this)">Copiar</button>`;
+                    `<button class="copy-btn" onclick="copyRespSchema('${mid}', this)">${t('btn.copy')}</button>`;
       renderJsonMinimap(el, s.raw, [], header);
       el.dataset.rendered = '1';
     }
@@ -1789,8 +1940,8 @@ function copyExample(i, btn) {
   const text = _examples[i !== undefined ? i : 0];
   if (!text) return;
   navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copiado'; btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+    btn.textContent = t('btn.copied'); btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = t('btn.copy'); btn.classList.remove('ok'); }, 2000);
   });
 }
 function countTopFields(schema) {
@@ -1834,7 +1985,7 @@ async function renderVersions() {
   const status = document.getElementById('versStatus');
   const cont   = document.getElementById('versContainer');
   const quick  = document.getElementById('versQuick');
-  status.textContent = 'Cargando…'; cont.innerHTML = ''; quick.innerHTML = '';
+  status.textContent = t('loading'); cont.innerHTML = ''; quick.innerHTML = '';
 
   try {
     const tree   = await loadRepoTree();
@@ -1845,9 +1996,9 @@ async function renderVersions() {
 
     if (!files.length) {
       status.textContent = '';
-      cont.innerHTML = `<div class="highlight-box"><strong>Carpeta vacía o aún no creada</strong><br>
-        No se han encontrado ficheros en <code>${CONFIG.versionsPath}</code>.<br>
-        <a class="download-link" target="_blank" href="https://github.com/${CONFIG.owner}/${CONFIG.repo}/tree/${CONFIG.branch}/${CONFIG.versionsPath}">Ver carpeta en GitHub</a></div>`;
+      cont.innerHTML = `<div class="highlight-box"><strong>${t('versions.emptyTitle')}</strong><br>
+        ${t('versions.emptyBody', { path: CONFIG.versionsPath })}<br>
+        <a class="download-link" target="_blank" href="https://github.com/${CONFIG.owner}/${CONFIG.repo}/tree/${CONFIG.branch}/${CONFIG.versionsPath}">${t('versions.viewFolder')}</a></div>`;
       return;
     }
 
@@ -1862,19 +2013,19 @@ async function renderVersions() {
     });
     const names = Object.keys(groups).sort((a,b) => a==='(raíz)'?-1:b==='(raíz)'?1:a.localeCompare(b));
 
-    status.textContent = `${files.length} fichero(s) en ${names.length} carpeta(s)`;
+    status.textContent = t('versions.count', { n: files.length, m: names.length });
     quick.innerHTML = names.map(g =>
-      `<a href="#grp-${_slug(g)}">${esc(g==='(raíz)'?'General':g)} (${groups[g].length})</a>`).join('');
+      `<a href="#grp-${_slug(g)}">${esc(g==='(raíz)'?t('versions.general'):g)} (${groups[g].length})</a>`).join('');
 
     let html = '';
     names.forEach(g => {
       const items = groups[g].sort((a,b) => a.name.localeCompare(b.name));
       html += `<div class="folder-section" id="grp-${_slug(g)}">
-        <h3>📦 ${esc(g==='(raíz)'?'General':g)}</h3><div class="file-grid">`;
+        <h3>📦 ${esc(g==='(raíz)'?t('versions.general'):g)}</h3><div class="file-grid">`;
       items.forEach(f => {
         const pid = 'pv-' + _slug(f.path);
         const previewBtn = _isText(f.name)
-          ? `<button class="file-btn" onclick="toggleVersPreview('${esc(f.path)}','${pid}',this)">Ver contenido</button>` : '';
+          ? `<button class="file-btn" onclick="toggleVersPreview('${esc(f.path)}','${pid}',this)">${t('btn.viewContent')}</button>` : '';
         html += `<div class="file-card">
           <div class="file-card__head">
             <div class="file-card__icon">${_fileIcon(f.name)}</div>
@@ -1882,8 +2033,8 @@ async function renderVersions() {
               <div class="file-card__meta">${esc((_ext(f.name)||'file').toUpperCase())}${f.subdir?' · 📁 '+esc(f.subdir):''}</div></div>
           </div>
           <div class="file-card__actions">
-            <a class="file-btn file-btn--primary" target="_blank" href="${_versRaw(f.path)}">Descargar</a>
-            <a class="file-btn" target="_blank" href="${_versGh(f.path)}">Ver en GitHub</a>
+            <a class="file-btn file-btn--primary" target="_blank" href="${_versRaw(f.path)}">${t('btn.download')}</a>
+            <a class="file-btn" target="_blank" href="${_versGh(f.path)}">${t('btn.viewGithub')}</a>
             ${previewBtn}
           </div>
           <div class="file-preview" id="${pid}"><pre></pre></div>
@@ -1894,25 +2045,25 @@ async function renderVersions() {
     cont.innerHTML = html;
   } catch (e) {
     status.textContent = '';
-    cont.innerHTML = `<div class="highlight-box"><strong>No se pudo cargar</strong><br>${esc(e.message)}</div>`;
+    cont.innerHTML = `<div class="highlight-box"><strong>${t('versions.loadFail')}</strong><br>${esc(e.message)}</div>`;
   }
 }
 async function toggleVersPreview(path, pid, btn) {
   const box = document.getElementById(pid);
   if (!box) return;
-  if (box.classList.contains('open')) { box.classList.remove('open'); btn.textContent='Ver contenido'; return; }
-  box.classList.add('open'); btn.textContent='Ocultar';
+  if (box.classList.contains('open')) { box.classList.remove('open'); btn.textContent=t('btn.viewContent'); return; }
+  box.classList.add('open'); btn.textContent=t('btn.hide');
   const pre = box.querySelector('pre');
   if (_versPreviewCache[path]) { pre.textContent = _versPreviewCache[path]; return; }
-  pre.textContent = 'Cargando…';
+  pre.textContent = t('loading');
   try {
     const res = await fetch(_versRaw(path));
     if (!res.ok) throw new Error('HTTP ' + res.status);
     let text = await res.text();
-    if (text.length > 60000) text = text.slice(0,60000) + '\n\n… (truncado)';
+    if (text.length > 60000) text = text.slice(0,60000) + '\n\n' + t('versions.truncated');
     _versPreviewCache[path] = text;
     pre.textContent = text;
-  } catch (e) { pre.textContent = 'No se pudo cargar: ' + e.message; }
+  } catch (e) { pre.textContent = t('versions.loadFailMsg') + e.message; }
 }
 
 /* ═══ VALIDADOR ═══ */
@@ -1936,14 +2087,14 @@ async function showValidacion() {
         const na=(a.match(/(\d+)/)||[])[1], nb=(b.match(/(\d+)/)||[])[1];
         return (na&&nb) ? (+na - +nb) : a.localeCompare(b);
       });
-    let html = '<option value="">— Selecciona un mensaje —</option>'
+    let html = '<option value="">' + t('val.selectPlaceholder') + '</option>'
       + folders.map(f => `<option value="${f}">${f}</option>`).join('');
     const hasResp = tree.some(it => it.type==='blob' && it.path.startsWith(CONFIG.responsesPath + '/'));
     if (hasResp) html += `<option value="__resp__">Responses</option>`;
     sel.innerHTML = html;
     sel.dataset.loaded = '1';
   } catch (e) {
-    sel.innerHTML = '<option value="">Error cargando mensajes</option>';
+    sel.innerHTML = '<option value="">' + t('val.loadError') + '</option>';
   }
 }
 
@@ -2052,7 +2203,7 @@ function buildResponseFieldTable(schema) {
         <td style="padding-left:${indent}px"><span class="rf-name-wrap">${arrow}<span class="tag-req">${esc(field)}</span></span></td>
         <td>${desc ? esc(desc) : dash}</td>
         <td>${type ? `<span class="tag-type">${esc(type)}</span>` : dash}</td>
-        <td>${isReq ? '<span class="tag-req">Sí</span>' : '<span style="color:var(--gray-500)">No</span>'}</td>
+        <td>${isReq ? `<span class="tag-req">${t('yes')}</span>` : `<span style="color:var(--gray-500)">${t('no')}</span>`}</td>
         <td>${restrHtml}</td>
       </tr>`);
 
@@ -2068,7 +2219,7 @@ function buildResponseFieldTable(schema) {
   if (!rows.length) return '';
   return `<div class="field-tbl-wrap">
     <table class="field-tbl">
-      <thead><tr><th>Campo</th><th>Descripción</th><th>Tipo</th><th>Req.</th><th>Restricciones</th></tr></thead>
+      <thead><tr><th>${t('table.field')}</th><th>${t('table.desc')}</th><th>${t('table.type')}</th><th>${t('table.req')}</th><th>${t('table.constraints')}</th></tr></thead>
       <tbody>${rows.join('')}</tbody>
     </table></div>`;
 }
@@ -2077,7 +2228,7 @@ function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
   const defs = schema.$defs || schema.definitions || {};
   const r = schema['x-wms-response'] || {};
     const headHtml = `<div class="resp-block-head">
-      <h2>${esc(schema.title || 'Respuesta')}</h2>
+      <h2>${esc(schema.title || t('resp.response'))}</h2>
       <p>${esc(schema.description || '')}</p>
       ${r.transport ? `<div class="resp-transport">${esc(r.transport)}</div>` : ''}
     </div>`;
@@ -2094,9 +2245,9 @@ function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
         </div>
       </div>
       <div class="file-card__actions">
-        <a class="file-btn file-btn--primary" href="#" onclick="downloadRespSchema('${mid}');return false;">Descargar</a>
-        <a class="file-btn" target="_blank" href="${ghUrl}">Ver en GitHub</a>
-        <button class="file-btn" onclick="toggleRespSchema('${mid}', this)">Ver contenido</button>
+        <a class="file-btn file-btn--primary" href="#" onclick="downloadRespSchema('${mid}');return false;">${t('btn.download')}</a>
+        <a class="file-btn" target="_blank" href="${ghUrl}">${t('btn.viewGithub')}</a>
+        <button class="file-btn" onclick="toggleRespSchema('${mid}', this)">${t('btn.viewContent')}</button>
       </div>
       <div class="resp-schema-cp" id="resp-schema-${mid}" style="display:none;margin-top:6px"></div>
     </div>`;
@@ -2109,8 +2260,8 @@ function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
 
   const codes = schema['x-wms-status-codes'];
   if (Array.isArray(codes) && codes.length) {
-    h += `<div class="resp-sub">Códigos de estado HTTP</div>
-      <table class="status-tbl"><thead><tr><th style="width:90px">Código</th><th style="width:150px">Estado</th><th>Significado</th></tr></thead><tbody>`;
+    h += `<div class="resp-sub">${t('resp.httpCodes')}</div>
+      <table class="status-tbl"><thead><tr><th style="width:90px">${t('enums.code')}</th><th style="width:150px">${t('resp.state')}</th><th>${t('enums.meaning')}</th></tr></thead><tbody>`;
     h += codes.map(cc => {
       const cls = String(cc.code)[0]==='2' ? 'status-2xx' : String(cc.code)[0]==='4' ? 'status-4xx' : 'status-5xx';
       return `<tr><td><span class="status-code ${cls}">${esc(cc.code)}</span></td><td>${esc(cc.label||'')}</td><td>${esc(cc.meaning||'')}</td></tr>`;
@@ -2120,16 +2271,16 @@ function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
 
   const fieldTbl = buildResponseFieldTable(schema);
   if (fieldTbl) {
-    h += `<div class="resp-sub">Estructura del mensaje</div>${fieldTbl}`;
+    h += `<div class="resp-sub">${t('resp.msgStruct')}</div>${fieldTbl}`;
   }
 
   const enums = extractEnums(schema);
   if (enums.length) {
-    h += `<div class="resp-sub">Enumeraciones</div>`;
+    h += `<div class="resp-sub">${t('resp.enums')}</div>`;
     enums.forEach(en => {
       const parsed = parseEnumMeanings(en.description, en.values);
       const body = parsed.rows.length
-        ? `<table class="field-tbl" style="margin-top:6px"><thead><tr><th style="width:120px">Código</th><th>Significado</th></tr></thead><tbody>${
+        ? `<table class="field-tbl" style="margin-top:6px"><thead><tr><th style="width:120px">${t('enums.code')}</th><th>${t('enums.meaning')}</th></tr></thead><tbody>${
             parsed.rows.map(rr => `<tr><td><span class="tag-req">${esc(rr.code)}</span></td><td>${esc(rr.meaning)}</td></tr>`).join('')}</tbody></table>`
         : en.values.map(v => `<span class="ev-pill">${esc(String(v))}</span>`).join(' ');
       h += `<div style="margin-bottom:16px"><div style="font-weight:600;margin-bottom:4px">${esc(en.field)}</div>
@@ -2138,7 +2289,7 @@ function renderRespuestaSection(schema, exRaw, exName, mid, schemaLink) {
   }
 
   const exId = `resp-ex-${mid}`;
-  h += `<div class="resp-sub">Ejemplo</div><div id="${exId}"></div></div>`;
+  h += `<div class="resp-sub">${t('resp.example')}</div><div id="${exId}"></div></div>`;
   return { html: h, exId, exRaw, exName, mid };
 }
 let _respSections = {};
@@ -2146,7 +2297,7 @@ function renderRespExample(mid) {
   const s = _respSections[mid]; if (!s) return;
   const el = document.getElementById(s.exId); if (!el || el.dataset.rendered) return;
   el.dataset.rendered = '1';
-  if (!s.exRaw) { el.innerHTML = '<p style="color:var(--gray-500)">Sin ejemplo en la carpeta.</p>'; return; }
+  if (!s.exRaw) { el.innerHTML = '<p style="color:var(--gray-500)">' + t('resp.noExample') + '</p>'; return; }
   if (typeof renderJsonMinimap === 'function') {
     renderJsonMinimap(el, s.exRaw, [], `<span>${esc(s.exName || 'JSON')}</span>`);
   } else {
@@ -2174,15 +2325,15 @@ function copyRespSchema(mid, btn) {
   const s = _respSchemas[mid];
   if (!s || !s.raw) return;
   navigator.clipboard.writeText(fmtJSON(s.raw)).then(() => {
-    btn.textContent = '✓ Copiado'; btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+    btn.textContent = t('btn.copied'); btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = t('btn.copy'); btn.classList.remove('ok'); }, 2000);
   });
 }
 async function showRespuestas() {
   showView('view-respuestas');
 
   const body = document.getElementById('respuestas-body');
-  body.innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
+  body.innerHTML = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
   try {
     const dir = CONFIG.responsesPath;
     const tree = await loadRepoTree();
@@ -2195,19 +2346,19 @@ async function showRespuestas() {
     const sCb  = pick(/schema.*callback/i), eCb  = pick(/example.*callback/i);
 
     if (!sIni && !sCb) {
-      body.innerHTML = `<div class="highlight-box"><strong>No se encontraron los schemas de respuesta</strong><br>
-        Sube a <code>${esc(dir)}/</code> los ficheros <code>SchemaResponseInitial.json</code> y <code>SchemaResponseCallback.json</code> (con sus ejemplos).</div>`;
+      body.innerHTML = `<div class="highlight-box"><strong>${t('resp.noSchemas.title')}</strong><br>
+        ${t('resp.noSchemas.body', { dir: esc(dir) })}</div>`;
       return;
     }
 
     const getRaw  = async n => n ? await rawFetch(`${dir}/${n}`) : null;
     const [sIniRaw, sCbRaw, rawIni, rawCb] = await Promise.all([getRaw(sIni), getRaw(sCb), getRaw(eIni), getRaw(eCb)]);
-    const schemaIni = sIniRaw ? JSON.parse(sIniRaw) : null;
-    const schemaCb = sCbRaw ? JSON.parse(sCbRaw) : null;
+    const schemaIni = sIniRaw ? localizeNode(JSON.parse(sIniRaw)) : null;
+    const schemaCb = sCbRaw ? localizeNode(JSON.parse(sCbRaw)) : null;
     _respSchemas = {};
     if (sCb) _respSchemas.cb = { name: sCb, raw: sCbRaw, dir };
 
-    const labels = { ini: 'Respuesta API', cb: 'Callback de errores' };
+    const labels = { ini: t('resp.labelIni'), cb: t('resp.labelCb') };
     const sections = [];
     if (schemaIni) sections.push(renderRespuestaSection(schemaIni, rawIni, eIni, 'ini', null));
     if (schemaCb)  sections.push(renderRespuestaSection(schemaCb,  rawCb,  eCb,  'cb', { name: sCb, raw: sCbRaw, dir }));
@@ -2229,7 +2380,7 @@ async function showRespuestas() {
 
     if (sections.length) renderRespExample(sections[0].mid);
   } catch (e) {
-    body.innerHTML = `<div class="highlight-box" style="border-left-color:#cf1322"><strong>Error al cargar</strong><br>${esc(e.message)}</div>`;
+    body.innerHTML = `<div class="highlight-box" style="border-left-color:#cf1322"><strong>${t('detail.errorLoad')}</strong><br>${esc(e.message)}</div>`;
   }
 }
 
@@ -2269,8 +2420,8 @@ init();
     const on = !!sel.value;
     dropzone.classList.toggle("disabled", !on);
     dropzone.childNodes[0].nodeValue = on
-      ? " Arrastra tu JSON o haz click "
-      : " Selecciona primero un mensaje, luego arrastra tu JSON o haz click ";
+      ? " " + window.t('val.dropzone.enabled') + " "
+      : " " + window.t('val.dropzone.disabled') + " ";
     if (on && _lastFileText) processJSON(_lastFileText);
   });
 
@@ -2316,24 +2467,24 @@ init();
   function describeError(e){
     const p = e.params || {};
     switch(e.keyword){
-      case 'enum':            return `Valor no permitido. Valores admitidos: ${(p.allowedValues||[]).join(', ')}`;
-      case 'const':           return `Valor obligatorio: ${JSON.stringify(p.allowedValue)}`;
-      case 'maxLength':       return `Longitud máxima permitida: ${p.limit} caracteres`;
-      case 'minLength':       return `Longitud mínima requerida: ${p.limit} caracteres`;
-      case 'pattern':         return `No cumple el patrón requerido: ${p.pattern}`;
-      case 'format':          return `Formato inválido, se esperaba: ${p.format}`;
-      case 'type':            return `Tipo incorrecto, se esperaba: ${p.type}`;
-      case 'maximum':         return `Valor máximo permitido: ${p.limit}`;
-      case 'minimum':         return `Valor mínimo permitido: ${p.limit}`;
-      case 'exclusiveMaximum':return `Debe ser menor que: ${p.limit}`;
-      case 'exclusiveMinimum':return `Debe ser mayor que: ${p.limit}`;
-      case 'multipleOf':      return `Debe ser múltiplo de: ${p.multipleOf}`;
-      case 'maxItems':        return `Máximo de elementos permitido: ${p.limit}`;
-      case 'minItems':        return `Mínimo de elementos requerido: ${p.limit}`;
-      case 'required':        return `Falta el campo obligatorio: ${p.missingProperty}`;
-      case 'additionalProperties': return `Propiedad no permitida: ${p.additionalProperty}`;
-      case 'oneOf':           return `Debe cumplir exactamente uno de los esquemas permitidos`;
-      default:                return e.message || 'Error de validación';
+      case 'enum':            return window.t('verr.enum',{v:(p.allowedValues||[]).join(', ')});
+      case 'const':           return window.t('verr.const',{v:JSON.stringify(p.allowedValue)});
+      case 'maxLength':       return window.t('verr.maxLength',{v:p.limit});
+      case 'minLength':       return window.t('verr.minLength',{v:p.limit});
+      case 'pattern':         return window.t('verr.pattern',{v:p.pattern});
+      case 'format':          return window.t('verr.format',{v:p.format});
+      case 'type':            return window.t('verr.type',{v:p.type});
+      case 'maximum':         return window.t('verr.maximum',{v:p.limit});
+      case 'minimum':         return window.t('verr.minimum',{v:p.limit});
+      case 'exclusiveMaximum':return window.t('verr.exclusiveMaximum',{v:p.limit});
+      case 'exclusiveMinimum':return window.t('verr.exclusiveMinimum',{v:p.limit});
+      case 'multipleOf':      return window.t('verr.multipleOf',{v:p.multipleOf});
+      case 'maxItems':        return window.t('verr.maxItems',{v:p.limit});
+      case 'minItems':        return window.t('verr.minItems',{v:p.limit});
+      case 'required':        return window.t('verr.required',{v:p.missingProperty});
+      case 'additionalProperties': return window.t('verr.additionalProperties',{v:p.additionalProperty});
+      case 'oneOf':           return window.t('verr.oneOf');
+      default:                return e.message || window.t('verr.default');
     }
   }
   function errorPath(e){
@@ -2346,23 +2497,23 @@ init();
   async function processJSON(text) {
     let data;
     try { data = JSON.parse(text); }
-    catch { result.textContent = "❌ JSON inválido (error de sintaxis)"; errorList.textContent=""; viewer.textContent=""; return; }
+    catch { result.textContent = window.t('vstatus.syntaxInvalid'); errorList.textContent=""; viewer.textContent=""; return; }
     let schema;
     try { schema = await fetchSchema(sel.value); }
-    catch (e) { result.textContent = "⚠️ No se pudo cargar el esquema"; errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
+    catch (e) { result.textContent = window.t('vstatus.schemaLoadFail'); errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
     let validate;
     try { const ajv = new Ajv({ allErrors:true, strict:false }); addFormats(ajv); validate = ajv.compile(schema); }
-    catch (e) { result.textContent = "⚠️ El esquema no se pudo compilar"; errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
+    catch (e) { result.textContent = window.t('vstatus.schemaCompileFail'); errorList.textContent = "➡ " + e.message; viewer.textContent=""; return; }
     const valid = validate(data);
     if (valid) {
       window._valErrorLines = [];
       viewer.textContent = JSON.stringify(data, null, 2);
-      result.textContent = "✅ JSON válido"; errorList.textContent = "";
+      result.textContent = window.t('vstatus.valid'); errorList.textContent = "";
     } else {
       const { lines, map } = serializeWithMap(data);
       window._valErrorLines = validate.errors.map(e => map[e.instancePath]).filter(Boolean);
       viewer.textContent = lines.join("\n");
-      result.textContent = "❌ JSON inválido";
+      result.textContent = window.t('vstatus.invalid');
       errorList.textContent = validate.errors.map(e => `➡ ${errorPath(e)} → ${describeError(e)}`).join("\n");
     }
   }
@@ -2370,11 +2521,11 @@ init();
   /* ── Capa visual ── */
   function esc(t){ return String(t==null?"":t).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
   function statusMeta(msg){
-    if(!msg.trim()) return {kind:'info',badge:'Sin estado',title:'Esperando validación',text:'Sube un fichero para lanzar la validación.'};
-    if(msg.includes('✅')) return {kind:'success',badge:'Válido',title:'Validación completada',text:msg.replace('✅','').trim()||'El fichero cumple con el esquema.'};
-    if(msg.includes('❌')) return {kind:'error',badge:'Inválido',title:'Se detectaron errores',text:msg.replace('❌','').trim()||'El fichero no cumple con el esquema.'};
-    if(msg.includes('⚠️')) return {kind:'warning',badge:'Atención',title:'No se pudo validar',text:msg.replace('⚠️','').trim()};
-    return {kind:'info',badge:'Info',title:'Estado',text:msg};
+    if(!msg.trim()) return {kind:'info',badge:window.t('vmeta.noStatus.badge'),title:window.t('vmeta.noStatus.title'),text:window.t('vmeta.noStatus.text')};
+    if(msg.includes('✅')) return {kind:'success',badge:window.t('vmeta.ok.badge'),title:window.t('vmeta.ok.title'),text:msg.replace('✅','').trim()||window.t('vmeta.ok.text')};
+    if(msg.includes('❌')) return {kind:'error',badge:window.t('vmeta.err.badge'),title:window.t('vmeta.err.title'),text:msg.replace('❌','').trim()||window.t('vmeta.err.text')};
+    if(msg.includes('⚠️')) return {kind:'warning',badge:window.t('vmeta.warn.badge'),title:window.t('vmeta.warn.title'),text:msg.replace('⚠️','').trim()};
+    return {kind:'info',badge:window.t('vmeta.info.badge'),title:window.t('vmeta.info.title'),text:msg};
   }
   function parseErrors(raw){
     return (raw||'').replace(/\u00a0/g,' ').split('➡').map(s=>s.trim()).filter(Boolean).map((it,i)=>{
@@ -2385,7 +2536,7 @@ init();
     const t=document.getElementById('validationSummary'), errs=parseErrors(raw), m=statusMeta(msg);
     let tbl='';
     if(errs.length){
-      tbl=`<table class="val-err-tbl"><thead><tr><th>#</th><th>Campo</th><th>Error</th></tr></thead><tbody>${
+      tbl=`<table class="val-err-tbl"><thead><tr><th>${window.t('vtable.num')}</th><th>${window.t('vtable.field')}</th><th>${window.t('vtable.error')}</th></tr></thead><tbody>${
         errs.map(e=>`<tr><td>${e.index}</td><td><code>${esc(e.path)}</code></td><td>${esc(e.message)}</td></tr>`).join('')}</tbody></table>`;
     }
     t.classList.remove('val-empty');
@@ -2397,7 +2548,7 @@ init();
     const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').trim();
     if(!text){ cont.innerHTML=''; return; }
     const el = Array.isArray(window._valErrorLines) ? window._valErrorLines : [];
-    window.renderJsonMinimap(cont, text, el, '<span>📄 JSON validado</span>');
+    window.renderJsonMinimap(cont, text, el, '<span>' + window.t('vviewer.title') + '</span>');
   }
   function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||''); }
   const obs=new MutationObserver(sync);

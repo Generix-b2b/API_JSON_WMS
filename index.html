@@ -893,14 +893,14 @@
 /* ══ NUCLEO i18n — idiomas ES/EN, deteccion por navegador ══ */
 const I18N_LANGS   = ['es','en'];      // anade aqui nuevos idiomas
 const I18N_DEFAULT = 'es';
-const I18N_LABELS  = { es:'Espanol', en:'English' };
+const I18N_LABELS  = { es:'Español', en:'English' };
 const I18N = {
  es: {
-  'hero.tagline':'Portal de Documentacion para Desarrolladores',
-  'hero.subtitle':'Especificaciones tecnicas, esquemas de mensajes y guias de integracion para la API del sistema de gestion de almacenes (WMS) de Generix Spain.',
+  'hero.tagline':'Portal de Documentación para Desarrolladores',
+  'hero.subtitle':'Especificaciones técnicas, esquemas de mensajes y guías de integración para la API del sistema de gestión de almacenes (WMS) de Generix Spain.',
   'hero.cta.explore':'Explorar endpoints','hero.cta.resources':'Recursos',
-  'stats.endpoints':'Endpoints documentados','stats.comm':'Comunicacion','stats.protocol':'Protocolo','stats.format':'Formato de integracion','stats.generix':'Generix Spain',
-  'sec.eyebrow':'Centro de documentacion · WMS API','sec.title':'Endpoints y mensajes de integracion',
+  'stats.endpoints':'Endpoints documentados','stats.comm':'Comunicación','stats.protocol':'Protocolo','stats.format':'Formato de integración','stats.generix':'Generix Spain',
+  'sec.eyebrow':'Centro de documentacion · WMS API','sec.title':'Endpoints y mensajes de integración',
   'sec.subtitle':'Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.',
   'res.history.badge':'Historial','res.history.title':'Versiones de esquemas','res.history.desc':'Consulta y descarga las distintas versiones publicadas de los esquemas JSON.','res.history.link':'Ver versiones',
   'res.resp.badge':'Schema','res.resp.title':'Respuestas','res.resp.desc':'Estructura JSON de las respuestas del WMS: campos, validaciones y ejemplo.','res.resp.link':'Ver respuestas',
@@ -909,21 +909,21 @@ const I18N = {
   'tabs.desc':'Descripcion General','tabs.struct':'Estructura','tabs.enums':'Enumeraciones','tabs.example':'Ejemplo',
   'sidebar.goto':'Ir a','example.title':'Ejemplos',
   'example.notice':'<strong>⚠️ Aviso:</strong> Los datos utilizados en estos ejemplos no tienen relacion con datos reales. Confirma con tu consultor WMS que los valores sean correctos.',
-  'versions.h1':'Versiones de esquemas','versions.desc':'Listado en vivo desde el repositorio. Cualquier carpeta o fichero que se anada aparece aqui automaticamente.',
+  'versions.h1':'Versiones de esquemas','versions.desc':'Listado en vivo desde el repositorio. Cualquier carpeta o fichero que se añada aparece aquí automaticamente.',
   'val.h1':'Validador de mensajes','val.desc':'Selecciona el tipo de mensaje, sube tu fichero JSON y validalo contra el esquema oficial del WMS.','val.label':'Mensaje a validar',
   'val.dropzone.disabled':'Selecciona primero un mensaje, luego arrastra tu JSON o haz click','val.dropzone.enabled':'Arrastra tu JSON o haz click',
-  'resp.h1':'Respuestas de la API','resp.desc':'La API es asincrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validacion, envia un callback al endpoint que el cliente expone.',
-  'footer.desc':'Documentacion tecnica de la API WMS · Generix Spain · Especificaciones de mensajes e integracion.','footer.bottom2':'Especificaciones tecnicas e integracion WMS',
+  'resp.h1':'Respuestas de la API','resp.desc':'La API es asíncrona: devuelve una respuesta inmediata (HTTP) y, si detecta errores de validación, envía un callback al endpoint que el cliente expone.',
+  'footer.desc':'Documentación técnica de la API WMS · Generix Spain · Especificaciones de mensajes e integración.','footer.bottom2':'Especificaciones técnicas e integración WMS',
   'aria.top':'Volver arriba',
-  'loading':'Cargando…','empty.none':'No hay endpoints publicados todavia.',
+  'loading':'Cargando…','empty.none':'No hay endpoints publicados todavía.',
   'err.repo.title':'No se pudo conectar con el repositorio','err.repo.body':'Revisa los valores de CONFIG (owner, repo, branch).',
   'empty.title':'Sin endpoints publicados','empty.hint':'Crea una carpeta en <code>{path}/</code> con un <code>schema.json</code>.',
   'card.fields_sg':'campo','card.fields_pl':'campos','card.viewDoc':'Ver documentacion','detail.errorLoad':'Error al cargar',
   'spec.method':'Metodo','spec.endpoint':'Endpoint','spec.category':'Categoria','spec.version':'Version','spec.releaseDate':'Fecha de Lanzamiento','spec.example':'Ejemplo','spec.exampleN':'Ejemplo {n}',
   'desc.overview':'Descripcion General','desc.thisEndpoint':'este endpoint',
-  'desc.noCustom.title':'📝 Sin descripcion personalizada','desc.noCustom.body':'Descripcion personalizada pendiente de creacion en <code>{name}</code>.',
+  'desc.noCustom.title':'📝 Sin descripción personalizada','desc.noCustom.body':'Descripción personalizada pendiente de creación en <code>{name}</code>.',
   'struct.download':'📥 Descargar {file} completo','struct.view':'👁️ Ver {file} completo','struct.none':'No se encontraron bloques.',
-  'tech.title':'Detalles Tecnicos','tech.type':'Tipo:','tech.required':'Obligatorios:','tech.constraints':'Restricciones:',
+  'tech.title':'Detalles Técnicos','tech.type':'Tipo:','tech.required':'Obligatorios:','tech.constraints':'Restricciones:',
   'oneOf.title':'⚠️ Exclusivo (oneOf):','oneOf.body':'se debe incluir <u>solo uno</u> de:','word.or':'o','word.and':'y',
   'ifthen.title':'🔀 Condicional (if/then):','ifthen.if':'si','ifthen.then':'entonces','ifthen.reqPl':'son obligatorios','ifthen.reqSg':'es obligatorio',
   'table.field':'Campo','table.desc':'Descripcion','table.type':'Tipo','table.req':'Req.','table.constraints':'Restricciones','table.fieldsTitle':'📝 Descripcion de campos',
@@ -935,9 +935,9 @@ const I18N = {
   'val.selectPlaceholder':'— Selecciona un mensaje —','val.loadError':'Error cargando mensajes',
   'resp.httpCodes':'Codigos de estado HTTP','resp.state':'Estado','resp.msgStruct':'Estructura del mensaje','resp.enums':'Enumeraciones','resp.response':'Respuesta','resp.labelIni':'Respuesta API','resp.labelCb':'Callback de errores','resp.example':'Ejemplo','resp.noExample':'Sin ejemplo en la carpeta.',
   'resp.noSchemas.title':'No se encontraron los schemas de respuesta','resp.noSchemas.body':'Sube a <code>{dir}/</code> los ficheros <code>SchemaResponseInitial.json</code> y <code>SchemaResponseCallback.json</code> (con sus ejemplos).',
-  'verr.enum':'Valor no permitido. Valores admitidos: {v}','verr.const':'Valor obligatorio: {v}','verr.maxLength':'Longitud maxima permitida: {v} caracteres','verr.minLength':'Longitud minima requerida: {v} caracteres','verr.pattern':'No cumple el patron requerido: {v}','verr.format':'Formato invalido, se esperaba: {v}','verr.type':'Tipo incorrecto, se esperaba: {v}','verr.maximum':'Valor maximo permitido: {v}','verr.minimum':'Valor minimo permitido: {v}','verr.exclusiveMaximum':'Debe ser menor que: {v}','verr.exclusiveMinimum':'Debe ser mayor que: {v}','verr.multipleOf':'Debe ser multiplo de: {v}','verr.maxItems':'Maximo de elementos permitido: {v}','verr.minItems':'Minimo de elementos requerido: {v}','verr.required':'Falta el campo obligatorio: {v}','verr.additionalProperties':'Propiedad no permitida: {v}','verr.oneOf':'Debe cumplir exactamente uno de los esquemas permitidos','verr.default':'Error de validacion',
-  'vstatus.syntaxInvalid':'❌ JSON invalido (error de sintaxis)','vstatus.schemaLoadFail':'⚠️ No se pudo cargar el esquema','vstatus.schemaCompileFail':'⚠️ El esquema no se pudo compilar','vstatus.valid':'✅ JSON valido','vstatus.invalid':'❌ JSON invalido',
-  'vmeta.noStatus.badge':'Sin estado','vmeta.noStatus.title':'Esperando validacion','vmeta.noStatus.text':'Sube un fichero para lanzar la validacion.','vmeta.ok.badge':'Valido','vmeta.ok.title':'Validacion completada','vmeta.ok.text':'El fichero cumple con el esquema.','vmeta.err.badge':'Invalido','vmeta.err.title':'Se detectaron errores','vmeta.err.text':'El fichero no cumple con el esquema.','vmeta.warn.badge':'Atencion','vmeta.warn.title':'No se pudo validar','vmeta.info.badge':'Info','vmeta.info.title':'Estado',
+  'verr.enum':'Valor no permitido. Valores admitidos: {v}','verr.const':'Valor obligatorio: {v}','verr.maxLength':'Longitud máxima permitida: {v} caracteres','verr.minLength':'Longitud mínima requerida: {v} caracteres','verr.pattern':'No cumple el patron requerido: {v}','verr.format':'Formato inválido, se esperaba: {v}','verr.type':'Tipo incorrecto, se esperaba: {v}','verr.maximum':'Valor máximo permitido: {v}','verr.minimum':'Valor mínimo permitido: {v}','verr.exclusiveMaximum':'Debe ser menor que: {v}','verr.exclusiveMinimum':'Debe ser mayor que: {v}','verr.multipleOf':'Debe ser multiplo de: {v}','verr.maxItems':'Máximo de elementos permitido: {v}','verr.minItems':'Mínimo de elementos requerido: {v}','verr.required':'Falta el campo obligatorio: {v}','verr.additionalProperties':'Propiedad no permitida: {v}','verr.oneOf':'Debe cumplir exactamente uno de los esquemas permitidos','verr.default':'Error de validación',
+  'vstatus.syntaxInvalid':'❌ JSON inválido (error de sintaxis)','vstatus.schemaLoadFail':'⚠️ No se pudo cargar el esquema','vstatus.schemaCompileFail':'⚠️ El esquema no se pudo compilar','vstatus.valid':'✅ JSON valido','vstatus.invalid':'❌ JSON inválido',
+  'vmeta.noStatus.badge':'Sin estado','vmeta.noStatus.title':'Esperando validacion','vmeta.noStatus.text':'Sube un fichero para lanzar la validación.','vmeta.ok.badge':'Valido','vmeta.ok.title':'Validación completada','vmeta.ok.text':'El fichero cumple con el esquema.','vmeta.err.badge':'Inválido','vmeta.err.title':'Se detectaron errores','vmeta.err.text':'El fichero no cumple con el esquema.','vmeta.warn.badge':'Atencion','vmeta.warn.title':'No se pudo validar','vmeta.info.badge':'Info','vmeta.info.title':'Estado',
   'vtable.num':'#','vtable.field':'Campo','vtable.error':'Error','vviewer.title':'📄 JSON validado'
  },
  en: {

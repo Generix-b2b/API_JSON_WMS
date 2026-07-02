@@ -2,8 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom08/SchemaGECOM08.json",
   "title": "GECOM08 - Table Load",
-  "title_es": "GECOM08 - Carga de tablas",
-  "title_en": "GECOM08 - Table Load",
   "x-wms-icon": "GECOM08",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
@@ -14,14 +12,10 @@
     "releaseDate": "2026-06-22"
   },
   "description": "JSON for table load declaration",
-  "description_es": "JSON para la declaración de carga de tablas",
-  "description_en": "JSON for table load declaration",
   "type": "object",
   "properties": {
     "InitialTableLoad": {
       "description": "Table declaration",
-      "description_es": "Declaración de la tabla",
-      "description_en": "Table declaration",
       "type": "array",
       "minItems": 1,
       "maxItems": 499,
@@ -31,52 +25,39 @@
     }
   },
   "required": ["InitialTableLoad"],
-  "additionalProperties": false,
   "$defs": {
     "GEEX0800": {
       "type": "object",
       "properties": {
         "TRTEXC": {
           "description": "Movement processing code - see EnumTRTEXC",
-          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
-          "description_en": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "FAMPAR": {
           "description": "Parameter family",
-          "description_es": "Familia de parámetro",
-          "description_en": "Parameter family",
           "type": "string",
           "minLength": 1,
           "maxLength": 3
         },
         "CLEPAR": {
           "description": "Parameter key",
-          "description_es": "Clave de parámetro",
-          "description_en": "Parameter key",
           "type": "string",
           "minLength": 1,
           "maxLength": 10
         },
         "LIBPAR": {
           "description": "Parameter label",
-          "description_es": "Etiqueta de parámetro",
-          "description_en": "Parameter label",
           "type": "string",
           "minLength": 1,
           "maxLength": 48
         },
         "LIBPAR2": {
           "description": "Parameter label 2",
-          "description_es": "Etiqueta de parámetro 2",
-          "description_en": "Parameter label 2",
           "type": "string",
           "maxLength": 48
         },
         "CLEPAR2": {
           "description": "Parameter key 2",
-          "description_es": "Clave de parámetro 2",
-          "description_en": "Parameter key 2",
           "type": "string",
           "maxLength": 10
         }
@@ -87,10 +68,8 @@
     "Enums": {
       "EnumTRTEXC": {
         "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
-        "description_es": "Código de procesamiento del movimiento / 1 = Crear, 2 = Modificar o crear, 9 = Cancelación",
-        "description_en": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
         "type": "string",
-        "enum": ["1", "2", "9"],
+        "enum": ["1","2","9"],
         "default": "2"
       }
     } 

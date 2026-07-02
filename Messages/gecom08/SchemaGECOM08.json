@@ -41,8 +41,8 @@
           "description_es": "Código del destinatario del intercambio",
           "description_en": "Code of exchange recipient",
           "type": "string",
-          "minLength": 0,
-          "maxLength": 0
+          "minLength": 10,
+          "maxLength": 10
         },
         "TRTEXC": {
           "description": "Movement processing code - see EnumTRTEXC",

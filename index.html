@@ -64,10 +64,9 @@
     background: var(--generix-dark);
     background-image: url('Assets/hero-bg.svg');    
     background-size: 100%;
-    background-position: 40px center;;
+    background-position: 40px center;
     background-repeat: no-repeat;
     color: var(--white);
-    padding: 240px 32px;
     padding: 170px 32px;
     position: relative;
     overflow: hidden;
@@ -460,21 +459,16 @@
   .file-card__meta { color:var(--gray-500); font-size:.8rem; margin-top:2px; }
   .file-card__actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
   .file-btn { font-size:.82rem; font-weight:600; text-decoration:none; cursor:pointer; padding:6px 12px;
-    border-radius:6px; border:1px solid var(--gray-300); color:var(--generix-dark); background:var(--gray-50); transition:all .2s; }
+    border-radius:6px; border:1px solid var(--gray-300); color:var(--generix-dark); background:var(--gray-50); transition:all .2s; font-family:inherit; }
   .file-btn:hover { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
   .file-btn--primary { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
+  .file-btn--primary:hover { background:var(--generix-orange-hover); }
   .file-preview { margin-top:6px; background:var(--gray-900); border-radius:8px; overflow:hidden; display:none; }
   .file-preview.open { display:block; }
   .file-preview pre { margin:0; padding:16px; color:#e0e0e0; font-family:'Courier New',monospace;
     font-size:.78rem; line-height:1.55; overflow:auto; max-height:420px; }
 
   /* ── EJEMPLO file-cards ── */
-  .file-btn { font-size:.82rem; font-weight:600; text-decoration:none; cursor:pointer; padding:6px 12px;
-    border-radius:6px; border:1px solid var(--gray-300); color:var(--generix-dark); background:var(--gray-50);
-    transition:all .2s; font-family:inherit; }
-  .file-btn:hover { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
-  .file-btn--primary { background:var(--generix-orange); color:#fff; border-color:var(--generix-orange); }
-  .file-btn--primary:hover { background:var(--generix-orange-hover); }
   .ejemplo-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; align-items:start; }
   .ejemplo-grid .file-card.expanded { grid-column:1 / -1; }
   @media (max-width:1100px) { .ejemplo-grid { grid-template-columns:repeat(2, 1fr); } }
@@ -502,9 +496,6 @@
   @media (max-width:1100px) {
     .hero-inner            { grid-template-columns:1fr; }
     .hero-visual           { display:none; }
-    .detail-body           { grid-template-columns:1fr; }
-    .example-section       { position:static; }
-    .example-code          { max-height:40vh; }
     .three-col             { grid-template-columns:1fr; padding:24px 20px; }
     .sidebar-nav           { position:static; max-height:none; }
   }
@@ -512,10 +503,7 @@
     .hero                  { padding:70px 24px; }
     .hero h1               { font-size:2rem; }
     .section               { padding:56px 20px; }
-    .detail-body           { padding:30px 20px; }
     .nav a:not(.btn-contact){ display:none; }
-    .fields-table th:nth-child(3){ display:none; }
-    .fields-table td:nth-child(3){ display:none; }
   }
 
     /* ── VALIDADOR ── */
@@ -532,11 +520,11 @@
   #dropzone.dragover { background:var(--generix-orange-soft); border-color:var(--generix-orange); }
   #dropzone.disabled { opacity:.5; pointer-events:none; }
   .val-layout { display:grid; gap:24px; margin-top:8px; }
-  .val-status-card { border-radius:14px; padding:18px 20px; border:1px solid transparent; box-shadow:0 6px 16px rgba(15,27,36,.05); }
-  .val-status-card.success { background:#ecfdf3; border-color:rgba(18,183,106,.25); margin: 20px; }
-  .val-status-card.error   { background:#fef3f2; border-color:rgba(240,68,56,.22); margin: 20px; }
-  .val-status-card.warning { background:#fffaeb; border-color:rgba(247,144,9,.22); margin: 20px; }
-  .val-status-card.info    { background:#eff8ff; border-color:rgba(46,144,250,.22); margin: 20px; }
+  .val-status-card { border-radius:14px; padding:18px 20px; margin:20px; border:1px solid transparent; box-shadow:0 6px 16px rgba(15,27,36,.05); }
+  .val-status-card.success { background:#ecfdf3; border-color:rgba(18,183,106,.25); }
+  .val-status-card.error   { background:#fef3f2; border-color:rgba(240,68,56,.22); }
+  .val-status-card.warning { background:#fffaeb; border-color:rgba(247,144,9,.22); }
+  .val-status-card.info    { background:#eff8ff; border-color:rgba(46,144,250,.22); }
   .val-status-head { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:8px; }
   .val-status-title { font-weight:700; font-size:1rem; color:var(--generix-dark); }
   .val-status-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
@@ -931,22 +919,16 @@ async function rawFetch(path) {
 }
 
 /* ── View management ─────────────────────────────────────── */
-function showIndex() {
-  document.getElementById('view-index').style.display = '';
-  document.getElementById('view-detail').style.display = 'none';
-  document.getElementById('view-versions').style.display = 'none';
-  document.getElementById('view-validacion').style.display = 'none';
-  document.getElementById('view-respuestas').style.display = 'none';
+const _VIEWS = ['view-index','view-detail','view-versions','view-validacion','view-respuestas'];
+function showView(id) {
+  _VIEWS.forEach(v => {
+    const el = document.getElementById(v);
+    if (el) el.style.display = (v === id) ? 'block' : 'none';
+  });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function showDetail() {
-  document.getElementById('view-index').style.display = 'none';
-  document.getElementById('view-versions').style.display = 'none';
-  document.getElementById('view-validacion').style.display = 'none';
-  document.getElementById('view-respuestas').style.display = 'none';
-  document.getElementById('view-detail').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+function showIndex()  { showView('view-index'); }
+function showDetail() { showView('view-detail'); }
 
 /* ── Init: auto-discover endpoint folders ────────────────── */
 async function init() {
@@ -1117,17 +1099,18 @@ function renderGrid(eps) {
     const desc   = schema.description || '';
     const nf     = countTopFields(schema);
 
-    const recent = isRecent(ep.releaseDate);
-    return `<div class="card${recent ? ' is-new' : ''}" onclick="openEndpoint('${folder}')">
+    const recent     = isRecent(ep.releaseDate);
+    const folderAttr = String(folder).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    return `<div class="card${recent ? ' is-new' : ''}" onclick="openEndpoint('${folderAttr}')">
       ${recent ? '<span class="new-flag">✦ NEW</span>' : ''}
-      <div class="card-icon">${icon}</div>
+      <div class="card-icon">${esc(icon)}</div>
       <div class="card-meta">
-        ${method ? `<span class="badge badge-${method.toLowerCase()}">${method}</span>` : ''}
-        ${cat    ? `<span class="badge badge-cat">${cat}</span>` : ''}
-        ${ver    ? `<span class="badge badge-ver">${ver}</span>` : ''}
+        ${method ? `<span class="badge badge-${esc(method.toLowerCase())}">${esc(method)}</span>` : ''}
+        ${cat    ? `<span class="badge badge-cat">${esc(cat)}</span>` : ''}
+        ${ver    ? `<span class="badge badge-ver">${esc(ver)}</span>` : ''}
       </div>
-      <h3>${title}</h3>
-      <p>${desc}</p>
+      <h3>${esc(title)}</h3>
+      <p>${esc(desc)}</p>
       <span class="card-link">${nf} campo${nf !== 1 ? 's' : ''} · Ver documentación</span>
     </div>`;
   }).join('');
@@ -1715,6 +1698,32 @@ function renderEjemplo(examples, folder) {
   inner.innerHTML = html;
 }
 
+function toggleExampleCode(pid, btn) {
+  const el = document.getElementById(pid);
+  if (!el) return;
+  const open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  btn.textContent  = open ? 'Ver contenido' : 'Ocultar';
+
+  // Al abrir, la tarjeta salta de línea y ocupa todo el ancho
+  const card = el.closest('.file-card');
+  if (card) card.classList.toggle('expanded', !open);
+
+  // Render diferido del JSON la primera vez que se abre
+  if (!open && !el.dataset.rendered) {
+    const mini = el.querySelector('.ejemplo-mini');
+    const idx  = mini ? Number(mini.dataset.idx) : 0;
+    const name = mini ? mini.dataset.name : 'JSON';
+    const raw  = _examples[idx];
+    if (raw != null) {
+      const header = `<span>${esc(name || 'JSON')}</span>` +
+                    `<button class="copy-btn" onclick="copyExample(${idx}, this)">Copiar</button>`;
+      renderJsonMinimap(el, raw, [], header);
+      el.dataset.rendered = '1';
+    }
+  }
+}
+
 /* ═══ TAB SWITCHING ═══ */
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1739,20 +1748,7 @@ function hlJSON(json) {
       return `<span class="jn">${m}</span>`;
     });
 }
-function downloadSchema(fileName) {
-  if (!_schemaRaw) return;
-  const blob = new Blob([_schemaRaw], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-function downloadExample(i, fileName) {
-  const content = _examples[i];
+function downloadBlob(content, fileName) {
   if (!content) return;
   const blob = new Blob([content], { type: 'application/json' });
   const url  = URL.createObjectURL(blob);
@@ -1764,6 +1760,8 @@ function downloadExample(i, fileName) {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+function downloadSchema(fileName) { downloadBlob(_schemaRaw, fileName); }
+function downloadExample(i, fileName) { downloadBlob(_examples[i], fileName); }
 function toggleRespSchema(mid, btn) {
   const el = document.getElementById('resp-schema-' + mid);
   if (!el) return;
@@ -1829,12 +1827,7 @@ function _versGh(path){ return `https://github.com/${CONFIG.owner}/${CONFIG.repo
 function _slug(s){ return s.replace(/[^A-Za-z0-9_-]/g,'-'); }
 
 async function showVersions() {
-  document.getElementById('view-index').style.display = 'none';
-  document.getElementById('view-detail').style.display = 'none';
-  document.getElementById('view-validacion').style.display = 'none';
-  document.getElementById('view-respuestas').style.display = 'none';
-  document.getElementById('view-versions').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showView('view-versions');
   await renderVersions();
 }
 async function renderVersions() {
@@ -1931,12 +1924,7 @@ try {
 } catch(e){}
 
 async function showValidacion() {
-  document.getElementById('view-index').style.display = 'none';
-  document.getElementById('view-detail').style.display = 'none';
-  document.getElementById('view-versions').style.display = 'none';
-  document.getElementById('view-respuestas').style.display = 'none';
-  document.getElementById('view-validacion').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showView('view-validacion');
 
   const sel = document.getElementById('valSchema');
   if (sel.dataset.loaded) return;
@@ -2180,15 +2168,7 @@ let _respSchemas = {};
 function downloadRespSchema(mid) {
   const s = _respSchemas[mid];
   if (!s || !s.raw) return;
-  const blob = new Blob([s.raw], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = s.name;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  downloadBlob(s.raw, s.name);
 }
 function copyRespSchema(mid, btn) {
   const s = _respSchemas[mid];
@@ -2199,11 +2179,7 @@ function copyRespSchema(mid, btn) {
   });
 }
 async function showRespuestas() {
-  ['view-index','view-detail','view-versions','view-validacion'].forEach(id => {
-    const e = document.getElementById(id); if (e) e.style.display = 'none';
-  });
-  document.getElementById('view-respuestas').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showView('view-respuestas');
 
   const body = document.getElementById('respuestas-body');
   body.innerHTML = '<p style="color:var(--gray-500)">Cargando…</p>';
@@ -2417,20 +2393,13 @@ init();
       <div class="val-status-title">${esc(m.title)}</div><div class="val-status-badge">${esc(m.badge)}</div></div>
       <p class="val-status-text">${esc(m.text)}</p></div>${tbl}`;
   }
-  function errorLines(lines, errs){
-    const set=new Set();
-    errs.forEach(e=>{ const key=(e.path||'').replace(/^\//,'').split('/').filter(Boolean).pop();
-      if(!key||key==='(raíz)') return;
-      const i=lines.findIndex(l=>l.includes(`"${key}"`)); if(i>=0) set.add(i+1); });
-    return set;
-  }
-  function renderViewer(raw, rawErr){
+  function renderViewer(raw){
     const cont=document.getElementById('jsonViewerContainer'), text=(raw||'').trim();
     if(!text){ cont.innerHTML=''; return; }
     const el = Array.isArray(window._valErrorLines) ? window._valErrorLines : [];
     window.renderJsonMinimap(cont, text, el, '<span>📄 JSON validado</span>');
   }
-  function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||'', errorList.textContent||''); }
+  function sync(){ renderSummary(result.textContent||'', errorList.textContent||''); renderViewer(viewer.textContent||''); }
   const obs=new MutationObserver(sync);
   [result,errorList,viewer].forEach(n=>obs.observe(n,{childList:true,subtree:true,characterData:true}));
 </script>

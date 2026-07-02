@@ -2,114 +2,163 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom30/SchemaGECOM30.json",
   "title": "GECOM30 - Product Master Data",
+  "title_es": "GECOM30 - Datos maestros de productos",
+  "title_en": "GECOM30 - Product Master Data",
   "x-wms-icon": "GECOM30",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
     "method": "POST",
     "path": "https://[URL_Client_Environment].generix.biz/m30_product?uuid=[Value]",
     "category": "Inbound",
-    "version": "v1.1",
-    "releaseDate": "2026-06-22"
+    "version": "v1.2",
+    "releaseDate": "2026-07-03"
   },
   "description": "JSON for product master data load",
+  "description_es": "JSON para la carga de datos maestros de productos",
+  "description_en": "JSON for product master data load",
   "type": "object",
   "properties": {
     "productMasterData": {
       "description": "Master Data declaration",
+      "description_es": "Declaración de datos maestros",
+      "description_en": "Master Data declaration",
       "type": "array",
       "minItems": 1,
       "maxItems": 499,
       "items": {
-				"$ref": "#/$defs/GEEX3000"
-			}
+        "$ref": "#/$defs/GEEX3000"
+      }
     }
   },
   "required": ["productMasterData"],
+  "additionalProperties": false,
   "$defs": {
     "GEEX3000": {
       "description": "Master Data declaration",
+      "description_es": "Declaración de datos maestros",
+      "description_en": "Master Data declaration",
       "type": "object",
       "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
         "TRTEXC": {
           "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
           "$ref": "#/$defs/Enums/EnumTRTEXC"
         },
         "CODACT": {
           "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
           "type": "string",
           "minLength": 1,
           "maxLength": 3
         },
         "CODPRO": {
           "description": "Internal product code",
+          "description_es": "Código interno del producto",
+          "description_en": "Internal product code",
           "type": "string",
           "minLength": 1,
           "maxLength": 17
         },
         "VALPRO": {
           "description": "Logistics variant (Gencod)",
+          "description_es": "Variante logística (Gencod)",
+          "description_en": "Logistics variant (Gencod)",
           "type": "string",
           "pattern": "^[0-9]{1,2}$"
         },
         "DS1PRO": {
           "description": "Product designation line 1",
+          "description_es": "Designación del producto línea 1",
+          "description_en": "Product designation line 1",
           "type": "string",
           "minLength": 1,
           "maxLength": 30
         },
         "DS2PRO": {
           "description": "Product designation line 2",
+          "description_es": "Designación del producto línea 2",
+          "description_en": "Product designation line 2",
           "type": "string",
           "maxLength": 30
         },
         "FOUPRO": {
           "description": "Product supplier code",
+          "description_es": "Código de proveedor del producto",
+          "description_en": "Product supplier code",
           "type": "string",
           "maxLength": 14
         },
         "VAPPRO": {
           "description": "Supply variant (Gencod)",
+          "description_es": "Variante de suministro (Gencod)",
+          "description_en": "Supply variant (Gencod)",
           "type": "string",
           "pattern": "^[0-9]{1,2}$"
         },
         "FAMPRO": {
           "description": "Product classification family",
+          "description_es": "Familia de clasificación del producto",
+          "description_en": "Product classification family",
           "type": "string",
           "maxLength": 10
         },
         "ANAPRO": {
           "description": "Product analysis code",
+          "description_es": "Código de análisis del producto",
+          "description_en": "Product analysis code",
           "type": "string",
           "maxLength": 15
         },
         "EDIPRO": {
           "description": "Product code for EDI",
+          "description_es": "Código de producto para EDI",
+          "description_en": "Product code for EDI",
           "type": "string",
           "maxLength": 17
         },
         "SPCPRO": {
           "description": "Product sub-pack quantity",
+          "description_es": "Cantidad de subembalaje del producto",
+          "description_en": "Product sub-pack quantity",
           "type": "integer",
           "minimum": 0,
           "maximum": 9999
         },
         "PCBPRO": {
           "description": "Product pack quantity",
+          "description_es": "Cantidad de embalaje del producto",
+          "description_en": "Product pack quantity",
           "type": "integer",
           "minimum": 0,
           "maximum": 99999
         },
         "UNIPRO": {
           "description": "Product unit of measure",
+          "description_es": "Unidad de medida del producto",
+          "description_en": "Product unit of measure",
           "type": "string",
           "maxLength": 3
         },
         "MESPRO": {
           "description": "Product measurement method - see EnumMESPRO",
+          "description_es": "Método de medición del producto - ver EnumMESPRO",
+          "description_en": "Product measurement method - see EnumMESPRO",
           "$ref": "#/$defs/Enums/EnumMESPRO"
         },
         "PDBUVC": {
           "description": "CSU gross weight in kg",
+          "description_es": "Peso bruto de la UVC en kg",
+          "description_en": "CSU gross weight in kg",
           "type": "number",
           "minimum": 0,
           "maximum": 9999.999,
@@ -117,6 +166,8 @@
         },
         "PDNUVC": {
           "description": "CSU net weight in kg",
+          "description_es": "Peso neto de la UVC en kg",
+          "description_en": "CSU net weight in kg",
           "type": "number",
           "minimum": 0,
           "maximum": 9999.999,
@@ -124,24 +175,32 @@
         },
         "HAUUVC": {
           "description": "CSU height expressed in cm",
+          "description_es": "Altura de la UVC expresada en cm",
+          "description_en": "CSU height expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LNGUVC": {
           "description": "CSU length expressed in cm",
+          "description_es": "Longitud de la UVC expresada en cm",
+          "description_en": "CSU length expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LRGUVC": {
           "description": "CSU width expressed in cm",
+          "description_es": "Anchura de la UVC expresada en cm",
+          "description_en": "CSU width expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "PDBCOL": {
           "description": "Package gross weight in kg",
+          "description_es": "Peso bruto del paquete en kg",
+          "description_en": "Package gross weight in kg",
           "type": "number",
           "minimum": 0,
           "maximum": 9999.999,
@@ -149,150 +208,210 @@
         },
         "HAUCOL": {
           "description": "Package height expressed in cm",
+          "description_es": "Altura del paquete expresada en cm",
+          "description_en": "Package height expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LNGCOL": {
           "description": "Package length expressed in cm",
+          "description_es": "Longitud del paquete expresada en cm",
+          "description_en": "Package length expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LRGCOL": {
           "description": "Package width expressed in cm",
+          "description_es": "Anchura del paquete expresada en cm",
+          "description_en": "Package width expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "COLCOU": {
           "description": "Number of packages per layer",
+          "description_es": "Número de paquetes por capa",
+          "description_en": "Number of packages per layer",
           "type": "integer",
           "minimum": 1,
           "maximum": 9999
         },
         "COUPAL": {
           "description": "Number of layers per pallet",
+          "description_es": "Número de capas por palé",
+          "description_en": "Number of layers per pallet",
           "type": "integer",
           "minimum": 1,
           "maximum": 9999
         },
         "GERPAL": {
           "description": "Number of pallet stacks in storage",
+          "description_es": "Número de pilas de palés en almacenamiento",
+          "description_en": "Number of pallet stacks in storage",
           "type": "string",
           "pattern": "^[0-9]{1,2}$"
         },
         "GERHAU": {
           "description": "Number of pallets stacked high",
+          "description_es": "Número de palés apilados en altura",
+          "description_en": "Number of pallets stacked high",
           "type": "string",
           "pattern": "^[0-9]{1,2}$"
         },
         "HAUCOU": {
           "description": "Layer height expressed in cm",
+          "description_es": "Altura de la capa expresada en cm",
+          "description_en": "Layer height expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "CODEMB": {
           "description": "Package code handling",
+          "description_es": "Gestión del código de paquete",
+          "description_en": "Package code handling",
           "type": "string",
           "maxLength": 3
         },
         "ABCPRO": {
           "description": "ABC product rotation class",
+          "description_es": "Clase de rotación ABC del producto",
+          "description_en": "ABC product rotation class",
           "type": "string",
           "maxLength": 1
         },
         "CODMDR": {
           "description": "Goods receipt method",
+          "description_es": "Método de recepción de mercancías",
+          "description_en": "Goods receipt method",
           "type": "string",
           "maxLength": 3
         },
         "MODREC": {
           "description": "Receiving mode - see EnumMODREC",
+          "description_es": "Modo de recepción - ver EnumMODREC",
+          "description_en": "Receiving mode - see EnumMODREC",
           "$ref": "#/$defs/Enums/EnumMODREC"
         },
         "NBJDLV": {
           "description": "Number of DLV days",
+          "description_es": "Número de días DLV",
+          "description_en": "Number of DLV days",
           "type": "string",
           "maxLength": 3
         },
         "MOTIMM": {
           "description": "Immobilization reason",
+          "description_es": "Motivo de inmovilización",
+          "description_en": "Immobilization reason",
           "type": "string",
           "maxLength": 3
         },
         "CODMDS": {
           "description": "Storage method code",
+          "description_es": "Código de método de almacenamiento",
+          "description_en": "Storage method code",
           "type": "string",
           "maxLength": 3
         },
         "ZONPRF": {
           "description": "Preferred storage area",
+          "description_es": "Zona de almacenamiento preferida",
+          "description_en": "Preferred storage area",
           "type": "string",
           "maxLength": 1
         },
         "ALLPRF": {
           "description": "Preferred storage aisle",
+          "description_es": "Pasillo de almacenamiento preferido",
+          "description_en": "Preferred storage aisle",
           "type": "string",
           "pattern": "^[0-9]{1,3}$"
         },
         "ABCSTS": {
           "description": "Storage class",
+          "description_es": "Clase de almacenamiento",
+          "description_en": "Storage class",
           "type": "string",
           "maxLength": 1
         },
         "CODADM": {
           "description": "Sheaf storage method",
+          "description_es": "Método de almacenamiento por apilado",
+          "description_en": "Sheaf storage method",
           "type": "string",
           "maxLength": 3
         },
         "HOMGRB": {
           "description": "Type of sheaf homogeneity (rack or bulk) - see EnumHOMGRB",
+          "description_es": "Tipo de homogeneidad de apilado (estantería o a granel) - ver EnumHOMGRB",
+          "description_en": "Type of sheaf homogeneity (rack or bulk) - see EnumHOMGRB",
           "$ref": "#/$defs/Enums/EnumHOMGRB"
         },
         "PERGRB": {
           "description": "Pattern homogeneity period (rack/bulk)",
+          "description_es": "Período de homogeneidad del patrón (estantería/granel)",
+          "description_en": "Pattern homogeneity period (rack/bulk)",
           "type": "string",
           "maxLength": 3
         },
         "CODMDP": {
           "description": "Preparation process method",
+          "description_es": "Método del proceso de preparación",
+          "description_en": "Preparation process method",
           "type": "string",
           "maxLength": 3
         },
         "TOPPRN": {
           "description": "Indicator for composite or unit product - see EnumTOPPRN",
+          "description_es": "Indicador de producto compuesto o unitario - ver EnumTOPPRN",
+          "description_en": "Indicator for composite or unit product - see EnumTOPPRN",
           "$ref": "#/$defs/Enums/EnumTOPPRN"
         },
         "ORIMAJ": {
           "description": "Update origin",
+          "description_es": "Origen de la actualización",
+          "description_en": "Update origin",
           "type": "string",
           "maxLength": 1
         },
         "TOPPRO": {
           "description": "Product indicator",
+          "description_es": "Indicador del producto",
+          "description_en": "Product indicator",
           "type": "string",
           "maxLength": 1
         },
         "GEEX3001": {
           "description": "Product Additional 01 declaration",
+          "description_es": "Declaración adicional del producto 01",
+          "description_en": "Product Additional 01 declaration",
           "$ref": "#/$defs/GEEX3001Wrapper"
         },
         "GEEX3002": {
           "description": "Product Additional 02 declaration",
+          "description_es": "Declaración adicional del producto 02",
+          "description_en": "Product Additional 02 declaration",
           "$ref": "#/$defs/GEEX3002Wrapper"
         },
         "GEEX3003": {
           "description": "Product Additional 03 declaration",
+          "description_es": "Declaración adicional del producto 03",
+          "description_en": "Product Additional 03 declaration",
           "$ref": "#/$defs/GEEX3003Wrapper"
         },
         "GEEX3004": {
           "description": "Product Additional 04 declaration",
+          "description_es": "Declaración adicional del producto 04",
+          "description_en": "Product Additional 04 declaration",
           "$ref": "#/$defs/GEEX3004Wrapper"
         },
         "GEEX3010": {
           "description": "Product components declaration",
+          "description_es": "Declaración de componentes del producto",
+          "description_en": "Product components declaration",
           "type": "array",
           "maxItems": 99,
           "items": {
@@ -301,6 +420,8 @@
         },
         "GEEX3020": {
           "description": "Product EAN declaration",
+          "description_es": "Declaración EAN del producto",
+          "description_en": "Product EAN declaration",
           "type": "array",
           "maxItems": 49,
           "items": {
@@ -310,6 +431,8 @@
         "GEEX3030": {
           "type": "array",
           "description": "Product multi-language declaration",
+          "description_es": "Declaración multilingüe del producto",
+          "description_en": "Product multi-language declaration",
           "maxItems": 49,
           "items": {
             "$ref": "#/$defs/GEEX3030Wrapper"
@@ -318,6 +441,8 @@
         "GEEX3040": {
           "type": "array",
           "description": "Product ICPE declaration",
+          "description_es": "Declaración ICPE del producto",
+          "description_en": "Product ICPE declaration",
           "maxItems": 49,
           "items": {
             "$ref": "#/$defs/GEEX3040Wrapper"
@@ -326,6 +451,8 @@
         "GEEX3050": {
           "type": "array",
           "description": "Product rubriques declaration",
+          "description_es": "Declaración de rúbricas del producto",
+          "description_en": "Product rubriques declaration",
           "maxItems": 99,
           "items": {
             "$ref": "#/$defs/GEEX3050Wrapper"
@@ -334,6 +461,8 @@
         "GEEX3060": {
           "type": "array",
           "description": "Product Satellite declaration",
+          "description_es": "Declaración satélite del producto",
+          "description_en": "Product Satellite declaration",
           "maxItems": 49,
           "items": {
             "$ref": "#/$defs/GEEX3060Wrapper"
@@ -342,91 +471,125 @@
         "GEEX3080": {
           "type": "array",
           "description": "Product replacement declaration",
+          "description_es": "Declaración de sustitución del producto",
+          "description_en": "Product replacement declaration",
           "maxItems": 49,
           "items": {
             "$ref": "#/$defs/GEEX3080Wrapper"
           }
         }
       },
-      "required": ["TRTEXC", "CODACT", "CODPRO", "DS1PRO"],
+      "required": ["RCTEXC", "TRTEXC", "CODACT", "CODPRO", "DS1PRO"],
       "additionalProperties": false
     },
     "GEEX3001Wrapper": {
       "description": "Product Additional 01 declaration",
+      "description_es": "Declaración adicional del producto 01",
+      "description_en": "Product Additional 01 declaration",
       "type": "object",
       "properties": {
         "INDPRO": {
           "description": "Configurable product indicators",
+          "description_es": "Indicadores configurables del producto",
+          "description_en": "Configurable product indicators",
           "type": "array",
           "maxItems": 10,
           "items": {
             "description": "Configurable product indicators",
+            "description_es": "Indicadores configurables del producto",
+            "description_en": "Configurable product indicators",
             "type": "string",
             "maxLength": 1
           }
         },
         "CODMRQ": {
           "description": "Manufacturer brand code",
+          "description_es": "Código de marca del fabricante",
+          "description_en": "Manufacturer brand code",
           "type": "string",
           "maxLength": 8
         },
         "DESFOU": {
           "description": "Product designation at the supplier",
+          "description_es": "Designación del producto en el proveedor",
+          "description_en": "Product designation at the supplier",
           "type": "string",
           "maxLength": 30
         },
         "CIRDET": {
           "description": "Detail picking preparation circuit",
+          "description_es": "Circuito de preparación por picking de detalle",
+          "description_en": "Detail picking preparation circuit",
           "type": "string",
           "maxLength": 3
         },
         "CIRPAL": {
           "description": "Full pallet preparation circuit",
+          "description_es": "Circuito de preparación de palé completo",
+          "description_en": "Full pallet preparation circuit",
           "type": "string",
           "maxLength": 3
         },
         "METRPL": {
           "description": "Product replacement method - see EnumMETRPL",
+          "description_es": "Método de sustitución del producto - ver EnumMETRPL",
+          "description_en": "Product replacement method - see EnumMETRPL",
           "$ref": "#/$defs/Enums/EnumMETRPL"
         },
         "CODRPL": {
           "description": "Replacement product code",
+          "description_es": "Código del producto de sustitución",
+          "description_en": "Replacement product code",
           "type": "string",
           "maxLength": 17
         },
         "VALRPL": {
           "description": "Logistics variant of the substitute product",
+          "description_es": "Variante logística del producto sustituto",
+          "description_en": "Logistics variant of the substitute product",
           "type": "string",
           "maxLength": 2
         },
         "CODALC": {
           "description": "Liquor seal code",
+          "description_es": "Código de precinto de licor",
+          "description_en": "Liquor seal code",
           "type": "string",
           "maxLength": 4
         },
         "DEGALC": {
           "description": "Pure alcohol degree",
+          "description_es": "Grado de alcohol puro",
+          "description_en": "Pure alcohol degree",
           "type": "string",
           "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
           "examples": ["12.50"]
         },
         "VOLALC": {
           "description": "Beverage volume for liquor management",
+          "description_es": "Volumen de la bebida para la gestión de licores",
+          "description_en": "Beverage volume for liquor management",
           "type": "string",
           "pattern": "^[0-9]{1,3}\\.[0-9]{3}$",
           "examples": ["0.750"]
         },
         "CODMDG": {
           "description": "Service management method code",
+          "description_es": "Código de método de gestión de servicio",
+          "description_en": "Service management method code",
           "type": "string",
           "maxLength": 3
         },
         "TAUPST": {
           "description": "Profit rate",
+          "description_es": "Tasa de beneficio",
+          "description_en": "Profit rate",
           "type": "array",
           "maxItems": 4,
           "items": {
             "description": "Profit rate",
+            "description_es": "Tasa de beneficio",
+            "description_en": "Profit rate",
             "type": "string",
             "pattern": "^[0-9]{1,3}\\.[0-9]{2}$",
             "examples": ["15.00"]
@@ -434,16 +597,22 @@
         },
         "COELOG": {
           "description": "Logistics coefficient",
+          "description_es": "Coeficiente logístico",
+          "description_en": "Logistics coefficient",
           "type": "string",
           "pattern": "^[0-9]{1,2}\\.[0-9]{3}$",
           "examples": ["1.000"]
         },
         "PRXPRO": {
           "description": "Product price",
+          "description_es": "Precio del producto",
+          "description_en": "Product price",
           "type": "array",
           "maxItems": 4,
           "items": {
             "description": "Product price",
+            "description_es": "Precio del producto",
+            "description_en": "Product price",
             "type": "string",
             "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
             "examples": ["10.500"]
@@ -451,62 +620,86 @@
         },
         "CODMDI": {
           "description": "Cycle counting method",
+          "description_es": "Método de recuento cíclico",
+          "description_en": "Cycle counting method",
           "type": "string",
           "maxLength": 3
         },
         "NXTIVT": {
           "description": "Date of next product inventory (format YYYYMMDD)",
+          "description_es": "Fecha del próximo inventario del producto (formato AAAAMMDD)",
+          "description_en": "Date of next product inventory (format YYYYMMDD)",
           "type": "string",
           "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
           "examples": ["20250125"]
         },
         "SECSTK": {
           "description": "Safety stock in CSU",
+          "description_es": "Stock de seguridad en UVC",
+          "description_en": "Safety stock in CSU",
           "type": "string",
           "maxLength": 9
         },
         "CODMDF": {
           "description": "Manufacturing process method",
+          "description_es": "Método del proceso de fabricación",
+          "description_en": "Manufacturing process method",
           "type": "string",
           "maxLength": 3
         },
         "FMTFAB": {
           "description": "Product manufacturing format",
+          "description_es": "Formato de fabricación del producto",
+          "description_en": "Product manufacturing format",
           "type": "string",
           "maxLength": 5
         },
         "ACTFAB": {
           "description": "Activity after manufacturing process",
+          "description_es": "Actividad tras el proceso de fabricación",
+          "description_en": "Activity after manufacturing process",
           "type": "string",
           "maxLength": 3
         },
         "CODFAB": {
           "description": "Product code after manufacturing",
+          "description_es": "Código del producto tras la fabricación",
+          "description_en": "Product code after manufacturing",
           "type": "string",
           "maxLength": 17
         },
         "VRAFAB": {
           "description": "Manufactured product code (For statistics)",
+          "description_es": "Código del producto fabricado (para estadísticas)",
+          "description_en": "Manufactured product code (For statistics)",
           "type": "string",
           "maxLength": 17
         },
         "VALFAB": {
           "description": "Logistics variant (Gencod) of manufacturing",
+          "description_es": "Variante logística (Gencod) de fabricación",
+          "description_en": "Logistics variant (Gencod) of manufacturing",
           "type": "string",
           "maxLength": 2
         },
         "CODZVI": {
           "description": "Wine production area code",
+          "description_es": "Código de zona de producción vinícola",
+          "description_en": "Wine production area code",
           "type": "string",
           "maxLength": 4
         },
         "CODEAP": {
           "description": "Packaging code associated with the product",
+          "description_es": "Código de embalaje asociado al producto",
+          "description_en": "Packaging code associated with the product",
           "type": "string",
           "maxLength": 3
         },
         "TOPCNA": {
           "description": "Products with alcohol rate for the CNAMTS / false = not subject to tax , true = Subject to tax ",
+          "description_es": "Productos con tasa de alcohol para la CNAMTS / false = No sujeto a impuesto, true = Sujeto a impuesto",
+          "description_en": "Products with alcohol rate for the CNAMTS / false = not subject to tax , true = Subject to tax ",
           "type": "boolean",
           "default": false
         }
@@ -515,155 +708,215 @@
     },
     "GEEX3002Wrapper": {
       "description": "Product Additional 02 declaration",
+      "description_es": "Declaración adicional del producto 02",
+      "description_en": "Product Additional 02 declaration",
       "type": "object",
       "properties": {
         "CODTMD": {
           "description": "Dangerous goods transport code",
+          "description_es": "Código de transporte de mercancías peligrosas",
+          "description_en": "Dangerous goods transport code",
           "type": "string",
           "maxLength": 4
         },
         "CODSEC": {
           "description": "Safety code (Hazardous Materials)",
+          "description_es": "Código de seguridad (materiales peligrosos)",
+          "description_en": "Safety code (Hazardous Materials)",
           "type": "string",
           "maxLength": 4
         },
         "CODSPE": {
           "description": "Returnable product / false = Non-returnable, true = Returnable",
+          "description_es": "Producto retornable / false = No retornable, true = Retornable",
+          "description_en": "Returnable product / false = Non-returnable, true = Returnable",
           "type": "boolean",
           "default": false
         },
         "UNIFAC": {
           "description": "Billing unit",
+          "description_es": "Unidad de facturación",
+          "description_en": "Billing unit",
           "type": "string",
           "maxLength": 3
         },
         "COEFAC": {
           "description": "Billing coefficient",
+          "description_es": "Coeficiente de facturación",
+          "description_en": "Billing coefficient",
           "type": "string",
           "pattern": "^[0-9]{1,7}\\.[0-9]{3}$",
           "examples": ["1.000"]
         },
         "SECDLV": {
           "description": "Number of safety days in addition to DLV",
+          "description_es": "Número de días de seguridad adicionales al DLV",
+          "description_en": "Number of safety days in addition to DLV",
           "type": "string",
           "maxLength": 3
         },
         "CODRGP": {
           "description": "Product grouping code",
+          "description_es": "Código de agrupación del producto",
+          "description_en": "Product grouping code",
           "type": "string",
           "maxLength": 17
         },
         "CODRSC": {
           "description": "Product hazard type code",
+          "description_es": "Código de tipo de peligro del producto",
+          "description_en": "Product hazard type code",
           "type": "string",
           "maxLength": 3
         },
         "PROEAP": {
           "description": "Associated packaging code for the interface",
+          "description_es": "Código de embalaje asociado para la interfaz",
+          "description_en": "Associated packaging code for the interface",
           "type": "string",
           "maxLength": 17
         },
         "VTLPRO": {
           "description": "Indicator for product to be broken down",
+          "description_es": "Indicador de producto a descomponer",
+          "description_en": "Indicator for product to be broken down",
           "type": "string",
           "maxLength": 1
         },
         "CIRVTL": {
           "description": "Breakdown circuit code",
+          "description_es": "Código de circuito de descomposición",
+          "description_en": "Breakdown circuit code",
           "type": "string",
           "maxLength": 3
         },
         "INFEXP": {
           "description": "Inventory number (Alcohol Customs)",
+          "description_es": "Número de inventario (Aduana de alcohol)",
+          "description_en": "Inventory number (Alcohol Customs)",
           "type": "string",
           "maxLength": 16
         },
         "CODMTR": {
           "description": "Materials accounting",
+          "description_es": "Contabilidad de materiales",
+          "description_en": "Materials accounting",
           "type": "string",
           "maxLength": 5
         },
         "TEMPRE": {
           "description": "Recommended temperature for the product",
+          "description_es": "Temperatura recomendada para el producto",
+          "description_en": "Recommended temperature for the product",
           "type": "string",
           "maxLength": 3
         },
         "QTELOT": {
           "description": "Quantity for batch size management",
+          "description_es": "Cantidad para la gestión del tamaño de lote",
+          "description_en": "Quantity for batch size management",
           "type": "string",
           "maxLength": 9
         },
         "UNILOT": {
           "description": "Unit for batch size management",
+          "description_es": "Unidad para la gestión del tamaño de lote",
+          "description_en": "Unit for batch size management",
           "type": "string",
           "maxLength": 3
         },
         "UNIARR": {
           "description": "Upper rounding unit - see EnumUNIARR",
+          "description_es": "Unidad de redondeo superior - ver EnumUNIARR",
+          "description_en": "Upper rounding unit - see EnumUNIARR",
           "$ref": "#/$defs/Enums/EnumUNIARR"
         },
         "UNICAL": {
           "description": "Hazardous materials quantity calculation unit - see EnumUNICAL",
+          "description_es": "Unidad de cálculo de cantidad de materiales peligrosos - ver EnumUNICAL",
+          "description_en": "Hazardous materials quantity calculation unit - see EnumUNICAL",
           "$ref": "#/$defs/Enums/EnumUNICAL"
         },
         "TEMMIN": {
           "description": "Minimum temperature",
+          "description_es": "Temperatura mínima",
+          "description_en": "Minimum temperature",
           "type": "string",
           "maxLength": 3
         },
         "TEMMAX": {
           "description": "Maximum temperature",
+          "description_es": "Temperatura máxima",
+          "description_en": "Maximum temperature",
           "type": "string",
           "maxLength": 3
         },
         "TOLPOI": {
           "description": "Package weight deviation tolerance",
+          "description_es": "Tolerancia de desviación de peso del paquete",
+          "description_en": "Package weight deviation tolerance",
           "type": "string",
           "maxLength": 3
         },
         "COECOL": {
           "description": "Package expansion coefficient",
+          "description_es": "Coeficiente de expansión del paquete",
+          "description_en": "Package expansion coefficient",
           "type": "string",
           "pattern": "^[0-9]{1}\\.[0-9]{3}$",
           "examples": ["1.000"]
         },
         "COESPC": {
           "description": "SPCB expansion coefficient",
+          "description_es": "Coeficiente de expansión del SPCB",
+          "description_en": "SPCB expansion coefficient",
           "type": "string",
           "pattern": "^[0-9]{1}\\.[0-9]{3}$",
           "examples": ["1.000"]
         },
         "COEUVC": {
           "description": "CSU expansion coefficient",
+          "description_es": "Coeficiente de expansión de la UVC",
+          "description_en": "CSU expansion coefficient",
           "type": "string",
           "pattern": "^[0-9]{1}\\.[0-9]{3}$",
           "examples": ["1.000"]
         },
         "INDTOL": {
           "description": "Weight tolerance indicator / false = No tolerance, true = Tolerance",
+          "description_es": "Indicador de tolerancia de peso / false = Sin tolerancia, true = Tolerancia",
+          "description_en": "Weight tolerance indicator / false = No tolerance, true = Tolerance",
           "type": "boolean",
           "default": false
         },
         "HAUSPC": {
           "description": "SPCB height",
+          "description_es": "Altura del SPCB",
+          "description_en": "SPCB height",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LNGSPC": {
           "description": "SPCB length expressed in cm",
+          "description_es": "Longitud del SPCB expresada en cm",
+          "description_en": "SPCB length expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "LRGSPC": {
           "description": "SPCB width expressed in cm",
+          "description_es": "Anchura del SPCB expresada en cm",
+          "description_en": "SPCB width expressed in cm",
           "type": "integer",
           "minimum": 0,
           "maximum": 999
         },
         "PDBSPC": {
           "description": "SPCB gross weight in kg",
+          "description_es": "Peso bruto del SPCB en kg",
+          "description_en": "SPCB gross weight in kg",
           "type": "number",
           "minimum": 0,
           "maximum": 9999.999,
@@ -671,50 +924,70 @@
         },
         "CODMDT": {
           "description": "Traceability method code",
+          "description_es": "Código de método de trazabilidad",
+          "description_en": "Traceability method code",
           "type": "string",
           "maxLength": 3
         },
         "ETIMTR": {
           "description": "Materials labeling code",
+          "description_es": "Código de etiquetado de materiales",
+          "description_en": "Materials labeling code",
           "type": "string",
           "maxLength": 3
         },
         "CODPHR": {
           "description": "Risk phrase code",
+          "description_es": "Código de frase de riesgo",
+          "description_en": "Risk phrase code",
           "type": "string",
           "maxLength": 3
         },
         "NBJFVI": {
           "description": "Product shelf life",
+          "description_es": "Vida útil del producto",
+          "description_en": "Product shelf life",
           "type": "string",
           "maxLength": 4
         },
         "CODGAM": {
           "description": "Operation range code",
+          "description_es": "Código de gama de operaciones",
+          "description_en": "Operation range code",
           "type": "string",
           "maxLength": 10
         },
         "CODQLP": {
           "description": "Product qualifier code",
+          "description_es": "Código calificador del producto",
+          "description_en": "Product qualifier code",
           "type": "string",
           "maxLength": 3
         },
         "EMBCLQ": {
           "description": "LQ packaging type - see EnumEMBCLQ",
+          "description_es": "Tipo de embalaje LQ - ver EnumEMBCLQ",
+          "description_en": "LQ packaging type - see EnumEMBCLQ",
           "$ref": "#/$defs/Enums/EnumEMBCLQ"
         },
         "CTRPRP": {
           "description": "Quantity control during preparation / false = Non-systematic, true = Systematic",
+          "description_es": "Control de cantidad durante la preparación / false = No sistemático, true = Sistemático",
+          "description_en": "Quantity control during preparation / false = Non-systematic, true = Systematic",
           "type": "boolean",
           "default": false
         },
         "CODRDS": {
           "description": "Storage restriction code",
+          "description_es": "Código de restricción de almacenamiento",
+          "description_en": "Storage restriction code",
           "type": "string",
           "maxLength": 3
         },
         "HAUCOL2": {
           "description": "Package height expressed in cm",
+          "description_es": "Altura del paquete expresada en cm",
+          "description_en": "Package height expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -722,6 +995,8 @@
         },
         "HAUCOU2": {
           "description": "Layer height expressed in cm",
+          "description_es": "Altura de la capa expresada en cm",
+          "description_en": "Layer height expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -729,6 +1004,8 @@
         },
         "HAUSPC2": {
           "description": "SPCB height in cm",
+          "description_es": "Altura del SPCB en cm",
+          "description_en": "SPCB height in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -736,6 +1013,8 @@
         },
         "HAUUVC2": {
           "description": "CSU height expressed in cm",
+          "description_es": "Altura de la UVC expresada en cm",
+          "description_en": "CSU height expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -743,6 +1022,8 @@
         },
         "LNGCOL2": {
           "description": "Package length expressed in cm",
+          "description_es": "Longitud del paquete expresada en cm",
+          "description_en": "Package length expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -750,6 +1031,8 @@
         },
         "LNGSPC2": {
           "description": "SPCB length expressed in cm",
+          "description_es": "Longitud del SPCB expresada en cm",
+          "description_en": "SPCB length expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -757,6 +1040,8 @@
         },
         "LNGUVC2": {
           "description": "CSU length expressed in cm",
+          "description_es": "Longitud de la UVC expresada en cm",
+          "description_en": "CSU length expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -764,6 +1049,8 @@
         },
         "LRGCOL2": {
           "description": "Package width expressed in cm",
+          "description_es": "Anchura del paquete expresada en cm",
+          "description_en": "Package width expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -771,6 +1058,8 @@
         },
         "LRGSPC2": {
           "description": "SPCB width expressed in cm",
+          "description_es": "Anchura del SPCB expresada en cm",
+          "description_en": "SPCB width expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -778,6 +1067,8 @@
         },
         "LRGUVC2": {
           "description": "CSU width expressed in cm",
+          "description_es": "Anchura de la UVC expresada en cm",
+          "description_en": "CSU width expressed in cm",
           "type": "number",
           "minimum": 0,
           "maximum": 999.99,
@@ -785,6 +1076,8 @@
         },
         "CODMNN": {
           "description": "Handling rule code",
+          "description_es": "Código de regla de manipulación",
+          "description_en": "Handling rule code",
           "type": "string",
           "maxLength": 3
         }
@@ -793,75 +1086,105 @@
     },
     "GEEX3003Wrapper": {
       "description": "Product Additional 03 declaration",
+      "description_es": "Declaración adicional del producto 03",
+      "description_en": "Product Additional 03 declaration",
       "type": "object",
       "properties": {
         "CODCVI": {
           "description": "Wine color code",
+          "description_es": "Código de color del vino",
+          "description_en": "Wine color code",
           "type": "string",
           "maxLength": 10
         },
         "NBJIMM": {
           "description": "Number of immobilization days",
+          "description_es": "Número de días de inmovilización",
+          "description_en": "Number of immobilization days",
           "type": "string",
           "maxLength": 3
         },
         "NBHIMM": {
           "description": "Number of immobilization hours",
+          "description_es": "Número de horas de inmovilización",
+          "description_en": "Number of immobilization hours",
           "type": "string",
           "maxLength": 3
         },
         "IMMLOT": {
           "description": "Immobilization reason applicable to a batch",
+          "description_es": "Motivo de inmovilización aplicable a un lote",
+          "description_en": "Immobilization reason applicable to a batch",
           "type": "string",
           "maxLength": 3
         },
         "EMBUVC": {
           "description": "CSU packaging code",
+          "description_es": "Código de embalaje de la UVC",
+          "description_en": "CSU packaging code",
           "type": "string",
           "maxLength": 3
         },
         "CODMTI": {
           "description": "Commercial code",
+          "description_es": "Código comercial",
+          "description_en": "Commercial code",
           "type": "string",
           "maxLength": 3
         },
         "CODOWN": {
           "description": "Owner code",
+          "description_es": "Código del propietario",
+          "description_en": "Owner code",
           "type": "string",
           "maxLength": 14
         },
         "DS3PRO": {
           "description": "Product designation line 3",
+          "description_es": "Designación del producto línea 3",
+          "description_en": "Product designation line 3",
           "type": "string",
           "maxLength": 35
         },
         "CODRSQ": {
           "description": "Risk typology code",
+          "description_es": "Código de tipología de riesgo",
+          "description_en": "Risk typology code",
           "type": "string",
           "maxLength": 3
         },
         "INDTEM": {
           "description": "Flash point: product ignition temperature.",
+          "description_es": "Punto de inflamación: temperatura de ignición del producto.",
+          "description_en": "Flash point: product ignition temperature.",
           "type": "string",
           "pattern": "^[0-9]{1,4}$"
         },
         "SENTEM": {
           "description": "Flash point direction",
+          "description_es": "Sentido del punto de inflamación",
+          "description_en": "Flash point direction",
           "type": "string",
           "maxLength": 1
         },
         "CODITC": {
           "description": "Interlayer packaging",
+          "description_es": "Embalaje entre capas",
+          "description_en": "Interlayer packaging",
           "type": "string",
           "maxLength": 3
         },
         "QTEITC": {
           "description": "Quantity for the pallet standard",
+          "description_es": "Cantidad para el estándar de palé",
+          "description_en": "Quantity for the pallet standard",
           "type": "string",
           "maxLength": 2
         },
         "CODFCQ": {
           "description": "Quality control sheet code",
+          "description_es": "Código de ficha de control de calidad",
+          "description_en": "Quality control sheet code",
           "type": "string",
           "maxLength": 3
         }
@@ -870,24 +1193,34 @@
     },
     "GEEX3004Wrapper": {
       "description": "Product Additional 04 declaration",
+      "description_es": "Declaración adicional del producto 04",
+      "description_en": "Product Additional 04 declaration",
       "type": "object",
       "properties": {
         "CODCMM": {
           "description": "Material account code (multi-material)",
+          "description_es": "Código de cuenta de material (multimaterial)",
+          "description_en": "Material account code (multi-material)",
           "type": "array",
           "maxItems": 5,
           "items": {
             "description": "Material account code (multi-material)",
+            "description_es": "Código de cuenta de material (multimaterial)",
+            "description_en": "Material account code (multi-material)",
             "type": "string",
             "maxLength": 5
           }
         },
         "QTECMM": {
           "description": "Quantity of material",
+          "description_es": "Cantidad de material",
+          "description_en": "Quantity of material",
           "type": "array",
           "maxItems": 5,
           "items": {
             "description": "Quantity of material",
+            "description_es": "Cantidad de material",
+            "description_en": "Quantity of material",
             "type": "string",
             "pattern": "^[0-9]{1,10}\\.[0-9]{3}$",
             "examples": ["1000.000"]
@@ -895,31 +1228,43 @@
         },
         "NUMACS": {
           "description": "Excise duty number (Alcohol)",
+          "description_es": "Número de impuestos especiales (Alcohol)",
+          "description_en": "Excise duty number (Alcohol)",
           "type": "string",
           "maxLength": 4
         },
         "NUMACS1": {
           "description": "Excise duty product code",
+          "description_es": "Código de producto de impuestos especiales",
+          "description_en": "Excise duty product code",
           "type": "string",
           "maxLength": 4
         },
         "NUMACS2": {
           "description": "Excise duty product code",
+          "description_es": "Código de producto de impuestos especiales",
+          "description_en": "Excise duty product code",
           "type": "string",
           "maxLength": 4
         },
         "NUMACS3": {
           "description": "Excise duty product code",
+          "description_es": "Código de producto de impuestos especiales",
+          "description_en": "Excise duty product code",
           "type": "string",
           "maxLength": 4
         },
         "NUMACS4": {
           "description": "Excise duty product code",
+          "description_es": "Código de producto de impuestos especiales",
+          "description_en": "Excise duty product code",
           "type": "string",
           "maxLength": 4
         },
         "NUMACS5": {
           "description": "Excise duty product code",
+          "description_es": "Código de producto de impuestos especiales",
+          "description_en": "Excise duty product code",
           "type": "string",
           "maxLength": 4
         }
@@ -928,44 +1273,62 @@
     },
     "GEEX3010Wrapper": {
       "description": "Product components declaration",
+      "description_es": "Declaración de componentes del producto",
+      "description_en": "Product components declaration",
       "type": "object",
       "properties": {
         "CODPRN": {
           "description": "Product code from a bill of materials (Same as PRODN)",
+          "description_es": "Código de producto de una lista de materiales (igual que PRODN)",
+          "description_en": "Product code from a bill of materials (Same as PRODN)",
           "type": "string",
           "maxLength": 17
         },
         "CODPRO": {
           "description": "Internal product code",
+          "description_es": "Código interno del producto",
+          "description_en": "Internal product code",
           "type": "string",
           "maxLength": 17
         },
         "NBRCPS": {
           "description": "Number of components required",
+          "description_es": "Número de componentes necesarios",
+          "description_en": "Number of components required",
           "type": "string",
           "maxLength": 4
         },
         "ACTCPS": {
           "description": "Component activity code",
+          "description_es": "Código de actividad del componente",
+          "description_en": "Component activity code",
           "type": "string",
           "maxLength": 3
         },
         "ORDCPS": {
           "description": "Component order number",
+          "description_es": "Número de orden del componente",
+          "description_en": "Component order number",
           "type": "string",
           "maxLength": 4
         },
         "TYPCPS": {
           "description": "Component indicator - see EnumTYPCPS",
+          "description_es": "Indicador de componente - ver EnumTYPCPS",
+          "description_en": "Component indicator - see EnumTYPCPS",
           "$ref": "#/$defs/Enums/EnumTYPCPS"
         },
         "DVSCPS": {
           "description": "Divisor of the number of components required",
+          "description_es": "Divisor del número de componentes necesarios",
+          "description_en": "Divisor of the number of components required",
           "type": "string",
           "maxLength": 4
         },
         "UNIPRN": {
           "description": "Unit produced with the component",
+          "description_es": "Unidad producida con el componente",
+          "description_en": "Unit produced with the component",
           "type": "string",
           "maxLength": 3
         }
@@ -974,29 +1337,41 @@
     },
     "GEEX3020Wrapper": {
       "description": "Product EAN declaration",
+      "description_es": "Declaración EAN del producto",
+      "description_en": "Product EAN declaration",
       "type": "object",
       "properties": {
         "EDIPRO": {
           "description": "Product code for EDI",
+          "description_es": "Código de producto para EDI",
+          "description_en": "Product code for EDI",
           "type": "string",
           "minLength": 1,
           "maxLength": 17
         },
         "EANDS1": {
           "description": "Designation linked to the EAN code",
+          "description_es": "Designación vinculada al código EAN",
+          "description_en": "Designation linked to the EAN code",
           "type": "string",
           "maxLength": 30
         },
         "EDIPRM": {
           "description": "Main EDI code identification / false = Secondary code, true = Primary code",
-          "type": "boolean"          
+          "description_es": "Identificación del código EDI principal / false = Código secundario, true = Código principal",
+          "description_en": "Main EDI code identification / false = Secondary code, true = Primary code",
+          "type": "boolean"
         },
         "EDIQLF": {
           "description": "EDI code qualifier - see EnumEDIQLF",
+          "description_es": "Calificador del código EDI - ver EnumEDIQLF",
+          "description_en": "EDI code qualifier - see EnumEDIQLF",
           "$ref": "#/$defs/Enums/EnumEDIQLF"
         },
         "EANVTE": {
           "description": "Sale EAN / false = Not for sale, true = For sale",
+          "description_es": "EAN de venta / false = No para venta, true = Para venta",
+          "description_en": "Sale EAN / false = Not for sale, true = For sale",
           "type": "boolean",
           "default": false
         }
@@ -1006,31 +1381,43 @@
     },
     "GEEX3030Wrapper": {
       "description": "Product multi-language declaration",
+      "description_es": "Declaración multilingüe del producto",
+      "description_en": "Product multi-language declaration",
       "type": "object",
       "properties": {
         "CODLGE": {
           "description": "Language code",
+          "description_es": "Código de idioma",
+          "description_en": "Language code",
           "type": "string",
           "minLength": 1,
           "maxLength": 3
         },
         "DS1PRO": {
           "description": "Product designation line 1",
+          "description_es": "Designación del producto línea 1",
+          "description_en": "Product designation line 1",
           "type": "string",
           "minLength": 1,
           "maxLength": 30
         },
         "DS2PRO": {
           "description": "Product designation line 2",
+          "description_es": "Designación del producto línea 2",
+          "description_en": "Product designation line 2",
           "type": "string",
           "maxLength": 30
         },
         "DESPRO": {
           "description": "Product designation lines",
+          "description_es": "Líneas de designación del producto",
+          "description_en": "Product designation lines",
           "type": "array",
           "maxItems": 2,
           "items": {
             "description": "Product designation lines",
+            "description_es": "Líneas de designación del producto",
+            "description_en": "Product designation lines",
             "type": "string",
             "maxLength": 35
           }
@@ -1041,31 +1428,43 @@
     },
     "GEEX3040Wrapper": {
       "description": "Product ICPE declaration",
+      "description_es": "Declaración ICPE del producto",
+      "description_en": "Product ICPE declaration",
       "type": "object",
       "properties": {
         "CODRIC": {
           "description": "ICPE heading code",
+          "description_es": "Código de epígrafe ICPE",
+          "description_en": "ICPE heading code",
           "type": "string",
           "maxLength": 5
         },
         "QTERIC": {
           "description": "Authorized quantity for an ICPE heading",
+          "description_es": "Cantidad autorizada para un epígrafe ICPE",
+          "description_en": "Authorized quantity for an ICPE heading",
           "type": "string",
           "pattern": "^[0-9]{1,10}\\.[0-9]{2}$",
           "examples": ["1000.00"]
         },
         "CODSRB": {
           "description": "Sub-heading code",
+          "description_es": "Código de subepígrafe",
+          "description_en": "Sub-heading code",
           "type": "string",
           "maxLength": 2
         },
         "CODRIC2": {
           "description": "ICPE heading code",
+          "description_es": "Código de epígrafe ICPE",
+          "description_en": "ICPE heading code",
           "type": "string",
           "maxLength": 12
         },
         "TYPRIC": {
           "description": "Applied regulation - see EnumTYPRIC",
+          "description_es": "Reglamentación aplicada - ver EnumTYPRIC",
+          "description_en": "Applied regulation - see EnumTYPRIC",
           "$ref": "#/$defs/Enums/EnumTYPRIC"
         }
       },
@@ -1073,20 +1472,28 @@
     },
     "GEEX3050Wrapper": {
       "description": "Product rubriques declaration",
+      "description_es": "Declaración de rúbricas del producto",
+      "description_en": "Product rubriques declaration",
       "type": "object",
       "properties": {
         "TYPRUB": {
           "description": "Heading type - see EnumTYPRUB",
+          "description_es": "Tipo de rúbrica - ver EnumTYPRUB",
+          "description_en": "Heading type - see EnumTYPRUB",
           "$ref": "#/$defs/Enums/EnumTYPRUB"
         },
         "CODRUB": {
           "description": "Section code",
+          "description_es": "Código de sección",
+          "description_en": "Section code",
           "type": "string",
           "minLength": 1,
-          "maxLength":4
+          "maxLength": 4
         },
         "VALRUB": {
           "description": "Item value",
+          "description_es": "Valor del elemento",
+          "description_en": "Item value",
           "type": "string",
           "minLength": 1,
           "maxLength": 35
@@ -1097,35 +1504,49 @@
     },
     "GEEX3060Wrapper": {
       "description": "Product Satellite declaration",
+      "description_es": "Declaración satélite del producto",
+      "description_en": "Product Satellite declaration",
       "type": "object",
       "properties": {
         "IDEPSA1": {
           "description": "Product satellite data identifier",
+          "description_es": "Identificador de datos satélite del producto",
+          "description_en": "Product satellite data identifier",
           "type": "string",
           "maxLength": 3
         },
         "CODPSA1": {
           "description": "Product satellite data code",
+          "description_es": "Código de datos satélite del producto",
+          "description_en": "Product satellite data code",
           "type": "string",
           "maxLength": 10
         },
         "LIBPSA1": {
           "description": "Product satellite data label",
+          "description_es": "Etiqueta de datos satélite del producto",
+          "description_en": "Product satellite data label",
           "type": "string",
           "maxLength": 70
         },
         "IDEPSA2": {
           "description": "Product satellite data identifier",
+          "description_es": "Identificador de datos satélite del producto",
+          "description_en": "Product satellite data identifier",
           "type": "string",
           "maxLength": 3
         },
         "CODPSA2": {
           "description": "Product satellite data code",
+          "description_es": "Código de datos satélite del producto",
+          "description_en": "Product satellite data code",
           "type": "string",
           "maxLength": 10
         },
         "LIBPSA2": {
           "description": "Product satellite data label",
+          "description_es": "Etiqueta de datos satélite del producto",
+          "description_en": "Product satellite data label",
           "type": "string",
           "maxLength": 70
         }
@@ -1134,21 +1555,29 @@
     },
     "GEEX3080Wrapper": {
       "description": "Product replacement declaration",
+      "description_es": "Declaración de sustitución del producto",
+      "description_en": "Product replacement declaration",
       "type": "object",
       "properties": {
         "RPLPRO": {
           "description": "Internal replacement product code",
+          "description_es": "Código interno del producto de sustitución",
+          "description_en": "Internal replacement product code",
           "type": "string",
           "minLength": 1,
           "maxLength": 17
         },
         "RPLVAL": {
           "description": "Logistics variant (Gencod) of replaced product",
+          "description_es": "Variante logística (Gencod) del producto sustituido",
+          "description_en": "Logistics variant (Gencod) of replaced product",
           "type": "string",
           "pattern": "^[0-9]{1,2}$"
         },
         "FACCON": {
           "description": "Conversion factor",
+          "description_es": "Factor de conversión",
+          "description_en": "Conversion factor",
           "type": "string",
           "pattern": "^[0-9]{1,7}\\.[0-9]{2}$",
           "examples": ["1.00"]
@@ -1160,74 +1589,100 @@
     "Enums": {
       "EnumTRTEXC": {
         "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "description_es": "Código de procesamiento del movimiento / 1 = Crear, 2 = Modificar o crear, 9 = Cancelación",
+        "description_en": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
         "type": "string",
         "enum": ["1", "2", "9"],
         "default": "2"
       },
       "EnumMESPRO": {
         "description": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
+        "description_es": "Método de medición del producto / 1 = Peso fijo, 2 = Peso variable, 3 = Medición regulada",
+        "description_en": "Product measurement method / 1 = Fixed Weight, 2 = Variable Weight, 3 = Regulated Measurement",
         "type": "string",
         "enum": ["1", "2", "3"],
         "default": "1"
       },
       "EnumMODREC": {
         "description": "Receiving mode / 1 = Full Pallet, 2 = Unit",
+        "description_es": "Modo de recepción / 1 = Palé completo, 2 = Unidad",
+        "description_en": "Receiving mode / 1 = Full Pallet, 2 = Unit",
         "type": "string",
         "enum": ["1", "2"],
         "default": "1"
       },
       "EnumHOMGRB": {
         "description": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
+        "description_es": "Tipo de homogeneidad de apilado (estantería o a granel) / 0 = Sin uniformidad de fecha, 1 = Variable por día, 2 = Variable por semana, 3 = Variable por década, 4 = Variable por mes, 5 = Lote único",
+        "description_en": "Type of sheaf homogeneity (rack or bulk) / 0 = No date uniformity, 1 = Variable per day, 2 = Variable per week, 3 = Variable per decade, 4 = Variable per month, 5 = Single batch",
         "type": "string",
         "enum": ["0", "1", "2", "3", "4", "5"],
         "default": "0"
       },
       "EnumTOPPRN": {
         "description": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
+        "description_es": "Indicador de producto compuesto o unitario / 0 = Producto unitario, 1 = Lista de materiales",
+        "description_en": "Indicator for composite or unit product / 0 = Unit Product, 1 = Bill of Materials",
         "type": "string",
         "enum": ["0", "1"],
         "default": "0"
       },
       "EnumMETRPL": {
         "description": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
+        "description_es": "Método de sustitución del producto / 0 = Sin sustituto, 1 = Sustituido por..., 2 = Reemplazado por...",
+        "description_en": "Product replacement method / 0 = No substitute, 1 = Substituted by..., 2 = Replaced by...",
         "type": "string",
         "enum": ["0", "1", "2"],
         "default": "0"
       },
       "EnumUNIARR": {
         "description": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
+        "description_es": "Unidad de redondeo superior / 1 = Palé, 2 = Capa, 3 = PCB, 4 = SPCB, 5 = UVC",
+        "description_en": "Upper rounding unit / 1 = Pallet, 2 = Layer, 3 = PCB, 4 = SPCB, 5 = CSU",
         "type": "string",
         "enum": ["1", "2", "3", "4", "5"]
       },
       "EnumUNICAL": {
         "description": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
+        "description_es": "Unidad de cálculo de cantidad de materiales peligrosos / 1 = Peso neto, 2 = Peso bruto, 3 = Volumen",
+        "description_en": "Hazardous materials quantity calculation unit / 1 = Net weight, 2 = Gross weight, 3 = Volume",
         "type": "string",
         "enum": ["1", "2", "3"]
       },
       "EnumEMBCLQ": {
         "description": "LQ packaging type / 1 = Box, 2 = Pallet",
+        "description_es": "Tipo de embalaje LQ / 1 = Caja, 2 = Palé",
+        "description_en": "LQ packaging type / 1 = Box, 2 = Pallet",
         "type": "string",
         "enum": ["1", "2"]
       },
       "EnumTYPCPS": {
         "description": "Component indicator / 1 = Main, 2 = Secondary",
+        "description_es": "Indicador de componente / 1 = Principal, 2 = Secundario",
+        "description_en": "Component indicator / 1 = Main, 2 = Secondary",
         "type": "string",
         "enum": ["1", "2"]
       },
       "EnumEDIQLF": {
         "description": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
+        "description_es": "Calificador del código EDI / 0 = UVC, 1 = Lote multiproducto, 2 = SPCB, 3 = PCB, 4 = Caja, 5 = Palé",
+        "description_en": "EDI code qualifier / 0 = CSU, 1 = Multi-product batch, 2 = SPCB, 3 = PCB, 4 = Box, 5 = Pallet",
         "type": "string",
         "enum": ["0", "1", "2", "3", "4", "5"]
       },
       "EnumTYPRIC": {
         "description": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
+        "description_es": "Reglamentación aplicada / 0 = Solo ICPE, 1 = Solo SEVESO, 2 = ICPE y SEVESO, 9 = epígrafe",
+        "description_en": "Applied regulation / 0 = ICPE only, 1 = SEVESO only, 2 = ICPE and SEVESO, 9 = heading",
         "type": "string",
         "enum": ["0", "1", "2", "9"]
       },
       "EnumTYPRUB": {
         "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "description_es": "Tipo de rúbrica / 1 = Estándar EDIFACT, 2 = Codificación interna",
+        "description_en": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
         "type": "string",
-        "enum": ["1","2"],
+        "enum": ["1", "2"],
         "default": "2"
       }
     }

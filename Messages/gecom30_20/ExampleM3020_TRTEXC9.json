@@ -1,0 +1,15 @@
+{
+  "eanMasterData": [
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "TRTEXC": "9",
+      "CODACT": "WMS",
+      "CODPRO": "PROD000010",
+      "VALPRO": "01",
+      "DS1PRO": "Aceite de oliva virgen extra 1L",
+      "EDIPRO": "08412345000019",
+      "EDIPRM": true,
+      "EDIQLF": "1"
+    }
+  ]
+}

@@ -13,9 +13,9 @@
     "version": "v1.2",
     "releaseDate": "2026-07-03"
   },
-  "description": "JSON for stock snapshot (stock photo) feedback from the WMS",
-  "description_es": "JSON para el retorno de la instantánea de stock (foto de stock) del WMS",
-  "description_en": "JSON for stock snapshot (stock photo) feedback from the WMS",
+  "description": "JSON for stock snapshot feedback from the WMS",
+  "description_es": "JSON para el retorno de la foto de stock de WMS",
+  "description_en": "JSON for stock snapshot feedback from the WMS",
   "type": "object",
   "properties": {
     "stockPhoto": {

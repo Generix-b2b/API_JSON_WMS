@@ -11,7 +11,7 @@ Permite declarar los valores de configuración (familias de parámetros y sus cl
 - **Capacidad:** Hasta 499 registros por mensaje, sin bloques adicionales ni arrays anidados.
 
 > **Nota importante:** Las familias de parámetros (`FAMPAR`) deben estar acordadas con el equipo de implantación de Generix. Una clave no declarada en las tablas generará errores de validación en los mensajes que la referencien.
-El campo RCTEXC es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la libreria de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+> El campo RCTEXC es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la libreria de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

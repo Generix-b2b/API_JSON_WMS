@@ -615,12 +615,45 @@
   .resp-block-top .file-card.expanded { grid-column:1 / -1; }
   @media (max-width:860px){ .resp-block-top { grid-template-columns:1fr; } }
 
-  /* ── SELECTOR DE IDIOMA ── */
-  .lang-select { background:var(--generix-dark-soft); color:var(--white);
+  /* ── SELECTOR DE IDIOMA (desplegable personalizado con banderas) ── */
+  .lang-switch { position:relative; display:inline-block; font-family:inherit; }
+  .lang-current {
+    display:flex; align-items:center; gap:8px;
+    background:var(--generix-dark-soft); color:var(--white);
     border:1px solid rgba(255,255,255,.18); border-radius:6px; padding:7px 12px;
-    font-size:.85rem; font-weight:600; font-family:inherit; cursor:pointer; }
-  .lang-select:hover { border-color:var(--generix-orange); }
-  .lang-select:focus { outline:none; border-color:var(--generix-orange); }
+    font-size:.85rem; font-weight:600; font-family:inherit; cursor:pointer;
+    transition:border-color .2s;
+  }
+  .lang-current:hover { border-color:var(--generix-orange); }
+  .lang-current:focus-visible { outline:none; border-color:var(--generix-orange); }
+  .lang-current::after {
+    content:""; width:0; height:0; margin-left:2px;
+    border-left:4px solid transparent; border-right:4px solid transparent;
+    border-top:5px solid rgba(255,255,255,.7); transition:transform .2s;
+  }
+  .lang-switch.open .lang-current::after { transform:rotate(180deg); }
+  .lang-flag {
+    width:20px; height:14px; border-radius:2px; flex-shrink:0; overflow:hidden;
+    display:block; box-shadow:0 0 0 1px rgba(255,255,255,.15);
+  }
+  .lang-flag svg { display:block; width:100%; height:100%; }
+  .lang-menu {
+    position:absolute; top:calc(100% + 6px); right:0; z-index:120;
+    min-width:100%; margin:0; padding:5px; list-style:none;
+    background:var(--generix-dark); border:1px solid rgba(255,255,255,.14);
+    border-radius:8px; box-shadow:0 10px 28px rgba(0,35,51,.35);
+    opacity:0; visibility:hidden; transform:translateY(-6px);
+    transition:opacity .18s, transform .18s, visibility .18s;
+  }
+  .lang-switch.open .lang-menu { opacity:1; visibility:visible; transform:translateY(0); }
+  .lang-option {
+    display:flex; align-items:center; gap:9px; white-space:nowrap;
+    padding:8px 12px; border-radius:5px; cursor:pointer;
+    color:rgba(255,255,255,.85); font-size:.85rem; font-weight:600;
+    transition:background .15s, color .15s;
+  }
+  .lang-option:hover { background:var(--generix-dark-soft); color:#fff; }
+  .lang-option.active { background:var(--generix-orange); color:var(--generix-dark); }
 </style>
 </head>
 <body>
@@ -631,7 +664,10 @@
     <a class="logo" onclick="showIndex()" aria-label="Generix">
       <img src="Assets/generix.svg" alt="Generix">
     </a>
-    <select id="langSelect" class="lang-select" aria-label="Idioma / Language"></select>
+    <div class="lang-switch" id="langSwitch" aria-label="Idioma / Language">
+      <button type="button" class="lang-current" id="langCurrent" aria-haspopup="listbox" aria-expanded="false"></button>
+      <ul class="lang-menu" id="langMenu" role="listbox"></ul>
+    </div>
   </div>
 </header>
 
@@ -894,6 +930,10 @@
 const I18N_LANGS   = ['es','en'];      // anade aqui nuevos idiomas
 const I18N_DEFAULT = 'es';
 const I18N_LABELS  = { es:'Español', en:'English' };
+const I18N_FLAGS   = {                 // bandera por idioma (SVG en linea) — anade aqui la de nuevos idiomas
+  es: '<svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect width="3" height="2" fill="#c60b1e"/><rect y=".5" width="3" height="1" fill="#ffc400"/></svg>',
+  en: '<svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><clipPath id="ukc"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ukt"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#ukc)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukt)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>'
+};
 const I18N = {
  es: {
   'hero.tagline':'Portal de Documentación para Desarrolladores',
@@ -1020,11 +1060,32 @@ function applyStaticI18n(){
   });
   const dz = document.getElementById('dropzone');
   if (dz && dz.childNodes[0]) dz.childNodes[0].nodeValue = ' ' + t('val.dropzone.disabled') + ' ';
-  const sel = document.getElementById('langSelect');
-  if (sel) {
-    sel.innerHTML = I18N_LANGS.map(l => `<option value='${l}'>${l.toUpperCase()} · ${I18N_LABELS[l]||l}</option>`).join('');
-    sel.value = LANG;
-    sel.onchange = () => setLang(sel.value);
+  const langSwitch = document.getElementById('langSwitch');
+  if (langSwitch) {
+    const current = document.getElementById('langCurrent');
+    const menu    = document.getElementById('langMenu');
+    const flag    = l => `<span class="lang-flag">${I18N_FLAGS[l] || ''}</span>`;
+    const label   = l => `${l.toUpperCase()} · ${I18N_LABELS[l] || l}`;
+
+    current.innerHTML = flag(LANG) + `<span>${label(LANG)}</span>`;
+    menu.innerHTML = I18N_LANGS.map(l =>
+      `<li class="lang-option${l === LANG ? ' active' : ''}" role="option" data-lang="${l}" aria-selected="${l === LANG}">${flag(l)}<span>${label(l)}</span></li>`
+    ).join('');
+
+    const close = () => { langSwitch.classList.remove('open'); current.setAttribute('aria-expanded', 'false'); };
+    current.onclick = e => {
+      e.stopPropagation();
+      const open = langSwitch.classList.toggle('open');
+      current.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    menu.querySelectorAll('.lang-option').forEach(op => {
+      op.onclick = e => { e.stopPropagation(); setLang(op.dataset.lang); };
+    });
+    current.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); current.click(); }
+      else if (e.key === 'Escape') close();
+    });
+    document.addEventListener('click', close);
   }
 }
 window.t = t; window.LANG = LANG; window.I18N = I18N; window.setLang = setLang;

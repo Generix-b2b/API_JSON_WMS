@@ -15,7 +15,7 @@ Notifica el resultado real de una orden de entrega una vez preparada y expedida:
 - **Totales (GEEX5199):** Resumen con número de líneas, soportes preparados, bultos, productos y pesos bruto y neto de la orden.
 
 > **Nota importante:** Este mensaje es generado por el WMS; el código de proceso `TRTEXC` viene siempre vacío. El ERP debe usar la referencia `REFLIV` para conciliar con el pedido GECOM50 correspondiente.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

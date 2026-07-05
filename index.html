@@ -642,7 +642,7 @@
     width:20px; height:14px; border-radius:2px; flex-shrink:0; overflow:hidden;
     display:block; box-shadow:0 0 0 1px rgba(255,255,255,.15);
   }
-  .lang-flag svg { display:block; width:100%; height:100%; }
+  .lang-flag svg, .lang-flag img { display:block; width:100%; height:100%; }
   .lang-menu {
     position:absolute; top:calc(100% + 6px); right:0; z-index:120;
     min-width:100%; margin:0; padding:5px; list-style:none;
@@ -937,8 +937,10 @@ const I18N_LANGS   = ['es','en'];      // anade aqui nuevos idiomas
 const I18N_DEFAULT = 'es';
 const I18N_LABELS  = { es:'Español', en:'English' };
 const I18N_FLAGS   = {                 // bandera por idioma (SVG en linea) — anade aqui la de nuevos idiomas
-  es: '<svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect width="3" height="2" fill="#c60b1e"/><rect y=".5" width="3" height="1" fill="#ffc400"/></svg>',
-  en: '<svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><clipPath id="ukc"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ukt"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#ukc)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukt)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>'
+  es: 'Assets/flag-es.svg',
+  en: 'Assets/flag-en.svg'
+  // es: '<svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect width="3" height="2" fill="#c60b1e"/><rect y=".5" width="3" height="1" fill="#ffc400"/></svg>',
+  // en: '<svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><clipPath id="ukc"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ukt"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#ukc)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukt)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>'
 };
 const I18N = {
  es: {
@@ -1070,7 +1072,7 @@ function applyStaticI18n(){
   if (langSwitch) {
     const current = document.getElementById('langCurrent');
     const menu    = document.getElementById('langMenu');
-    const flag    = l => `<span class="lang-flag">${I18N_FLAGS[l] || ''}</span>`;
+    const flag    = l => `<span class="lang-flag">${I18N_FLAGS[l] ? `<img src="${I18N_FLAGS[l]}" alt="">` : ''}</span>`;
     const label   = l => `${l.toUpperCase()} · ${I18N_LABELS[l] || l}`;
 
     current.innerHTML = flag(LANG) + `<span>${label(LANG)}</span>`;

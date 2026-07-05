@@ -1,0 +1,111 @@
+{
+  "confirmationDeliveryOrders": [
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "NUMLIV": "26017630",
+      "SNULIV": "000",
+      "CODACT": "001",
+      "CODCLI": "1",
+      "REFLIV": "20260703/11544593",
+      "CODTLI": "STD",
+      "ORICDE": "1",
+      "DATLIV": "20260703",
+      "HEULIV": "0000",
+      "CLILIV": "1",
+      "TYPLIV": "1",
+      "NUMVAG": "26184003",
+      "DATPRP": "20260703",
+      "CODRGT": "1",
+      "NUMTOU": "00075658",
+      "DATEXP": "20260703",
+      "HEUEXP": "115723",
+      "CODLDR": "093",
+      "LIVSOL": true,
+      "GEEX5101": {
+        "ECRUTI": "QPADEV0001",
+        "EDICLI": "1"
+      },
+      "GEEX5110": {
+        "NOMCLI": "LOYOLA",
+        "AD1CLI": "LOYOLA 1602",
+        "CPOCLI": "01414",
+        "VILCLI": "CHACARITA",
+        "PAYCLI": "AR",
+        "CPICLI": "01414",
+        "CATCLI": "6",
+        "CLICPI": "01414"
+      },
+      "GEEX5120": [
+        {
+          "NLILIV": "00001",
+          "CODPRO": "99999_NTX",
+          "VALPRO": "00",
+          "EDIPRO": "6780005596046",
+          "UVCCDE": 2,
+          "UNICDE": "BUL",
+          "LIVSOL": true,
+          "UVCLIV": 2,
+          "MESPRO": "1",
+          "TYPSTK": "1",
+          "TYPOPE": "0",
+          "NUMOPE": "000000",
+          "SPCPRO": 0,
+          "PCBPRO": 1,
+          "UVCSRV": 2,
+          "UVCINI": 2,
+          "NUMEBL": "26017630",
+          "SNUEBL": "000",
+          "GEEX5130": [
+            {
+              "CODLOT": "",
+              "CODPAL": "001100000000002383",
+              "DATFVI": "20260802",
+              "NUMSUP": "26000237",
+              "SNUSUP": "000",
+              "UVCLIV": 2,
+              "PDNLIV": 0,
+              "CODPRP": "DD",
+              "PRPPIC": "3",
+              "SPCPRO": 0,
+              "PCBPRO": 1,
+              "COLCOU": 10,
+              "COUPAL": 10,
+              "GERPAL": "00",
+              "CODEMB": "080",
+              "UVCSRV": 2,
+              "SSCHET": "001200000060002377",
+              "HEUSUP": [
+                "1157",
+                "1157"
+              ],
+              "GEEX5131": {
+                "SEQSUP": "0001",
+                "PROEMB": "080",
+                "PDBLIV": 2.0,
+                "VOLCOL": 0.001,
+                "TYPSUP": "1",
+                "CIRPIC": "000",
+                "DATSUP1": "20260703",
+                "DATSUP2": "20260703",
+                "LIBSUP": "Soporte heterogéneo",
+                "DATFAB": "20260703",
+                "INDDNG": "0",
+                "PDNUVC": 1.0,
+                "PDBUVC": 1.0
+              }
+            }
+          ]
+        }
+      ],
+      "GEEX5199": {
+        "CUMLIG": "0001",
+        "CUMSUP": "00001",
+        "COLTOT": "2.00",
+        "TOTPRO": "00001",
+        "PDBLIV": 2.0,
+        "PDNLIV": 0,
+        "NUMCPT": "001"
+      }
+    }
+  ]
+}

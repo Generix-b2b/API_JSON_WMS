@@ -13,7 +13,7 @@ It allows creating, modifying or cancelling customer records in a synchronized w
 - **Customer headings (GEEX2050):** Array of up to 99 classification labels with section code (`CODRUB`) and value (`VALRUB`), in internal encoding or EDIFACT standard.
 
 > **Important note:** When `TRTEXC = 2`, the message replaces the customer's entire record, including the `GEEX2001` and `GEEX2050` blocks.
->!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
+>!green The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

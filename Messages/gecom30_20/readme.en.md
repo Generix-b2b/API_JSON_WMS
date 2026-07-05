@@ -14,7 +14,7 @@ It complements the **GECOM30** product master by allowing the multiple barcodes 
 - **Sales EAN (EANVTE):** Marks whether the code is suitable for sale (`true`) or not (`false`).
 
 > **Important note:** This message decouples EAN code management from the main product master. The product referenced in `CODPRO` must already exist, declared via **GECOM30**. The required fields are `TRTEXC`, `CODACT`, `CODPRO`, `EDIPRO`, `EDIPRM` and `EDIQLF`.
->!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
+>!green The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

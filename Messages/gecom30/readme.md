@@ -15,7 +15,7 @@ Permite crear, modificar o cancelar fichas de producto de forma sincronizada ent
 - **Bloques de clasificación y extensión:** Designaciones multiidioma (`GEEX3030`), declaraciones ICPE (`GEEX3040`), rubriques (`GEEX3050`), datos satélite (`GEEX3060`) y productos sustitutos (`GEEX3080`), todos con capacidad de hasta 99 entradas.
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del producto, incluyendo todos los bloques adicionales y arrays declarados.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

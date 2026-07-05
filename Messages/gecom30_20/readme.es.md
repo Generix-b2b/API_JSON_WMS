@@ -14,7 +14,7 @@ Complementa el maestro de productos **GECOM30** permitiendo declarar de forma in
 - **EAN de venta (EANVTE):** Marca si el código es apto para venta (`true`) o no (`false`).
 
 > **Nota importante:** Este mensaje desacopla la gestión de códigos EAN del maestro de producto principal. El producto referenciado en `CODPRO` debe existir previamente, declarado mediante **GECOM30**. Los campos obligatorios son `TRTEXC`, `CODACT`, `CODPRO`, `EDIPRO`, `EDIPRM` y `EDIQLF`.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

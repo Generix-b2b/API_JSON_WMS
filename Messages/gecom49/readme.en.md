@@ -14,7 +14,7 @@ It allows notifying the warehouse of the exact content of a shipment before its 
 - **Headings:** At header level (`GEEX4905`) and logistics-object level (`GEEX4925`), up to 99 traceability attributes per level.
 
 > **Important note:** Unlike **GECOM40**, the GECOM49 model organizes goods by logistics objects (pallets, packages), not by product lines. The product and quantity are declared within the `GEEX4920` sub-block of each object.
->!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
+>!green The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

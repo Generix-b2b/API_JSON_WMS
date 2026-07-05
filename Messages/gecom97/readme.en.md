@@ -14,7 +14,7 @@ It reports in real time the status changes that occur in the warehouse during an
 - **Additional delivery information:** The status of a delivery order may include wave number (`NUMVAG`), loading dock (`KAILIV`), total shortage indicator (`RUPTOT`) and wave cancellation (`ANLVAG`).
 
 > **Important note:** Each message, through the main node (`status`), contains exclusively reception records (`statusReceptionOrders`) **or** delivery records (`statusDeliveryOrders`), never both at once. The ERP must handle both arrays independently.
->!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
+>!green The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

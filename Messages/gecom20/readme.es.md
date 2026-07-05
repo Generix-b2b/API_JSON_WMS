@@ -13,7 +13,7 @@ Permite crear, modificar o cancelar registros de cliente de forma sincronizada e
 - **Rubriques del cliente (GEEX2050):** Array de hasta 99 etiquetas de clasificación con código de sección (`CODRUB`) y valor (`VALRUB`), en codificación interna o estándar EDIFACT.
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del cliente, incluyendo los bloques `GEEX2001` y `GEEX2050`.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

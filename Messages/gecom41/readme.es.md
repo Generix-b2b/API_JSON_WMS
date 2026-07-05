@@ -14,7 +14,7 @@ Mensaje de **notificación de recepción de órdenes** enviado por el WMS Generi
 - **Totales (GEEX4199):** Resumen con número de líneas, soportes, bultos y productos de la orden.
 
 > **Nota importante:** Este mensaje es generado por el WMS; el código de proceso `TRTEXC` solo admite vacío o `2` (modificación). El ERP debe usar la referencia `REFREC` para conciliar la confirmación con la orden **GECOM40** correspondiente.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

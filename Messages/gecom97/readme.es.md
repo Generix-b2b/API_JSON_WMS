@@ -14,7 +14,7 @@ Informa en tiempo real de los cambios de estado que se producen en el almacén d
 - **Información adicional de expedición:** El estado de una orden de expedición puede incluir número de ola (`NUMVAG`), muelle de carga (`KAILIV`), indicador de ruptura total (`RUPTOT`) y cancelación de ola (`ANLVAG`).
 
 > **Nota importante:** Cada mensaje a través del nodo principal (`status`) contiene exclusivamente registros de recepción (`statusReceptionOrders`) **o** de expedición (`statusDeliveryOrders`), nunca ambos a la vez. El ERP debe gestionar ambos arrays de forma independiente.
->!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
+>!green El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

@@ -15,6 +15,7 @@ It provides a complete image of the warehouse inventory at a given moment, aggre
 - **By SSCC (GEEX9070):** Detail at pallet/support level (EAN128) with status, immobilization, location and movement.
 
 > **Important note:** Each message contains exclusively one of the six breakdown types (`oneOf` rule), never several at once. The process code `TRTEXC` comes empty except in the SSCC breakdown, which also accepts simulation (`8`). Each array supports up to 9,999 records.
+>!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

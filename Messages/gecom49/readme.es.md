@@ -14,6 +14,7 @@ Permite notificar al almacén el contenido exacto de un envío antes de su llega
 - **Rubriques:** A nivel de cabecera (`GEEX4905`) y de objeto logístico (`GEEX4925`), hasta 99 atributos de trazabilidad por nivel.
 
 > **Nota importante:** A diferencia de **GECOM40**, el modelo de GECOM49 organiza la mercancía por objetos logísticos (palés, bultos), no por líneas de producto. El producto y la cantidad se declaran dentro del subbloque `GEEX4920` de cada objeto.
+>!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

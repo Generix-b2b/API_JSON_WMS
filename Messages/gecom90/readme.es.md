@@ -15,6 +15,7 @@ Proporciona una imagen completa del inventario del almacén en un instante dado,
 - **Por SSCC (GEEX9070):** Detalle a nivel de palé/soporte EAN128 con estado, inmovilización, ubicación y movimiento.
 
 > **Nota importante:** Cada mensaje contiene exclusivamente uno de los seis tipos de desglose (regla `oneOf`), nunca varios a la vez. El código de proceso `TRTEXC` viene vacío salvo en el desglose por SSCC, que admite además simulación (`8`). Cada array soporta hasta 9.999 registros.
+>!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

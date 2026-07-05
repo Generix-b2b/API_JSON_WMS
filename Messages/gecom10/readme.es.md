@@ -12,6 +12,7 @@ Permite crear, modificar o cancelar registros de proveedor de forma sincronizada
 - **Gestión de recepción:** Configura el comportamiento de avisos de envío (`GSTAVI`), gestión RF (`GSTRCP`) y tipo de conector (`TYPPRT`).
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa del proveedor, incluyendo el bloque `GEEX1001`.
+>!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

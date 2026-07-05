@@ -15,6 +15,7 @@ Permite crear, modificar o cancelar pedidos de entrada de mercancía de forma si
 - **Texto libre (GEEX4080):** Array de hasta 99 líneas de texto libre asociadas al pedido (hasta 120 caracteres por línea).
 
 > **Nota importante:** Cuando `TRTEXC = 2` el mensaje reemplaza la ficha completa de la orden, incluyendo todas sus líneas. Para modificar solo la cabecera sin afectar a las líneas existentes, utiliza `TRTEXC = 7`.
+>!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

@@ -12,6 +12,7 @@ It allows creating, modifying or cancelling supplier records in a synchronized w
 - **Reception management:** Configures the behavior of shipping notices (`GSTAVI`), RF management (`GSTRCP`) and connector type (`TYPPRT`).
 
 > **Important note:** When `TRTEXC = 2`, the message replaces the supplier's entire record, including the `GEEX1001` block.
+>!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

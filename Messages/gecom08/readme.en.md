@@ -11,7 +11,7 @@ It declares the configuration values (parameter families and their keys) that ar
 - **Capacity:** Up to 499 records per message, with no additional blocks or nested arrays.
 
 > **Important note:** Parameter families (`FAMPAR`) must be agreed with the Generix implementation team. A key that is not declared in the tables will generate validation errors in the messages that reference it.
-> The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
+>!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

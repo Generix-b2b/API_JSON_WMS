@@ -15,6 +15,7 @@ Informa de cada movimiento físico o administrativo que afecta al inventario del
 - **Liberación positiva (GEEX8090):** Bloque para movimientos complementarios de liberación de palés, con estado del palé (`ETAPAL`) y gestión de listas negras (black list).
 
 > **Nota importante:** Este mensaje es generado por el WMS; el código de proceso `TRTEXC` viene siempre vacío. Los campos obligatorios mínimos son la actividad (`CODACT`), el producto (`CODPRO`) y el tipo de movimiento (`CODMVT`).
+>!blue El campo **RCTEXC** es muy importante que este correctamente cumplimentado, para poder redirigir los mensajes a la librería de WMS correcta. La información de este valor es diferente para test y producción, el dato podrá ser proporcionado por el consultor WMS.
 
 ### Integración
 

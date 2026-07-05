@@ -15,6 +15,7 @@ It allows creating, modifying or cancelling product records in a synchronized wa
 - **Classification and extension blocks:** Multi-language designations (`GEEX3030`), ICPE declarations (`GEEX3040`), headings (`GEEX3050`), satellite data (`GEEX3060`) and substitute products (`GEEX3080`), all with a capacity of up to 99 entries.
 
 > **Important note:** When `TRTEXC = 2`, the message replaces the product's entire record, including all declared additional blocks and arrays.
+>!blue The **RCTEXC** field must be correctly populated, as it is essential for routing messages to the appropriate WMS library. The value for this field differs between the test and production environments. The correct value can be provided by the WMS consultant.
 
 ### Integration
 

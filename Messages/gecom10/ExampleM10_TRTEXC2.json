@@ -8,7 +8,7 @@
       "AD1FOU": "Calle Industrial 45 - Edificio A",
       "VILFOU": "Madrid",
       "PAYFOU": "ES",
-      "CPOFOU": "28001",
+      "CPIFOU": "28001",
       "TELFOU": "+34910001111",
       "CODTRA": "TRANSP002",
       "GEEX1001": {
@@ -23,7 +23,7 @@
       "TYPFOU": "1",
       "NOMFOU": "Conservas del Sur S.L.",
       "AD1FOU": "Polígono Industrial La Isla Parcela 12",
-      "CPOFOU": "41700",
+      "CPIFOU": "41700",
       "VILFOU": "Dos Hermanas",
       "PAYFOU": "ES",
       "GSTRCP": "1"

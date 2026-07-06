@@ -9,7 +9,7 @@
       "AD1FOU": "Calle Industrial 45",
       "VILFOU": "Madrid",
       "PAYFOU": "ES",
-      "CPOFOU": "28001"
+      "CPIFOU": "28001"
     },
     {
       "RCTEXC": "FGE50XX0XX",
@@ -21,7 +21,7 @@
       "AD1FOU": "Avenida del Comercio 120",
       "AD2FOU": "Polígono Industrial Norte",
       "AD3FOU": "Nave 7",
-      "CPOFOU": "46011",
+      "CPIFOU": "46011",
       "VILFOU": "Valencia",
       "PAYFOU": "ES",
       "TELFOU": "+34963000000",
@@ -36,14 +36,12 @@
       "EMBTIE": true,
       "FOUGMA": "1",
       "SYSMES": false,
-      "CODCLV": "CLV",
       "GEEX1001": {
         "RSPFOU": "Juan García López",
         "EMLADR": "jgarcia@distribuciones.com",
         "CODCOG": "ES-46000",
         "AFFFAB": false,
         "CODENL": "1",
-        "CODFDC01": "CQ1",
         "CODGRP": "1",
         "CODICM": "DAP",
         "CODTCT": "T01",
@@ -56,7 +54,8 @@
         "CODRGT": "Z01",
         "CM1FOU": "Proveedor preferente zona este",
         "CM2FOU": "Ventana de entrega: 08:00-16:00",
-        "LIBCPL": "Distribuciones Mayoreo Ibérica"
+        "LIBCPL": "Distribuciones Mayoreo Ibérica",
+        "CODCLV": "CLV"
       }
     },
     {
@@ -80,7 +79,7 @@
       "TYPFOU": "1",
       "NOMFOU": "Bodegas Riojanas S.A.",
       "AD1FOU": "Carretera Logroño km 5",
-      "CPOFOU": "26200",
+      "CPIFOU": "26200",
       "VILFOU": "Haro",
       "PAYFOU": "ES",
       "TELFOU": "+34941000000",

@@ -58,7 +58,7 @@
           "description_es": "Código de actividad logística",
           "description_en": "Logistics activity code",
           "type": "string",
-          "minLength": 3,
+          "minLength": 1,
           "maxLength": 3
         },
         "CODFOU": {
@@ -216,13 +216,6 @@
           "type": "boolean",
           "default": false
         },
-        "CODCLV": {
-          "description": "Delivery requirement",
-          "description_es": "Requisito de entrega",
-          "description_en": "Delivery requirement",
-          "type": "string",
-          "maxLength": 3
-        },
         "GEEX1001": {
           "description": "Supplier Additional Declaration",
           "description_es": "Declaración adicional del proveedor",
@@ -282,19 +275,19 @@
           "description_en": "Collection code - see EnumCODENL",
           "$ref": "#/$defs/Enums/EnumCODENL"
         },
-        "CODFDC01": {
-          "description": "Quality control sheet code 1",
-          "description_es": "Código de ficha de control de calidad 1",
-          "description_en": "Quality control sheet code 1",
-          "type": "string",
-          "maxLength": 3
-        },
-        "CODFDC02": {
-          "description": "Quality control sheet code 2",
-          "description_es": "Código de ficha de control de calidad 2",
-          "description_en": "Quality control sheet code 2",
-          "type": "string",
-          "maxLength": 3
+        "CODFDC": {
+          "description": "Quality control sheet code",
+          "description_es": "Código de ficha de control de calidad",
+          "description_en": "Quality control sheet code",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Quality control sheet code",
+            "description_es": "Código de ficha de control de calidad",
+            "description_en": "Quality control sheet code",
+            "type": "string",
+            "maxLength": 3
+          }
         },
         "CODGRP": {
           "description": "Grouping code / false = No grouping, true = Grouping",
@@ -406,6 +399,13 @@
           "description_en": "Additional name 2",
           "type": "string",
           "maxLength": 38
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "description_es": "Requisito de entrega",
+          "description_en": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
         }
       },
       "additionalProperties": false

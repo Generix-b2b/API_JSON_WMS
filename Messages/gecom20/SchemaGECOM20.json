@@ -206,18 +206,10 @@
           "$ref": "#/$defs/Enums/EnumETACLI"
         },
         "INDADR": {
-          "description": "Address indicator",
-          "description_es": "Indicador de dirección",
-          "description_en": "Address indicator",
-          "type": "string",
-          "maxLength": 1
-        },
-        "CODCLV": {
-          "description": "Delivery requirement",
-          "description_es": "Requisito de entrega",
-          "description_en": "Delivery requirement",
-          "type": "string",
-          "maxLength": 3
+          "description": "Address indicator - see EnumINDADR",
+          "description_es": "Indicador de dirección - ver EnumINDADR",
+          "description_en": "Address indicator - see EnumINDADR",
+          "$ref": "#/$defs/Enums/EnumINDADR"
         },
         "GEEX2001": {
           "description": "Customer Additional Declaration",
@@ -495,6 +487,13 @@
           "description_en": "Shortage rounding indicator",
           "type": "string",
           "maxLength": 1
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "description_es": "Requisito de entrega",
+          "description_en": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
         }
       },
       "additionalProperties": false
@@ -553,6 +552,13 @@
         "description_en": "Customer status code / 20 = Not considered, 30 = Customer record, 40 = M50 Interface",
         "type": "string",
         "enum": ["20", "30", "40"]
+      },
+      "EnumINDADR": {
+        "description": "Address indicator / 0 = Not taken into account, 1 = Customer record, 2 = M50 Interface",
+        "description_es": "Indicador de dirección / 0 = No considerado, 1 = Ficha de cliente, 2 = Interfaz M50",
+        "description_en": "Address indicator / 0 = Not taken into account, 1 = Customer record, 2 = M50 Interface",
+        "type": "string",
+        "enum": ["0", "1", "2"]
       },
       "EnumGSTALC": {
         "description": "Liquor management mode / 0 = No alcohol management, 1 = Delivery with suspended duty, 2 = Delivery under voucher, 3 = Out of customs, no taxes",

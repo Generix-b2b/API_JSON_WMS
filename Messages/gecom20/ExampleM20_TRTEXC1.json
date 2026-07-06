@@ -8,7 +8,7 @@
       "TYPCLI": "1",
       "NOMCLI": "Supermercados Norte S.L.",
       "AD1CLI": "Calle Gran Vía 100",
-      "CPOCLI": "48015",
+      "CPICLI": "48015",
       "VILCLI": "Bilbao",
       "PAYCLI": "ES"
     },
@@ -25,7 +25,7 @@
       "AD1CLI": "Avenida del Puerto 200",
       "AD2CLI": "Polígono Industrial Norte",
       "AD3CLI": "Nave 5",
-      "CPOCLI": "46011",
+      "CPICLI": "46011",
       "VILCLI": "Valencia",
       "PAYCLI": "ESP",
       "TELCLI": "+34963111111",

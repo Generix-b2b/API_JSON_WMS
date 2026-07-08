@@ -2094,7 +2094,10 @@ async function renderVersions() {
 
     let html = '';
     names.forEach(g => {
-      const items = groups[g].sort((a,b) => a.name.localeCompare(b.name));
+      // const items = groups[g].sort((a,b) => a.name.localeCompare(b.name));
+      const items = groups[g].sort((a, b) =>
+        b.name.localeCompare(a.name, undefined, { numeric: true })
+      );
       html += `<div class="folder-section" id="grp-${_slug(g)}">
         <h3>📦 ${esc(g==='(raíz)'?t('versions.general'):g)}</h3><div class="file-grid">`;
       items.forEach(f => {

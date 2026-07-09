@@ -1,0 +1,549 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom97/SchemaGECOM97.json",
+  "title": "GECOM97 - Status Orders",
+  "title_es": "GECOM97 - Estado de órdenes",
+  "title_en": "GECOM97 - Status Orders",
+  "x-wms-icon": "GECOM97",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client]/endpoint",
+    "category": "Outbound",
+    "version": "v1.3",
+    "releaseDate": "2026-07-08"
+  },
+  "description": "JSON for updating the status of Reception Orders or Delivery Orders in the WMS",
+  "description_es": "JSON para actualizar el estado de las órdenes de recepción o las órdenes de entrega en el WMS",
+  "description_en": "JSON for updating the status of Reception Orders or Delivery Orders in the WMS",
+  "type": "object",
+  "properties": {
+    "status": {
+      "description": "Order status",
+      "description_es": "Estado de órdenes",
+      "description_en": "Order status",
+      "type": "object",
+      "properties": {
+        "statusReceptionOrders": {
+          "description": "Status Reception Orders",
+          "description_es": "Estado de órdenes de recepción",
+          "description_en": "Status Reception Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9740"
+          }
+        },
+        "statusDeliveryOrders": {
+          "description": "Status Delivery Orders",
+          "description_es": "Estado de órdenes de entrega",
+          "description_en": "Status Delivery Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9750"
+          }
+        },
+        "statusTruckLoading": {
+          "description": "Status Delivery Orders",
+          "description_es": "Estado de órdenes de entrega",
+          "description_en": "Status Delivery Orders",
+          "type": "array",
+          "maxItems": 499,
+          "items": {
+            "$ref": "#/$defs/GEEX9760"
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": ["statusReceptionOrders"]
+        },
+        {
+          "required": ["statusDeliveryOrders"]
+        },
+        {
+          "required": ["statusTruckLoading"]
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": ["status"],
+  "additionalProperties": false,
+  "$defs": {
+    "GEEX9740": {
+      "description": "Status Reception Orders",
+      "description_es": "Estado de órdenes de recepción",
+      "description_en": "Status Reception Orders",
+      "type": "object",
+      "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "EMTEXC": {
+          "description": "Sender site of the information to be processed",
+          "description_es": "Sitio emisor de la información a procesar",
+          "description_en": "Sender site of the information to be processed",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXC": {
+          "description": "Exchange date (format YYYYMMDD)",
+          "description_es": "Fecha del intercambio (formato AAAAMMDD)",
+          "description_en": "Exchange date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXC": {
+          "description": "Exchange time (format HHMMSS)",
+          "description_es": "Hora del intercambio (formato HHMMSS)",
+          "description_en": "Exchange time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "NUMREC": {
+          "description": "Order number to be received",
+          "description_es": "Número de orden a recibir",
+          "description_en": "Order number to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNUREC": {
+          "description": "Sub-number of the order to be received",
+          "description_es": "Subnúmero de la orden a recibir",
+          "description_en": "Sub-number of the order to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFREC": {
+          "description": "Reception reference",
+          "description_es": "Referencia de recepción",
+          "description_en": "Reception reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "BLOREC": {
+          "description": "Reception block / false = No, true = Yes",
+          "description_es": "Bloqueo de recepción / false = No, true = Sí",
+          "description_en": "Reception block / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ETAREC": {
+          "description": "Reception status code - see EnumETAREC",
+          "description_es": "Código de estado de recepción - ver EnumETAREC",
+          "description_en": "Reception status code - see EnumETAREC",
+          "$ref": "#/$defs/Enums/EnumETAREC"
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "description_es": "Código de proveedor",
+          "description_en": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODTRE": {
+          "description": "Reception type code",
+          "description_es": "Código de tipo de recepción",
+          "description_en": "Reception type code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "VALRUB": {
+          "description": "Traceability element value array",
+          "description_es": "Matriz de valores del elemento de trazabilidad",
+          "description_en": "Traceability element value array",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["RCTEXC", "TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFREC", "ETAREC"],
+      "additionalProperties": false
+    },
+    "GEEX9750": {
+      "description": "Status Delivery Orders",
+      "description_es": "Estado de órdenes de entrega",
+      "description_en": "Status Delivery Orders",
+      "type": "object",
+      "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "EMTEXC": {
+          "description": "Sender site of the information to be processed",
+          "description_es": "Sitio emisor de la información a procesar",
+          "description_en": "Sender site of the information to be processed",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXC": {
+          "description": "Exchange date (format YYYYMMDD)",
+          "description_es": "Fecha del intercambio (formato AAAAMMDD)",
+          "description_en": "Exchange date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXC": {
+          "description": "Exchange time (format HHMMSS)",
+          "description_es": "Hora del intercambio (formato HHMMSS)",
+          "description_en": "Exchange time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "NUMLIV": {
+          "description": "Order number to be delivered",
+          "description_es": "Número de orden a entregar",
+          "description_en": "Order number to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNULIV": {
+          "description": "Sub-number of the order to be delivered",
+          "description_es": "Subnúmero de la orden a entregar",
+          "description_en": "Sub-number of the order to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "description_es": "Referencia de entrega",
+          "description_en": "Delivery reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "BLOLIV": {
+          "description": "Delivery block / false = No, true = Yes",
+          "description_es": "Bloqueo de entrega / false = No, true = Sí",
+          "description_en": "Delivery block / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ETALIV": {
+          "description": "Delivery status code - see EnumETALIV",
+          "description_es": "Código de estado de entrega - ver EnumETALIV",
+          "description_en": "Delivery status code - see EnumETALIV",
+          "$ref": "#/$defs/Enums/EnumETALIV"
+        },
+        "NUMVAG": {
+          "description": "Preparation wave number",
+          "description_es": "Número de ola de preparación",
+          "description_en": "Preparation wave number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8
+        },
+        "CODCLI": {
+          "description": "Customer code",
+          "description_es": "Código de cliente",
+          "description_en": "Customer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODACL": {
+          "description": "Code to cancel a delivery order",
+          "description_es": "Código para cancelar una orden de entrega",
+          "description_en": "Code to cancel a delivery order",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "NUMTOU": {
+          "description": "Round trip record number",
+          "description_es": "Número de registro del recorrido",
+          "description_en": "Round trip record number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8
+        },
+        "ANLVAG": {
+          "description": "Wave cancellation",
+          "description_es": "Cancelación de ola",
+          "description_en": "Wave cancellation",
+          "type": "boolean",
+          "default": false
+        },
+        "RUPTOT": {
+          "description": "Total break indicator / false = No, true = Yes",
+          "description_es": "Indicador de ruptura total / false = No, true = Sí",
+          "description_en": "Total break indicator / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "ACCRCP": {
+          "description": "Reception access",
+          "description_es": "Acceso de recepción",
+          "description_en": "Reception access",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODEMT": {
+          "description": "Sender code",
+          "description_es": "Código de emisor",
+          "description_en": "Sender code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "KAILIV": {
+          "description": "Shipping dock for loading",
+          "description_es": "Muelle de expedición para la carga",
+          "description_en": "Shipping dock for loading",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODTLI": {
+          "description": "Delivery type code",
+          "description_es": "Código de tipo de entrega",
+          "description_en": "Delivery type code",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "VALRUB": {
+          "description": "Traceability element value array",
+          "description_es": "Matriz de valores del elemento de trazabilidad",
+          "description_en": "Traceability element value array",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "TOULIV": {
+          "description": "Goods delivery round",
+          "description_es": "Ruta de entrega de mercancías",
+          "description_en": "Goods delivery round",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "CRILIV": {
+          "description": "Order extraction criteria",
+          "description_es": "Criterios de extracción de órdenes",
+          "description_en": "Order extraction criteria",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "CODOFT": {
+          "description": "Carrier offer code",
+          "description_es": "Código de oferta del transportista",
+          "description_en": "Carrier offer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        }
+      },
+      "required": ["RCTEXC","TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFLIV", "ETALIV"],
+      "additionalProperties": false
+    },
+    "GEEX9760": {
+      "description": "Status Reception Orders",
+      "description_es": "Estado de órdenes de recepción",
+      "description_en": "Status Reception Orders",
+      "type": "object",
+      "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "EMTEXC": {
+          "description": "Sender site of the information to be processed",
+          "description_es": "Sitio emisor de la información a procesar",
+          "description_en": "Sender site of the information to be processed",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXC": {
+          "description": "Exchange date (format YYYYMMDD)",
+          "description_es": "Fecha del intercambio (formato AAAAMMDD)",
+          "description_en": "Exchange date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXC": {
+          "description": "Exchange time (format HHMMSS)",
+          "description_es": "Hora del intercambio (formato HHMMSS)",
+          "description_en": "Exchange time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "NUMLIV": {
+          "description": "Order number to be delivered",
+          "description_es": "Número de orden a entregar",
+          "description_en": "Order number to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNULIV": {
+          "description": "Sub-number of the order to be delivered",
+          "description_es": "Subnúmero de la orden a entregar",
+          "description_en": "Sub-number of the order to be delivered",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "description_es": "Referencia de entrega",
+          "description_en": "Delivery reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "ETACHT": {
+          "description": "Truck loading status code - see EnumETACHT",
+          "description_es": "Código de estado de la carga del camión - ver EnumETACHT",
+          "description_en": "Truck loading status code - see EnumETACHT",
+          "$ref": "#/$defs/Enums/EnumETACHT"
+        },
+        "CODCLI": {
+          "description": "Customer code",
+          "description_es": "Código de cliente",
+          "description_en": "Customer code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "TOULIV": {
+          "description": "Goods delivery round",
+          "description_es": "Ruta de entrega de mercancías",
+          "description_en": "Goods delivery round",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "NUMSUP": {
+          "description": "Dispatched support number",
+          "description_es": "Número de soporte expedido",
+          "description_en": "Dispatched support number",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNUSUP": {
+          "description": "Sub-number of the support to prepare",
+          "description_es": "Subnúmero del soporte a preparar",
+          "description_en": "Sub-number of the support to prepare",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "NUMTOU": {
+          "description": "Round trip record number",
+          "description_es": "Número de registro del recorrido",
+          "description_en": "Round trip record number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8
+        },
+        "VALRUB": {
+          "description": "Traceability element value array",
+          "description_es": "Matriz de valores del elemento de trazabilidad",
+          "description_en": "Traceability element value array",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["RCTEXC", "TRTEXC", "DATEXC", "HEUEXC", "CODACT", "REFLIV", "ETACHT"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / (blank) = Empty, 2 = Modification",
+        "description_es": "Código de procesamiento del movimiento / (en blanco) = Vacío, 2 = Modificación",
+        "description_en": "Movement processing code / (blank) = Empty, 2 = Modification",
+        "type": "string",
+        "enum": ["", "2"]
+      },
+      "EnumETAREC": {
+        "description": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
+        "description_es": "Código de estado de recepción / 00 = En curso de introducción, 10 = Pendiente de planificar, 20 = Pendiente de recepción, 30 = Recepción en curso, 35 = Distribución en curso, 40 = Recibido, 50 = Orden enviada, 90 = Cancelado, 95 = Archivado",
+        "description_en": "Reception status code / 00 = Being entered, 10 = Pending to be planned, 20 = Pending reception, 30 = Reception in progress, 35 = Distribution in progress, 40 = Received, 50 = Order Sent, 90 = Cancelled, 95 = Archived",
+        "type": "string",
+        "enum": ["00", "10", "20", "30", "35", "40", "50", "90", "95"]
+      },
+      "EnumETALIV": {
+        "description": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
+        "description_es": "Código de estado de entrega / 00 = En curso de introducción, 10 = Por seleccionar en una ola, 20 = Seleccionada en una ola, 30 = Orden por preparar (extraída), 35 = Orden en preparación, 40 = Orden validada, 50 = Orden enviada, 60 = Orden expedida, 90 = Cancelado, 95 = Archivado",
+        "description_en": "Delivery status code / 00 = Being entered, 10 = To be selected in a wave, 20 = Selected in a wave, 30 = Order to be prepared (extracted), 35 = Order in preparation, 40 = Order validated, 50 = Order Sent, 60 = Order dispatched, 90 = Cancelled, 95 = Archived",
+        "type": "string",
+        "enum": ["00", "10", "20", "30", "35", "40", "50", "60", "90", "95"]
+      },
+      "EnumETACHT": {
+        "description": "Truck loading status code / 10 = Truck loading started, 20 = Truck loading completed",
+        "description_es": "Código de estado de la carga del camión / 10 = Carga del camión iniciada, 20 = Carga del camión finalizada",
+        "description_en": "Truck loading status code / 10 = Truck loading started, 20 = Truck loading completed",
+        "type": "string",
+        "enum": ["10", "20"]
+      }
+    }
+  }
+}

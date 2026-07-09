@@ -1,0 +1,473 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom10/SchemaGECOM10.json",
+  "title": "GECOM10 - Supplier Master Data",
+  "title_es": "GECOM10 - Datos maestros de proveedores",
+  "title_en": "GECOM10 - Supplier Master Data",
+  "x-wms-icon": "GECOM10",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/m10_supplier?uuid=[Value]",
+    "category": "Inbound",
+    "version": "v1.2",
+    "releaseDate": "2026-07-03"
+  },
+  "description": "JSON for supplier master data load",
+  "description_es": "JSON para la carga de datos maestros de proveedores",
+  "description_en": "JSON for supplier master data load",
+  "type": "object",
+  "properties": {
+    "supplierMasterData": {
+      "description": "Supplier declaration",
+      "description_es": "Declaración del proveedor",
+      "description_en": "Supplier declaration",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 499,
+      "items": {
+        "$ref": "#/$defs/GEEX1000"
+      }
+    }
+  },
+  "required": ["supplierMasterData"],
+  "additionalProperties": false,
+  "$defs": {
+    "GEEX1000": {
+      "description": "Supplier declaration",
+      "description_es": "Declaración del proveedor",
+      "description_en": "Supplier declaration",
+      "type": "object",
+      "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "description_es": "Código de proveedor",
+          "description_en": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "TYPFOU": {
+          "description": "Supplier type - see EnumTYPFOU",
+          "description_es": "Tipo de proveedor - ver EnumTYPFOU",
+          "description_en": "Supplier type - see EnumTYPFOU",
+          "$ref": "#/$defs/Enums/EnumTYPFOU"
+        },
+        "NOMFOU": {
+          "description": "Supplier name",
+          "description_es": "Nombre del proveedor",
+          "description_en": "Supplier name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD1FOU": {
+          "description": "Supplier address line 1",
+          "description_es": "Dirección del proveedor línea 1",
+          "description_en": "Supplier address line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD2FOU": {
+          "description": "Supplier address line 2",
+          "description_es": "Dirección del proveedor línea 2",
+          "description_en": "Supplier address line 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "AD3FOU": {
+          "description": "Supplier address line 3",
+          "description_es": "Dirección del proveedor línea 3",
+          "description_en": "Supplier address line 3",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CPIFOU": {
+          "description": "Supplier postal code in alphanumeric format",
+          "description_es": "Código postal del proveedor en formato alfanumérico",
+          "description_en": "Supplier postal code in alphanumeric format",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "VILFOU": {
+          "description": "Supplier city",
+          "description_es": "Ciudad del proveedor",
+          "description_en": "Supplier city",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 58
+        },
+        "PAYFOU": {
+          "description": "Supplier country code",
+          "description_es": "Código de país del proveedor",
+          "description_en": "Supplier country code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "TELFOU": {
+          "description": "Supplier phone number",
+          "description_es": "Número de teléfono del proveedor",
+          "description_en": "Supplier phone number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "FAXFOU": {
+          "description": "Supplier fax number",
+          "description_es": "Número de fax del proveedor",
+          "description_en": "Supplier fax number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TLXFOU": {
+          "description": "Supplier telex number",
+          "description_es": "Número de télex del proveedor",
+          "description_en": "Supplier telex number",
+          "type": "string",
+          "maxLength": 15
+        },
+        "EDIFOU": {
+          "description": "Supplier code for EDI",
+          "description_es": "Código de proveedor para EDI",
+          "description_en": "Supplier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "description_es": "Código de transportista",
+          "description_en": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "IGLSIT": {
+          "description": "Site identifier for Infolog GL",
+          "description_es": "Identificador de sitio para Infolog GL",
+          "description_en": "Site identifier for Infolog GL",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "CODTRE": {
+          "description": "Receipt type code",
+          "description_es": "Código de tipo de recepción",
+          "description_en": "Receipt type code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GSTAVI": {
+          "description": "Shipping notice management - see EnumGSTAVI",
+          "description_es": "Gestión del aviso de expedición - ver EnumGSTAVI",
+          "description_en": "Shipping notice management - see EnumGSTAVI",
+          "$ref": "#/$defs/Enums/EnumGSTAVI"
+        },
+        "GSTRCP": {
+          "description": "Radio frequency receiving management type - see EnumGSTRCP",
+          "description_es": "Tipo de gestión de recepción por radiofrecuencia - ver EnumGSTRCP",
+          "description_en": "Radio frequency receiving management type - see EnumGSTRCP",
+          "$ref": "#/$defs/Enums/EnumGSTRCP"
+        },
+        "TYPPRT": {
+          "description": "Connector type (receiving) - see EnumTYPPRT",
+          "description_es": "Tipo de conector (recepción) - ver EnumTYPPRT",
+          "description_en": "Connector type (receiving) - see EnumTYPPRT",
+          "$ref": "#/$defs/Enums/EnumTYPPRT"
+        },
+        "EMBTIE": {
+          "description": "Packaging allocation / false = No allocation, true = Allocation",
+          "description_es": "Asignación de embalaje / false = Sin asignación, true = Asignación",
+          "description_en": "Packaging allocation / false = No allocation, true = Allocation",
+          "type": "boolean",
+          "default": false
+        },
+        "FOUGMA": {
+          "description": "Indicator for supplier management with GAMM@ - see EnumFOUGMA",
+          "description_es": "Indicador de gestión del proveedor con GAMM@ - ver EnumFOUGMA",
+          "description_en": "Indicator for supplier management with GAMM@ - see EnumFOUGMA",
+          "$ref": "#/$defs/Enums/EnumFOUGMA"
+        },
+        "SYSMES": {
+          "description": "Measurement system / false = Metric, true = Imperial",
+          "description_es": "Sistema de medida / false = Métrico, true = Imperial",
+          "description_en": "Measurement system / false = Metric, true = Imperial",
+          "type": "boolean",
+          "default": false
+        },
+        "GEEX1001": {
+          "description": "Supplier Additional Declaration",
+          "description_es": "Declaración adicional del proveedor",
+          "description_en": "Supplier Additional Declaration",
+          "$ref": "#/$defs/GEEX1001Wrapper"
+        }
+      },
+      "required": ["RCTEXC","TRTEXC", "CODFOU", "NOMFOU", "AD1FOU", "CPIFOU", "VILFOU", "PAYFOU"],
+      "additionalProperties": false
+    },
+    "GEEX1001Wrapper": {
+      "description": "Supplier Additional Declaration",
+      "description_es": "Declaración adicional del proveedor",
+      "description_en": "Supplier Additional Declaration",
+      "type": "object",
+      "properties": {
+        "RSPFOU": {
+          "description": "Name of the person in charge at the supplier",
+          "description_es": "Nombre de la persona responsable en el proveedor",
+          "description_en": "Name of the person in charge at the supplier",
+          "type": "string",
+          "maxLength": 30
+        },
+        "EMLADR": {
+          "description": "Email address",
+          "description_es": "Dirección de correo electrónico",
+          "description_en": "Email address",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "format": "email"
+        },
+        "CODCOG": {
+          "description": "Geographic code",
+          "description_es": "Código geográfico",
+          "description_en": "Geographic code",
+          "type": "string",
+          "maxLength": 15
+        },
+        "NUMACS": {
+          "description": "Excise duty number (Alcohol)",
+          "description_es": "Número de impuestos especiales (Alcohol)",
+          "description_en": "Excise duty number (Alcohol)",
+          "type": "string",
+          "maxLength": 13
+        },
+        "AFFFAB": {
+          "description": "Display MADE IN as batch / false = No, true = Yes",
+          "description_es": "Mostrar MADE IN como lote / false = No, true = Sí",
+          "description_en": "Display MADE IN as batch / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "CODENL": {
+          "description": "Collection code - see EnumCODENL",
+          "description_es": "Código de recogida - ver EnumCODENL",
+          "description_en": "Collection code - see EnumCODENL",
+          "$ref": "#/$defs/Enums/EnumCODENL"
+        },
+        "CODFDC": {
+          "description": "Quality control sheet code",
+          "description_es": "Código de ficha de control de calidad",
+          "description_en": "Quality control sheet code",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Quality control sheet code",
+            "description_es": "Código de ficha de control de calidad",
+            "description_en": "Quality control sheet code",
+            "type": "string",
+            "maxLength": 3
+          }
+        },
+        "CODGRP": {
+          "description": "Grouping code / false = No grouping, true = Grouping",
+          "description_es": "Código de agrupación / false = Sin agrupación, true = Agrupación",
+          "description_en": "Grouping code / false = No grouping, true = Grouping",
+          "type": "boolean",
+          "default": false
+        },
+        "CODICM": {
+          "description": "Incoterm code",
+          "description_es": "Código de incoterm",
+          "description_en": "Incoterm code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODTCT": {
+          "description": "Control table code",
+          "description_es": "Código de tabla de control",
+          "description_en": "Control table code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CUMPRT": {
+          "description": "Total number of picks (Detail and/or pallet)",
+          "description_es": "Número total de extracciones (Detalle y/o palé)",
+          "description_en": "Total number of picks (Detail and/or pallet)",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "FOUGRP": {
+          "description": "Generic group supplier",
+          "description_es": "Proveedor de grupo genérico",
+          "description_en": "Generic group supplier",
+          "type": "string",
+          "maxLength": 14
+        },
+        "METREC": {
+          "description": "Receipt validation method",
+          "description_es": "Método de validación de recepción",
+          "description_en": "Receipt validation method",
+          "type": "string",
+          "maxLength": 1
+        },
+        "NULRLQ": {
+          "description": "Neutralization of remainder on receipt / false = No neutralization, true = Neutralization",
+          "description_es": "Neutralización del resto en la recepción / false = Sin neutralización, true = Neutralización",
+          "description_en": "Neutralization of remainder on receipt / false = No neutralization, true = Neutralization",
+          "type": "boolean",
+          "default": false
+        },
+        "PAYFAB": {
+          "description": "Country of manufacture (MADE IN)",
+          "description_es": "País de fabricación (MADE IN)",
+          "description_en": "Country of manufacture (MADE IN)",
+          "type": "string",
+          "maxLength": 20
+        },
+        "PEREMB": {
+          "description": "Periodicity of packaging sales - see EnumPEREMB",
+          "description_es": "Periodicidad de venta de embalajes - ver EnumPEREMB",
+          "description_en": "Periodicity of packaging sales - see EnumPEREMB",
+          "$ref": "#/$defs/Enums/EnumPEREMB"
+        },
+        "UNIFSR": {
+          "description": "Uniqueness of serial numbers for the product / false = No uniqueness, true = Uniqueness",
+          "description_es": "Unicidad de los números de serie del producto / false = Sin unicidad, true = Unicidad",
+          "description_en": "Uniqueness of serial numbers for the product / false = No uniqueness, true = Uniqueness",
+          "type": "boolean",
+          "default": false
+        },
+        "CODRGT": {
+          "description": "Area code for transport",
+          "description_es": "Código de zona para transporte",
+          "description_en": "Area code for transport",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CM1FOU": {
+          "description": "Supplier comment (line 1)",
+          "description_es": "Comentario del proveedor (línea 1)",
+          "description_en": "Supplier comment (line 1)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM2FOU": {
+          "description": "Supplier comment (line 2)",
+          "description_es": "Comentario del proveedor (línea 2)",
+          "description_en": "Supplier comment (line 2)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM3FOU": {
+          "description": "Supplier comment (line 3)",
+          "description_es": "Comentario del proveedor (línea 3)",
+          "description_en": "Supplier comment (line 3)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "LIBCPL": {
+          "description": "Additional name",
+          "description_es": "Nombre adicional",
+          "description_en": "Additional name",
+          "type": "string",
+          "maxLength": 38
+        },
+        "LIBCP2": {
+          "description": "Additional name 2",
+          "description_es": "Nombre adicional 2",
+          "description_en": "Additional name 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "description_es": "Requisito de entrega",
+          "description_en": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "description_es": "Código de procesamiento del movimiento / 1 = Crear, 2 = Modificar o crear, 9 = Cancelación",
+        "description_en": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "9"],
+        "default": "2"
+      },
+      "EnumTYPFOU": {
+        "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "description_es": "Tipo de proveedor / 1 = Industrial, 2 = Mayorista, 3 = Plataforma (transferencias)",
+        "description_en": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "type": "string",
+        "enum": ["1", "2", "3"]
+      },
+      "EnumGSTAVI": {
+        "description": "Shipping notice management / 0 = no notice management, 1 = notices managed without disputes, 2 = notices managed with disputes",
+        "description_es": "Gestión del aviso de expedición / 0 = sin gestión de avisos, 1 = avisos gestionados sin discrepancias, 2 = avisos gestionados con discrepancias",
+        "description_en": "Shipping notice management / 0 = no notice management, 1 = notices managed without disputes, 2 = notices managed with disputes",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumGSTRCP": {
+        "description": "Radio frequency receiving management type / 0 = No management, 1 = Product code management, 2 =  EAN 13/14 management, 3 = EAN 128 management",
+        "description_es": "Tipo de gestión de recepción por radiofrecuencia / 0 = Sin gestión, 1 = Gestión por código de producto, 2 = Gestión EAN 13/14, 3 = Gestión EAN 128",
+        "description_en": "Radio frequency receiving management type / 0 = No management, 1 = Product code management, 2 =  EAN 13/14 management, 3 = EAN 128 management",
+        "type": "string",
+        "enum": ["0", "1", "2", "3"]
+      },
+      "EnumTYPPRT": {
+        "description": "Connector type (receiving) / 1 = Pallet, 3 = Package",
+        "description_es": "Tipo de conector (recepción) / 1 = Palé, 3 = Paquete",
+        "description_en": "Connector type (receiving) / 1 = Pallet, 3 = Package",
+        "type": "string",
+        "enum": ["1", "3"]
+      },
+      "EnumFOUGMA": {
+        "description": "Indicator for supplier management with GAMM@ / 0 = Not managed, 1 = Mandatory management, 2 = Optional management",
+        "description_es": "Indicador de gestión del proveedor con GAMM@ / 0 = No gestionado, 1 = Gestión obligatoria, 2 = Gestión opcional",
+        "description_en": "Indicator for supplier management with GAMM@ / 0 = Not managed, 1 = Mandatory management, 2 = Optional management",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumCODENL": {
+        "description": "Collection code / 0 = Without collection, 1 = With collection",
+        "description_es": "Código de recogida / 0 = Sin recogida, 1 = Con recogida",
+        "description_en": "Collection code / 0 = Without collection, 1 = With collection",
+        "type": "string",
+        "enum": ["0", "1"]
+      },
+      "EnumPEREMB": {
+        "description": "Periodicity of packaging sales / 0 = Manual balance, 1 = At midday and at the end of the month, 2 = At the end of the month",
+        "description_es": "Periodicidad de venta de embalajes / 0 = Saldo manual, 1 = Al mediodía y al final del mes, 2 = Al final del mes",
+        "description_en": "Periodicity of packaging sales / 0 = Manual balance, 1 = At midday and at the end of the month, 2 = At the end of the month",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      }
+    }
+  }
+}

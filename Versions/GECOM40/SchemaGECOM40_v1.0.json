@@ -1,0 +1,797 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom40/SchemaGECOM40.json",
+  "title": "GECOM40 - Reception Orders",
+  "x-wms-icon": "GECOM40",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/m40_reception?uuid=[Value]",
+    "category": "Inbound",
+    "version": "v1.1",
+    "releaseDate": "2026-06-25"
+  },
+  "description": "JSON for creating a Reception Orders",
+  "type": "object",
+  "properties": {
+    "receptionOrders": {
+      "description": "Reception Orders Header",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 499,
+      "items": {
+				"$ref": "#/$defs/GEEX4000"
+			}
+    }
+  },
+  "required": ["receptionOrders"],
+  "$defs": {
+    "GEEX4000": {
+      "description": "Reception Orders Header",
+      "type": "object",
+      "properties": {
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "NUMREC": {
+          "description": "Order number to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "SNUREC": {
+          "description": "Sub-number of the order to be received",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFREC": {
+          "description": "Reception reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "CODAPP": {
+          "description": "Buyer/replenisher code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "CODLDR": {
+          "description": "Reception/shipping location code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODTRE": {
+          "description": "Reception type",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DTIREC": {
+          "description": "Initially scheduled reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEIREC": {
+          "description": "Original scheduled reception time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "KAIREC": {
+          "description": "Goods reception dock",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "MSGREC": {
+          "description": "Message to be printed on the receipt",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Message to be printed on the receipt",
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "IGLSIT": {
+          "description": "GE site identifier for Infolog GL",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "DTFREC": {
+          "description": "Final reception date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "EDIFOU": {
+          "description": "Supplier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "METTRP": {
+          "description": "Goods transport method - see EnumMETTRP",
+          "$ref": "#/$defs/Enums/EnumMETTRP"
+        },
+        "CODRTN": {
+          "description": "Retention code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "EDITRA": {
+          "description": "Carrier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODRGT": {
+          "description": "Area code for transport",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CUMLIG": {
+          "description": "Total number of lines in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "GEEX4001": {
+          "description": "Supplier Information",
+          "$ref": "#/$defs/GEEX4001Wrapper"
+        },
+        "GEEX4005": {
+          "description": "Rubriques Declaration Header",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4005Wrapper"
+          }
+        },
+        "GEEX4020": {
+          "description": "Reception Orders Declaration Line",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4020Wrapper"
+          }
+        },
+        "GEEX4080": {
+          "description": "Free Text",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4080Wrapper"
+          }
+        }
+      },
+      "required": ["TRTEXC", "REFREC", "CODTRE", "CODACT", "CODFOU", "DTIREC", "HEIREC", "CUMLIG"],
+      "if": {
+        "properties": {
+          "TRTEXC": { "enum": ["1", "2"] }
+        },
+        "required": ["TRTEXC"]
+      },
+      "then": {
+        "required": ["GEEX4020"]
+      },
+      "additionalProperties": false
+    },
+    "GEEX4001Wrapper": {
+      "description": "Supplier Information",
+      "type": "object",
+      "properties": {
+        "DIPRECH": {
+          "description": "Data transit area between software",
+          "type": "string",
+          "maxLength": 50
+        },
+        "TOPREC": {
+          "description": "Indicators for specific users",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "maxLength": 1
+          }
+        },
+        "NOMFOU": {
+          "description": "Supplier name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "AD1FOU": {
+          "description": "Supplier address line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD2FOU": {
+          "description": "Supplier address line 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "AD3FOU": {
+          "description": "Supplier address line 3",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CPIFOU": {
+          "description": "Supplier postal code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "VILFOU": {
+          "description": "Supplier city",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 26
+        },
+        "PAYFOU": {
+          "description": "Supplier country code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "TELFOU": {
+          "description": "Supplier phone number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TYPFOU": {
+          "description": "Supplier type - see EnumTYPFOU",
+          "$ref": "#/$defs/Enums/EnumTYPFOU"
+        },
+        "CODDDO": {
+          "description": "Originator code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODCLV": {
+          "description": "Delivery requirement",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODOWN": {
+          "description": "Owner code",
+          "type": "string",
+          "maxLength": 14
+        }
+      },
+      "required": ["NOMFOU", "AD1FOU", "CPIFOU", "VILFOU", "PAYFOU"],
+      "additionalProperties": false
+    },
+    "GEEX4005Wrapper": {
+      "description": "Rubriques Declaration Header",
+      "type": "object",
+      "properties": {
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Value of a traceability item",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["CODRUB", "VALRUB"],
+      "additionalProperties": false
+    },
+    "GEEX4020Wrapper": {
+      "description": "Reception Orders Declaration Line",
+      "type": "object",
+      "properties": {
+        "NLIREC": {
+          "description": "Line number for the reception interface",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "CODCLI": {
+          "description": "Customer code of the stock owner",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODPRO": {
+          "description": "Internal product code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 17
+        },
+        "VALPRO": {
+          "description": "Logistic variant (Gencod)",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "UVCREA": {
+          "description": "Number of CSU replenished (ordered)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UNICDE": {
+          "description": "Order quantity entry unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODPRN": {
+          "description": "Product code from a bill of materials (Same as PRODN)",
+          "type": "string",
+          "maxLength": 17
+        },
+        "TYPOPE": {
+          "description": "Operation type (e.g., Promotion, reservation) - see EnumTYPOPE",
+          "$ref": "#/$defs/Enums/EnumTYPOPE"
+        },
+        "NUMOPE": {
+          "description": "Operation number (Promo or reservation)",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}$"
+        },
+        "AIGPRI": {
+          "description": "Switch for PVC marking control / false = Unmarked Product, true = Marked Product",
+          "type": "boolean",
+          "default": false
+        },
+        "PRIREC": {
+          "description": "Price marked on the product to be checked",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+          "examples": ["10.500"]
+        },
+        "MSGLIG": {
+          "description": "Line-by-line message (Same as MESLL)",
+          "type": "string",
+          "maxLength": 30
+        },
+        "MOTIMM": {
+          "description": "Reason for immobilization",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODLOT": {
+          "description": "Stored batch code",
+          "type": "string",
+          "maxLength": 20
+        },
+        "DATFAB": {
+          "description": "Manufacturing start and end dates (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "SPCPRO": {
+          "description": "Sub-package quantity of the product",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9999
+        },
+        "PCBPRO": {
+          "description": "Package quantity of the product",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999
+        },
+        "PDBCOL": {
+          "description": "Gross weight of the package in Kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "VOLCOL": {
+          "description": "Package volume expressed in dm3",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}\\.[0-9]{3}$",
+          "examples": ["0.780"]
+        },
+        "COLCOU": {
+          "description": "Number of packages per layer",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999
+        },
+        "COUPAL": {
+          "description": "Number of layers per pallet",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999
+        },
+        "CODEMB": {
+          "description": "Package code handling",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GERPAL": {
+          "description": "Number of pallet stackings in storage",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "GERHAU": {
+          "description": "Number of pallets stacked high",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "CODMDR": {
+          "description": "Goods reception method.",
+          "type": "string",
+          "maxLength": 3
+        },
+        "INDUNI": {
+          "description": "Unit processing indicator / false = UNICDE not used, true = UNICDE used",
+          "type": "boolean",
+          "default": false
+        },
+        "GEEX4021": {
+          "description": "Reception Orders Declaration Additional Line",
+          "$ref": "#/$defs/GEEX4021Wrapper"
+        },
+        "GEEX4025": {
+          "description": "Reception Orders rubriques line declaration",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4025Wrapper"
+          }
+        },
+        "GEEX4030": {
+          "description": "Reception Orders Pallets line declaration",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4030Wrapper"
+          }
+        }
+      },
+      "required": ["NLIREC", "CODPRO", "UVCREA"],
+      "additionalProperties": false
+    },
+    "GEEX4021Wrapper": {
+      "description": "Reception Orders Declaration Additional Line",
+      "type": "object",
+      "properties": {
+        "DIPRECL": {
+          "description": "Data transit area between software",
+          "type": "string",
+          "maxLength": 50
+        },
+        "PRXPRO": {
+          "description": "Product price",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+          "examples": ["10.500"]
+        },
+        "EDIPRO": {
+          "description": "Product code for EDI",
+          "type": "string",
+          "maxLength": 17
+        },
+        "CODACR": {
+          "description": "Cancellation code to receive an order",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODMDS": {
+          "description": "Storage method code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "ZONPRF": {
+          "description": "Preferential storage area",
+          "type": "string",
+          "maxLength": 1
+        },
+        "ALLPRF": {
+          "description": "Preferential storage aisle",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "type": "string",
+          "maxLength": 30
+        },
+        "QTEREA": {
+          "description": "Expected quantity",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4025Wrapper": {
+      "description": "Reception Orders rubriques line declaration",
+      "type": "object",
+      "properties": {
+        "TYPRUB": {
+          "description": "Section type - see EnumTYPRUB",
+          "$ref": "#/$defs/Enums/EnumTYPRUB"
+        },
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Section value",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["TYPRUB","CODRUB","VALRUB"],
+      "additionalProperties": false
+    },
+    "GEEX4030Wrapper": {
+      "description": "Reception Orders Pallets line declaration",
+      "type": "object",
+      "properties": {
+        "UVCMVT": {
+          "description": "Number of CSUs received on the pallet",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "QTEMVT": {
+          "description": "Quantity expressed in unit",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "CODLOT": {
+          "description": "Stored batch code",
+          "type": "string",
+          "maxLength": 20
+        },
+        "NUMLOT": {
+          "description": "Internal goods batch number",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "DATFAB": {
+          "description": "Manufacturing date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "DATFVI": {
+          "description": "Product end-of-life date (obsolescence) (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": [
+            "20250125"
+          ]
+        },
+        "CODPAL": {
+          "description": "Stored pallet code per EAN128 standards",
+          "type": "string",
+          "maxLength": 18
+        },
+        "ZONSTS": {
+          "description": "Warehouse storage area",
+          "type": "string",
+          "maxLength": 1
+        },
+        "ALLSTS": {
+          "description": "Aisle code in the area",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "DPLSTS": {
+          "description": "Location displacement in the aisle",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "NIVSTS": {
+          "description": "Location level in the column",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "EDTTOP": {
+          "description": "Storage label printing indicator / false = No label printing, true = Pallet label printing",
+          "type": "boolean",
+          "default": false
+        },
+        "PRXPRO": {
+          "description": "Product price",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+          "examples": [
+            "10.500"
+          ]
+        },
+        "PDBPAL": {
+          "description": "Gross weight of the pallet in Kg",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "PDNREC": {
+          "description": "Net weight received (pro forma valuation)",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "DATIMM": {
+          "description": "Immobilization start and end dates",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization date (format YYYYMMDD)",
+            "type": "string",
+            "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "examples": [
+              "20250125"
+            ]
+          }
+        },
+        "HEUIMM": {
+          "description": "Immobilization start and end times",
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization time (format HHMMSS)",
+            "type": "string",
+            "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+            "examples": [
+              "093000"
+            ]
+          }
+        },
+        "MOTIMM": {
+          "description": "Immobilization reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODMDS": {
+          "description": "Storage method code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "GEEX4031": {
+          "description": "Reception Orders Pallets Additional line declaration",
+          "$ref": "#/$defs/GEEX4031Wrapper"
+        },
+        "GEEX4040": {
+          "description": "Serial Number declaration",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4040Wrapper"
+          }
+        }
+      },
+      "required": ["UVCMVT","CODLOT","DATFAB", "CODPAL"],
+      "additionalProperties": false
+    },
+    "GEEX4031Wrapper": {
+      "description": "Reception Orders Pallets Additional line declaration",
+      "type": "object",
+      "properties": {
+        "CODDDO": {
+          "description": "Ordering party code",
+          "type":"string",
+          "maxLength": 14
+        },
+        "HEUFAB": {
+          "description": "Manufacturing start and end timesn (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": [
+            "143023"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4040Wrapper": {
+      "description": "Serial Number declaration",
+      "type": "object",
+      "properties": {
+        "CODSER": {
+          "description": "Primary serial number",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "SNUSER": {
+          "description": "Secondary serial number",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+        "TYPSER": {
+          "description": "Serial number type - see EnumTYPSER",
+          "$ref": "#/$defs/Enums/EnumTYPSER"
+        },
+        "PDBSER": {
+          "description": "Serial number weight",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        }
+      },
+      "required": ["CODSER","TYPSER"],
+      "additionalProperties": false
+    },
+    "GEEX4080Wrapper": {
+      "description": "Free Text",
+      "type": "object",
+      "properties": {
+        "SEQTXR": {
+          "description": "Free text sequence number in BR",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "LIBTXR": {
+          "description": "Free text label in BR",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      },
+      "required": ["SEQTXR", "LIBTXR"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 7 = Header Modification, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "7", "9"],
+        "default": "2"
+      },
+      "EnumMETTRP": {
+        "description": "Goods transport method / 1 = Delivered by supplier, 2 = Picked up by a third party, 3 = Picked up by us",
+        "type": "string",
+        "enum": ["1", "2", "3"],
+        "default": "1"
+      },
+      "EnumTYPFOU": {
+        "description": "Supplier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "type": "string",
+        "enum": ["1", "2", "3"]
+      },
+      "EnumTYPOPE": {
+        "description": "Operation type (e.g., Promotion, reservation) / 0 = Normal, 1 = Promotion, 2 = Reservation",
+        "type": "string",
+        "enum": ["0", "1", "2"],
+        "default": "0"
+      },
+      "EnumTYPRUB": {
+        "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "type": "string",
+        "enum": ["1","2"],
+        "default": "2"
+      },
+      "EnumTYPSER": {
+        "description": "Serial number type / 1 = UVC, 2 = BOX",
+        "type": "string",
+        "enum": ["1","2"],
+        "default": "1"
+      }
+    }
+  }
+}

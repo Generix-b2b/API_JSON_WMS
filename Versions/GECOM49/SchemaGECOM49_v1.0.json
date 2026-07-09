@@ -1,0 +1,706 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom49/SchemaGECOM49.json",
+  "title": "GECOM49 - Dispatch Advice",
+  "x-wms-icon": "GECOM49",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/m49_dispatchAdvice?uuid=[Value]",
+    "category": "Inbound",
+    "version": "v1.1",
+    "releaseDate": "2026-06-22"
+  },
+  "description": "JSON for creating a Dispatch Advice",
+  "type": "object",
+  "properties": {
+    "dispatchAdvices": {
+      "description": "Dispatch Advice Header",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 499,
+      "items": {
+				"$ref": "#/$defs/GEEX4900"
+			}
+    }
+  },
+  "required": ["dispatchAdvices"],
+	"$defs": {
+    "GEEX4900": {
+			"description": "Dispatch Advice Header",
+      "type": "object",
+			"properties": {
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODFOU": {
+          "description": "Supplier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "AVIREF": {
+          "description": "Dispatch advice reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "REFLET": {
+          "description": "Waybill number",
+          "type": "string",
+          "maxLength": 10
+        },
+        "EDIFOU": {
+          "description": "Supplier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "EDIACT": {
+          "description": "Warehouse code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "EDITRA": {
+          "description": "Carrier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "type": "string",
+          "maxLength": 14
+        },
+        "DATEXP": {
+          "description": "Goods dispatch date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUEXP": {
+          "description": "Goods dispatch time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "DATLIV": {
+          "description": "Order delivery date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEULIV": {
+          "description": "Order delivery time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "TYPTPT": {
+          "description": "Transport type",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TYPCHT": {
+          "description": "Loading type",
+          "type": "string",
+          "maxLength": 3
+        },
+        "REFPLB": {
+          "description": "Seal number",
+          "type": "string",
+          "maxLength": 10
+        },
+        "CAMCOD": {
+          "description": "Truck number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "DIPAVI": {
+          "description": "Data transit area between software",
+          "type": "string",
+          "maxLength": 50
+        },
+        "SITRCT": {
+          "description": "Reception site code (recipient's warehouse)",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CRERCP": {
+          "description": "Reception creation / false = No, true = Yes",
+          "type": "boolean",
+          "default": false
+        },
+        "NUMTOU": {
+          "description": "Tour record number",
+          "type": "string",
+          "pattern": "^[0-9]{1,8}$"
+        },
+        "INDSBY": {
+          "description": "Indicator for putting DESADV on hold - see EnumINDSBY",
+          "$ref": "#/$defs/Enums/EnumINDSBY"
+        },
+        "CODTRE": {
+          "description": "Reception type code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "TYPRMT": {
+          "description": "Feedback type - see EnumTYPRMT",
+          "$ref": "#/$defs/Enums/EnumTYPRMT"
+        },
+        "CUMLIG": {
+          "description": "Total number of lines in the order",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}$"
+        },
+        "GEEX4905": {
+          "description": "Dispatch advice associated attributes",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4905Wrapper"
+          }
+        },
+        "GEEX4910": {
+          "description": "Logistics object header",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4910Wrapper"
+          }
+        }
+      },
+      "required": ["TRTEXC","CODFOU","AVIREF","CODACT","DATEXP","CUMLIG"],
+      "if": {
+        "properties": {
+          "TRTEXC": { "enum": ["1", "2"] }
+        },
+        "required": ["TRTEXC"]
+      },
+      "then": {
+        "required": ["GEEX4910"]
+      },
+      "additionalProperties": false
+    },
+    "GEEX4905Wrapper": {
+      "type": "object",
+      "properties": {
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Traceability element value",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["CODRUB","VALRUB"],
+      "additionalProperties": false 
+    },
+    "GEEX4910Wrapper": {
+      "description": "Logistics object header",
+      "type": "object",
+      "properties": {
+        "CODOBL": {
+          "description": "Logistics object code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        },
+        "AVINLI": {
+          "description": "Dispatch advice line number",
+          "type": "string",
+          "pattern": "^[0-9]{1,12}$"
+        },
+        "CUMCOL": {
+          "description": "Total number of packages",
+          "type": "string",
+          "pattern": "^[0-9]{1,7}$"
+        },
+        "TYPMQG": {
+          "description": "Marking type",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODEB1": {
+          "description": "Handling packaging code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODEB2": {
+          "description": "Packaging code associated with packing",
+          "type": "string",
+          "maxLength": 3
+        },
+        "PDBOBL": {
+          "description": "Weight of the logistics object",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99999999.999,
+          "multipleOf": 0.001
+        },
+        "UNIPDB": {
+          "description": "Weight measurement unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "LNGOBL": {
+          "description": "Length of the logistics object",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}\\.[0-9]{2}$",
+          "examples": ["120.00"]
+        },
+        "LRGOBL": {
+          "description": "Width of the logistics object",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}\\.[0-9]{2}$",
+          "examples": ["120.00"]
+        },
+        "HAUOBL": {
+          "description": "Height of the logistics object",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}\\.[0-9]{2}$",
+          "examples": ["120.00"]
+        },
+        "UNIDIM": {
+          "description": "Dimensions measurement unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "DATCRE": {
+          "description": "Creation date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "HEUCRE": {
+          "description": "Creation time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "PROEMB": {
+          "description": "Packaging product code for interfacing",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "description": "Packaging product code for interfacing",
+            "type": "string",
+            "maxLength": 17
+          }
+        },
+        "CODTOB": {
+          "description": "Object processing code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "DATSUP": {
+          "description": "Support validation start and end dates",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "description": "Support validation start and end dates (format YYYYMMDD)",
+            "type": "string",
+            "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "examples": ["20250125"]
+          }
+        },
+        "HEUSUP": {
+          "description": "Support validation start and end times",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "description": "Support validation start and end times (format HHMMSS)",
+            "type": "string",
+            "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+            "examples": ["143023"]
+          }
+        },
+        "COEUOT": {
+          "description": "UOT calculation coefficient",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}\\.[0-9]{2}$",
+          "examples": ["1.00"]
+        },
+        "TRAFUT": {
+          "description": "Future carrier",
+          "type": "string",
+          "maxLength": 14
+        },
+        "MSGOBJ": {
+          "description": "Message related to the object",
+          "type": "string",
+          "maxLength": 30
+        },
+        "GEEX4920": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4920Wrapper"
+        },
+        "GEEX4921": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4921Wrapper"
+        },
+        "GEEX4922": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4922Wrapper"
+        },
+        "GEEX4923": {
+          "description": "Logistics object details",
+          "$ref": "#/$defs/GEEX4923Wrapper"
+        },
+        "GEEX4925": {
+          "description": "Rubriques Declaration Line",
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX4925Wrapper"
+          }
+        }
+      },
+      "required": ["CODOBL", "AVINLI", "GEEX4920"],
+      "additionalProperties": false
+    },
+    "GEEX4920Wrapper": {
+      "description": "Logistics object details",
+      "type": "object",
+      "properties": {
+        "NLIOBL": {
+          "description": "Line number of the higher logistics object",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "CODOBI": {
+          "description": "Lower object code",
+          "type": "string",
+          "maxLength": 35
+        },
+        "EDIPRO": {
+          "description": "Product code for EDI",
+          "type": "string",
+          "maxLength": 17
+        },
+        "CODPRO": {
+          "description": "Internal product code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 17
+        },
+        "VALPRO": {
+          "description": "Logistics variant (Gencod)",
+          "type": "string",
+          "pattern": "^[0-9]{1,2}$"
+        },
+        "EDICLI": {
+          "description": "EDI code of the delivering customer (CLILIV)",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODCLI": {
+          "description": "Internal code of the delivering customer (CLILIV)",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODPAY": {
+          "description": "Symbolic country code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NATSTK": {
+          "description": "Stock nature",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODLOT": {
+          "description": "Stored batch code",
+          "type": "string",
+          "maxLength": 20
+        },
+        "PDNLIV": {
+          "description": "Net weight delivered",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99999999.999,
+          "multipleOf": 0.001
+        },
+        "PCBPRO": {
+          "description": "Product quantity",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99999
+        }
+      },
+      "required": ["NLIOBL", "CODPRO"],
+      "additionalProperties": false
+    },
+    "GEEX4921Wrapper": {
+      "description": "Logistics object details",
+      "type": "object",
+      "properties": {
+        "DATFAB": {
+          "description": "Manufacturing date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "UVCOBI": {
+          "description": "Number of CSUs of the lower logistics object",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "UNIUVC": {
+          "description": "Consumer Sales Unit measurement unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "NUOOBI": {
+          "description": "Object quantity in OU",
+          "type": "string",
+          "pattern": "^[0-9]{1,9}$"
+        },
+        "UNIUOA": {
+          "description": "Object unit",
+          "type": "string",
+          "maxLength": 3
+        },
+        "MOTIMM": {
+          "description": "Immobilization reason",
+          "type": "string",
+          "maxLength": 3
+        },
+        "EDICLF": {
+          "description": "Final customer code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CLILIV": {
+          "description": "Internal code of the final customer (CODCLI)",
+          "type": "string",
+          "maxLength": 14
+        },
+        "REFREC": {
+          "description": "Reception reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "NLIREC": {
+          "description": "Line number for reception interface",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "TYPREF": {
+          "description": "DAE reference type - see EnumTYPREF",
+					"$ref": "#/$defs/Enums/EnumTYPREF"
+        }
+      },
+      "required": ["REFREC", "NLIREC"],
+      "additionalProperties": false
+    },
+    "GEEX4922Wrapper": {
+      "description": "Logistics object details",
+      "type": "object",
+      "properties": {
+        "EANUVC": {
+          "description": "EAN code associated with the CSU",
+          "type": "string",
+          "maxLength": 14
+        },
+        "PRXAVI": {
+          "description": "Price of the delivered product",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{3}$",
+          "examples": ["120.050"]
+        },
+        "PDNAVI": {
+          "description": "Net weight of the product in the advice",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9999.999,
+          "multipleOf": 0.001
+        },
+        "REFLIV": {
+          "description": "Delivery reference",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30
+        },
+        "NLILIV": {
+          "description": "Line number for delivery interface",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}$"
+        },
+        "DS1PRO": {
+          "description": "Product designation line 1",
+          "type": "string",
+          "maxLength": 30
+        },
+        "DS2PRO": {
+          "description": "Product designation line 2",
+          "type": "string",
+          "maxLength": 30
+        },
+        "TOPLIV": {
+          "description": "Indicators for specific users",
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "description": "Indicators for specific users",
+            "type": "string",
+            "maxLength": 1
+          }
+        },
+        "PDBLIV": {
+          "description": "Gross weight delivered",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 99999999.999,
+          "multipleOf": 0.001
+        },
+        "VOLCOL": {
+          "description": "Package volume expressed in dm3",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}\\.[0-9]{3}$",
+          "examples": ["0.780"]
+        },
+        "CODTLI": {
+          "description": "Delivery type code",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "required": ["REFLIV", "NLILIV"],
+      "additionalProperties": false
+    },
+    "GEEX4923Wrapper": {
+      "description": "Logistics object details",
+      "type": "object",
+      "properties": {
+        "CODOPE": {
+          "description": "Operation code (Promo or reservation)",
+          "type": "string",
+          "maxLength": 14
+        },
+        "NUMOPE": {
+          "description": "Operation number (Promo or reservation)",
+          "type": "string",
+          "pattern": "^[0-9]{1,6}$"
+        },
+        "TYPOPE": {
+          "description": "Operation type (e.g.: Promotion, reservation) - See EnumTYPOPE",
+					"$ref": "#/$defs/Enums/EnumTYPOPE"
+        },
+        "HEUFAB": {
+          "description": "Manufacturing time (format HHMMSS)",
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+          "examples": ["143023"]
+        },
+        "DATIMM": {
+          "description": "Immobilization start and end dates",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization start and end dates (format YYYYMMDD)",
+            "type": "string",
+            "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+            "examples": ["20250125"]
+          }
+        },
+        "HEUIMM": {
+          "description": "Immobilization start and end times",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "description": "Immobilization start and end times (format HHMMSS)",
+            "type": "string",
+            "pattern": "^(0[0-9]|1[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$",
+            "examples": ["143023"]
+          }
+        },
+        "FOUINI": {
+          "description": "Original supplier code",
+          "type": "string",
+          "maxLength": 14
+        }
+      },
+      "additionalProperties": false
+    },
+    "GEEX4925Wrapper": {
+      "description": "Rubriques Declaration Line",
+      "type": "object",
+      "properties": {
+        "TYPRUB": {
+          "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+					"$ref": "#/$defs/Enums/EnumTYPRUB"
+        },
+        "CODRUB": {
+          "description": "Section code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4
+        },
+        "VALRUB": {
+          "description": "Section value",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 35
+        }
+      },
+      "required": ["TYPRUB","CODRUB","VALRUB"],
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modification, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1","2","9"],
+        "default": "2"
+      },
+      "EnumINDSBY": {
+          "description": "Indicator for putting DESADV on hold / 0 = No hold, 1 = On hold, 2 = On hold and last",
+          "type": "string",
+          "enum": ["0","1","2"],
+          "default": "0"
+      },
+      "EnumTYPRMT": {
+        "description": "Feedback type / C = Package put in stock, R = Reception put in stock, U = Unloading",
+        "type": "string",
+        "enum": ["C","R","U"]
+      },
+      "EnumTYPREF": {
+        "description": "DAE reference type / 0 = Gamm@ reference, 1 = GPS reference, 2 = GPS reference return, 3 = DAE draft",
+        "type": "string",
+        "enum": ["0","1","2","3"]
+      },
+      "EnumTYPOPE": {
+        "description": "Operation type (e.g.: Promotion, reservation) / 0 = Normal, 1 = Promotion, 2 = Reservation, 3 = Operation code, 4 = Promo Circuit",
+        "type": "string",
+        "enum": ["0","1","2","3","4"],
+        "default": "0"
+      },
+      "EnumTYPRUB": {
+        "description": "Section type / 1 = EDIFACT standard, 2 = Internal coding",
+        "type": "string",
+        "enum": ["1","2"],
+        "default": "2"
+      }
+    }   
+  }
+}

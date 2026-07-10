@@ -200,6 +200,11 @@
     letter-spacing: 0.5px; transform: rotate(45deg);
     pointer-events: none; z-index: 2;
   }
+  .card.is-new.active {
+    border-color: var(--generix-green);
+    box-shadow: 0 18px 36px rgba(0, 35, 51, 0.1);
+    transform: translateY(-5px);
+}
   /* Halo pulsante anclado en la punta de la esquina */
   .card.is-new::after {
     content: ""; position: absolute;
@@ -665,19 +670,39 @@
 
   .endpoint-nav{ display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 35px;}
   .endpoint-nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin:20px 0 35px;}
-  .endpoint-link{ border:1px solid var(--gray-200); padding:8px 14px; border-radius:20px; cursor:pointer; transition:.2s; background-color: var(--generix-dark); color: var(--white);}
+  .endpoint-link{ 
+    border:1px solid var(--gray-200); padding:8px 14px; border-radius:20px; cursor:pointer; 
+    transition:.2s; background-color: var(--generix-dark); color: var(--white);
+    position: relative; overflow: hidden; text-transform: uppercase;
+  }
   .endpoint-link:hover{ border-color:var(--generix-green); color:var(--generix-green);}
-  .endpoint-card{ transition:.3s;}
-  .endpoint-card.highlight{ border:2px solid var(--generix-orange); box-shadow:0 0 20px rgba(242,138,72,.35);}
-  .endpoint-card.active{ border:2px solid var(--generix-orange); box-shadow:0 0 20px rgba(242,138,72,.35);}
   .endpoint-link.active{font-weight: 700; border-color: var(--generix-dark);color: var(--generix-dark); background-color: var(--generix-green);box-shadow: 0 0 10px rgba(242,138,72,.25);}
-  .sticky-header {
-    position: sticky;
-    top: 87px;
-    z-index: 99;
-    background: var(--white);
-    padding-top: 10px;
-}
+  .nav-new-badge {
+    position: absolute; right: 8px; top: calc(50% - 1px); transform: translateY(-50%); color: var(--generix-green); font-size: 20px;
+    display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; line-height: 1; z-index: 2;
+    --pulse-color0:rgba(0,165,154,.55);
+    --pulse-color70:rgba(0,165,154,0);
+    --pulse-color100:rgba(0,165,154,0);
+  }
+  .endpoint-link.active .nav-new-badge {
+    position: absolute; right: 8px; top: calc(50% - 1px); transform: translateY(-50%); color: var(--generix-dark); font-size: 20px;
+    display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; line-height: 1; z-index: 2;
+    --pulse-color0: rgba(0,35,51,.55);
+    --pulse-color70:rgb(0, 35, 51, 0);
+    --pulse-color100:rgb(0, 35, 51, 0);
+  }
+  .nav-new-badge::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 4px; height: 4px; border-radius: 50%;
+    transform: translate(-50%, -50%); animation: pulseStar 1.8s ease-out infinite;
+  }
+  @keyframes pulseStar {
+      0% { box-shadow:   0 0 0 0    var(--pulse-color0)   }
+      70% { box-shadow:  0 0 0 14px var(--pulse-color70)  }
+      100% { box-shadow: 0 0 0 0    var(--pulse-color100) }
+  }
+  .sticky-header { position: sticky; top: 87px; z-index: 99; background: var(--white); padding-top: 10px; }
+
 
 </style>
 </head>
@@ -1334,20 +1359,19 @@ function isRecent(releaseDate, days = 5) {
   return dayDiff >= 0 && dayDiff <= days;
 }
 function renderGrid(eps) {
-
   const nav = document.getElementById('endpoint-nav');
-  
-  nav.innerHTML = `
-    <div class="endpoint-nav-grid">
-      ${eps.map(({folder,schema}) => `
-        <button
-            class="endpoint-link"
-            style="text-transform: uppercase;"
+  nav.innerHTML = `<div class="endpoint-nav-grid">
+      ${eps.map(({folder,schema}) => {
+        const ep     = schema['x-wms-endpoint'] || {};
+        const recent = isRecent(ep.releaseDate);
+        return`<button
+            class="endpoint-link ${recent ? 'is-new' : ''}"
             data-folder="${folder}"
             onclick="scrollToEndpoint('${folder}')">
             ${esc(folder || schema.title)}
+            ${recent ? `<span class="nav-new-badge" data-folder="${folder}">✦</span>` : ''}
         </button>
-      `).join('')}
+      `}).join('')}
     </div>
   `;
   document.querySelectorAll('.endpoint-link')
@@ -1367,9 +1391,10 @@ function renderGrid(eps) {
     const desc   = schema.description || '';
     const nf     = countTopFields(schema);
 
-    const nav = document.getElementById('endpoint-nav');
+    
     const recent     = isRecent(ep.releaseDate);
     const folderAttr = String(folder).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+
     return `<div class="card${recent ? ' is-new' : ''}" id="endpoint-${folder}" onclick="openEndpoint('${folderAttr}')">
       ${recent ? '<span class="new-flag">✦ NEW</span>' : ''}
       <div class="card-icon">${esc(icon)}</div>

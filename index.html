@@ -119,8 +119,8 @@
   .stat-label  { color: var(--gray-700); font-size: 0.9rem; font-weight: 500; }
 
   /* ── SECTIONS ───────────────────────────────────────── */
-  .section { max-width: 1240px; margin: 0 auto; padding: 80px 32px; }
-  .section-header { margin-bottom: 50px; }
+  .section { max-width: 1240px; margin: 0 auto; padding: 50px 32px; }
+  .section-header { margin-bottom: 0px; }
   .section-eyebrow {
     color: var(--generix-orange); font-size: 0.82rem; font-weight: 700;
     letter-spacing: 2.5px; text-transform: uppercase;
@@ -139,6 +139,7 @@
     transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
     display: flex; flex-direction: column;
     position: relative; overflow: hidden; cursor: pointer;
+    scroll-margin-top: 78px;
   }
   .card::before {
     content: ""; position: absolute; top: 0; right: 0;
@@ -149,6 +150,7 @@
   }
   .card:hover { border-color: var(--generix-orange); box-shadow: 0 18px 36px rgba(0,35,51,0.1); transform: translateY(-5px); }
   .card:hover::before { border-color: transparent var(--generix-orange) transparent transparent; }
+  .card.active { border-color: var(--generix-orange); box-shadow: 0 18px 36px rgba(0,35,51,0.1); transform: translateY(-5px); }
 
   .card-icon {
     width: 52px; height: 52px; background: var(--generix-dark);
@@ -160,7 +162,7 @@
   }
   .card:hover .card-icon { background: var(--generix-orange); color: var(--white); transform: rotate(-5deg) scale(1.05); }
 
-  .card h3 { color: var(--generix-dark); font-size: 1.1rem; margin-bottom: 10px; font-weight: 700; min-height: 57px; }
+  .card h3 { color: var(--generix-dark); font-size: 1.1rem !important; margin-bottom: 10px; font-weight: 700; min-height: 68px; }
   .card p  { color: var(--gray-500); font-size: 0.9rem; flex-grow: 1; margin-bottom: 18px; line-height: 1.5; }
   .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 
@@ -660,6 +662,23 @@
   }
   .lang-option:hover { background:var(--generix-dark-soft); color:#fff; }
   .lang-option.active { background:var(--generix-orange); color:var(--generix-dark); }
+
+  .endpoint-nav{ display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 35px;}
+  .endpoint-nav-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin:20px 0 35px;}
+  .endpoint-link{ border:1px solid var(--gray-200); padding:8px 14px; border-radius:20px; cursor:pointer; transition:.2s; background-color: var(--generix-dark); color: var(--white);}
+  .endpoint-link:hover{ border-color:var(--generix-green); color:var(--generix-green);}
+  .endpoint-card{ transition:.3s;}
+  .endpoint-card.highlight{ border:2px solid var(--generix-orange); box-shadow:0 0 20px rgba(242,138,72,.35);}
+  .endpoint-card.active{ border:2px solid var(--generix-orange); box-shadow:0 0 20px rgba(242,138,72,.35);}
+  .endpoint-link.active{font-weight: 700; border-color: var(--generix-dark);color: var(--generix-dark); background-color: var(--generix-green);box-shadow: 0 0 10px rgba(242,138,72,.25);}
+  .sticky-header {
+    position: sticky;
+    top: 87px;
+    z-index: 99;
+    background: var(--white);
+    padding-top: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -714,17 +733,20 @@
   </div>
 
   <section class="section" id="ep-section">
-    <div class="section-header">
-      <span class="section-eyebrow" data-i18n="sec.eyebrow">Centro de documentaci&oacute;n · WMS API</span>
-      <h2 data-i18n="sec.title">Endpoints y mensajes de integraci&oacute;n</h2>
-      <p data-i18n="sec.subtitle">Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.</p>
+    <div class="sticky-header">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="sec.eyebrow">Centro de documentaci&oacute;n · WMS API</span>
+        <h2 data-i18n="sec.title">Endpoints y mensajes de integraci&oacute;n</h2>
+        <p data-i18n="sec.subtitle">Selecciona un mensaje para explorar su esquema completo: campos, tipos, validaciones y ejemplos de payload.</p>
+      </div>
+      <div id="endpoint-nav"></div>
     </div>
     <div class="grid folder-section" id="endpoints-grid">
       <!-- filled by JS -->
     </div>
   </section>
 
-  <section class="section" style="padding-top:0" id="recursos-section">
+  <section class="section" style="padding-top:0; scroll-margin-top: 130px;" id="recursos-section">
     <div class="folder-section" id="recursos-section">
       <h3><span class="card-icon" style="margin-bottom: 0px; font-size: 1.2rem;">⚙</span> RECURSOS</h3>
         <div class="file-grid">
@@ -1312,6 +1334,29 @@ function isRecent(releaseDate, days = 5) {
   return dayDiff >= 0 && dayDiff <= days;
 }
 function renderGrid(eps) {
+
+  const nav = document.getElementById('endpoint-nav');
+  
+  nav.innerHTML = `
+    <div class="endpoint-nav-grid">
+      ${eps.map(({folder,schema}) => `
+        <button
+            class="endpoint-link"
+            style="text-transform: uppercase;"
+            data-folder="${folder}"
+            onclick="scrollToEndpoint('${folder}')">
+            ${esc(folder || schema.title)}
+        </button>
+      `).join('')}
+    </div>
+  `;
+  document.querySelectorAll('.endpoint-link')
+    .forEach(btn => {
+        btn.addEventListener('click', () => {
+            scrollToEndpoint(btn.dataset.folder);
+        });
+  });
+
   document.getElementById('endpoints-grid').innerHTML = eps.map(({ folder, schema }) => {
     const ep     = schema['x-wms-endpoint'] || {};
     const method = (ep.method || '').toUpperCase();
@@ -1322,9 +1367,10 @@ function renderGrid(eps) {
     const desc   = schema.description || '';
     const nf     = countTopFields(schema);
 
+    const nav = document.getElementById('endpoint-nav');
     const recent     = isRecent(ep.releaseDate);
     const folderAttr = String(folder).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    return `<div class="card${recent ? ' is-new' : ''}" onclick="openEndpoint('${folderAttr}')">
+    return `<div class="card${recent ? ' is-new' : ''}" id="endpoint-${folder}" onclick="openEndpoint('${folderAttr}')">
       ${recent ? '<span class="new-flag">✦ NEW</span>' : ''}
       <div class="card-icon">${esc(icon)}</div>
       <div class="card-meta">
@@ -1338,7 +1384,16 @@ function renderGrid(eps) {
     </div>`;
   }).join('');
 }
-
+function scrollToEndpoint(folder) {
+    document.querySelectorAll('.endpoint-link').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.card').forEach(b => b.classList.remove('active'));
+    const btn = document.querySelector(`.endpoint-link[data-folder="${folder}"]`);
+    if (btn) {btn.classList.add('active');}
+    const card = document.getElementById(`endpoint-${folder}`);
+    if (!card) return;
+    card.classList.add('active');
+    card.scrollIntoView({behavior: 'smooth',block: 'center'});
+}
 function renderSkeletons(n) {
   document.getElementById('endpoints-grid').innerHTML =
     Array.from({ length: n }).map(() =>
@@ -1381,6 +1436,15 @@ async function openEndpoint(folder, dir) {
   document.getElementById('ejemplo-inner').innerHTML = '<p style="color:var(--gray-500)">' + t('loading') + '</p>';
   document.getElementById('snav-btns-estructura').innerHTML    = '';
   document.getElementById('snav-btns-enumeraciones').innerHTML = '';
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.endpoint-link').forEach(c => c.classList.remove('active'));
+  
+  const card = document.getElementById(`endpoint-${folder}`);
+  if (card) card.classList.add('active');
+  const btn = document.querySelector(`.endpoint-link[data-folder="${folder}"]`);
+  if (btn) btn.classList.add('active');
+
+
   _examples = [];
 
   try {

@@ -10,8 +10,8 @@
     "method": "POST",
     "path": "https://[URL_Client]/endpoint",
     "category": "Outbound",
-    "version": "v1.2",
-    "releaseDate": "2026-07-03"
+    "version": "v1.3",
+    "releaseDate": "2026-07-14"
   },
   "description": "JSON for delivery order confirmation feedback from the WMS",
   "description_es": "JSON para el retorno de confirmación de órdenes de entrega del WMS",
@@ -322,6 +322,12 @@
           "items": {
             "$ref": "#/$defs/GEEX5120Wrapper"
           }
+        },
+        "GEEX5180": {
+          "description": "Delivery packaging",
+          "description_es": "Embalajes enviados",
+          "description_en": "Delivery packaging",
+          "$ref": "#/$defs/GEEX5180Wrapper"
         },
         "GEEX5199": {
           "description": "Delivery confirmation totals",
@@ -1527,6 +1533,67 @@
       },
       "additionalProperties": false
     },
+    "GEEX5180Wrapper": {
+      "description": "Delivery packaging",
+      "description_es": "Embalajes enviados",
+      "description_en": "Delivery packaging",
+      "type": "object",
+      "properties": {
+        "CODEMB": {
+          "description": "Handling packaging code",
+          "description_es": "Código de embalaje de manipulación",
+          "description_en": "Handling packaging code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "QTBSOR": {
+          "description": "Number of packaging delivered (Output)",
+          "description_es": "Número de embalajes entregados (salida)",
+          "description_en": "Number of packaging delivered (Output)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "QTBENT": {
+          "description": "Number of packaging returned (Input)",
+          "description_es": "Número de embalajes devueltos (entrada)",
+          "description_en": "Number of packaging returned (Input)",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "PRXEMB": {
+          "description": "Indicative unit price of the packaging",
+          "description_es": "Precio unitario indicativo del embalaje",
+          "description_en": "Indicative unit price of the packaging",
+          "type": "string",
+          "pattern": "^[0-9]{1,4}\\.[0-9]{2}$",
+          "examples": ["1.00"]
+        },
+        "PROEMB": {
+          "description": "Packaging product code for interfacing",
+          "description_es": "Código de producto de embalaje para la interfaz",
+          "description_en": "Packaging product code for interfacing",
+          "type": "string",
+          "maxLength": 17
+        },
+        "DATEMB": {
+          "description": "Physical movement entry date (format YYYYMMDD)",
+          "description_es": "Fecha de entrada del movimiento físico (formato AAAAMMDD)",
+          "description_en": "Physical movement entry date (format YYYYMMDD)",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{3}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$",
+          "examples": ["20250125"]
+        },
+        "TYPTIE": {
+          "description": "Third-party type for packaging management - see EnumTYPTIE",
+          "description_es": "Tipo de tercero para la gestión de embalajes - ver EnumTYPTIE",
+          "description_en": "Third-party type for packaging management - see EnumTYPTIE",
+          "$ref": "#/$defs/Enums/EnumTYPTIE"
+        }
+      },
+      "additionalProperties": false
+    },
     "GEEX5199Wrapper": {
       "description": "Delivery confirmation totals",
       "description_es": "Totales de confirmación de entrega",
@@ -1674,6 +1741,13 @@
         "description_en": "Serial number type / 1 = CSU, 2 = Package",
         "type": "string",
         "enum": ["1", "2"]
+      },
+      "EnumTYPTIE": {
+        "description": "Third-party type for packaging management / 0 = All third parties (1+2+3+5), 1 = Supplier, 2 = Carrier, 3 = Customer, 4 = Site, 5 = Owner",
+        "description_es": "Tipo de tercero para la gestión de embalajes / 0 = Todos los terceros (1+2+3+5), 1 = Proveedor, 2 = Transportista, 3 = Cliente, 4 = Sitio, 5 = Propietario",
+        "description_en": "Third-party type for packaging management / 0 = All third parties (1+2+3+5), 1 = Supplier, 2 = Carrier, 3 = Customer, 4 = Site, 5 = Owner",
+        "type": "string",
+        "enum": ["0", "1", "2", "3", "4", "5"]
       }
     }
   }

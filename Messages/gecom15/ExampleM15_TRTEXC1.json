@@ -1,0 +1,35 @@
+{
+  "supplierMasterData": [
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "TRTEXC": "1",
+      "CODTRA": "TRANSP034",
+      "TYPTRA": "1",
+      "NOMTRA": "Industrias Generix S.A.",
+      "AD1TRA": "Calle Industrial 45",
+      "VILTRA": "Madrid",
+      "PAYTRA": "ES",
+      "CPITRA": "28001"
+    },
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "TRTEXC": "1",
+      "CODACT": "WMS",
+      "CODTRA": "TRANSP001",
+      "TYPTRA": "2",
+      "NOMTRA": "Distribuciones Mayoreo S.L.",
+      "AD1TRA": "Avenida del Comercio 120",
+      "AD2TRA": "Polígono Industrial Norte",
+      "AD3TRA": "Nave 7",
+      "CPITRA": "46011",
+      "VILTRA": "Valencia",
+      "PAYTRA": "ES",
+      "TELTRA": "+34963000000",
+      "FAXTRA": "+34963000001",
+      "EDITRA": "EDIFOU0002",
+      "GEEX1501": {
+        "EMLADR": "jgarcia@distribuciones.com",
+      }
+    }
+  ]
+}

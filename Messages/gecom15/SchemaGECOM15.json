@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom15/SchemaGECOM15.json",
+  "title": "GECOM15 - Carrier Master Data",
+  "title_es": "GECOM15 - Datos maestros de transportistas",
+  "title_en": "GECOM15 - Carrier Master Data",
+  "x-wms-icon": "GECOM15",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/m15_carrier?uuid=[Value]",
+    "category": "Inbound",
+    "version": "v1.1",
+    "releaseDate": "2026-07-15"
+  },
+  "description": "JSON for carrier master data load",
+  "description_es": "JSON para la carga de datos maestros de transportistas",
+  "description_en": "JSON for carrier master data load",
+  "type": "object",
+  "properties": {
+    "carrierMasterData": {
+      "description": "Carrier declaration",
+      "description_es": "Declaración del transportista",
+      "description_en": "Carrier declaration",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 499,
+      "items": {
+        "$ref": "#/$defs/GEEX1500"
+      }
+    }
+  },
+  "required": ["carrierMasterData"],
+  "additionalProperties": false,
+  "$defs": {
+    "GEEX1500": {
+      "description": "Carrier declaration",
+      "description_es": "Declaración del transportista",
+      "description_en": "Carrier declaration",
+      "type": "object",
+      "properties": {
+        "RCTEXC": {
+          "description": "Code of exchange recipient",
+          "description_es": "Código del destinatario del intercambio",
+          "description_en": "Code of exchange recipient",
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "TRTEXC": {
+          "description": "Movement processing code - see EnumTRTEXC",
+          "description_es": "Código de procesamiento del movimiento - ver EnumTRTEXC",
+          "description_en": "Movement processing code - see EnumTRTEXC",
+          "$ref": "#/$defs/Enums/EnumTRTEXC"
+        },
+        "CODACT": {
+          "description": "Logistics activity code",
+          "description_es": "Código de actividad logística",
+          "description_en": "Logistics activity code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "CODTRA": {
+          "description": "Carrier code",
+          "description_es": "Código de transportista",
+          "description_en": "Carrier code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 14
+        },
+        "TYPTRA": {
+          "description": "Carrier type - see EnumTYPTRA",
+          "description_es": "Tipo de transportista - ver EnumTYPTRA",
+          "description_en": "Carrier type - see EnumTYPTRA",
+          "$ref": "#/$defs/Enums/EnumTYPTRA"
+        },
+        "NOMTRA": {
+          "description": "Carrier name",
+          "description_es": "Nombre del transportista",
+          "description_en": "Carrier name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD1TRA": {
+          "description": "Carrier address line 1",
+          "description_es": "Dirección del transportista línea 1",
+          "description_en": "Carrier address line 1",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 38
+        },
+        "AD2TRA": {
+          "description": "Carrier address line 2",
+          "description_es": "Dirección del transportista línea 2",
+          "description_en": "Carrier address line 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "AD3TRA": {
+          "description": "Carrier address line 3",
+          "description_es": "Dirección del transportista línea 3",
+          "description_en": "Carrier address line 3",
+          "type": "string",
+          "maxLength": 38
+        },
+        "CPITRA": {
+          "description": "Carrier postal code in alphanumeric format",
+          "description_es": "Código postal del transportista en formato alfanumérico",
+          "description_en": "Carrier postal code in alphanumeric format",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10
+        },
+        "VILTRA": {
+          "description": "Carrier city",
+          "description_es": "Ciudad del transportista",
+          "description_en": "Carrier city",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 58
+        },
+        "PAYTRA": {
+          "description": "Carrier country code",
+          "description_es": "Código de país del transportista",
+          "description_en": "Carrier country code",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3
+        },
+        "TELTRA": {
+          "description": "Carrier phone number",
+          "description_es": "Número de teléfono del transportista",
+          "description_en": "Carrier phone number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "FAXTRA": {
+          "description": "Carrier fax number",
+          "description_es": "Número de fax del transportista",
+          "description_en": "Carrier fax number",
+          "type": "string",
+          "maxLength": 20
+        },
+        "TLXTRA": {
+          "description": "Carrier telex number",
+          "description_es": "Número de télex del transportista",
+          "description_en": "Carrier telex number",
+          "type": "string",
+          "maxLength": 15
+        },
+        "EDITRA": {
+          "description": "Carrier code for EDI",
+          "description_es": "Código de transportista para EDI",
+          "description_en": "Carrier code for EDI",
+          "type": "string",
+          "maxLength": 14
+        },
+        "IGLSIT": {
+          "description": "Site identifier for Infolog GL",
+          "description_es": "Identificador de sitio para Infolog GL",
+          "description_en": "Site identifier for Infolog GL",
+          "type": "string",
+          "pattern": "^[0-9]{1,3}$"
+        },
+
+        "TYPVAL": {
+          "description": "Transport Purchase Valuation Type - See EnumTYPVAL",
+          "description_es": "Tipo de valoración de la compra de transporte - Ver EnumTYPVAL",
+          "description_en": "Transport Purchase Valuation Type - See EnumTYPVAL",
+          "$ref": "#/$defs/Enums/EnumTYPVAL"
+        },
+        "GSTEMB": {
+          "description": "Packaging Management in Accounts - see EnumGSTEMB",
+          "description_es": "Gestión de envases en las cuentas - Ver EnumGSTEMB",
+          "description_en": "Packaging Management in Accounts - see EnumGSTEMB",
+          "$ref": "#/$defs/Enums/EnumGSTEMB"
+        },
+        "GSTEDI": {
+          "description": "Multiple EDI Code Management / false = No EDI Management, true  = EDI Management",
+          "description_es": "Gestión múltiple de códigos EDI / false = Sin gestión por EDI, true = Gestión por EDI",
+          "description_en": "Multiple EDI Code Management / false = No EDI Management, true  = EDI Management",
+          "type": "boolean"
+        },
+        "CPTTRA": {
+          "description": "Carrier Accounting Account",
+          "description_es": "Cuenta contable del transportista",
+          "description_en": "Carrier Accounting Account",
+          "type": "string",
+          "maxLength": 6
+        },
+        "CODMRG": {
+          "description": "Payment Term Code",
+          "description_es": "Código de forma de pago",
+          "description_en": "Payment Term Code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "CODDRG": {
+          "description": "Payment Terms Code",
+          "description_es": "Código de plazo de pago",
+          "description_en": "Payment Terms Code",
+          "type": "string",
+          "maxLength": 3
+        },
+        "PEREMB": {
+          "description": "Periodicity of packaging sales - see EnumPEREMB",
+          "description_es": "Periodicidad de venta de embalajes - ver EnumPEREMB",
+          "description_en": "Periodicity of packaging sales - see EnumPEREMB",
+          "$ref": "#/$defs/Enums/EnumPEREMB"
+        },
+        "TRADNG": {
+          "description": "Authorization to Transport Hazardous Materials / false = Not Authorized, true = Authorized",
+          "description_es": "Autorización para el transporte de mercancías peligrosas / false = No autorizado, true = Autorizado",
+          "description_en": "Authorization to Transport Hazardous Materials / false = Not Authorized, true = Authorized",
+          "type": "boolean"
+        },
+        "EMBTIE": {
+          "description": "Packaging allocation / false = No allocation, true = Allocation",
+          "description_es": "Asignación de embalaje / false = Sin asignación, true = Asignación",
+          "description_en": "Packaging allocation / false = No allocation, true = Allocation",
+          "type": "boolean"
+        },
+        "EDTBDL": {
+          "description": "Delivery Note Printing / false = Delivery Note Printing at Dispatch Start, true = Delivery Note Printing at End of Preparation",
+          "description_es": "Impresión de albaranes / false = Impresión del albarán al inicio de la expedición, true = Impresión del albarán al finalizar la preparación",
+          "description_en": "Delivery Note Printing / false = Delivery Note Printing at Dispatch Start, true = Delivery Note Printing at End of Preparation",
+          "type": "boolean"
+        },
+        "GEEX1501": {
+          "description": "Carrier Additional Declaration",
+          "description_es": "Declaración adicional del transportista",
+          "description_en": "Carrier Additional Declaration",
+          "$ref": "#/$defs/GEEX1501Wrapper"
+        }
+      },
+      "required": ["RCTEXC","TRTEXC", "CODTRA", "NOMTRA", "AD1TRA", "CPITRA", "VILTRA", "PAYTRA"],
+      "additionalProperties": false
+    },
+    "GEEX1501Wrapper": {
+      "description": "Carrier Additional Declaration",
+      "description_es": "Declaración adicional del transportista",
+      "description_en": "Carrier Additional Declaration",
+      "type": "object",
+      "properties": {
+        "EMLADR": {
+          "description": "Email address",
+          "description_es": "Dirección de correo electrónico",
+          "description_en": "Email address",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "format": "email"
+        },
+        "CODCOG": {
+          "description": "Geographic code",
+          "description_es": "Código geográfico",
+          "description_en": "Geographic code",
+          "type": "string",
+          "maxLength": 15
+        },
+        "RSPTRA": {
+          "description": "Name of the person in charge at the Carrier",
+          "description_es": "Nombre de la persona responsable en el transportista",
+          "description_en": "Name of the person in charge at the Carrier",
+          "type": "string",
+          "maxLength": 30
+        },
+        "CM1TRA": {
+          "description": "Carrier comment (line 1)",
+          "description_es": "Comentario del transportista (línea 1)",
+          "description_en": "Carrier comment (line 1)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM2TRA": {
+          "description": "Carrier comment (line 2)",
+          "description_es": "Comentario del transportista (línea 2)",
+          "description_en": "Carrier comment (line 2)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "CM3TRA": {
+          "description": "Carrier comment (line 3)",
+          "description_es": "Comentario del transportista (línea 3)",
+          "description_en": "Carrier comment (line 3)",
+          "type": "string",
+          "maxLength": 45
+        },
+        "PGMETI": {
+          "description": "Payment Terms Code",
+          "description_es": "Código de plazo de pago",
+          "description_en": "Payment Terms Code",
+          "type": "string",
+          "maxLength": 10
+        },
+        "TYPMAS": {
+          "description": "Consolidation Type - see EnumTYPMAS",
+          "description_es": "Tipo de masificación - ver EnumTYPMAS",
+          "description_en": "Consolidation Type - see EnumTYPMAS",
+          "$ref": "#/$defs/Enums/EnumTYPMAS"
+        },
+        "LIBCPL": {
+          "description": "Additional name",
+          "description_es": "Nombre adicional",
+          "description_en": "Additional name",
+          "type": "string",
+          "maxLength": 38
+        },
+        "LIBCP2": {
+          "description": "Additional name 2",
+          "description_es": "Nombre adicional 2",
+          "description_en": "Additional name 2",
+          "type": "string",
+          "maxLength": 38
+        },
+        "TOULIV": {
+          "description": "Goods delivery round",
+          "description_es": "Ruta de entrega de mercancías",
+          "description_en": "Goods delivery round",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Goods delivery round",
+            "description_es": "Ruta de entrega de mercancías",
+            "description_en": "Goods delivery round",
+            "type": "string",
+            "pattern": "^[0-9]{1,4}$"
+          }
+        },
+        "ORDLIV": {
+          "description": "Delivery order in the round",
+          "description_es": "Orden de entrega en la ruta",
+          "description_en": "Delivery order in the round",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Delivery order in the round",
+            "description_es": "Orden de entrega en la ruta",
+            "description_en": "Delivery order in the round",
+            "type": "string",
+            "pattern": "^[0-9]{1,4}$"
+          }
+        },
+        "KAILIV": {
+          "description": "Freight transport docks",
+          "description_es": "Muelles de transporte de mercancías",
+          "description_en": "Freight transport docks",
+          "type": "array",
+          "maxItems": 7,
+          "items": {
+            "description": "Freight transport docks",
+            "description_es": "Muelles de transporte de mercancías",
+            "description_en": "Freight transport docks",
+            "type": "string",
+            "pattern": "^[0-9]{1,3}$"
+          }
+        },
+        "EDIMSG": {
+          "description": "GLN for Message Transmission",
+          "description_es": "GLN para el envío de mensajes",
+          "description_en": "GLN for Message Transmission",
+          "type": "string",
+          "maxLength": 14
+        },
+        "CODRGT": {
+          "description": "Area code for transport",
+          "description_es": "Código de zona para transporte",
+          "description_en": "Area code for transport",
+          "type": "string",
+          "maxLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "Enums": {
+      "EnumTRTEXC": {
+        "description": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "description_es": "Código de procesamiento del movimiento / 1 = Crear, 2 = Modificar o crear, 9 = Cancelación",
+        "description_en": "Movement processing code / 1 = Create, 2 = Modify or Create, 9 = Cancellation",
+        "type": "string",
+        "enum": ["1", "2", "9"],
+        "default": "2"
+      },
+      "EnumTYPTRA": {
+        "description": "Carrier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "description_es": "Tipo de transportista / 1 = Industrial, 2 = Mayorista, 3 = Plataforma (transferencias)",
+        "description_en": "Carrier type / 1 = Industrial, 2 = Wholesaler, 3 = Platform (transfers)",
+        "type": "string",
+        "enum": ["1", "2", "3"]
+      },
+      "EnumTYPVAL": {
+        "description": "Transport Purchase Valuation Type / 0 = Route-Based Valuation, 1 = Order-Based Valuation, 2 = Delivered Customer-Based Valuation",
+        "description_es": "Tipo de valoración de la compra de transporte / 0 = Valoración por ruta, 1 = Valoración por pedido, 2 = Valoración por cliente entregado",
+        "description_en": "Transport Purchase Valuation Type / 0 = Route-Based Valuation, 1 = Order-Based Valuation, 2 = Delivered Customer-Based Valuation",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumGSTEMB": {
+        "description": "Packaging Management in Accounts / 0 = No Tracking, 1 = Outbound Management, 2 =  Inbound Management, 3 = Inbound and Outbound Management",
+        "description_es": "Gestión de envases en las cuentas / 0 = Sin seguimiento, 1 = Gestión de salidas, 2 = Gestión de entradas, 3 = Gestión de entradas y salidas",
+        "description_en": "Packaging Management in Accounts / 0 = No Tracking, 1 = Outbound Management, 2 =  Inbound Management, 3 = Inbound and Outbound Management",
+        "type": "string",
+        "enum": ["0", "1", "2", "3"]
+      },
+      "EnumTYPPRT": {
+        "description": "Connector type (receiving) / 1 = Pallet, 3 = Package",
+        "description_es": "Tipo de conector (recepción) / 1 = Palé, 3 = Paquete",
+        "description_en": "Connector type (receiving) / 1 = Pallet, 3 = Package",
+        "type": "string",
+        "enum": ["1", "3"]
+      },
+      "EnumFOUGMA": {
+        "description": "Indicator for carrier management with GAMM@ / 0 = Not managed, 1 = Mandatory management, 2 = Optional management",
+        "description_es": "Indicador de gestión del transportista con GAMM@ / 0 = No gestionado, 1 = Gestión obligatoria, 2 = Gestión opcional",
+        "description_en": "Indicator for carrier management with GAMM@ / 0 = Not managed, 1 = Mandatory management, 2 = Optional management",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },
+      "EnumCODENL": {
+        "description": "Collection code / 0 = Without collection, 1 = With collection",
+        "description_es": "Código de recogida / 0 = Sin recogida, 1 = Con recogida",
+        "description_en": "Collection code / 0 = Without collection, 1 = With collection",
+        "type": "string",
+        "enum": ["0", "1"]
+      },
+      "EnumPEREMB": {
+        "description": "Periodicity of packaging sales / 0 = Manual balance, 1 = At midday and at the end of the month, 2 = At the end of the month",
+        "description_es": "Periodicidad de venta de embalajes / 0 = Saldo manual, 1 = Al mediodía y al final del mes, 2 = Al final del mes",
+        "description_en": "Periodicity of packaging sales / 0 = Manual balance, 1 = At midday and at the end of the month, 2 = At the end of the month",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      },      
+      "EnumTYPMAS": {
+        "description": "Consolidation Type / 0 = Deconsolidation, 1 = Parcel Carrier Service, 2 = Consolidation Neutralization",
+        "description_es": "Tipo de masificación / 0 = Desconsolidación, 1 = Mensajería, 2 = Neutralización de la masificación",
+        "description_en": "Consolidation Type / 0 = Deconsolidation, 1 = Parcel Carrier Service, 2 = Consolidation Neutralization",
+        "type": "string",
+        "enum": ["0", "1", "2"]
+      }
+    }
+  }
+}

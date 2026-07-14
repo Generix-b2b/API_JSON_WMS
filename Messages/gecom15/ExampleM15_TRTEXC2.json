@@ -1,0 +1,30 @@
+{
+  "supplierMasterData": [
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "TRTEXC": "2",
+      "CODTRA": "TRA0001",
+      "NOMTRA": "Industrias Generix S.A.",
+      "AD1TRA": "Calle Industrial 45 - Edificio A",
+      "VILTRA": "Madrid",
+      "PAYTRA": "ES",
+      "CPITRA": "28001",
+      "TELTRA": "+34910001111",
+      "GEEX1001": {
+        "EMLADR": "contacto@industriasgenerix.com",
+        "CM1TRA": "Nuevo responsable: Ana Martínez"
+      }
+    },
+    {
+      "RCTEXC": "FGE50XX0XX",
+      "TRTEXC": "2",
+      "CODTRA": "TRA0010",
+      "TYPTRA": "1",
+      "NOMTRA": "Conservas del Sur S.L.",
+      "AD1TRA": "Polígono Industrial La Isla Parcela 12",
+      "CPITRA": "41700",
+      "VILTRA": "Dos Hermanas",
+      "PAYTRA": "ES"
+    }
+  ]
+}

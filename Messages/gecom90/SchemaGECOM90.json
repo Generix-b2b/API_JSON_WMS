@@ -421,10 +421,10 @@
           "maxLength": 3
         },
         "SIGUVC": {
-          "description": "Sign of total CSUs - see EnumSign",
-          "description_es": "Signo del total de UVC - ver EnumSign",
-          "description_en": "Sign of total CSUs - see EnumSign",
-          "$ref": "#/$defs/Enums/EnumSign"
+          "description": "Sign of total CSUs - see EnumSIGN",
+          "description_es": "Signo del total de UVC - ver EnumSIGN",
+          "description_en": "Sign of total CSUs - see EnumSIGN",
+          "$ref": "#/$defs/Enums/EnumSIGN"
         },
         "TOTUVC": {
           "description": "Total CSUs in stock (RAQ included)",
@@ -435,10 +435,10 @@
           "maximum": 999999999
         },
         "SIGPOI": {
-          "description": "Sign of total weight - see EnumSign",
-          "description_es": "Signo del peso total - ver EnumSign",
-          "description_en": "Sign of total weight - see EnumSign",
-          "$ref": "#/$defs/Enums/EnumSign"
+          "description": "Sign of total weight - see EnumSIGN",
+          "description_es": "Signo del peso total - ver EnumSIGN",
+          "description_en": "Sign of total weight - see EnumSIGN",
+          "$ref": "#/$defs/Enums/EnumSIGN"
         },
         "TOTPOI": {
           "description": "Total weight in stock in Kg (RAQ included)",
@@ -580,10 +580,10 @@
           "maxLength": 3
         },
         "SIGUVC": {
-          "description": "Sign of total CSUs - see EnumSign",
-          "description_es": "Signo del total de UVC - ver EnumSign",
-          "description_en": "Sign of total CSUs - see EnumSign",
-          "$ref": "#/$defs/Enums/EnumSign"
+          "description": "Sign of total CSUs - see EnumSIGN",
+          "description_es": "Signo del total de UVC - ver EnumSIGN",
+          "description_en": "Sign of total CSUs - see EnumSIGN",
+          "$ref": "#/$defs/Enums/EnumSIGN"
         },
         "TOTUVC": {
           "description": "Total CSUs in stock",
@@ -594,10 +594,10 @@
           "maximum": 999999999
         },
         "SIGPOI": {
-          "description": "Sign of total weight - see EnumSign",
-          "description_es": "Signo del peso total - ver EnumSign",
-          "description_en": "Sign of total weight - see EnumSign",
-          "$ref": "#/$defs/Enums/EnumSign"
+          "description": "Sign of total weight - see EnumSIGN",
+          "description_es": "Signo del peso total - ver EnumSIGN",
+          "description_en": "Sign of total weight - see EnumSIGN",
+          "$ref": "#/$defs/Enums/EnumSIGN"
         },
         "TOTPOI": {
           "description": "Total weight in stock in Kg (RAQ included)",
@@ -1447,7 +1447,7 @@
         "type": "string",
         "enum": ["", "1", "2", "8", "9"]
       },
-      "EnumSign": {
+      "EnumSIGN": {
         "description": "Sign / + = Positive value, - = Negative value",
         "description_es": "Signo / + = Valor positivo, - = Valor negativo",
         "description_en": "Sign / + = Positive value, - = Negative value",

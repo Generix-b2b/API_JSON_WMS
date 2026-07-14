@@ -327,7 +327,11 @@
           "description": "Delivery packaging",
           "description_es": "Embalajes enviados",
           "description_en": "Delivery packaging",
-          "$ref": "#/$defs/GEEX5180Wrapper"
+          "type": "array",
+          "maxItems": 99,
+          "items": {
+            "$ref": "#/$defs/GEEX5180Wrapper"
+          }
         },
         "GEEX5199": {
           "description": "Delivery confirmation totals",

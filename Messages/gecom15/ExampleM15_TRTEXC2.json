@@ -1,5 +1,5 @@
 {
-  "supplierMasterData": [
+  "carrierMasterData": [
     {
       "RCTEXC": "FGE50XX0XX",
       "TRTEXC": "2",
@@ -10,7 +10,7 @@
       "PAYTRA": "ES",
       "CPITRA": "28001",
       "TELTRA": "+34910001111",
-      "GEEX1001": {
+      "GEEX1501": {
         "EMLADR": "contacto@industriasgenerix.com",
         "CM1TRA": "Nuevo responsable: Ana Martínez"
       }

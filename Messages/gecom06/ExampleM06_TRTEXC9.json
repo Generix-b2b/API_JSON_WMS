@@ -1,0 +1,12 @@
+{
+  "blockingUnblockingRequest": [
+    {
+      "RCTEXC": "DEST000001",
+      "TRTEXC": "9",
+      "CODPAL": "PAL000000000000003",
+      "CODACT": "001",
+      "CODPRO": "PROD00000000003",
+      "CODTRT": "3"
+    }
+  ]
+}

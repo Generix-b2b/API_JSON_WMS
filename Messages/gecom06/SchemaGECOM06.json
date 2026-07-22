@@ -195,7 +195,7 @@
           "maxLength": 30
         }
       },
-      "required": ["RCTEXC", "TRTEXC", "CODPAL", "CODACT", "CODPRO"],
+      "required": ["RCTEXC", "TRTEXC", "CODPAL", "CODACT", "MOTIMM", "CODTRT"],
       "additionalProperties": false
     },
     "Enums": {

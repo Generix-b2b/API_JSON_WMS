@@ -13,9 +13,9 @@
     "version": "v1.0",
     "releaseDate": "2026-06-25"
   },
-  "description": "Respuesta que el WMS envía de forma asíncrona al endpoint que el cliente expone, cuando detecta errores de coherencia y cohesión en el fichero (campos obligatorios ausentes, enums mal cumplimentados, formatos incorrectos, etc.). Solo se envía si el cliente ha configurado un endpoint de recepción.",
-  "description_es": "Respuesta que el WMS envía de forma asíncrona al endpoint que el cliente expone, cuando detecta errores de coherencia y cohesión en el fichero (campos obligatorios ausentes, enums mal cumplimentados, formatos incorrectos, etc.). Solo se envía si el cliente ha configurado un endpoint de recepción.",
-  "description_en": "Response that the WMS sends asynchronously to the endpoint the client exposes when it detects consistency and cohesion errors in the file (missing required fields, incorrectly filled enums, wrong formats, etc.). It is only sent if the client has configured a reception endpoint.",
+  "description": "Respuesta que el middleware envía de forma asíncrona al cliente, cuando detecta errores de coherencia en el fichero (campos obligatorios ausentes, enums mal cumplimentados, formatos incorrectos, etc.). Se puede parametrizar para solo enviar los errores o también cuando todo está OK. Aunque la validación a nivel middleware sea correcta, no se puede asegurar al 100% la integración en WMS.",
+  "description_es": "Respuesta que el middleware envía de forma asíncrona al cliente, cuando detecta errores de coherencia en el fichero (campos obligatorios ausentes, enums mal cumplimentados, formatos incorrectos, etc.). Se puede parametrizar para solo enviar los errores o también cuando todo está OK. Aunque la validación a nivel middleware sea correcta, no se puede asegurar al 100% la integración en WMS.",
+  "description_en": "A response that the middleware sends asynchronously to the client when it detects consistency errors in the file (missing required fields, incorrectly filled-in enums, incorrect formats, etc.). It can be configured to send only the errors, or to send a response even when everything is OK. Although validation at the middleware level is correct, integration with the WMS cannot be guaranteed 100%.",
   "type": "object",
   "properties": {
     "response": {
@@ -36,7 +36,7 @@
     }
   },
   "required": ["response"],
-
+  "additionalProperties": false,
   "$defs": {
     "ValidationResult": {
       "description": "Resultado de validación enviado al endpoint del cliente.",
@@ -50,6 +50,7 @@
           "description_es": "Identificador único de la transacción (coincide con el uuid del acuse de recibo inicial).",
           "description_en": "Unique transaction identifier (matches the uuid of the initial reception acknowledgement).",
           "type": "string",
+          "minLength": 1,
           "format": "uuid",
           "examples": ["7c9e6679-7425-40de-944b-e07fc1f90ae7"]
         },
@@ -62,13 +63,20 @@
           "maxLength": 10,
           "examples": ["M30"]
         },
+        "status": {
+          "description": "Estado de la validación del JSON",
+          "description_es": "Estado de la validación del JSON",
+          "description_en": "JSON validation status",
+          "$ref": "#/$defs/Enums/EnumStatus"
+        },
         "timestamp": {
-          "description": "Fecha y hora de la validación / formato YYYYMMDDHHmmss.",
-          "description_es": "Fecha y hora de la validación / formato YYYYMMDDHHmmss.",
-          "description_en": "Validation date and time / format YYYYMMDDHHmmss.",
+          "description": "Fecha y hora de la validación / formato YYYY-MM-DDTHH:mm:ssZ",
+          "description_es": "Fecha y hora de la validación / formato YYYY-MM-DDTHH:mm:ssZ",
+          "description_en": "Validation date and time / format YYYY-MM-DDTHH:mm:ssZ",
           "type": "string",
-          "pattern": "^[0-9]{14}$",
-          "examples": ["20260504135235"]
+          "format": "date-time",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$",
+          "examples": ["2026-05-04T13:52:35Z"]
         },
         "errors": {
           "description": "Lista de errores de validación detectados en el mensaje original. Un elemento por error.",
@@ -79,7 +87,21 @@
           "items": { "$ref": "#/$defs/ValidationError" }
         }
       },
-      "required": ["uuid", "message", "timestamp", "errors"]
+      "required": ["uuid", "message", "status", "timestamp"],
+      "if": {
+        "properties": {
+          "status": { "const": "ERROR"}
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["errors"]
+      },
+      "else": {
+        "not": {
+          "required": ["errors"]
+        }
+      }
     },
     "ValidationError": {
       "description": "Error de validación individual sobre un campo del mensaje original.",
@@ -88,32 +110,43 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "docReference": {
+          "description": "Referencia del documento recibido.",
+          "description_es": "Referencia del documento recibido.",
+          "description_en": "Reference number of the document received.",
+          "type": "string",
+          "minLength": 1,
+          "examples": ["ADFV1141"]
+        },
         "line": {
           "description": "Número de línea del registro en el mensaje original donde se detectó el error.",
           "description_es": "Número de línea del registro en el mensaje original donde se detectó el error.",
           "description_en": "Line number of the record in the original message where the error was detected.",
           "type": "string",
+          "minLength": 1,
           "pattern": "^[0-9]+$",
           "examples": ["1"]
-        },
-        "type": {
-          "description": "Tipo de dato del campo que falló la validación.",
-          "description_es": "Tipo de dato del campo que falló la validación.",
-          "description_en": "Data type of the field that failed validation.",
-          "$ref": "#/$defs/Enums/EnumErrorType"
         },
         "field": {
           "description": "Nombre del campo WMS que contiene el error.",
           "description_es": "Nombre del campo WMS que contiene el error.",
           "description_en": "Name of the WMS field that contains the error.",
           "type": "string",
+          "minLength": 1,
           "examples": ["INDPRO"]
         },
+        "type": {
+          "description": "Tipo lógico WMS del campo que ha provocado el error.",
+          "description_es": "Tipo lógico WMS del campo que ha provocado el error.",
+          "description_en": "The WMS data type of the field that caused the error.",
+          "$ref": "#/$defs/Enums/EnumErrorType"
+        },
         "receivedValue": {
-          "description": "Valor recibido que provocó el error.",
-          "description_es": "Valor recibido que provocó el error.",
-          "description_en": "Received value that caused the error.",
+          "description": "Valor original recibido en el JSON y representado en modo texto.",
+          "description_es": "Valor original recibido en el JSON y representado en modo texto.",
+          "description_en": "Original value received in the JSON and displayed in text format.",
           "type": "string",
+          "minLength": 1,
           "examples": ["[\"S\", \"N\", \"S\", \"N\", \"S\"]"]
         },
         "error": {
@@ -121,19 +154,28 @@
           "description_es": "Descripción legible de la regla de validación incumplida.",
           "description_en": "Human-readable description of the validation rule that was not met.",
           "type": "string",
+          "minLength": 1,
           "examples": ["Maximum allowed value : 1 Value specified in : INDPRO = [\"S\", \"N\", \"S\", \"N\", \"S\"]"]
         }
       },
       "required": ["line", "type", "field", "receivedValue", "error"]
     },
     "Enums": {
-      "EnumErrorType": {
-        "description": "Tipo de dato del campo que falló la validación / string = texto, integer = entero, string_double = decimal, date = fecha YYYYMMDD, boolean = true/false",
-        "description_es": "Tipo de dato del campo que falló la validación / string = texto, integer = entero, string_double = decimal, date = fecha YYYYMMDD, boolean = true/false",
-        "description_en": "Data type of the field that failed validation / string = text, integer = integer number, string_double = decimal number, date = date YYYYMMDD, boolean = true/false",
+      "EnumStatus": {
+        "description": "Estado validación / OK = Todo el intercambio validado, ERROR = Error en el intercambio",
+        "description_es": "Estado validación / OK = Todo el intercambio validado, ERROR = Error en el intercambio",
+        "description_en": "Validation status / OK = Entire transaction validated, ERROR = Transaction error",
         "type": "string",
-        "enum": ["string", "integer", "string_double", "date", "boolean"]
-      }
+        "enum": ["OK", "ERROR"]
+      },
+      "EnumErrorType": {
+        "description": "Tipo lógico WMS del campo que ha provocado el error. / string = texto, string_num = entero texto, string_double = decimal texto, integer = número entero, double = número decimal, enum = enumeraciones, boolean = true/false, date = date YYYMMDD, time = HHMMSS or HHMM",
+        "description_es": "Tipo lógico WMS del campo que ha provocado el error. / string = texto, string_num = entero texto, string_double = decimal texto, integer = número entero, double = número decimal, enum = enumeraciones, boolean = true/false, date = date YYYMMDD, time = HHMMSS or HHMM",
+        "description_en": "The WMS data type of the field that caused the error / string = text, string_num = integer text, string_double = double text, integer = integer number, double = double number, enum = enumerations, boolean = true/false, date = date YYYMMDD, time = HHMMSS or HHMM",
+        "type": "string",
+        "enum": ["string", "string_num", "string_double", "integer", "double", "enum", "boolean", "date", "time"]
+      }      
     }
   }
 }
+

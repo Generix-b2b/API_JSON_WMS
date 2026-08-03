@@ -3,26 +3,30 @@
     "validationResult": {
       "uuid": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
       "message": "M30",
-      "timestamp": "20260504135235",
+      "status": "ERROR",
+      "timestamp": "2026-05-04T13:52:35Z",
       "errors": [
         {
+          "docReference": "RGDDDG5543",
           "line": "1",
-          "type": "string",
           "field": "INDPRO",
+          "type": "string",
           "receivedValue": "[\"S\", \"N\", \"S\", \"N\", \"S\"]",
           "error": "Maximum allowed value : 1 Value specified in : INDPRO = [\"S\", \"N\", \"S\", \"N\", \"S\"]"
         },
         {
+          "docReference": "RGDDDG5543",
           "line": "2",
-          "type": "string",
           "field": "DESPRO",
+          "type": "string",
           "receivedValue": "[\"Appellation Côtes du Rhône Contrôlé\", \"Mis en bouteille au domaine\"]",
           "error": "Maximum allowed value : 35 Value specified in : DESPRO = [\"Appellation Côtes du Rhône Contrôlé\", \"Mis en bouteille au domaine\"]"
         },
         {
+          "docReference": "RGDDDG5543",
           "line": "3",
-          "type": "date",
           "field": "DTIREC",
+          "type": "date",
           "receivedValue": "20250620",
           "error": "Invalid date format YYYYMMDD - Value indicated in: DTIREC = 20250620"
         }

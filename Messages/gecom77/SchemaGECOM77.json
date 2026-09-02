@@ -11,7 +11,7 @@
     "path": "https://[URL_Client_Environment].generix.biz/m84_multiexchange?uuid=[Value]",
     "category": "Inbound",
     "version": "v1.1-BETA",
-    "releaseDate": "2026-07-22"
+    "releaseDate": "2026-09-02"
   },
   "description": "JSON for Multi-Exchange",
   "description_es": "JSON para Multiintercambio",

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom84/SchemaGECOM84.json",
-  "title": "GECOM84 - Multi-Exchange",
-  "title_es": "GECOM84 - Multiintercambio",
-  "title_en": "GECOM84 - Multi-Exchange",
-  "x-wms-icon": "GECOM84",
+  "title": "GECOM77 - Multi-Exchange",
+  "title_es": "GECOM77 - Multiintercambio",
+  "title_en": "GECOM77 - Multi-Exchange",
+  "x-wms-icon": "GECOM77",
   "x-wms-author": "GENERIX Group Spain",
   "x-wms-endpoint": {
     "method": "POST",

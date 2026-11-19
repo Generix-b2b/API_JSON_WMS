@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Generix-b2b/API_JSON_WMS/raw/main/Messages/gecom3120/SchemaGECOM3120.json",
+  "title": "GECOM3120 - TEST",
+  "title_es": "GECOM3120 - TEST",
+  "title_en": "GECOM3120 - TEST",
+  "x-wms-icon": "GECOM3120",
+  "x-wms-author": "GENERIX Group Spain",
+  "x-wms-endpoint": {
+    "method": "POST",
+    "path": "https://[URL_Client_Environment].generix.biz/TEST?uuid=[Value]",
+    "category": "Outbound",
+    "version": "v1.1",
+    "releaseDate": "2026-11-19",
+    "comingSoon": true 
+  },
+  "description": "JSON forTEST",
+  "description_es": "JSON para TEST",
+  "description_en": "JSON for TEST",
+  "type": "object"
+}

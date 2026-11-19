@@ -11,7 +11,7 @@
     "path": "https://[URL_Client_Environment].generix.biz/TEST?uuid=[Value]",
     "category": "Outbound",
     "version": "v1.1",
-    "releaseDate": "2026-07-03",
+    "releaseDate": "2026-11-19",
     "comingSoon": true 
   },
   "description": "JSON forTEST",
